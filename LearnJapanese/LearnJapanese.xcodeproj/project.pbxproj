@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1184ECB40558138B426B9116 /* Pods_LearnJapaneseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC133B8769AF912CC8E51B /* Pods_LearnJapaneseUITests.framework */; };
+		67B6C49519EA0F9B92203FBE /* Pods_LearnJapanese.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2DA111F1C49E3CCB7912D7 /* Pods_LearnJapanese.framework */; };
 		840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579BB1DED79DA0019C100 /* AppDelegate.swift */; };
 		840579C11DED79DA0019C100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579BF1DED79DA0019C100 /* Main.storyboard */; };
 		840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 840579C21DED79DA0019C100 /* LearnJapanese.xcdatamodeld */; };
@@ -14,9 +16,19 @@
 		840579C91DED79DA0019C100 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579C71DED79DA0019C100 /* LaunchScreen.storyboard */; };
 		840579D41DED79DA0019C100 /* LearnJapaneseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579D31DED79DA0019C100 /* LearnJapaneseTests.swift */; };
 		840579DF1DED79DA0019C100 /* LearnJapaneseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579DE1DED79DA0019C100 /* LearnJapaneseUITests.swift */; };
+		B84040B15AD6906377CA4F43 /* Pods_LearnJapaneseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */; };
+		D24A13581DED8E2A00E9E063 /* SearchDerikuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13571DED8E2A00E9E063 /* SearchDerikuViewController.swift */; };
+		D24A135B1DED966400E9E063 /* WordSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13591DED966400E9E063 /* WordSearchTableViewCell.swift */; };
+		D24A135C1DED966400E9E063 /* WordSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24A135A1DED966400E9E063 /* WordSearchTableViewCell.xib */; };
+		D24A135F1DEDA37200E9E063 /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A135E1DEDA37200E9E063 /* WordModel.swift */; };
+		D24A13651DEDA98300E9E063 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24A13641DEDA98300E9E063 /* History.storyboard */; };
+		D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13661DEDAAAC00E9E063 /* HistoryViewController.swift */; };
+		D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13681DEDCA8A00E9E063 /* SavePopupView.swift */; };
+		D24A136B1DEDCA9700E9E063 /* SavePopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24A136A1DEDCA9700E9E063 /* SavePopupView.xib */; };
 		D2688E131DED8B9D00EB3A6E /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E0E1DED8B9C00EB3A6E /* More.storyboard */; };
 		D2688E141DED8B9D00EB3A6E /* SearchDekiru.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */; };
 		D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E121DED8B9D00EB3A6E /* Translate.storyboard */; };
+		D2688E171DED8CCB00EB3A6E /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2688E161DED8CCB00EB3A6E /* Define.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C9D85BC6DCAA5DC6B62379A /* Pods-LearnJapanese.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapanese.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese.debug.xcconfig"; sourceTree = "<group>"; };
+		3E2DA111F1C49E3CCB7912D7 /* Pods_LearnJapanese.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapanese.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		413ADFF76D4C4E01F2F27E12 /* Pods-LearnJapaneseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseTests/Pods-LearnJapaneseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4E051E58AC22A7C6A366BCF2 /* Pods-LearnJapaneseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseTests/Pods-LearnJapaneseTests.release.xcconfig"; sourceTree = "<group>"; };
 		840579B81DED79DA0019C100 /* LearnJapanese.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnJapanese.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		840579BB1DED79DA0019C100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		840579C01DED79DA0019C100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,9 +66,23 @@
 		840579DA1DED79DA0019C100 /* LearnJapaneseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnJapaneseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		840579DE1DED79DA0019C100 /* LearnJapaneseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnJapaneseUITests.swift; sourceTree = "<group>"; };
 		840579E01DED79DA0019C100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapaneseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6A0240A367E383FA75F5428 /* Pods-LearnJapaneseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B528F679D54539D047D124D8 /* Pods-LearnJapanese.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapanese.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese.release.xcconfig"; sourceTree = "<group>"; };
+		B71028C69EA800855790B3A5 /* Pods-LearnJapaneseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D24A13571DED8E2A00E9E063 /* SearchDerikuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDerikuViewController.swift; sourceTree = "<group>"; };
+		D24A13591DED966400E9E063 /* WordSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordSearchTableViewCell.swift; sourceTree = "<group>"; };
+		D24A135A1DED966400E9E063 /* WordSearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordSearchTableViewCell.xib; sourceTree = "<group>"; };
+		D24A135E1DEDA37200E9E063 /* WordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
+		D24A13641DEDA98300E9E063 /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		D24A13661DEDAAAC00E9E063 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		D24A13681DEDCA8A00E9E063 /* SavePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavePopupView.swift; sourceTree = "<group>"; };
+		D24A136A1DEDCA9700E9E063 /* SavePopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SavePopupView.xib; sourceTree = "<group>"; };
 		D2688E0E1DED8B9C00EB3A6E /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchDekiru.storyboard; sourceTree = "<group>"; };
 		D2688E121DED8B9D00EB3A6E /* Translate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Translate.storyboard; sourceTree = "<group>"; };
+		D2688E161DED8CCB00EB3A6E /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		E4EC133B8769AF912CC8E51B /* Pods_LearnJapaneseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapaneseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67B6C49519EA0F9B92203FBE /* Pods_LearnJapanese.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B84040B15AD6906377CA4F43 /* Pods_LearnJapaneseTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,12 +106,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1184ECB40558138B426B9116 /* Pods_LearnJapaneseUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73B2AAECCE95D361A09536FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E2DA111F1C49E3CCB7912D7 /* Pods_LearnJapanese.framework */,
+				8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */,
+				E4EC133B8769AF912CC8E51B /* Pods_LearnJapaneseUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		760F39D19E30A64A7A540CE2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C9D85BC6DCAA5DC6B62379A /* Pods-LearnJapanese.debug.xcconfig */,
+				B528F679D54539D047D124D8 /* Pods-LearnJapanese.release.xcconfig */,
+				413ADFF76D4C4E01F2F27E12 /* Pods-LearnJapaneseTests.debug.xcconfig */,
+				4E051E58AC22A7C6A366BCF2 /* Pods-LearnJapaneseTests.release.xcconfig */,
+				A6A0240A367E383FA75F5428 /* Pods-LearnJapaneseUITests.debug.xcconfig */,
+				B71028C69EA800855790B3A5 /* Pods-LearnJapaneseUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		840579AF1DED79D90019C100 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +143,8 @@
 				840579D21DED79DA0019C100 /* LearnJapaneseTests */,
 				840579DD1DED79DA0019C100 /* LearnJapaneseUITests */,
 				840579B91DED79DA0019C100 /* Products */,
+				760F39D19E30A64A7A540CE2 /* Pods */,
+				73B2AAECCE95D361A09536FF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,10 +161,13 @@
 		840579BA1DED79DA0019C100 /* LearnJapanese */ = {
 			isa = PBXGroup;
 			children = (
-				D2688E0D1DED8B9C00EB3A6E /* MoreFlow */,
 				D2688E0F1DED8B9C00EB3A6E /* SearchDekiruFlow */,
+				D24A13631DEDA98300E9E063 /* HistoryFlow */,
+				D24A135D1DEDA35E00E9E063 /* Model */,
+				D2688E0D1DED8B9C00EB3A6E /* MoreFlow */,
 				D2688E111DED8B9C00EB3A6E /* TranslateFlow */,
 				840579BB1DED79DA0019C100 /* AppDelegate.swift */,
+				D2688E161DED8CCB00EB3A6E /* Define.swift */,
 				840579BF1DED79DA0019C100 /* Main.storyboard */,
 				840579C51DED79DA0019C100 /* Assets.xcassets */,
 				840579C71DED79DA0019C100 /* LaunchScreen.storyboard */,
@@ -134,6 +195,23 @@
 			path = LearnJapaneseUITests;
 			sourceTree = "<group>";
 		};
+		D24A135D1DEDA35E00E9E063 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D24A135E1DEDA37200E9E063 /* WordModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D24A13631DEDA98300E9E063 /* HistoryFlow */ = {
+			isa = PBXGroup;
+			children = (
+				D24A13641DEDA98300E9E063 /* History.storyboard */,
+				D24A13661DEDAAAC00E9E063 /* HistoryViewController.swift */,
+			);
+			path = HistoryFlow;
+			sourceTree = "<group>";
+		};
 		D2688E0D1DED8B9C00EB3A6E /* MoreFlow */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +224,11 @@
 			isa = PBXGroup;
 			children = (
 				D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */,
+				D24A13571DED8E2A00E9E063 /* SearchDerikuViewController.swift */,
+				D24A13591DED966400E9E063 /* WordSearchTableViewCell.swift */,
+				D24A135A1DED966400E9E063 /* WordSearchTableViewCell.xib */,
+				D24A13681DEDCA8A00E9E063 /* SavePopupView.swift */,
+				D24A136A1DEDCA9700E9E063 /* SavePopupView.xib */,
 			);
 			path = SearchDekiruFlow;
 			sourceTree = "<group>";
@@ -165,9 +248,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 840579E31DED79DA0019C100 /* Build configuration list for PBXNativeTarget "LearnJapanese" */;
 			buildPhases = (
+				7FD4FEC08680998BA0757F40 /* [CP] Check Pods Manifest.lock */,
 				840579B41DED79DA0019C100 /* Sources */,
 				840579B51DED79DA0019C100 /* Frameworks */,
 				840579B61DED79DA0019C100 /* Resources */,
+				6316F8C8687197B4C9CCC644 /* [CP] Embed Pods Frameworks */,
+				7EBDB379B1759A7F967B8461 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -182,9 +268,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 840579E61DED79DA0019C100 /* Build configuration list for PBXNativeTarget "LearnJapaneseTests" */;
 			buildPhases = (
+				1186D9FF5EB6F8F1AD5CCB03 /* [CP] Check Pods Manifest.lock */,
 				840579CB1DED79DA0019C100 /* Sources */,
 				840579CC1DED79DA0019C100 /* Frameworks */,
 				840579CD1DED79DA0019C100 /* Resources */,
+				5E206898D564AB9F375DEDFE /* [CP] Embed Pods Frameworks */,
+				C136EC6097A541A751B7F8DE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,9 +289,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 840579E91DED79DA0019C100 /* Build configuration list for PBXNativeTarget "LearnJapaneseUITests" */;
 			buildPhases = (
+				7A606E1449CFB2150333D723 /* [CP] Check Pods Manifest.lock */,
 				840579D61DED79DA0019C100 /* Sources */,
 				840579D71DED79DA0019C100 /* Frameworks */,
 				840579D81DED79DA0019C100 /* Resources */,
+				104DF642514C481A0328BCA8 /* [CP] Embed Pods Frameworks */,
+				A461A4C9B2EAFE8631BD7C68 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,8 +360,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D24A136B1DEDCA9700E9E063 /* SavePopupView.xib in Resources */,
 				840579C91DED79DA0019C100 /* LaunchScreen.storyboard in Resources */,
+				D24A135C1DED966400E9E063 /* WordSearchTableViewCell.xib in Resources */,
 				D2688E131DED8B9D00EB3A6E /* More.storyboard in Resources */,
+				D24A13651DEDA98300E9E063 /* History.storyboard in Resources */,
 				D2688E141DED8B9D00EB3A6E /* SearchDekiru.storyboard in Resources */,
 				D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */,
 				840579C61DED79DA0019C100 /* Assets.xcassets in Resources */,
@@ -293,12 +388,156 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		104DF642514C481A0328BCA8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1186D9FF5EB6F8F1AD5CCB03 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5E206898D564AB9F375DEDFE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapaneseTests/Pods-LearnJapaneseTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6316F8C8687197B4C9CCC644 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A606E1449CFB2150333D723 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7EBDB379B1759A7F967B8461 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FD4FEC08680998BA0757F40 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A461A4C9B2EAFE8631BD7C68 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C136EC6097A541A751B7F8DE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapaneseTests/Pods-LearnJapaneseTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		840579B41DED79DA0019C100 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D24A13581DED8E2A00E9E063 /* SearchDerikuViewController.swift in Sources */,
+				D24A135F1DEDA37200E9E063 /* WordModel.swift in Sources */,
+				D24A135B1DED966400E9E063 /* WordSearchTableViewCell.swift in Sources */,
 				840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */,
+				D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */,
+				D2688E171DED8CCB00EB3A6E /* Define.swift in Sources */,
+				D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */,
 				840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +688,7 @@
 		};
 		840579E41DED79DA0019C100 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C9D85BC6DCAA5DC6B62379A /* Pods-LearnJapanese.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 78F7F9Y9CK;
@@ -462,6 +702,7 @@
 		};
 		840579E51DED79DA0019C100 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B528F679D54539D047D124D8 /* Pods-LearnJapanese.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 78F7F9Y9CK;
@@ -475,6 +716,7 @@
 		};
 		840579E71DED79DA0019C100 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 413ADFF76D4C4E01F2F27E12 /* Pods-LearnJapaneseTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,6 +732,7 @@
 		};
 		840579E81DED79DA0019C100 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E051E58AC22A7C6A366BCF2 /* Pods-LearnJapaneseTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -505,6 +748,7 @@
 		};
 		840579EA1DED79DA0019C100 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6A0240A367E383FA75F5428 /* Pods-LearnJapaneseUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 78F7F9Y9CK;
@@ -519,6 +763,7 @@
 		};
 		840579EB1DED79DA0019C100 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B71028C69EA800855790B3A5 /* Pods-LearnJapaneseUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 78F7F9Y9CK;
