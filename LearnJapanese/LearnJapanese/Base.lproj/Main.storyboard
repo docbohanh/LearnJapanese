@@ -19,11 +19,11 @@
             </objects>
             <point key="canvasLocation" x="80" y="-10"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Dictionary Tab Bar View Controller-->
         <scene sceneID="1nh-iQ-Z4O">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fo5-gW-I3B" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tabBarController id="HJc-6p-mX2" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="DictionaryTabBarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HJc-6p-mX2" customClass="DictionaryTabBarViewController" customModule="LearnJapanese" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="K8L-T3-iIm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

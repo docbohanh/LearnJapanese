@@ -17,6 +17,7 @@
 		840579ED1DED808B0019C100 /* SearchDekiru.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579EC1DED808B0019C100 /* SearchDekiru.storyboard */; };
 		840579EF1DED82950019C100 /* Translate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579EE1DED82950019C100 /* Translate.storyboard */; };
 		840579F11DED82A50019C100 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579F01DED82A50019C100 /* More.storyboard */; };
+		840579F61DED899B0019C100 /* DictionaryTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579F51DED899B0019C100 /* DictionaryTabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		840579EC1DED808B0019C100 /* SearchDekiru.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchDekiru.storyboard; sourceTree = "<group>"; };
 		840579EE1DED82950019C100 /* Translate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Translate.storyboard; sourceTree = "<group>"; };
 		840579F01DED82A50019C100 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		840579F51DED899B0019C100 /* DictionaryTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				840579BB1DED79DA0019C100 /* AppDelegate.swift */,
+				840579F51DED899B0019C100 /* DictionaryTabBarViewController.swift */,
 				840579BF1DED79DA0019C100 /* Main.storyboard */,
 				840579F41DED86EE0019C100 /* More */,
 				840579F31DED86E20019C100 /* Translate */,
@@ -300,6 +303,7 @@
 			files = (
 				840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */,
 				840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */,
+				840579F61DED899B0019C100 /* DictionaryTabBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
