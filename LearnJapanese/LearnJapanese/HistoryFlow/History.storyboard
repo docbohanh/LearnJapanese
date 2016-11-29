@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GKt-OB-eAd">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Knh-7t-PBi">
+            <objects>
+                <navigationController id="GKt-OB-eAd" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Yvz-xY-IMP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.061138659720000002" green="0.47626364230000001" blue="0.42406085129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cko-PZ-URP" kind="relationship" relationship="rootViewController" id="kpr-Yd-gPo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ToB-vI-gqV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-700" y="36"/>
+        </scene>
+        <!--Lịch sử-->
+        <scene sceneID="kQl-rC-h3y">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="cko-PZ-URP" customClass="HistoryViewController" customModule="LearnJapanese" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VVn-sv-156"/>
+                        <viewControllerLayoutGuide type="bottom" id="cMf-zq-RbB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3yN-TE-5Qj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yBI-iw-t7S">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="cko-PZ-URP" id="efq-uz-Ir2"/>
+                                    <outlet property="delegate" destination="cko-PZ-URP" id="v6D-pK-1fp"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yBI-iw-t7S" secondAttribute="trailing" id="4za-OO-o2w"/>
+                            <constraint firstItem="yBI-iw-t7S" firstAttribute="top" secondItem="VVn-sv-156" secondAttribute="bottom" id="ikZ-3h-RSD"/>
+                            <constraint firstItem="yBI-iw-t7S" firstAttribute="leading" secondItem="3yN-TE-5Qj" secondAttribute="leading" id="sHr-Ww-U33"/>
+                            <constraint firstItem="cMf-zq-RbB" firstAttribute="top" secondItem="yBI-iw-t7S" secondAttribute="bottom" id="vgT-Vy-kkZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Lịch sử" id="mJr-zj-53X">
+                        <barButtonItem key="rightBarButtonItem" title="Nhật-Việt" id="ovU-Kq-LIA">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="tableView" destination="yBI-iw-t7S" id="oEj-BO-PXs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cVg-5y-46r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34" y="36"/>
+        </scene>
+    </scenes>
+</document>
