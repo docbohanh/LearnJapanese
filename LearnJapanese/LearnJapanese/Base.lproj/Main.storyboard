@@ -22,7 +22,6 @@
         <!--Dictionary Tab Bar View Controller-->
         <scene sceneID="1nh-iQ-Z4O">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fo5-gW-I3B" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController storyboardIdentifier="DictionaryTabBarViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HJc-6p-mX2" customClass="DictionaryTabBarViewController" customModule="LearnJapanese" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="K8L-T3-iIm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -36,6 +35,7 @@
                         <segue destination="5vC-yH-RZr" kind="relationship" relationship="viewControllers" id="fV5-ir-BcF"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fo5-gW-I3B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-514" y="-297"/>
         </scene>
@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="68" y="-110"/>
         </scene>
-        <!--More-->
+        <!--Library-->
         <scene sceneID="ZnA-tY-RDy">
             <objects>
-                <viewControllerPlaceholder storyboardName="More" id="4ng-Oi-oB7" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Library" id="4ng-Oi-oB7" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Thêm" id="DvR-ja-81T"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFS-eH-vau" userLabel="First Responder" sceneMemberID="firstResponder"/>

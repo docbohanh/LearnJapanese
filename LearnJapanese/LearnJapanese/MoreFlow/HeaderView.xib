@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="HeaderView" id="iN0-l3-epB" customClass="HeaderView" customModule="LearnJapanese" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wvE-eo-Ahh">
+                    <rect key="frame" x="10" y="5" width="50" height="50"/>
+                    <color key="backgroundColor" red="0.75686274509999996" green="1" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="6Oh-5E-WQX"/>
+                        <constraint firstAttribute="width" constant="50" id="pP4-Qv-ARK"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chủ đề 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsP-SC-dC1">
+                    <rect key="frame" x="70" y="0.0" width="295" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IxL-GF-mOg">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <action selector="tappedShowVocabulary:" destination="iN0-l3-epB" eventType="touchUpInside" id="YeG-K4-rlE"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oET-g5-Pi1">
+                    <rect key="frame" x="0.0" y="58" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.90669993459999998" green="0.90669993459999998" blue="0.90669993459999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="HqC-XY-Ddg"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="oET-g5-Pi1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BEG-f6-MG1"/>
+                <constraint firstAttribute="bottom" secondItem="dsP-SC-dC1" secondAttribute="bottom" id="Dka-7I-tBg"/>
+                <constraint firstItem="wvE-eo-Ahh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Hsx-8y-IS1"/>
+                <constraint firstAttribute="bottom" secondItem="oET-g5-Pi1" secondAttribute="bottom" constant="1" id="Irb-Kg-HWO"/>
+                <constraint firstItem="IxL-GF-mOg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MBk-g2-E6o"/>
+                <constraint firstAttribute="trailing" secondItem="oET-g5-Pi1" secondAttribute="trailing" id="NQz-hs-p9z"/>
+                <constraint firstItem="dsP-SC-dC1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="OJY-Pb-fa1"/>
+                <constraint firstItem="dsP-SC-dC1" firstAttribute="leading" secondItem="wvE-eo-Ahh" secondAttribute="trailing" constant="10" id="esy-k0-2v1"/>
+                <constraint firstAttribute="bottom" secondItem="IxL-GF-mOg" secondAttribute="bottom" constant="15" id="jdl-fj-ZzY"/>
+                <constraint firstItem="IxL-GF-mOg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oPh-Cd-f8j"/>
+                <constraint firstItem="wvE-eo-Ahh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="pRC-S3-ZYC"/>
+                <constraint firstAttribute="trailing" secondItem="IxL-GF-mOg" secondAttribute="trailing" id="rBT-sw-JN7"/>
+                <constraint firstAttribute="trailing" secondItem="dsP-SC-dC1" secondAttribute="trailing" constant="10" id="z0f-Hd-SW5"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="iconHeaderImageView" destination="wvE-eo-Ahh" id="Biq-Uw-qBH"/>
+                <outlet property="titleLabel" destination="dsP-SC-dC1" id="Abf-ot-oop"/>
+            </connections>
+            <point key="canvasLocation" x="21.5" y="191"/>
+        </view>
+    </objects>
+</document>
