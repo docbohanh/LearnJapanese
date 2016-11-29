@@ -14,9 +14,9 @@
 		840579C91DED79DA0019C100 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579C71DED79DA0019C100 /* LaunchScreen.storyboard */; };
 		840579D41DED79DA0019C100 /* LearnJapaneseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579D31DED79DA0019C100 /* LearnJapaneseTests.swift */; };
 		840579DF1DED79DA0019C100 /* LearnJapaneseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579DE1DED79DA0019C100 /* LearnJapaneseUITests.swift */; };
-		840579ED1DED808B0019C100 /* SearchDekiru.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579EC1DED808B0019C100 /* SearchDekiru.storyboard */; };
-		840579EF1DED82950019C100 /* Translate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579EE1DED82950019C100 /* Translate.storyboard */; };
-		840579F11DED82A50019C100 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579F01DED82A50019C100 /* More.storyboard */; };
+		D2688E131DED8B9D00EB3A6E /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E0E1DED8B9C00EB3A6E /* More.storyboard */; };
+		D2688E141DED8B9D00EB3A6E /* SearchDekiru.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */; };
+		D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E121DED8B9D00EB3A6E /* Translate.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,9 +50,9 @@
 		840579DA1DED79DA0019C100 /* LearnJapaneseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnJapaneseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		840579DE1DED79DA0019C100 /* LearnJapaneseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnJapaneseUITests.swift; sourceTree = "<group>"; };
 		840579E01DED79DA0019C100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		840579EC1DED808B0019C100 /* SearchDekiru.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchDekiru.storyboard; sourceTree = "<group>"; };
-		840579EE1DED82950019C100 /* Translate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Translate.storyboard; sourceTree = "<group>"; };
-		840579F01DED82A50019C100 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		D2688E0E1DED8B9C00EB3A6E /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchDekiru.storyboard; sourceTree = "<group>"; };
+		D2688E121DED8B9D00EB3A6E /* Translate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Translate.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,11 +103,11 @@
 		840579BA1DED79DA0019C100 /* LearnJapanese */ = {
 			isa = PBXGroup;
 			children = (
+				D2688E0D1DED8B9C00EB3A6E /* MoreFlow */,
+				D2688E0F1DED8B9C00EB3A6E /* SearchDekiruFlow */,
+				D2688E111DED8B9C00EB3A6E /* TranslateFlow */,
 				840579BB1DED79DA0019C100 /* AppDelegate.swift */,
 				840579BF1DED79DA0019C100 /* Main.storyboard */,
-				840579F41DED86EE0019C100 /* More */,
-				840579F31DED86E20019C100 /* Translate */,
-				840579F21DED86CA0019C100 /* SearchDekiru */,
 				840579C51DED79DA0019C100 /* Assets.xcassets */,
 				840579C71DED79DA0019C100 /* LaunchScreen.storyboard */,
 				840579CA1DED79DA0019C100 /* Info.plist */,
@@ -134,28 +134,28 @@
 			path = LearnJapaneseUITests;
 			sourceTree = "<group>";
 		};
-		840579F21DED86CA0019C100 /* SearchDekiru */ = {
+		D2688E0D1DED8B9C00EB3A6E /* MoreFlow */ = {
 			isa = PBXGroup;
 			children = (
-				840579EC1DED808B0019C100 /* SearchDekiru.storyboard */,
+				D2688E0E1DED8B9C00EB3A6E /* More.storyboard */,
 			);
-			name = SearchDekiru;
+			path = MoreFlow;
 			sourceTree = "<group>";
 		};
-		840579F31DED86E20019C100 /* Translate */ = {
+		D2688E0F1DED8B9C00EB3A6E /* SearchDekiruFlow */ = {
 			isa = PBXGroup;
 			children = (
-				840579EE1DED82950019C100 /* Translate.storyboard */,
+				D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */,
 			);
-			name = Translate;
+			path = SearchDekiruFlow;
 			sourceTree = "<group>";
 		};
-		840579F41DED86EE0019C100 /* More */ = {
+		D2688E111DED8B9C00EB3A6E /* TranslateFlow */ = {
 			isa = PBXGroup;
 			children = (
-				840579F01DED82A50019C100 /* More.storyboard */,
+				D2688E121DED8B9D00EB3A6E /* Translate.storyboard */,
 			);
-			name = More;
+			path = TranslateFlow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,10 +268,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				840579ED1DED808B0019C100 /* SearchDekiru.storyboard in Resources */,
-				840579F11DED82A50019C100 /* More.storyboard in Resources */,
 				840579C91DED79DA0019C100 /* LaunchScreen.storyboard in Resources */,
-				840579EF1DED82950019C100 /* Translate.storyboard in Resources */,
+				D2688E131DED8B9D00EB3A6E /* More.storyboard in Resources */,
+				D2688E141DED8B9D00EB3A6E /* SearchDekiru.storyboard in Resources */,
+				D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */,
 				840579C61DED79DA0019C100 /* Assets.xcassets in Resources */,
 				840579C11DED79DA0019C100 /* Main.storyboard in Resources */,
 			);
