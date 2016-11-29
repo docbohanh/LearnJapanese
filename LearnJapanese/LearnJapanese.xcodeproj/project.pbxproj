@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579BB1DED79DA0019C100 /* AppDelegate.swift */; };
-		840579BE1DED79DA0019C100 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579BD1DED79DA0019C100 /* ViewController.swift */; };
 		840579C11DED79DA0019C100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579BF1DED79DA0019C100 /* Main.storyboard */; };
 		840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 840579C21DED79DA0019C100 /* LearnJapanese.xcdatamodeld */; };
 		840579C61DED79DA0019C100 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 840579C51DED79DA0019C100 /* Assets.xcassets */; };
@@ -40,7 +39,6 @@
 /* Begin PBXFileReference section */
 		840579B81DED79DA0019C100 /* LearnJapanese.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnJapanese.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		840579BB1DED79DA0019C100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		840579BD1DED79DA0019C100 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		840579C01DED79DA0019C100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		840579C31DED79DA0019C100 /* LearnJapanese.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LearnJapanese.xcdatamodel; sourceTree = "<group>"; };
 		840579C51DED79DA0019C100 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,15 +104,14 @@
 			isa = PBXGroup;
 			children = (
 				840579BB1DED79DA0019C100 /* AppDelegate.swift */,
-				840579BD1DED79DA0019C100 /* ViewController.swift */,
 				840579BF1DED79DA0019C100 /* Main.storyboard */,
+				840579F41DED86EE0019C100 /* More */,
+				840579F31DED86E20019C100 /* Translate */,
+				840579F21DED86CA0019C100 /* SearchDekiru */,
 				840579C51DED79DA0019C100 /* Assets.xcassets */,
 				840579C71DED79DA0019C100 /* LaunchScreen.storyboard */,
 				840579CA1DED79DA0019C100 /* Info.plist */,
 				840579C21DED79DA0019C100 /* LearnJapanese.xcdatamodeld */,
-				840579EC1DED808B0019C100 /* SearchDekiru.storyboard */,
-				840579EE1DED82950019C100 /* Translate.storyboard */,
-				840579F01DED82A50019C100 /* More.storyboard */,
 			);
 			path = LearnJapanese;
 			sourceTree = "<group>";
@@ -135,6 +132,30 @@
 				840579E01DED79DA0019C100 /* Info.plist */,
 			);
 			path = LearnJapaneseUITests;
+			sourceTree = "<group>";
+		};
+		840579F21DED86CA0019C100 /* SearchDekiru */ = {
+			isa = PBXGroup;
+			children = (
+				840579EC1DED808B0019C100 /* SearchDekiru.storyboard */,
+			);
+			name = SearchDekiru;
+			sourceTree = "<group>";
+		};
+		840579F31DED86E20019C100 /* Translate */ = {
+			isa = PBXGroup;
+			children = (
+				840579EE1DED82950019C100 /* Translate.storyboard */,
+			);
+			name = Translate;
+			sourceTree = "<group>";
+		};
+		840579F41DED86EE0019C100 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				840579F01DED82A50019C100 /* More.storyboard */,
+			);
+			name = More;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +298,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				840579BE1DED79DA0019C100 /* ViewController.swift in Sources */,
 				840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */,
 				840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */,
 			);
