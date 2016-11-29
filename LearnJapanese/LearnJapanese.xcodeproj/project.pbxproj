@@ -15,6 +15,9 @@
 		840579C91DED79DA0019C100 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579C71DED79DA0019C100 /* LaunchScreen.storyboard */; };
 		840579D41DED79DA0019C100 /* LearnJapaneseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579D31DED79DA0019C100 /* LearnJapaneseTests.swift */; };
 		840579DF1DED79DA0019C100 /* LearnJapaneseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579DE1DED79DA0019C100 /* LearnJapaneseUITests.swift */; };
+		840579ED1DED808B0019C100 /* SearchDekiru.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579EC1DED808B0019C100 /* SearchDekiru.storyboard */; };
+		840579EF1DED82950019C100 /* Translate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579EE1DED82950019C100 /* Translate.storyboard */; };
+		840579F11DED82A50019C100 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579F01DED82A50019C100 /* More.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		840579DA1DED79DA0019C100 /* LearnJapaneseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnJapaneseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		840579DE1DED79DA0019C100 /* LearnJapaneseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnJapaneseUITests.swift; sourceTree = "<group>"; };
 		840579E01DED79DA0019C100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		840579EC1DED808B0019C100 /* SearchDekiru.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchDekiru.storyboard; sourceTree = "<group>"; };
+		840579EE1DED82950019C100 /* Translate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Translate.storyboard; sourceTree = "<group>"; };
+		840579F01DED82A50019C100 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,9 @@
 				840579C71DED79DA0019C100 /* LaunchScreen.storyboard */,
 				840579CA1DED79DA0019C100 /* Info.plist */,
 				840579C21DED79DA0019C100 /* LearnJapanese.xcdatamodeld */,
+				840579EC1DED808B0019C100 /* SearchDekiru.storyboard */,
+				840579EE1DED82950019C100 /* Translate.storyboard */,
+				840579F01DED82A50019C100 /* More.storyboard */,
 			);
 			path = LearnJapanese;
 			sourceTree = "<group>";
@@ -238,7 +247,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840579ED1DED808B0019C100 /* SearchDekiru.storyboard in Resources */,
+				840579F11DED82A50019C100 /* More.storyboard in Resources */,
 				840579C91DED79DA0019C100 /* LaunchScreen.storyboard in Resources */,
+				840579EF1DED82950019C100 /* Translate.storyboard in Resources */,
 				840579C61DED79DA0019C100 /* Assets.xcassets in Resources */,
 				840579C11DED79DA0019C100 /* Main.storyboard in Resources */,
 			);
@@ -518,6 +530,7 @@
 				840579E51DED79DA0019C100 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		840579E61DED79DA0019C100 /* Build configuration list for PBXNativeTarget "LearnJapaneseTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +539,7 @@
 				840579E81DED79DA0019C100 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		840579E91DED79DA0019C100 /* Build configuration list for PBXNativeTarget "LearnJapaneseUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +548,7 @@
 				840579EB1DED79DA0019C100 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
