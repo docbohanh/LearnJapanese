@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="brZ-JA-NmA">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -10,10 +10,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Thư viện-->
         <scene sceneID="j2V-5A-f3J">
             <objects>
                 <navigationController id="brZ-JA-NmA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Thư viện" image="icon_menu" id="ZPi-bd-FjD"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6WS-gh-8eQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -27,7 +29,7 @@
             </objects>
             <point key="canvasLocation" x="-1494" y="-30"/>
         </scene>
-        <!--Thêm-->
+        <!--Library View Controller-->
         <scene sceneID="edX-QM-kNg">
             <objects>
                 <viewController storyboardIdentifier="LibraryViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QnM-pV-oiO" customClass="LibraryViewController" customModule="LearnJapanese" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,54 +38,55 @@
                         <viewControllerLayoutGuide type="bottom" id="svN-Og-R0i"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aq5-5j-uWU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IrV-6h-biY">
-                                <rect key="frame" x="-0.5" y="64" width="375" height="603"/>
+                                <rect key="frame" x="-0.66666666666665719" y="64" width="414.66666666666663" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="VocabularyTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="VocabularyTableViewCell" id="MwY-5c-KFT" customClass="VocabularyTableViewCell" customModule="LearnJapanese" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="414.5" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MwY-5c-KFT" id="zBi-nU-XNu">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WVB-Oh-jdo">
-                                                    <rect key="frame" x="10" y="2" width="40" height="40"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="WVB-Oh-jdo">
+                                                    <rect key="frame" x="10" y="9.6666666666666643" width="25" height="25"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="6wG-Ap-K9W"/>
-                                                        <constraint firstAttribute="width" constant="40" id="gJO-e4-6gF"/>
+                                                        <constraint firstAttribute="height" constant="25" id="6wG-Ap-K9W"/>
+                                                        <constraint firstAttribute="width" constant="25" id="gJO-e4-6gF"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="子日は" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6r-i6-eX2">
-                                                    <rect key="frame" x="60" y="8" width="255" height="27.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="45" y="8" width="309.66666666666669" height="27.666666666666664"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUZ-fQ-wBM">
-                                                    <rect key="frame" x="325" y="2" width="40" height="40"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xUZ-fQ-wBM">
+                                                    <rect key="frame" x="364.66666666666669" y="2" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="ZQb-z8-ao4"/>
                                                         <constraint firstAttribute="width" constant="40" id="hbH-t1-NJO"/>
                                                     </constraints>
-                                                    <state key="normal" title="X"/>
+                                                    <state key="normal" image="icon_sound_green"/>
                                                     <connections>
                                                         <action selector="tappedReadVocabulary:" destination="MwY-5c-KFT" eventType="touchUpInside" id="Dyb-Rt-iDW"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="xUZ-fQ-wBM" firstAttribute="top" secondItem="zBi-nU-XNu" secondAttribute="top" constant="2" id="4Zr-ee-TF5"/>
                                                 <constraint firstItem="WVB-Oh-jdo" firstAttribute="leading" secondItem="zBi-nU-XNu" secondAttribute="leading" constant="10" id="6zu-FR-vGa"/>
                                                 <constraint firstItem="xUZ-fQ-wBM" firstAttribute="leading" secondItem="J6r-i6-eX2" secondAttribute="trailing" constant="10" id="Gt0-9L-YCr"/>
                                                 <constraint firstItem="J6r-i6-eX2" firstAttribute="top" secondItem="zBi-nU-XNu" secondAttribute="topMargin" id="RdI-6A-DKn"/>
-                                                <constraint firstItem="WVB-Oh-jdo" firstAttribute="top" secondItem="zBi-nU-XNu" secondAttribute="top" constant="2" id="Y60-lz-lMe"/>
+                                                <constraint firstItem="xUZ-fQ-wBM" firstAttribute="centerY" secondItem="zBi-nU-XNu" secondAttribute="centerY" id="XhV-6f-Seq"/>
                                                 <constraint firstItem="J6r-i6-eX2" firstAttribute="leading" secondItem="WVB-Oh-jdo" secondAttribute="trailing" constant="10" id="dY4-ta-f9i"/>
                                                 <constraint firstAttribute="trailing" secondItem="xUZ-fQ-wBM" secondAttribute="trailing" constant="10" id="dna-91-6UD"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="J6r-i6-eX2" secondAttribute="bottom" id="oX8-VV-yQz"/>
+                                                <constraint firstItem="WVB-Oh-jdo" firstAttribute="centerY" secondItem="zBi-nU-XNu" secondAttribute="centerY" id="vZm-QP-UTb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -107,16 +110,15 @@
                             <constraint firstAttribute="trailing" secondItem="IrV-6h-biY" secondAttribute="trailing" id="iaE-ce-KI9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Thêm" id="fkr-w1-5gc"/>
                     <navigationItem key="navigationItem" id="uhE-Dp-hpT">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="7U8-aX-vJM">
                             <view key="customView" contentMode="scaleToFill" id="NLd-Oz-k0s">
-                                <rect key="frame" x="16" y="5" width="110" height="33"/>
+                                <rect key="frame" x="20" y="5" width="110" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dlb-S3-TJ0">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="dlb-S3-TJ0">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <color key="backgroundColor" red="0.57808044039999995" green="0.8388268834" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="63F-S8-50p"/>
                                             <constraint firstAttribute="height" constant="30" id="uBO-US-tNO"/>
@@ -143,19 +145,34 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="PI2-SP-ohB">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FJG-fa-ess">
-                                <rect key="frame" x="329" y="7" width="30" height="30"/>
+                                <rect key="frame" x="364" y="7" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="B">
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" backgroundImage="icon_flashcash_nav-1">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="tappedAddDetailLibrary:" destination="QnM-pV-oiO" eventType="touchUpInside" id="NYg-Nb-ZwZ"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="DetailLibraryButton" destination="FJG-fa-ess" id="ZfH-mq-k7w"/>
+                        <outlet property="libraryTableView" destination="IrV-6h-biY" id="Orp-gM-Zog"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kXI-mu-90i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-767.20000000000005" y="-30.134932533733135"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_flashcash_nav-1" width="31" height="31"/>
+        <image name="icon_logo" width="33" height="33"/>
+        <image name="icon_menu" width="17" height="17"/>
+        <image name="icon_sound_green" width="17" height="16"/>
+        <image name="icon_star" width="18" height="18"/>
+    </resources>
 </document>

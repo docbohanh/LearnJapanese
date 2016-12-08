@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wvE-eo-Ahh">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_flashcash_folder" translatesAutoresizingMaskIntoConstraints="NO" id="wvE-eo-Ahh">
                     <rect key="frame" x="10" y="5" width="50" height="50"/>
                     <color key="backgroundColor" red="0.75686274509999996" green="1" blue="0.75686274509999996" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -23,12 +23,6 @@
                         <constraint firstAttribute="width" constant="50" id="pP4-Qv-ARK"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chủ đề 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsP-SC-dC1">
-                    <rect key="frame" x="70" y="0.0" width="295" height="60"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IxL-GF-mOg">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -36,6 +30,12 @@
                         <action selector="tappedShowVocabulary:" destination="iN0-l3-epB" eventType="touchUpInside" id="YeG-K4-rlE"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chủ đề 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsP-SC-dC1">
+                    <rect key="frame" x="70" y="0.0" width="295" height="60"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oET-g5-Pi1">
                     <rect key="frame" x="0.0" y="58" width="375" height="1"/>
                     <color key="backgroundColor" red="0.90669993459999998" green="0.90669993459999998" blue="0.90669993459999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -63,10 +63,14 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="backgroundHeaderButton" destination="IxL-GF-mOg" id="gnh-c8-xRW"/>
                 <outlet property="iconHeaderImageView" destination="wvE-eo-Ahh" id="Biq-Uw-qBH"/>
                 <outlet property="titleLabel" destination="dsP-SC-dC1" id="Abf-ot-oop"/>
             </connections>
             <point key="canvasLocation" x="21.5" y="191"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_flashcash_folder" width="50" height="50"/>
+    </resources>
 </document>

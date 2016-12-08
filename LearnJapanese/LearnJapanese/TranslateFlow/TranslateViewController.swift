@@ -20,7 +20,7 @@ class TranslateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Common.boundViewWithCornerRadius(button: translateButton,cornerRadius: 4.0)
         // Do any additional setup after loading the view.
     }
 
@@ -32,15 +32,25 @@ class TranslateViewController: UIViewController {
     @IBAction func tappedBack(_ sender: Any) {
     }
     
-    @IBAction func tappedChooseDictionary(_ sender: Any) {
+    @IBAction func tappedChooseDictionary(_ sender: UIButton) {
+        if sender.isSelected {
+            chooseDictionaryButton.setBackgroundImage(UIImage.init(named: "icon_change_language"), for: UIControlState.normal)
+        } else {
+//            chooseDictionaryButton.setBackgroundImage(UIImage.init(named: ""), for: UIControlState.normal)
+        }
+        sender.isSelected = !sender.isSelected
     }
     
-
     @IBAction func tappedClearText(_ sender: Any) {
+        outputTextView.isHidden = true
+        translateButton.isHidden = false
     }
     
     @IBAction func tappedTranslate(_ sender: Any) {
+        outputTextView.isHidden = false
+        translateButton.isHidden = true
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

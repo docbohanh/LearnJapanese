@@ -7,13 +7,18 @@
 //
 
 import UIKit
-
+protocol ShowVocaburaryListDelegate {
+    func tappedShowVocaburaryList(sender: UIButton)
+}
 class HeaderView: UIView {
-
+    var delegate: ShowVocaburaryListDelegate?
+    
+    @IBOutlet weak var backgroundHeaderButton: UIButton!
     @IBOutlet weak var iconHeaderImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 
      @IBAction func tappedShowVocabulary(_ sender: Any) {
+        delegate?.tappedShowVocaburaryList(sender: sender as! UIButton)
      }
  
 
