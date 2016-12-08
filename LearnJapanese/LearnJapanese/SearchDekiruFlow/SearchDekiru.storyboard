@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FRa-vE-jTY">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,37 +19,37 @@
                         <viewControllerLayoutGuide type="bottom" id="Jtg-dB-lZl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QiF-tU-IGP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJ6-z1-eG2">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Obd-3R-N6l">
-                                        <rect key="frame" x="7" y="5" width="230" height="34"/>
+                                        <rect key="frame" x="7" y="5" width="269" height="34"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEV-Ug-Ze4">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEV-Ug-Ze4">
                                                 <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="MEV-Ug-Ze4" secondAttribute="height" multiplier="1:1" id="c5Y-Cc-l3B"/>
                                                 </constraints>
-                                                <state key="normal" title="Se"/>
+                                                <state key="normal" image="icon_search"/>
                                                 <connections>
                                                     <action selector="searchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="hpL-YQ-cre"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuC-vK-Hvj">
-                                                <rect key="frame" x="196" y="0.0" width="34" height="34"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuC-vK-Hvj">
+                                                <rect key="frame" x="235" y="0.0" width="34" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="KuC-vK-Hvj" secondAttribute="height" multiplier="1:1" id="rYm-nU-ezF"/>
                                                 </constraints>
-                                                <state key="normal" title="De"/>
+                                                <state key="normal" image="icon_delete"/>
                                                 <connections>
                                                     <action selector="deleteSearchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="wrF-y3-uBg"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tìm kiếm" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="809-wZ-tvY">
-                                                <rect key="frame" x="34" y="0.0" width="162" height="34"/>
+                                                <rect key="frame" x="34" y="0.0" width="201" height="34"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -73,30 +73,30 @@
                                             <constraint firstAttribute="bottom" secondItem="MEV-Ug-Ze4" secondAttribute="bottom" id="mJX-Uo-hGh"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDH-2j-x4f">
-                                        <rect key="frame" x="334" y="5" width="34" height="34"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDH-2j-x4f">
+                                        <rect key="frame" x="373" y="5.6666666666666714" width="34" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="34" id="Sg7-jy-sXh"/>
                                             <constraint firstAttribute="height" constant="34" id="gch-Qb-aEK"/>
                                         </constraints>
-                                        <state key="normal" title="A"/>
+                                        <state key="normal" image="icon_camera"/>
                                         <connections>
                                             <action selector="paintSearchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="mOL-aJ-XXV"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9m-CG-dPy">
-                                        <rect key="frame" x="293" y="5" width="34" height="34"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="A"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9m-CG-dPy">
+                                        <rect key="frame" x="332" y="5.6666666666666714" width="34" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="icon_record"/>
                                         <connections>
                                             <action selector="recordSearchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="LMr-e5-wbz"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIF-kq-Jsx">
-                                        <rect key="frame" x="252" y="5" width="34" height="34"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="A"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIF-kq-Jsx">
+                                        <rect key="frame" x="291" y="5.6666666666666714" width="34" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="icon_hand_writing"/>
                                         <connections>
                                             <action selector="photoSearchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="ZI7-9m-kQF"/>
                                         </connections>
@@ -122,7 +122,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ohs-3I-zQQ">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="108" width="414" height="628"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
@@ -143,7 +143,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dekiru Dict" id="0hX-y5-RoR">
-                        <barButtonItem key="rightBarButtonItem" title="Nhật-Việt" id="L2R-AP-HNc">
+                        <barButtonItem key="rightBarButtonItem" image="icon_change_language" id="L2R-AP-HNc">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
@@ -173,28 +173,28 @@
                         <viewControllerLayoutGuide type="bottom" id="geW-Dw-WHe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GE1-bA-hDI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKZ-dN-U6f">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="niC-aq-7I9">
                                         <rect key="frame" x="7" y="5" width="230" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVa-Rj-MQv">
-                                                <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVa-Rj-MQv">
+                                                <rect key="frame" x="9" y="6" width="17" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Se"/>
+                                                <state key="normal" image="icon_search"/>
                                                 <connections>
                                                     <action selector="searchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="vv7-1N-KGR"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIx-Ed-SFi">
-                                                <rect key="frame" x="196" y="0.0" width="34" height="34"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIx-Ed-SFi">
+                                                <rect key="frame" x="208" y="6" width="10" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="De"/>
+                                                <state key="normal" image="icon_delete"/>
                                                 <connections>
                                                     <action selector="deleteSearchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="Bvd-4X-WP7"/>
                                                 </connections>
@@ -212,29 +212,29 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aoN-qw-Lwb">
-                                        <rect key="frame" x="334" y="5" width="34" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aoN-qw-Lwb">
+                                        <rect key="frame" x="335" y="6" width="33" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="A"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="icon_flashcash"/>
                                         <connections>
                                             <action selector="paintSearchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="fYa-6K-sah"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Sv-Qq-I5t">
-                                        <rect key="frame" x="293" y="5" width="34" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Sv-Qq-I5t">
+                                        <rect key="frame" x="294" y="6" width="33" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="A"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="icon_favorite"/>
                                         <connections>
                                             <action selector="recordSearchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="bcm-ZU-yJr"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lF-aM-9j2">
-                                        <rect key="frame" x="252" y="5" width="34" height="34"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lF-aM-9j2">
+                                        <rect key="frame" x="253" y="6" width="33" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="A"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="icon_sound"/>
                                         <connections>
                                             <action selector="photoSearchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="GGx-DR-IkX"/>
                                         </connections>
@@ -246,7 +246,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xT9-Ef-Q2v">
-                                <rect key="frame" x="0.0" y="64" width="375" height="30"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NL9-Lz-hmX">
                                         <rect key="frame" x="7" y="3" width="75" height="24"/>
@@ -305,14 +305,14 @@
                                 </constraints>
                             </view>
                             <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6n-aS-zK5">
-                                <rect key="frame" x="0.0" y="94" width="375" height="573"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="642"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mmJ-un-kvs">
-                                <rect key="frame" x="0.0" y="94" width="375" height="573"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="642"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wcm-lU-O5d" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="573"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="642"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qu7-9j-iCs">
                                                 <rect key="frame" x="15" y="10" width="53" height="40"/>
@@ -333,7 +333,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danh từ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qdz-eF-Eej">
-                                                <rect key="frame" x="15" y="90" width="51.5" height="17"/>
+                                                <rect key="frame" x="15" y="90" width="51.666666666666671" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -345,7 +345,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ví dụ jfklajdkfjd f: Mặc dù anh ấy nói như thế" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIF-iJ-q7B">
-                                                <rect key="frame" x="15" y="139" width="286.5" height="17"/>
+                                                <rect key="frame" x="15" y="139" width="286.66666666666669" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.061138659720000002" green="0.47626364230000001" blue="0.42406085129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -363,7 +363,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ví dụ jfklajdkfjd f: Mặc dù anh ấy nói như thế" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZY-j8-uul">
-                                                <rect key="frame" x="15" y="225" width="286.5" height="17"/>
+                                                <rect key="frame" x="15" y="225" width="286.66666666666669" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" red="0.061138659720000002" green="0.47626364230000001" blue="0.42406085129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -448,4 +448,15 @@
             <point key="canvasLocation" x="216.80000000000001" y="195.6521739130435"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_camera" width="33" height="33"/>
+        <image name="icon_change_language" width="73" height="26"/>
+        <image name="icon_delete" width="10" height="10"/>
+        <image name="icon_favorite" width="33" height="33"/>
+        <image name="icon_flashcash" width="33" height="33"/>
+        <image name="icon_hand_writing" width="33" height="33"/>
+        <image name="icon_record" width="33" height="33"/>
+        <image name="icon_search" width="17" height="17"/>
+        <image name="icon_sound" width="33" height="33"/>
+    </resources>
 </document>
