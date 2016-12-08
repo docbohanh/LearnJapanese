@@ -19,6 +19,8 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var photoSearchButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    var popupView = SavePopupView()
+    
     var arrayWord = NSMutableArray.init()
     
     
@@ -28,6 +30,8 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         // Do any additional setup after loading the view.
         tableView .register(UINib.init(nibName: "WordSearchTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WordSearchTableViewCell")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
+        popupView = Bundle.main.loadNibNamed("SavePopupView", owner: self, options: nil)?.first as! SavePopupView
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +79,12 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.performSegue(withIdentifier: "PushToWordDetail", sender: self)
+        UIView.animate(withDuration: 1, animations: {
+            
+        })
+    }
     
     /*
      // MARK: - Navigation
