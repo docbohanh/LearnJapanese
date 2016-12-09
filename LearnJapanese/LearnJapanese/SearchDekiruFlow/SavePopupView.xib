@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfZ-DB-AeX">
-                    <rect key="frame" x="148" y="20" width="20.5" height="24"/>
+                    <rect key="frame" x="148" y="20" width="21" height="24"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ý nghĩa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7GU-8s-QFh">
-                    <rect key="frame" x="15" y="92" width="48.5" height="40"/>
+                    <rect key="frame" x="15" y="92" width="49" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="N8M-CZ-qzl"/>
                     </constraints>
@@ -63,7 +63,7 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nv5-Y9-rYT">
-                    <rect key="frame" x="123.5" y="213" width="70" height="30"/>
+                    <rect key="frame" x="124" y="213" width="70" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Auj-oB-MSW"/>
                         <constraint firstAttribute="width" constant="70" id="epp-4P-2HX"/>

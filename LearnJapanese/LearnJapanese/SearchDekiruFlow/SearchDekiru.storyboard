@@ -517,9 +517,13 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="backgroundPopupView" destination="FSD-Di-3i4" id="jVu-wk-z1l"/>
+                        <outlet property="bingButton" destination="i6y-yk-i4z" id="beJ-dX-QkD"/>
+                        <outlet property="dekiruButton" destination="NL9-Lz-hmX" id="Z5m-pp-vxI"/>
+                        <outlet property="googleButton" destination="a5k-ge-J5T" id="DbR-GF-EFq"/>
                         <outlet property="searchResultScrollView" destination="mmJ-un-kvs" id="rLa-4r-vh3"/>
                         <outlet property="searchTextField" destination="PZ0-Sb-oOj" id="dlL-CB-v5N"/>
                         <outlet property="searchWebView" destination="Qjc-J6-QMx" id="xg2-Qa-oe3"/>
+                        <outlet property="wikipediaButton" destination="e3t-ja-kc5" id="deU-RL-Wxe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qOc-AO-Nts" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -14,12 +14,18 @@ class WordDetailViewController: UIViewController {
     @IBOutlet weak var backgroundPopupView: UIView!
     @IBOutlet weak var searchResultScrollView: UIScrollView!
     @IBOutlet weak var searchWebView: UIWebView!
+    
+    @IBOutlet weak var dekiruButton: UIButton!
+    @IBOutlet weak var googleButton: UIButton!
+    @IBOutlet weak var wikipediaButton: UIButton!
+    @IBOutlet weak var bingButton: UIButton!
+    
     var popupView : SavePopupView?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.createPopup()
+        self.setupViewController()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -28,6 +34,14 @@ class WordDetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupViewController() -> Void {
+        Common.boundView(button: dekiruButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
+        Common.boundView(button: googleButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
+        Common.boundView(button: wikipediaButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
+        Common.boundView(button: bingButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
+        self.createPopup()
     }
     
     func createPopup() -> Void {
@@ -99,16 +113,14 @@ class WordDetailViewController: UIViewController {
     @IBAction func tappedWikipediaButton(_ sender: Any) {
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
-    // https://vi.wikipedia.org/w/index.php?search=本&title=Đặc_biệt:Tìm_kiếm&go=Xem&searchToken=avpzvxzwy96ihfxfguvdpvi8r
-        let url = NSURL (string: "https://vi.wikipedia.org/w/index.php?search=本&title=Đặc_biệt:Tìm_kiếm&go=Xem&searchToken=avpzvxzwy96ihfxfguvdpvi8r");
+        let url = NSURL (string: "https://vi.wikipedia.org/wiki/Special:Search?search=love");
         let requestObj = NSURLRequest(url: url! as URL);
         searchWebView.loadRequest(requestObj as URLRequest);
     }
     @IBAction func tappedBingButton(_ sender: Any) {
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
-        //http://www.bing.com/search?q=love&go=Submit&qs=n&form=QBLH&sp=-1&pq=love&sc=8-4&sk=&cvid=1AC6659AC64746169C5EBDA0AD920891
-        let url = NSURL (string: "http://www.bing.com/search?q=love&go=Submit&qs=n&form=QBLH&sp=-1&pq=love&sc=8-4&sk=&cvid=1AC6659AC64746169C5EBDA0AD920891");
+        let url = NSURL (string: "http://www.bing.com/search?q=love");
         let requestObj = NSURLRequest(url: url! as URL);
         searchWebView.loadRequest(requestObj as URLRequest);
     }
