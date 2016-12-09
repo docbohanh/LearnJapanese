@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MagicalRecord
 
 class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var topView: UIView!
@@ -31,12 +32,40 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         tableView .register(UINib.init(nibName: "WordSearchTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WordSearchTableViewCell")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         popupView = Bundle.main.loadNibNamed("SavePopupView", owner: self, options: nil)?.first as! SavePopupView
-        
+        self.getdataLocal()
     }
 
+    func getdataLocal() {
+        let parames = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":"1.2.0"]
+        
+        self.sendRequest(url: "http://app-api.dekiru.vn/DekiruApi.ashx", parameters: parames as [String : AnyObject], completionHandler: {(data, response, error) in
+            if(error != nil){
+                print("error")
+            }else{
+                if data != nil {
+                    let jsonString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+      print(jsonString)
+                }
+            }
+        }).resume()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func sendRequest(url: String, parameters: [String: AnyObject], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask {
+        let parameterString = parameters.stringFromHttpParameters()
+        let requestURL = URL(string:"\(url)?\(parameterString)")!
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: completionHandler)
+        task.resume()
+        
+        return task
     }
     
 /* =============== ACTION BUTTON CLICKED =============== */
