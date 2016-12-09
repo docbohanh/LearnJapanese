@@ -12,6 +12,7 @@ class WordDetailViewController: UIViewController {
 
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var backgroundPopupView: UIView!
+    var popupView : SavePopupView?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,18 +20,21 @@ class WordDetailViewController: UIViewController {
         self.createPopup()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func createPopup() -> Void {
-        let popupView = UINib(nibName: "SavePopupView", bundle: Bundle.main).instantiate(withOwner: nil, options: nil)[0] as! SavePopupView
-        popupView.clipsToBounds = true
-        popupView.layer.cornerRadius = 5.0
-        popupView.translatesAutoresizingMaskIntoConstraints = false
+        popupView = UINib(nibName: "SavePopupView", bundle: Bundle.main).instantiate(withOwner: nil, options: nil)[0] as? SavePopupView
+        popupView?.clipsToBounds = true
+        popupView?.layer.cornerRadius = 5.0
+        popupView?.translatesAutoresizingMaskIntoConstraints = false
 //        popupView.delegate = self
-        backgroundPopupView.addSubview(popupView)
+        backgroundPopupView.addSubview(popupView!)
         
         let views = ["popupView": popupView,
                      "backgroundPopUpView": backgroundPopupView]
@@ -43,7 +47,7 @@ class WordDetailViewController: UIViewController {
         
         // 3
         let verticalConstraints = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:[backgroundPopUpView]-(<=1)-[popupView(220)]",
+            withVisualFormat: "V:[backgroundPopUpView]-(<=1)-[popupView(260)]",
             options: [.alignAllCenterX],
             metrics: nil,
             views: views)
@@ -67,8 +71,16 @@ class WordDetailViewController: UIViewController {
     @IBAction func tappedSoundButton(_ sender: Any) {
     }
     @IBAction func tappedFavoriteButton(_ sender: Any) {
+        backgroundPopupView.isHidden = false
+        popupView?.myFlashCardsLabel.text = "Lưu từ"
+        
     }
     @IBAction func tappedSaveFlashCashButton(_ sender: Any) {
+        backgroundPopupView.isHidden = false
+        popupView?.myFlashCardsLabel.text = "Flash Cards của tôi"
+    }
+    @IBAction func tappedClosePopupButton(_ sender: Any) {
+        backgroundPopupView.isHidden = true
     }
     
 

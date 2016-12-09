@@ -35,6 +35,7 @@
 		D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13661DEDAAAC00E9E063 /* HistoryViewController.swift */; };
 		D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13681DEDCA8A00E9E063 /* SavePopupView.swift */; };
 		D24A136B1DEDCA9700E9E063 /* SavePopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24A136A1DEDCA9700E9E063 /* SavePopupView.xib */; };
+		D256EBCE1DFB1D63007D56EE /* KMPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256EBCD1DFB1D63007D56EE /* KMPlaceholderTextView.swift */; };
 		D2688E141DED8B9D00EB3A6E /* SearchDekiru.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */; };
 		D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E121DED8B9D00EB3A6E /* Translate.storyboard */; };
 		D2688E171DED8CCB00EB3A6E /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2688E161DED8CCB00EB3A6E /* Define.swift */; };
@@ -97,6 +98,7 @@
 		D24A13661DEDAAAC00E9E063 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		D24A13681DEDCA8A00E9E063 /* SavePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavePopupView.swift; sourceTree = "<group>"; };
 		D24A136A1DEDCA9700E9E063 /* SavePopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SavePopupView.xib; sourceTree = "<group>"; };
+		D256EBCD1DFB1D63007D56EE /* KMPlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPlaceholderTextView.swift; sourceTree = "<group>"; };
 		D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchDekiru.storyboard; sourceTree = "<group>"; };
 		D2688E121DED8B9D00EB3A6E /* Translate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Translate.storyboard; sourceTree = "<group>"; };
 		D2688E161DED8CCB00EB3A6E /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 		D2688E0D1DED8B9C00EB3A6E /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				D256EBCD1DFB1D63007D56EE /* KMPlaceholderTextView.swift */,
 				D249C7981DF05EFB00FF0E44 /* Library.storyboard */,
 				840579FB1DEDC33C0019C100 /* LibraryViewController.swift */,
 				840579FD1DEDC3AC0019C100 /* HeaderView.swift */,
@@ -561,6 +564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D24A13581DED8E2A00E9E063 /* SearchDerikuViewController.swift in Sources */,
+				D256EBCE1DFB1D63007D56EE /* KMPlaceholderTextView.swift in Sources */,
 				D24A135F1DEDA37200E9E063 /* WordModel.swift in Sources */,
 				D24A135B1DED966400E9E063 /* WordSearchTableViewCell.swift in Sources */,
 				840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */,

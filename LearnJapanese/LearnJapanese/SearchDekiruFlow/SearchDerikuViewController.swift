@@ -38,16 +38,20 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     func getdataLocal() {
         let parames = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":"1.2.0"]
         
-        self.sendRequest(url: "http://app-api.dekiru.vn/DekiruApi.ashx", parameters: parames as [String : AnyObject], completionHandler: {(data, response, error) in
+        self.sendRequest(url: "http://app-api.dekiru.vn/DekiruApi.ashx", parameters: parames as [String : String], completionHandler: {(data, response, error) in
             if(error != nil){
                 print("error")
             }else{
                 if data != nil {
                     let jsonString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
-      print(jsonString)
                 }
             }
         }).resume()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,7 +59,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         // Dispose of any resources that can be recreated.
     }
     
-    func sendRequest(url: String, parameters: [String: AnyObject], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask {
+    func sendRequest(url: String, parameters: [String: String], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask {
         let parameterString = parameters.stringFromHttpParameters()
         let requestURL = URL(string:"\(url)?\(parameterString)")!
         
@@ -109,7 +113,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDeriku", bundle: Bundle.main)
+        let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDekiru", bundle: Bundle.main)
         let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "WordDetailViewController") as! WordDetailViewController
         self.navigationController?.pushViewController(detaiVC, animated: true)
         
