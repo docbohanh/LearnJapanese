@@ -255,6 +255,22 @@
                                             <constraint firstItem="SVa-Rj-MQv" firstAttribute="top" secondItem="niC-aq-7I9" secondAttribute="top" id="t7C-J1-sOv"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lF-aM-9j2">
+                                        <rect key="frame" x="288" y="25" width="34" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="icon_sound"/>
+                                        <connections>
+                                            <action selector="tappedSoundButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="bHk-LB-cW5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Sv-Qq-I5t">
+                                        <rect key="frame" x="330" y="25" width="34" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="icon_favorite"/>
+                                        <connections>
+                                            <action selector="tappedFavoriteButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="noL-gA-9nA"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aoN-qw-Lwb">
                                         <rect key="frame" x="372" y="25" width="34" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -264,26 +280,7 @@
                                         </constraints>
                                         <state key="normal" image="icon_flashcash"/>
                                         <connections>
-                                            <action selector="paintSearchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="fYa-6K-sah"/>
-                                            <action selector="tappedSoundButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="2iS-mJ-d3y"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Sv-Qq-I5t">
-                                        <rect key="frame" x="330" y="25" width="34" height="34"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="icon_favorite"/>
-                                        <connections>
-                                            <action selector="recordSearchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="bcm-ZU-yJr"/>
-                                            <action selector="tappedFavoriteButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="noL-gA-9nA"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lF-aM-9j2">
-                                        <rect key="frame" x="288" y="25" width="34" height="34"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="icon_sound"/>
-                                        <connections>
-                                            <action selector="photoSearchButton_clicked:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="GGx-DR-IkX"/>
-                                            <action selector="tappedSaveFlashCashButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="TLa-a6-sg3"/>
+                                            <action selector="tappedSaveFlashCashButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="vHo-H0-F91"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -461,7 +458,22 @@
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSD-Di-3i4">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ctm-Yy-50Y">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="tappedClosePopupButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="b1g-fY-ekd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Ctm-Yy-50Y" secondAttribute="bottom" id="KAC-3j-hNW"/>
+                                    <constraint firstItem="Ctm-Yy-50Y" firstAttribute="top" secondItem="FSD-Di-3i4" secondAttribute="top" id="M2U-QH-uY6"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ctm-Yy-50Y" secondAttribute="trailing" id="OAO-75-oxh"/>
+                                    <constraint firstItem="Ctm-Yy-50Y" firstAttribute="leading" secondItem="FSD-Di-3i4" secondAttribute="leading" id="SHc-mk-2mg"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

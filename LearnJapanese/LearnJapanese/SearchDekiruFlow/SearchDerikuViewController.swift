@@ -34,6 +34,11 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -80,7 +85,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDeriku", bundle: Bundle.main)
+        let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDekiru", bundle: Bundle.main)
         let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "WordDetailViewController") as! WordDetailViewController
         self.navigationController?.pushViewController(detaiVC, animated: true)
         

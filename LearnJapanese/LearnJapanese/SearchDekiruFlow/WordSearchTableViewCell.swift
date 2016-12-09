@@ -38,7 +38,7 @@ class WordSearchTableViewCell: UITableViewCell {
         self.accessoryType = UITableViewCellAccessoryType.none
         deleteButton.isHidden = false
         wordTrailingConstraint.constant = 60
-        iconImageView.image = UIImage.init(named: "icon_delete_history")
+        iconImageView.image = UIImage.init(named: "icon_clock")
     }
     
 }
