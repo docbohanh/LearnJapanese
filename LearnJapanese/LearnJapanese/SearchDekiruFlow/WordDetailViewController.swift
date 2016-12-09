@@ -12,6 +12,8 @@ class WordDetailViewController: UIViewController {
 
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var backgroundPopupView: UIView!
+    @IBOutlet weak var searchResultScrollView: UIScrollView!
+    @IBOutlet weak var searchWebView: UIWebView!
     var popupView : SavePopupView?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +67,7 @@ class WordDetailViewController: UIViewController {
     }
     
     @IBAction func tappedBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     @IBAction func tappedDeleteButton(_ sender: Any) {
     }
@@ -81,6 +84,33 @@ class WordDetailViewController: UIViewController {
     }
     @IBAction func tappedClosePopupButton(_ sender: Any) {
         backgroundPopupView.isHidden = true
+    }
+    @IBAction func tappedDekiruDictButton(_ sender: Any) {
+        searchWebView.isHidden = true
+        searchResultScrollView.isHidden = false
+    }
+    @IBAction func tappedGoogleButton(_ sender: Any) {
+        searchResultScrollView.isHidden = true
+        searchWebView.isHidden = false
+        let url = NSURL (string: "https://translate.google.com");
+        let requestObj = NSURLRequest(url: url! as URL);
+        searchWebView.loadRequest(requestObj as URLRequest);
+    }
+    @IBAction func tappedWikipediaButton(_ sender: Any) {
+        searchResultScrollView.isHidden = true
+        searchWebView.isHidden = false
+    // https://vi.wikipedia.org/w/index.php?search=本&title=Đặc_biệt:Tìm_kiếm&go=Xem&searchToken=avpzvxzwy96ihfxfguvdpvi8r
+        let url = NSURL (string: "https://vi.wikipedia.org/w/index.php?search=本&title=Đặc_biệt:Tìm_kiếm&go=Xem&searchToken=avpzvxzwy96ihfxfguvdpvi8r");
+        let requestObj = NSURLRequest(url: url! as URL);
+        searchWebView.loadRequest(requestObj as URLRequest);
+    }
+    @IBAction func tappedBingButton(_ sender: Any) {
+        searchResultScrollView.isHidden = true
+        searchWebView.isHidden = false
+        //http://www.bing.com/search?q=love&go=Submit&qs=n&form=QBLH&sp=-1&pq=love&sc=8-4&sk=&cvid=1AC6659AC64746169C5EBDA0AD920891
+        let url = NSURL (string: "http://www.bing.com/search?q=love&go=Submit&qs=n&form=QBLH&sp=-1&pq=love&sc=8-4&sk=&cvid=1AC6659AC64746169C5EBDA0AD920891");
+        let requestObj = NSURLRequest(url: url! as URL);
+        searchWebView.loadRequest(requestObj as URLRequest);
     }
     
 

@@ -316,6 +316,9 @@
                                         <state key="normal" title="Dekiru dict">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="tappedDekiruDictButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="hIi-yv-06p"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5k-ge-J5T">
                                         <rect key="frame" x="90" y="3" width="75" height="24"/>
@@ -324,6 +327,9 @@
                                         <state key="normal" title="Google">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="tappedGoogleButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="OsB-tE-Szc"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3t-ja-kc5">
                                         <rect key="frame" x="256" y="3" width="75" height="24"/>
@@ -332,6 +338,9 @@
                                         <state key="normal" title="Wikipedia">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="tappedWikipediaButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="3AL-HK-MxZ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6y-yk-i4z">
                                         <rect key="frame" x="173" y="3" width="75" height="24"/>
@@ -340,6 +349,9 @@
                                         <state key="normal" title="Bing">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="tappedBingButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="9bh-Me-4h0"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -361,10 +373,6 @@
                                     <constraint firstItem="a5k-ge-J5T" firstAttribute="leading" secondItem="NL9-Lz-hmX" secondAttribute="trailing" constant="8" id="zqt-vd-jci"/>
                                 </constraints>
                             </view>
-                            <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6n-aS-zK5">
-                                <rect key="frame" x="0.0" y="94" width="414" height="642"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mmJ-un-kvs">
                                 <rect key="frame" x="0.0" y="94" width="414" height="642"/>
                                 <subviews>
@@ -456,7 +464,14 @@
                                     <constraint firstAttribute="trailing" secondItem="Wcm-lU-O5d" secondAttribute="trailing" id="yPI-Sj-d25"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSD-Di-3i4">
+                            <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qjc-J6-QMx">
+                                <rect key="frame" x="0.0" y="94" width="414" height="642"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Du8-7A-bWC" id="MDv-Nf-tQE"/>
+                                </connections>
+                            </webView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSD-Di-3i4">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ctm-Yy-50Y">
@@ -482,19 +497,19 @@
                             <constraint firstAttribute="trailing" secondItem="xKZ-dN-U6f" secondAttribute="trailing" id="84d-bF-Lp6"/>
                             <constraint firstItem="geW-Dw-WHe" firstAttribute="top" secondItem="mmJ-un-kvs" secondAttribute="bottom" id="BwX-FD-xBa"/>
                             <constraint firstAttribute="trailing" secondItem="mmJ-un-kvs" secondAttribute="trailing" id="FkL-Cm-NW4"/>
+                            <constraint firstItem="Qjc-J6-QMx" firstAttribute="leading" secondItem="GE1-bA-hDI" secondAttribute="leading" id="IFY-bX-7UU"/>
                             <constraint firstItem="xT9-Ef-Q2v" firstAttribute="top" secondItem="xKZ-dN-U6f" secondAttribute="bottom" id="KRX-dE-b23"/>
                             <constraint firstAttribute="trailing" secondItem="xT9-Ef-Q2v" secondAttribute="trailing" id="M1f-kc-Fvg"/>
                             <constraint firstItem="xKZ-dN-U6f" firstAttribute="leading" secondItem="GE1-bA-hDI" secondAttribute="leading" id="N1L-AG-nQn"/>
-                            <constraint firstAttribute="trailing" secondItem="U6n-aS-zK5" secondAttribute="trailing" id="Pq3-eX-gdb"/>
                             <constraint firstItem="xKZ-dN-U6f" firstAttribute="top" secondItem="GE1-bA-hDI" secondAttribute="top" id="Qgm-AR-lfN"/>
                             <constraint firstItem="FSD-Di-3i4" firstAttribute="leading" secondItem="GE1-bA-hDI" secondAttribute="leading" id="RyR-ae-K3H"/>
-                            <constraint firstItem="U6n-aS-zK5" firstAttribute="top" secondItem="xT9-Ef-Q2v" secondAttribute="bottom" id="YRs-hF-ekG"/>
+                            <constraint firstAttribute="trailing" secondItem="Qjc-J6-QMx" secondAttribute="trailing" id="bNY-7R-fhC"/>
                             <constraint firstItem="geW-Dw-WHe" firstAttribute="top" secondItem="FSD-Di-3i4" secondAttribute="bottom" id="cdK-5e-HUc"/>
-                            <constraint firstItem="geW-Dw-WHe" firstAttribute="top" secondItem="U6n-aS-zK5" secondAttribute="bottom" id="j7X-3J-Hq0"/>
                             <constraint firstAttribute="trailing" secondItem="FSD-Di-3i4" secondAttribute="trailing" id="lRE-R7-ZmA"/>
                             <constraint firstItem="mmJ-un-kvs" firstAttribute="top" secondItem="xT9-Ef-Q2v" secondAttribute="bottom" id="lqj-ns-VX2"/>
+                            <constraint firstItem="Qjc-J6-QMx" firstAttribute="top" secondItem="xT9-Ef-Q2v" secondAttribute="bottom" id="vJz-kV-6nB"/>
                             <constraint firstItem="mmJ-un-kvs" firstAttribute="leading" secondItem="GE1-bA-hDI" secondAttribute="leading" id="w1o-sA-kG9"/>
-                            <constraint firstItem="U6n-aS-zK5" firstAttribute="leading" secondItem="GE1-bA-hDI" secondAttribute="leading" id="zwD-WK-AfE"/>
+                            <constraint firstItem="geW-Dw-WHe" firstAttribute="top" secondItem="Qjc-J6-QMx" secondAttribute="bottom" id="zOC-xL-9xO"/>
                             <constraint firstItem="FSD-Di-3i4" firstAttribute="top" secondItem="GE1-bA-hDI" secondAttribute="top" id="zxD-cV-YUU"/>
                         </constraints>
                     </view>
@@ -502,7 +517,9 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="backgroundPopupView" destination="FSD-Di-3i4" id="jVu-wk-z1l"/>
+                        <outlet property="searchResultScrollView" destination="mmJ-un-kvs" id="rLa-4r-vh3"/>
                         <outlet property="searchTextField" destination="PZ0-Sb-oOj" id="dlL-CB-v5N"/>
+                        <outlet property="searchWebView" destination="Qjc-J6-QMx" id="xg2-Qa-oe3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qOc-AO-Nts" userLabel="First Responder" sceneMemberID="firstResponder"/>
