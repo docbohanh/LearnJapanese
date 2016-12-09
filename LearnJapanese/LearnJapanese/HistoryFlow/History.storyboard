@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GKt-OB-eAd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="GKt-OB-eAd">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -62,7 +62,32 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Lịch sử" image="icon_history" id="kUO-Wj-FUA"/>
-                    <navigationItem key="navigationItem" title="Lịch sử" id="mJr-zj-53X">
+                    <navigationItem key="navigationItem" id="mJr-zj-53X">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="M6e-N4-tNK">
+                            <view key="customView" contentMode="scaleToFill" id="gIs-5o-njC">
+                                <rect key="frame" x="20" y="5" width="150" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLZ-2v-gxB">
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="110" id="QVl-wC-hwh"/>
+                                        </constraints>
+                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Lịch sử" image="icon_logo">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="dLZ-2v-gxB" firstAttribute="leading" secondItem="gIs-5o-njC" secondAttribute="leading" id="Q2p-V4-IfP"/>
+                                    <constraint firstItem="dLZ-2v-gxB" firstAttribute="top" secondItem="gIs-5o-njC" secondAttribute="top" id="QbZ-bS-cBj"/>
+                                    <constraint firstAttribute="bottom" secondItem="dLZ-2v-gxB" secondAttribute="bottom" id="wD3-8c-asU"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Nhật-Việt" id="ovU-Kq-LIA">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
@@ -80,5 +105,6 @@
     </scenes>
     <resources>
         <image name="icon_history" width="20" height="20"/>
+        <image name="icon_logo" width="33" height="33"/>
     </resources>
 </document>

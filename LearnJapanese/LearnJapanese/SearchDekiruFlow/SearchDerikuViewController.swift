@@ -80,10 +80,10 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.performSegue(withIdentifier: "PushToWordDetail", sender: self)
-        UIView.animate(withDuration: 1, animations: {
-            
-        })
+        let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDeriku", bundle: Bundle.main)
+        let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "WordDetailViewController") as! WordDetailViewController
+        self.navigationController?.pushViewController(detaiVC, animated: true)
+        
     }
     
     /*

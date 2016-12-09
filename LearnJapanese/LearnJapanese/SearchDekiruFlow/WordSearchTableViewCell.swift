@@ -32,11 +32,13 @@ class WordSearchTableViewCell: UITableViewCell {
         self.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         deleteButton.isHidden = true
         wordTrailingConstraint.constant = 10
+        iconImageView.image = UIImage.init(named: "icon_search")
     }
     func initHistoryCell(wordModel: WordModel) -> Void {
         self.accessoryType = UITableViewCellAccessoryType.none
         deleteButton.isHidden = false
         wordTrailingConstraint.constant = 60
+        iconImageView.image = UIImage.init(named: "icon_delete_history")
     }
     
 }

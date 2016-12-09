@@ -9,14 +9,14 @@
 import UIKit
 
 class Common: NSObject {
-    static func boundView(button:UIView) -> Void {
+    static func makeCircle(button:UIView) -> Void {
         button.clipsToBounds = true
         button.layer.cornerRadius = button.frame.size.height/2;
         button.layer.borderWidth = 1.0
         button.layer.borderColor = COMMON_COLOR.cgColor
     }
     
-    static func boundViewWithColor(button:UIView, color: UIColor) {
+    static func makeCircleWithBorderColor(button:UIView, color: UIColor) {
         button.clipsToBounds = true
         button.layer.cornerRadius = button.frame.size.height/2;
         button.layer.borderWidth = 1.0
@@ -29,4 +29,13 @@ class Common: NSObject {
         button.layer.borderWidth = 1.0
         button.layer.borderColor = COMMON_COLOR.cgColor
     }
+    
+    static func boundView(button: UIView,cornerRadius: CGFloat, color: UIColor, borderWith: CGFloat) -> Void {
+        button.clipsToBounds = true
+        button.layer.cornerRadius = cornerRadius;
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = color.cgColor
+        button.layer.borderWidth = borderWith
+    }
+    
 }
