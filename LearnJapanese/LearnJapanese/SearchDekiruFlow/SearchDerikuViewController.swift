@@ -36,14 +36,15 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func getdataLocal() {
-        let parames = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":"1.2.0"]
+        let parames = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":"1.1"]
         
         self.sendRequest(url: "http://app-api.dekiru.vn/DekiruApi.ashx", parameters: parames as [String : String], completionHandler: {(data, response, error) in
             if(error != nil){
                 print("error")
             }else{
                 if data != nil {
-                    let jsonString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+                    let jsonString = String(data: data!, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+                    print("result" + jsonString!)
                 }
             }
         }).resume()
@@ -64,7 +65,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         let requestURL = URL(string:"\(url)?\(parameterString)")!
         
         var request = URLRequest(url: requestURL)
-        request.httpMethod = "GET"
+        request.httpMethod = "POST"
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: completionHandler)
         task.resume()

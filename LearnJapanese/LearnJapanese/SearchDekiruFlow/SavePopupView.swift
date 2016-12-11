@@ -33,7 +33,7 @@ class SavePopupView: UIView {
     }
     
     @IBAction func saveButton_clicked(_ sender: Any) {
-        self.saveBlock!()
+        self.saveBlock?()
     }
     /*
     // Only override draw() if you perform custom drawing.
