@@ -39,6 +39,7 @@
 		D2688E141DED8B9D00EB3A6E /* SearchDekiru.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */; };
 		D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E121DED8B9D00EB3A6E /* Translate.storyboard */; };
 		D2688E171DED8CCB00EB3A6E /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2688E161DED8CCB00EB3A6E /* Define.swift */; };
+		D2EF304F1DFD4A2600287924 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EF304E1DFD4A2600287924 /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchDekiru.storyboard; sourceTree = "<group>"; };
 		D2688E121DED8B9D00EB3A6E /* Translate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Translate.storyboard; sourceTree = "<group>"; };
 		D2688E161DED8CCB00EB3A6E /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		D2EF304E1DFD4A2600287924 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		E4EC133B8769AF912CC8E51B /* Pods_LearnJapaneseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapaneseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -181,6 +183,7 @@
 		840579BA1DED79DA0019C100 /* LearnJapanese */ = {
 			isa = PBXGroup;
 			children = (
+				D2EF304D1DFD4A0C00287924 /* APIManager */,
 				840579BB1DED79DA0019C100 /* AppDelegate.swift */,
 				840579BF1DED79DA0019C100 /* Main.storyboard */,
 				840579F71DED8CF80019C100 /* DictionaryTabBarViewController.swift */,
@@ -270,6 +273,14 @@
 				840579F91DED8E5E0019C100 /* TranslateViewController.swift */,
 			);
 			path = TranslateFlow;
+			sourceTree = "<group>";
+		};
+		D2EF304D1DFD4A0C00287924 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				D2EF304E1DFD4A2600287924 /* APIManager.swift */,
+			);
+			path = APIManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -575,6 +586,7 @@
 				840579FA1DED8E5E0019C100 /* TranslateViewController.swift in Sources */,
 				84057A021DEDC8CF0019C100 /* VocabularyTableViewCell.swift in Sources */,
 				D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */,
+				D2EF304F1DFD4A2600287924 /* APIManager.swift in Sources */,
 				D2688E171DED8CCB00EB3A6E /* Define.swift in Sources */,
 				D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */,
 				D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */,
