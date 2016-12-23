@@ -16,8 +16,27 @@ class NSVTabBarController: UITabBarController , UITabBarControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.delegate = self
+        
+        //Exchange
+        let dictionary = UIStoryboard.init(name: "SearchDekiru", bundle: nil)
+        let dictionaryViewController = dictionary.instantiateViewController(withIdentifier: "DictionaryNavigation") as! UINavigationController
+        
+        //Report
+        let historyStoryboard = UIStoryboard.init(name: "History", bundle: nil)
+        let historyViewController = historyStoryboard.instantiateViewController(withIdentifier: "HistoryViewController") as! UINavigationController
+        
+        
+        //Schedule
+        let documentStoryBoard = UIStoryboard.init(name: "Translate", bundle: nil)
+        let documentViewController = documentStoryBoard.instantiateViewController(withIdentifier: "DocumentNavigation") as! UINavigationController
+        
+        // Other
+        let libraryStoryboard = UIStoryboard.init(name: "Library", bundle: nil)
+        let libraryViewController = libraryStoryboard.instantiateViewController(withIdentifier: "LibraryNavigation") as! UINavigationController
+        
+        self.viewControllers = [dictionaryViewController,historyViewController, documentViewController, libraryViewController]
+        // Do any additional setup after loading the view.
     }
     
     override func viewDidLayoutSubviews() {

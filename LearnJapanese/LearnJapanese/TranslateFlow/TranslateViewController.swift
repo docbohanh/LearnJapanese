@@ -20,7 +20,7 @@ class TranslateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Common.boundViewWithCornerRadius(button: translateButton,cornerRadius: 4.0)
+        ProjectCommon.boundViewWithCornerRadius(button: translateButton,cornerRadius: 4.0)
         // Do any additional setup after loading the view.
     }
 

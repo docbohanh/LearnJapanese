@@ -32,22 +32,25 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         tableView .register(UINib.init(nibName: "WordSearchTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WordSearchTableViewCell")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         popupView = Bundle.main.loadNibNamed("SavePopupView", owner: self, options: nil)?.first as! SavePopupView
-        self.getdataLocal()
+        DispatchQueue.global().async {
+            self.getdataLocal()
+        }
     }
 
     func getdataLocal() {
-        let parames = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":"1.1"]
+        let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":"1"]
         
-        self.sendRequest(url: "http://app-api.dekiru.vn/DekiruApi.ashx", parameters: parames as [String : String], completionHandler: {(data, response, error) in
-            if(error != nil){
-                print("error")
-            }else{
-                if data != nil {
-                    let jsonString = String(data: data!, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-                    print("result" + jsonString!)
+        APIManager.sharedInstance.postDataToURL(url:"http://app-api.dekiru.vn/DekiruApi.ashx", parameters: parameter, onCompletion: {(response) in
+            if response.result.error == nil || response.result.isSuccess {
+            //reload TableView
+                DispatchQueue.main.async {
+                    
+                    self.tableView.reloadData()
                 }
+            } else {
+                
             }
-        }).resume()
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {

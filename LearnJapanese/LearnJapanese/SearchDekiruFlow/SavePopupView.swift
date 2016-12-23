@@ -22,10 +22,10 @@ class SavePopupView: UIView {
     var saveBlock : CompletionBlock?
     
     override func awakeFromNib() {
-        Common.boundView(button: meaningTextView, cornerRadius: 3.0, color: UIColor.lightGray, borderWith: 1.0)
-        Common.boundView(button: saveButton, cornerRadius: 3.0, color: UIColor.white, borderWith: 1.0)
+        ProjectCommon.boundView(button: meaningTextView, cornerRadius: 3.0, color: UIColor.lightGray, borderWith: 1.0)
+        ProjectCommon.boundView(button: saveButton, cornerRadius: 3.0, color: UIColor.white, borderWith: 1.0)
         meaningTextView.placeholder = "Hãy ghi lại ý nghĩa chính của từ ..."
-        Common.boundView(button: meaningTextView, cornerRadius: 3.0, color: UIColor.clear, borderWith: 0)
+        ProjectCommon.boundView(button: meaningTextView, cornerRadius: 3.0, color: UIColor.clear, borderWith: 0)
     }
     
     func setup(saveBlk:@escaping CompletionBlock) -> Void {

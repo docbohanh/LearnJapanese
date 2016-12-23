@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LearnJapanese/SearchDekiruFlow/SearchDerikuViewController.swift"
-            timestampString = "503201184.978225"
+            timestampString = "504182573.088881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "getdataLocal()"
             landmarkType = "7">
          </BreakpointContent>

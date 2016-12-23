@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0810"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B68ACBF022CF7859D454FABD53C8F417"
+               BlueprintIdentifier = "9463C83295D75625CF2976C08F50D63B"
                BuildableName = "Pods_LearnJapanese.framework"
                BlueprintName = "Pods-LearnJapanese"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B68ACBF022CF7859D454FABD53C8F417"
+            BlueprintIdentifier = "9463C83295D75625CF2976C08F50D63B"
             BuildableName = "Pods_LearnJapanese.framework"
             BlueprintName = "Pods-LearnJapanese"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,15 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B68ACBF022CF7859D454FABD53C8F417"
-            BuildableName = "Pods_LearnJapanese.framework"
-            BlueprintName = "Pods-LearnJapanese"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

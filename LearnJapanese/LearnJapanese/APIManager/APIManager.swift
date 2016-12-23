@@ -7,42 +7,30 @@
 //
 
 import UIKit
-typealias ServiceResponse = (AnyObject, NSError?) -> Void
+import Alamofire
+
+
+typealias AlamofireResponse = (DataResponse<Any>) -> Void
 
 class APIManager: NSObject {
     static let sharedInstance = APIManager()
     
-    let baseURL = "http://api.randomuser.me/"
-    
-    func makeHTTPGetRequest(path: String, onCompletion: @escaping ServiceResponse) {
-        var request = URLRequest(url: NSURL(string: path) as! URL)
-        request.httpMethod = "GET"
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: request, completionHandler: {data, response, error -> Void in
-//            let json:JSON = JSON(data: data)
-            guard let json = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: AnyObject] else { return }
-            print("json:", json)
-            onCompletion(json as AnyObject, error as NSError?)
-        })
-        task.resume()
+    func postDataToURL(url : String,parameters : [String:String],onCompletion: @escaping AlamofireResponse) {
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                onCompletion(response)
+                print(response)
+        }
     }
-    func makeHTTPPostRequest(path: String, body: [String: AnyObject], onCompletion: @escaping ServiceResponse) {
-        var request = URLRequest(url: NSURL(string: path) as! URL)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        // Set the method to POST
-        request.httpMethod = "POST"
+    
+    func getDataToURL(url : String,parameters : [String:String],onCompletion: @escaping AlamofireResponse) {
+        let parameterString = parameters.stringFromHttpParameters()
+        let requestURL = url + "?" + parameterString
         
-        // Set the POST body for the request
-        request.httpBody = try! JSONSerialization.data(withJSONObject: body, options: [])
-        let session = URLSession.shared
-        
-        let task = session.dataTask(with: request, completionHandler: {data, response, error -> Void in
-//            let json:JSON = JSON(data: data)
-            guard let json = try! JSONSerialization.jsonObject(with: data!, options:[]) as? [String: AnyObject] else { return }
-            print("json:", json)
-            onCompletion(json as AnyObject, error as NSError?)
-        })
-        task.resume()
+        Alamofire.request(requestURL, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                onCompletion(response)
+                print(response)
+        }
     }
 }
