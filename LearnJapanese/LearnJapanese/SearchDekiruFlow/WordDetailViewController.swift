@@ -37,10 +37,10 @@ class WordDetailViewController: UIViewController {
     }
     
     func setupViewController() -> Void {
-        Common.boundView(button: dekiruButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
-        Common.boundView(button: googleButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
-        Common.boundView(button: wikipediaButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
-        Common.boundView(button: bingButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
+        ProjectCommon.boundView(button: dekiruButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
+        ProjectCommon.boundView(button: googleButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
+        ProjectCommon.boundView(button: wikipediaButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
+        ProjectCommon.boundView(button: bingButton, cornerRadius: 2.0, color: UIColor.clear, borderWith: 0)
         self.createPopup()
     }
     
