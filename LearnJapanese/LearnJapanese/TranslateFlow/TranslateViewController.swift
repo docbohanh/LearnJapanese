@@ -12,8 +12,8 @@ class TranslateViewController: UIViewController {
     
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var clearTextButton: UIButton!
+    @IBOutlet weak var outputView: UIView!
     @IBOutlet weak var translateButton: UIButton!
-    @IBOutlet weak var outputTextView: UITextView!
     @IBOutlet weak var chooseDictionaryButton: UIButton!
     @IBOutlet weak var backToFirstButton: UIButton!
     @IBOutlet weak var iconAppImageView: UIImageView!
@@ -42,12 +42,12 @@ class TranslateViewController: UIViewController {
     }
     
     @IBAction func tappedClearText(_ sender: Any) {
-        outputTextView.isHidden = true
+        outputView.isHidden = true
         translateButton.isHidden = false
     }
     
     @IBAction func tappedTranslate(_ sender: Any) {
-        outputTextView.isHidden = false
+        outputView.isHidden = false
         translateButton.isHidden = true
     }
     
