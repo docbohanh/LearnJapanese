@@ -41,15 +41,34 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":"0"]
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
         APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
-                        if response.result.error == nil {
-                            //reload TableView
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
+                if response.result.error == nil && response.result.isSuccess && response.result.value != nil{
+                    let resultDictionary = response.result.value! as! [String:AnyObject]
+                    let dictionaryArray = resultDictionary["Data"] as! [[String : AnyObject]]
+                    
+                    for word in dictionaryArray {
+                        MagicalRecord.saveWithBlock({( localContext) in
+                            var wordData = Translate.MR_findFirstByAttribute("id", withValue: word["clubId"]!, inContext: localContext)
+                            if wordData == nil {
+                                wordData = Ranking.MR_createEntityInContext(localContext)
+                                wordData.id = word["Id"] as! String?
+                                wordData.kana = word["kana"] as! String
+                                wordData.romaji = word["Romaji"] as! String
+                                wordData.sound_url = word["SoundUrl"] as! String
                             }
-                        } else {
-                            
+                            rankObject?.name = dictTeamRank["name"]
+                        }){ (contextDidSave: Bool, error: NSError?) in
+                            self.comple
                         }
-                    })
+                        
+                    }
+                    //reload TableView
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                } else {
+                            
+                }
+            })
 
     }
     
