@@ -38,19 +38,22 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func getdataLocal() {
-        let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":"1"]
+        let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":"0"]
+        let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
         
-        APIManager.sharedInstance.postDataToURL(url:"http://app-api.dekiru.vn/DekiruApi.ashx", parameters: parameter, onCompletion: {(response) in
-            if response.result.error == nil || response.result.isSuccess {
-            //reload TableView
-                DispatchQueue.main.async {
-                    
-                    self.tableView.reloadData()
-                }
-            } else {
-                
-            }
-        })
+//        APIManager.sharedInstance.makeHTTPPostRequest(path: urlRequest, body: parameter as [String : AnyObject], onCompletion: {(data,error) in
+//            
+//            if error == nil {
+//                //reload TableView
+//                DispatchQueue.main.async {
+//                    
+//                    self.tableView.reloadData()
+//                }
+//            } else {
+//                
+//            }
+//        })
+        APIManager.sharedInstance.postDataToURLAsStringResponse(url:urlRequest, parameters: parameter)
     }
     
     override func viewWillAppear(_ animated: Bool) {
