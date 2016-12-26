@@ -9,16 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--SearchDekiru-->
-        <scene sceneID="e16-sy-7at">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mfD-k1-FkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardName="SearchDekiru" id="CED-kM-OJN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Từ điển" id="K1J-u9-9PC"/>
-                </viewControllerPlaceholder>
-            </objects>
-            <point key="canvasLocation" x="70" y="-508"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1nh-iQ-Z4O">
             <objects>
@@ -71,36 +61,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LVo-Hf-Y62" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="34" y="-1006"/>
-        </scene>
-        <!--Translate-->
-        <scene sceneID="K53-4c-tcn">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lWj-0x-DGB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardName="Translate" id="u4a-eW-eEr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Văn bản" id="VeR-Es-sSl"/>
-                </viewControllerPlaceholder>
-            </objects>
-            <point key="canvasLocation" x="110" y="-240"/>
-        </scene>
-        <!--History-->
-        <scene sceneID="G2z-ML-kJB">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yiy-wT-eRf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardName="History" id="D67-tk-Xap" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="4AY-Sb-d6T"/>
-                </viewControllerPlaceholder>
-            </objects>
-            <point key="canvasLocation" x="100" y="-357"/>
-        </scene>
-        <!--Library-->
-        <scene sceneID="ZnA-tY-RDy">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iFS-eH-vau" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardName="Library" id="4ng-Oi-oB7" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Thêm" id="DvR-ja-81T"/>
-                </viewControllerPlaceholder>
-            </objects>
-            <point key="canvasLocation" x="68" y="-67"/>
         </scene>
     </scenes>
 </document>

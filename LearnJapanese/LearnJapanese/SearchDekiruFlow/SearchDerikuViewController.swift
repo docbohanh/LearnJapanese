@@ -46,27 +46,26 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                     let dictionaryArray = resultDictionary["Data"] as! [[String : AnyObject]]
                     
                     for word in dictionaryArray {
-                        MagicalRecord.saveWithBlock({( localContext) in
-                            var wordData = Translate.MR_findFirstByAttribute("id", withValue: word["clubId"]!, inContext: localContext)
+                        MagicalRecord.save({(localContext : NSManagedObjectContext) in
+                            var wordData = Translate.mr_findFirst(byAttribute: "id", withValue: word["clubId"]!, in: localContext)
                             if wordData == nil {
-                                wordData = Ranking.MR_createEntityInContext(localContext)
-                                wordData.id = word["Id"] as! String?
-                                wordData.kana = word["kana"] as! String
-                                wordData.romaji = word["Romaji"] as! String
-                                wordData.sound_url = word["SoundUrl"] as! String
+                                wordData = Translate.mr_createEntity(in: localContext)
+                                wordData?.id = word["Id"] as! String?
+                                wordData?.kana = word["kana"] as! String?
+                                wordData?.romaji = word["Romaji"] as! String?
+                                wordData?.sound_url = word["SoundUrl"] as! String?
                             }
-                            rankObject?.name = dictTeamRank["name"]
-                        }){ (contextDidSave: Bool, error: NSError?) in
-                            self.comple
-                        }
+                        }){ contextDidSave in
+                            //saving is successful
                         
+                        }
                     }
                     //reload TableView
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
                 } else {
-                            
+                            print("can't get word")
                 }
             })
 
