@@ -4,24 +4,32 @@
         <attribute name="flash_card_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="word_id" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="History" representedClassName="History" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Translate" representedClassName="Translate" syncable="YES" codeGenerationType="class">
+        <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="example_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="example_kana" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="example_meaning_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="example_meaning_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="example_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="example_romaji" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="example_sound_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="kana" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="last_modified" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="meaning_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="meaning_type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="meaningId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="modified" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="romaji" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sound_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Translate" positionX="-36" positionY="9" width="128" height="253"/>
         <element name="FlashCard" positionX="124" positionY="9" width="128" height="73"/>
+        <element name="Translate" positionX="-36" positionY="9" width="128" height="313"/>
+        <element name="History" positionX="115" positionY="126" width="128" height="58"/>
     </elements>
 </model>

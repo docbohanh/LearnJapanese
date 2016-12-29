@@ -19,8 +19,9 @@ class APIManager: NSObject {
     func postDataToURL(url : String,parameters : [String:String],onCompletion: @escaping AlamofireResponse) {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.httpBody, headers: nil)
             .responseJSON() { response in
-                onCompletion(response)
-                print(response)
+                DispatchQueue.global().async {
+                    onCompletion(response)
+                }
         }
     }
     

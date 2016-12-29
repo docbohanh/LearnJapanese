@@ -8,8 +8,9 @@
 
 import UIKit
 import MagicalRecord
+import Alamofire
 
-class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var searchButton: UIButton!
@@ -21,8 +22,8 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableView: UITableView!
     
     var popupView = SavePopupView()
-    
-    var arrayWord = NSMutableArray.init()
+    var wordArray = [Translate]()
+    var searchWordArray = [Translate]()
     
     
     override func viewDidLoad() {
@@ -38,39 +39,102 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     func getdataLocal() {
-        let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":"0"]
+        let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":"1.0"]
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
         APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
-                if response.result.error == nil && response.result.isSuccess && response.result.value != nil{
-                    let resultDictionary = response.result.value! as! [String:AnyObject]
-                    let dictionaryArray = resultDictionary["Data"] as! [[String : AnyObject]]
-                    
-                    for word in dictionaryArray {
-                        MagicalRecord.save({(localContext : NSManagedObjectContext) in
-                            var wordData = Translate.mr_findFirst(byAttribute: "id", withValue: word["clubId"]!, in: localContext)
-                            if wordData == nil {
-                                wordData = Translate.mr_createEntity(in: localContext)
-                                wordData?.id = word["Id"] as! String?
-                                wordData?.kana = word["kana"] as! String?
-                                wordData?.romaji = word["Romaji"] as! String?
-                                wordData?.sound_url = word["SoundUrl"] as! String?
-                            }
-                        }){ contextDidSave in
-                            //saving is successful
-                        
-                        }
-                    }
-                    //reload TableView
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                if Thread.isMainThread {
+                    DispatchQueue.global().async {
+                    self.saveDataToDatabase(response: response)
                     }
                 } else {
-                            print("can't get word")
-                }
-            })
-
+                    self.saveDataToDatabase(response: response)
+                    }
+                })
     }
     
+    func saveDataToDatabase(response : DataResponse<Any>) {
+        if response.result.error == nil && response.result.isSuccess && response.result.value != nil{
+            let resultDictionary = response.result.value! as! [String:AnyObject]
+            let dictionaryArray = resultDictionary["Data"] as! [[String : AnyObject]]
+            
+            for word in dictionaryArray {
+                let localContext = NSManagedObjectContext.mr_default()
+                var wordData = Translate.mr_findFirst(byAttribute: "id", withValue: word["Id"]!, in: localContext)
+                
+                localContext.mr_save({localContext in
+                    if wordData == nil {
+                        wordData = Translate.mr_createEntity(in: localContext)
+                    }
+                    if let word_id = word["Id"] {
+                        wordData?.id = word_id as? String
+                    }
+                    if let kana = word["Kana"] {
+                        wordData?.kana = kana as? String
+                    }
+                    if let Romaji = word["Romaji"] {
+                        wordData?.romaji = Romaji["Romaji"] as? String
+                    }
+                    if let SoundUrl = word["SoundUrl"] {
+                        wordData?.sound_url = SoundUrl["SoundUrl"] as? String
+                    }
+                    if let LastmodifiedDate = word["LastmodifiedDate"] {
+                        let trimString = LastmodifiedDate
+                        let timeStamp:String = trimString.substring(from: 5)
+                        wordData?.last_modified = timeStamp.substring(to: (timeStamp.characters.count - 7))
+                    }
+                    if let Modified = word["Modified"] {
+                        wordData?.word = Modified as? String
+                    }
+                    if let SoundUrl = word["SoundUrl"] {
+                        wordData?.kana = SoundUrl as? String
+                    }
+                    if let Avatar = word["Avatar"] {
+                        wordData?.kana = Avatar as? String
+                    }
+                    
+                    let meaningWord = word["Meaning"] as? [String:AnyObject]
+                    if let Meaning  = meaningWord?["Meaning"] {
+                        wordData?.meaning_name = Meaning as? String
+                    }
+                    if let MeaningId = meaningWord?["MeaningId"] {
+                        wordData?.meaningId = MeaningId as? String
+                    }
+                    if let Type = meaningWord?["Type"] {
+                        wordData?.meaning_type = String(describing: Type)
+                    }
+                    
+                    let exampleWord = word["Example"] as? [String:AnyObject]
+                    if let ExampleId = exampleWord?["ExampleId"] {
+                        wordData?.example_id = ExampleId as? String
+                    }
+                    if let Example = exampleWord?["Example"] {
+                        wordData?.example_name = Example as? String
+                    }
+                    if let Meaning = exampleWord?["Meaning"] {
+                        wordData?.example_meaning_name = Meaning as? String
+                    }
+                    if let MeaningId = exampleWord?["MeaningId"] {
+                        wordData?.example_meaning_id = MeaningId as? String
+                    }
+                    if let Romaji = exampleWord?["Romaji"] {
+                        wordData?.example_romaji = Romaji as? String
+                    }
+                    if let Kana = exampleWord?["Kana"] {
+                        wordData?.example_kana = Kana as? String
+                    }
+                    if let SoundUrl = exampleWord?["SoundUrl"] {
+                        wordData?.example_sound_url = SoundUrl as? String
+                    }
+                    self.wordArray.append(wordData!)
+                }, completion: { contextDidSave in
+                    //saving is successful
+                })
+            }
+            //reload TableView
+        } else {
+            print("can't get word")
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
@@ -118,7 +182,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return arrayWord.count
-        return 5
+        return searchWordArray.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -129,6 +193,10 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         
         let strIdentifer = "WordSearchTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: strIdentifer, for: indexPath) as! WordSearchTableViewCell
+        if let word : Translate = searchWordArray[indexPath.row] {
+            cell.wordLabel.text = word.word
+            cell.contentLabel.text = word.meaning_name
+        }
         cell.initCell(wordModel: WordModel())
         return cell
         
@@ -141,13 +209,25 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if (textField.text?.characters.count)! > 0 {
+            DispatchQueue.global().async {
+                self.searchWord(text: textField.text!)
+            }
+        }
+
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func searchWord(text:String) {
+        for word in wordArray {
+            if (word.word?.hasPrefix(text))! {
+                searchWordArray.append(word)
+            }
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }

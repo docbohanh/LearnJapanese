@@ -12,7 +12,7 @@ class TranslateViewController: UIViewController {
     
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var clearTextButton: UIButton!
-    @IBOutlet weak var outputView: UIView!
+    @IBOutlet weak var outputTextView: UIView!
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var chooseDictionaryButton: UIButton!
     @IBOutlet weak var backToFirstButton: UIButton!
@@ -42,12 +42,12 @@ class TranslateViewController: UIViewController {
     }
     
     @IBAction func tappedClearText(_ sender: Any) {
-        outputView.isHidden = true
+        outputTextView.isHidden = true
         translateButton.isHidden = false
     }
     
     @IBAction func tappedTranslate(_ sender: Any) {
-        outputView.isHidden = false
+        outputTextView.isHidden = false
         translateButton.isHidden = true
     }
     
@@ -55,16 +55,6 @@ class TranslateViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
