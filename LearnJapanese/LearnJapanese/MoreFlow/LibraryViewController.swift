@@ -98,7 +98,6 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 })
             }
         }
-    }
     
     func saveFlashCardDetailToDatabase(response : DataResponse<Any>) {
         if response.result.error == nil && response.result.isSuccess && response.result.value != nil{
@@ -140,5 +139,4 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }

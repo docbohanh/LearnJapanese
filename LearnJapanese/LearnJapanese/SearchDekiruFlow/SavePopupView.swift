@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+protocol saveWordDelegate {
+    func saveWordToLocal()
+}
 typealias CompletionBlock = () -> Void
 
 class SavePopupView: UIView {
@@ -18,6 +20,7 @@ class SavePopupView: UIView {
     
     @IBOutlet weak var meaningTextView: KMPlaceholderTextView!
     @IBOutlet weak var saveButton: UIButton!
+    var delegate : saveWordDelegate?
     
     var saveBlock : CompletionBlock?
     
@@ -33,7 +36,7 @@ class SavePopupView: UIView {
     }
     
     @IBAction func saveButton_clicked(_ sender: Any) {
-        self.saveBlock?()
+        delegate?.saveWordToLocal()
     }
     /*
     // Only override draw() if you perform custom drawing.

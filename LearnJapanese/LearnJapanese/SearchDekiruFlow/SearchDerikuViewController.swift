@@ -11,6 +11,9 @@ import MagicalRecord
 import Alamofire
 
 class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate {
+    @IBOutlet weak var notFoundView: UIView!
+    @IBOutlet weak var notFoundResultLabel: UILabel!
+    @IBOutlet weak var introduceView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var searchButton: UIButton!
@@ -50,7 +53,11 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func tappedAddNewWord(_ sender: UIButton) {
+    }
     
+    @IBAction func tappedSearchWithGoogle(_ sender: Any) {
+    }
     func sendRequest(url: String, parameters: [String: String], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask {
         let parameterString = parameters.stringFromHttpParameters()
         let requestURL = URL(string:"\(url)?\(parameterString)")!
@@ -66,9 +73,30 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
 /* =============== ACTION BUTTON CLICKED =============== */
     @IBAction func searchButton_clicked(_ sender: Any) {
+        DispatchQueue.global().async {
+            for word in self.wordArray {
+                if (word.word?.hasPrefix(self.searchTextfield.text ?? ""))! {
+                    self.searchWordArray.append(word)
+                    DispatchQueue.main.async {
+                        self.notFoundView.isHidden = true
+                        self.introduceView.isHidden = true
+                        self.tableView.isHidden = false
+                        self.tableView.reloadData()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.notFoundView.isHidden = false
+                        self.introduceView.isHidden = true
+                        self.tableView.isHidden = true
+                    }
+                    print("Khong tim thay tu moi")
+                }
+            }
+        }
     }
     
     @IBAction func deleteSearchButton_clicked(_ sender: Any) {
+        searchTextfield.text = ""
     }
     
     @IBAction func paintSearchButton_clicked(_ sender: Any) {
@@ -117,31 +145,48 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField.text?.characters.count)! > 0 {
-            DispatchQueue.global().async {
                 self.searchWord(text: textField.text!)
-            }
+                self.introduceView.isHidden = true
         }
 
         textField.resignFirstResponder()
         return true
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoWordDetail" {
+            let wordDetailViewController = segue.destination as? WordDetailViewController
+            wordDetailViewController?.searchText = searchTextfield.text
+        }
+    }
     func getWordFromDatabase() {
         DispatchQueue.global().async {
             let localContext = NSManagedObjectContext.mr_default()
             self.wordArray = Translate.mr_findAll(in: localContext) as! [Translate]
+            print("So tu moi" + String(self.wordArray.count))
         }
     }
     
     func searchWord(text:String) {
-        for word in wordArray {
-            
-            if (word.word?.hasPrefix(text))! {
-                searchWordArray.append(word)
+        DispatchQueue.global().async {
+            for word in self.wordArray {
+                if (word.word?.hasPrefix(self.searchTextfield.text ?? ""))! {
+                    self.searchWordArray.append(word)
+                    DispatchQueue.main.async {
+                        self.notFoundView.isHidden = true
+                        self.introduceView.isHidden = true
+                        self.tableView.isHidden = false
+                        self.tableView.reloadData()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.notFoundView.isHidden = false
+                        self.introduceView.isHidden = true
+                        self.tableView.isHidden = true
+                    }
+                    print("Khong tim thay tu moi")
+                }
             }
-        }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
         }
     }
 }

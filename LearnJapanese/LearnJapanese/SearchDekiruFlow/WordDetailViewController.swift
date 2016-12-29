@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WordDetailViewController: UIViewController {
+class WordDetailViewController: UIViewController,saveWordDelegate {
 
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var backgroundPopupView: UIView!
@@ -19,11 +19,12 @@ class WordDetailViewController: UIViewController {
     @IBOutlet weak var googleButton: UIButton!
     @IBOutlet weak var wikipediaButton: UIButton!
     @IBOutlet weak var bingButton: UIButton!
+    var searchText : String? = ""
     
     var popupView : SavePopupView?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        searchTextField.text = searchText
         // Do any additional setup after loading the view.
         self.setupViewController()
     }
@@ -88,11 +89,13 @@ class WordDetailViewController: UIViewController {
     @IBAction func tappedSoundButton(_ sender: Any) {
     }
     @IBAction func tappedFavoriteButton(_ sender: Any) {
+        popupView?.wordLabel.text = searchTextField.text
         backgroundPopupView.isHidden = false
         popupView?.myFlashCardsLabel.text = "Lưu từ"
         
     }
     @IBAction func tappedSaveFlashCashButton(_ sender: Any) {
+        popupView?.wordLabel.text = searchTextField.text
         backgroundPopupView.isHidden = false
         popupView?.myFlashCardsLabel.text = "Flash Cards của tôi"
     }
@@ -113,27 +116,24 @@ class WordDetailViewController: UIViewController {
     @IBAction func tappedWikipediaButton(_ sender: Any) {
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
-        let url = NSURL (string: "https://vi.wikipedia.org/wiki/Special:Search?search=love");
+        let wordSearch = searchTextField.text ?? "dekiru"
+        
+        let url = NSURL (string: ("https://vi.wikipedia.org/wiki/Special:Search?search=" + wordSearch));
         let requestObj = NSURLRequest(url: url! as URL);
         searchWebView.loadRequest(requestObj as URLRequest);
     }
     @IBAction func tappedBingButton(_ sender: Any) {
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
-        let url = NSURL (string: "http://www.bing.com/search?q=love");
+        let wordSearch = searchTextField.text ?? "dekiru"
+
+        let url = NSURL (string: "http://www.bing.com/search?q=" + wordSearch);
         let requestObj = NSURLRequest(url: url! as URL);
         searchWebView.loadRequest(requestObj as URLRequest);
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func saveWordToLocal() {
+        backgroundPopupView.isHidden = true
+        ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
     }
-    */
-
 }

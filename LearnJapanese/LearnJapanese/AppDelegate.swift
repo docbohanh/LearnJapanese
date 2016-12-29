@@ -20,9 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         MagicalRecord.setupCoreDataStack(withStoreNamed: "learningJapanese.sqlite")
-        DispatchQueue.global().async {
-            self.getFlashCard()
-        }
+        
         return true
     }
 
@@ -49,44 +47,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
     }
     
-    /**
-     Get Flash card
-     */
-    func getFlashCard() {
-        let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_flash_cart","pageindex":"1","pagesize":"300"]
-        let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
-        APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
-            if Thread.isMainThread {
-                DispatchQueue.global().async {
-                    self.saveDataToDatabase(response: response)
-                }
-            } else {
-                self.saveDataToDatabase(response: response)
-            }
-        })
-    }
-    
-    func saveDataToDatabase(response : DataResponse<Any>) {
-        if response.result.error == nil && response.result.isSuccess && response.result.value != nil{
-            let resultDictionary = response.result.value! as! [String:AnyObject]
-            let dictionaryArray = resultDictionary["Data"] as! [[String : AnyObject]]
-            for flashCardObject in dictionaryArray {
-                let localContext = NSManagedObjectContext.mr_default()
-                let flashCard = FlashCard.mr_createEntity(in: localContext)
-                localContext.mr_save({localContext in
-                    if let flash_id = flashCardObject["Id"] {
-                        flashCard?.id = flash_id as? String
-                    }
-                    if let Title = flashCardObject["Title"] {
-                        flashCard?.title = Title as? String
-                    }
-                    
-                    if let Avatar = flashCardObject["Avatar"] {
-                        flashCard?.avatar = Avatar as? String
-                    }
-                })
-            }
-        }
-    }
 }
 

@@ -11,6 +11,8 @@ import UIKit
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    var historyArray = [History]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
