@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="FlashCard" representedClassName="FlashCard" syncable="YES" codeGenerationType="class">
-        <attribute name="flash_card_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FlashCardDetail" representedClassName="FlashCardDetail" syncable="YES" codeGenerationType="class">
+        <attribute name="avatar" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="kana" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="meaning" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="romajji" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="source_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="word_id" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="History" representedClassName="History" syncable="YES" codeGenerationType="class">
@@ -28,8 +39,9 @@
         <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FlashCard" positionX="124" positionY="9" width="128" height="73"/>
-        <element name="Translate" positionX="-36" positionY="9" width="128" height="313"/>
+        <element name="FlashCard" positionX="124" positionY="9" width="128" height="88"/>
         <element name="History" positionX="115" positionY="126" width="128" height="58"/>
+        <element name="Translate" positionX="-36" positionY="9" width="128" height="313"/>
+        <element name="FlashCardDetail" positionX="115" positionY="209" width="128" height="163"/>
     </elements>
 </model>

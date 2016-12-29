@@ -22,7 +22,6 @@
 		840579FE1DEDC3AC0019C100 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579FD1DEDC3AC0019C100 /* HeaderView.swift */; };
 		84057A001DEDC6EB0019C100 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840579FF1DEDC6EB0019C100 /* HeaderView.xib */; };
 		84057A021DEDC8CF0019C100 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */; };
-		843D34391E14284C00D4FDE3 /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 843D34381E14284C00D4FDE3 /* Model.xcmappingmodel */; };
 		844734B51DFB19F600A57640 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844734B41DFB19F600A57640 /* StringExtension.swift */; };
 		B84040B15AD6906377CA4F43 /* Pods_LearnJapaneseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */; };
 		D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */; };
@@ -47,6 +46,7 @@
 		EA2A8B7C1E0D1330009622F7 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B751E0D1330009622F7 /* UIButtonExtension.swift */; };
 		EA2A8B7D1E0D1330009622F7 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B761E0D1330009622F7 /* UILabelExtension.swift */; };
 		EA2A8B7E1E0D1330009622F7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B771E0D1330009622F7 /* UIViewExtension.swift */; };
+		EA968B231E14FCD10067352E /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = EA968B221E14FCD10067352E /* Model.xcmappingmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,7 +91,6 @@
 		840579FF1DEDC6EB0019C100 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		843D34371E14209700D4FDE3 /* LearnJapanese.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnJapanese.entitlements; sourceTree = "<group>"; };
-		843D34381E14284C00D4FDE3 /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 		844734B41DFB19F600A57640 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = ../StringExtension.swift; sourceTree = "<group>"; };
 		8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapaneseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6A0240A367E383FA75F5428 /* Pods-LearnJapaneseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +119,7 @@
 		EA2A8B751E0D1330009622F7 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		EA2A8B761E0D1330009622F7 /* UILabelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		EA2A8B771E0D1330009622F7 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		EA968B221E14FCD10067352E /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,15 +203,15 @@
 				EA2A8B701E0D1330009622F7 /* Common */,
 				D2EF304D1DFD4A0C00287924 /* APIManager */,
 				D27FF8661DFF0A4E00EA02D1 /* CustomTabbar */,
-				840579BB1DED79DA0019C100 /* AppDelegate.swift */,
-				840579BF1DED79DA0019C100 /* Main.storyboard */,
-				D27FF8681DFF0A6300EA02D1 /* NSVTabBarController.swift */,
-				840579F71DED8CF80019C100 /* DictionaryTabBarViewController.swift */,
 				D2688E0F1DED8B9C00EB3A6E /* SearchDekiruFlow */,
 				D24A13631DEDA98300E9E063 /* HistoryFlow */,
 				D24A135D1DEDA35E00E9E063 /* Model */,
 				D2688E0D1DED8B9C00EB3A6E /* Library */,
 				D2688E111DED8B9C00EB3A6E /* TranslateFlow */,
+				840579BB1DED79DA0019C100 /* AppDelegate.swift */,
+				840579BF1DED79DA0019C100 /* Main.storyboard */,
+				D27FF8681DFF0A6300EA02D1 /* NSVTabBarController.swift */,
+				840579F71DED8CF80019C100 /* DictionaryTabBarViewController.swift */,
 				840579C51DED79DA0019C100 /* Assets.xcassets */,
 				840579C71DED79DA0019C100 /* LaunchScreen.storyboard */,
 				840579CA1DED79DA0019C100 /* Info.plist */,
@@ -325,7 +325,7 @@
 		EA2A8B811E0D36B0009622F7 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				843D34381E14284C00D4FDE3 /* Model.xcmappingmodel */,
+				EA968B221E14FCD10067352E /* Model.xcmappingmodel */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -629,7 +629,7 @@
 				D24A13581DED8E2A00E9E063 /* SearchDerikuViewController.swift in Sources */,
 				D256EBCE1DFB1D63007D56EE /* KMPlaceholderTextView.swift in Sources */,
 				D24A135F1DEDA37200E9E063 /* WordModel.swift in Sources */,
-				843D34391E14284C00D4FDE3 /* Model.xcmappingmodel in Sources */,
+				EA968B231E14FCD10067352E /* Model.xcmappingmodel in Sources */,
 				D24A135B1DED966400E9E063 /* WordSearchTableViewCell.swift in Sources */,
 				840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */,
 				844734B51DFB19F600A57640 /* StringExtension.swift in Sources */,
