@@ -30,7 +30,6 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        LoadingOverlay.shared.showOverlay(view: view)
     }
     @IBAction func tappedAddDetailLibrary(_ sender: UIButton) {
         libraryTableView.reloadData()
@@ -76,7 +75,13 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         currentHeader = String(sender.tag)
         LoadingOverlay.shared.showOverlay(view: view)
         DispatchQueue.global().async {
-            self.getFlashCardDetail(flashCardId: String(sender.tag))
+            if self.titleArray.count > 1 {
+                self.getFlashCardDetail(flashCardId: String(sender.tag))
+            } else {
+                self.titleArray.removeAll()
+                self.subWordArray.removeAll()
+                self.getFlashCard()
+            }
         }
     }
     
@@ -160,8 +165,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             localContext.mr_save({localContext in
                 for flashCardDetailObject in dictionaryArray {
                         let flashCardDetail = FlashCardDetail.mr_createEntity()
-                    if let flash_id = flashCardDetailObject["FlashCardId"]{
-                        flashCardDetail?.id = String(describing: flash_id)
+                    if let Id = flashCardDetailObject["Id"]{
+                        flashCardDetail?.id = String(describing: Id)
                     }
                     if let Word = flashCardDetailObject["Word"] {
                         flashCardDetail?.word = Word as? String
@@ -180,10 +185,15 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         flashCardDetail?.avatar = SoundUrl as? String
                     }
                     if let Meaning = flashCardDetailObject["Meaning"] {
-                        flashCardDetail?.avatar = Meaning as? String
+                        flashCardDetail?.meaning = Meaning as? String
+                    }
+                    if let FlashCardId = flashCardDetailObject["FlashCardId"] {
+                        flashCardDetail?.flash_card_id = String(describing: FlashCardId)
                     }
                 }
-                self.subWordArray = FlashCardDetail.mr_find(byAttribute: "id", withValue: self.currentHeader, in: localContext) as! [FlashCardDetail]
+                
+                self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentHeader) as! [FlashCardDetail]//(byAttribute: "flash_card_id", withValue: self.currentHeader, in: localContext) as! [FlashCardDetail]
+                
                 var parentFlash = FlashCard()
                 for flashCardObject : FlashCard in self.titleArray {
                     if flashCardObject.id == self.currentHeader {
@@ -193,8 +203,6 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 }
                 self.titleArray.removeAll()
                 self.titleArray.append(parentFlash)
-
-                
                 DispatchQueue.main.async {
                     LoadingOverlay.shared.hideOverlayView()
                     self.libraryTableView.reloadData()

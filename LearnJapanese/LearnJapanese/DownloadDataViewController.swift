@@ -32,7 +32,7 @@ class DownloadDataViewController: UIViewController {
         progressView.frame = CGRect.init(x: 0, y: 0, width: 0, height: fullTrackView.frame.height)
         fullTrackView.addSubview(progressView)
         if UserDefaults.standard.object(forKey: "version") == nil {
-            UserDefaults.standard.set(1.0, forKey: "version")
+            UserDefaults.standard.set("", forKey: "version")
         } else {
 
         }
@@ -43,7 +43,7 @@ class DownloadDataViewController: UIViewController {
     }
 
     func getdataLocal() {
-        let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":String(format: "%.1f",UserDefaults.standard.object(forKey: "version") as! Float)]
+        let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":(UserDefaults.standard.object(forKey: "version") as! String)]
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
         APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
             if Thread.isMainThread {
@@ -57,13 +57,12 @@ class DownloadDataViewController: UIViewController {
     }
     
     func saveDataToDatabase(response : DataResponse<Any>) {
+        if response.result.value != nil {
         let value = response.result.value as! [String:AnyObject]
         
-        if response.result.error == nil && response.result.isSuccess && (value["Data"]?.count)! > 0{
+        if response.result.error == nil && response.result.isSuccess && (value["Data"]?.count)! > 0 {
+            UserDefaults.standard.set(value["Version"] as! String, forKey: "version")
             DispatchQueue.main.async {
-                var version:Float = UserDefaults.standard.object(forKey: "version") as! Float
-                version += 0.1
-                UserDefaults.standard.set(version, forKey: "version")
                 if response.data != nil {
                     self.totalDouble = Float((response.data?.count)!)/1048576.0
                     self.totalLabel.text = "/" + String(format: "%.2f",self.totalDouble ) + " MB"
@@ -170,6 +169,7 @@ class DownloadDataViewController: UIViewController {
             })
             print("can't get word")
         }
+    }
     }
 
     

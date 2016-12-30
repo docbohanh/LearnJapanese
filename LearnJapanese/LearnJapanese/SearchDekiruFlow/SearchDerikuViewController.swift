@@ -75,7 +75,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func searchButton_clicked(_ sender: Any) {
         DispatchQueue.global().async {
             for word in self.wordArray {
-                if (word.word?.hasPrefix(self.searchTextfield.text ?? ""))! {
+                if (word.word?.hasPrefix(self.searchTextfield.text ?? ""))! || (word.meaning_name?.hasPrefix(self.searchTextfield.text ?? ""))! {
                     self.searchWordArray.append(word)
                     DispatchQueue.main.async {
                         self.notFoundView.isHidden = true
