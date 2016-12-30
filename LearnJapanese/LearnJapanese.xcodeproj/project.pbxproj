@@ -47,7 +47,7 @@
 		EA2A8B7C1E0D1330009622F7 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B751E0D1330009622F7 /* UIButtonExtension.swift */; };
 		EA2A8B7D1E0D1330009622F7 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B761E0D1330009622F7 /* UILabelExtension.swift */; };
 		EA2A8B7E1E0D1330009622F7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B771E0D1330009622F7 /* UIViewExtension.swift */; };
-		EA968B231E14FCD10067352E /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = EA968B221E14FCD10067352E /* Model.xcmappingmodel */; };
+		EA968B2B1E1609990067352E /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = EA968B2A1E1609990067352E /* Model.xcmappingmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,7 +121,7 @@
 		EA2A8B751E0D1330009622F7 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		EA2A8B761E0D1330009622F7 /* UILabelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		EA2A8B771E0D1330009622F7 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		EA968B221E14FCD10067352E /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
+		EA968B2A1E1609990067352E /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,7 +328,7 @@
 		EA2A8B811E0D36B0009622F7 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				EA968B221E14FCD10067352E /* Model.xcmappingmodel */,
+				EA968B2A1E1609990067352E /* Model.xcmappingmodel */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -410,7 +410,7 @@
 				TargetAttributes = {
 					840579B71DED79DA0019C100 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = RT689AHQ26;
+						DevelopmentTeam = 78F7F9Y9CK;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -632,7 +632,6 @@
 				D24A13581DED8E2A00E9E063 /* SearchDerikuViewController.swift in Sources */,
 				D256EBCE1DFB1D63007D56EE /* KMPlaceholderTextView.swift in Sources */,
 				D24A135F1DEDA37200E9E063 /* WordModel.swift in Sources */,
-				EA968B231E14FCD10067352E /* Model.xcmappingmodel in Sources */,
 				D24A135B1DED966400E9E063 /* WordSearchTableViewCell.swift in Sources */,
 				840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */,
 				844734B51DFB19F600A57640 /* StringExtension.swift in Sources */,
@@ -649,6 +648,7 @@
 				D27FF8691DFF0A6300EA02D1 /* NSVBarController.swift in Sources */,
 				EA2A8B781E0D1330009622F7 /* Define.swift in Sources */,
 				D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */,
+				EA968B2B1E1609990067352E /* Model.xcmappingmodel in Sources */,
 				D2EF304F1DFD4A2600287924 /* APIManager.swift in Sources */,
 				D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */,
 				EA2A8B7C1E0D1330009622F7 /* UIButtonExtension.swift in Sources */,
@@ -810,7 +810,7 @@
 				CODE_SIGN_ENTITLEMENTS = LearnJapanese/LearnJapanese.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = RT689AHQ26;
+				DEVELOPMENT_TEAM = 78F7F9Y9CK;
 				INFOPLIST_FILE = LearnJapanese/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -830,7 +830,7 @@
 				CODE_SIGN_ENTITLEMENTS = LearnJapanese/LearnJapanese.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = RT689AHQ26;
+				DEVELOPMENT_TEAM = 78F7F9Y9CK;
 				INFOPLIST_FILE = LearnJapanese/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
