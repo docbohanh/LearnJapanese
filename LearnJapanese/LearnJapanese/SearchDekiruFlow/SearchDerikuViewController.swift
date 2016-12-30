@@ -73,26 +73,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
 /* =============== ACTION BUTTON CLICKED =============== */
     @IBAction func searchButton_clicked(_ sender: Any) {
-        DispatchQueue.global().async {
-            for word in self.wordArray {
-                if (word.word?.hasPrefix(self.searchTextfield.text ?? ""))! || (word.meaning_name?.hasPrefix(self.searchTextfield.text ?? ""))! {
-                    self.searchWordArray.append(word)
-                    DispatchQueue.main.async {
-                        self.notFoundView.isHidden = true
-                        self.introduceView.isHidden = true
-                        self.tableView.isHidden = false
-                        self.tableView.reloadData()
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.notFoundView.isHidden = false
-                        self.introduceView.isHidden = true
-                        self.tableView.isHidden = true
-                    }
-                    print("Khong tim thay tu moi")
-                }
-            }
-        }
+        self.searchWord(text: searchTextfield.text ?? "")
     }
     
     @IBAction func deleteSearchButton_clicked(_ sender: Any) {
@@ -170,7 +151,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     func searchWord(text:String) {
         DispatchQueue.global().async {
             for word in self.wordArray {
-                if (word.word?.hasPrefix(self.searchTextfield.text ?? ""))! {
+                if (word.word?.hasPrefix(self.searchTextfield.text ?? ""))! || (word.meaning_name?.hasPrefix(self.searchTextfield.text ?? ""))! {
                     self.searchWordArray.append(word)
                     DispatchQueue.main.async {
                         self.notFoundView.isHidden = true

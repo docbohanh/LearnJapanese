@@ -27,38 +27,6 @@
             endingLineNumber = "198"
             landmarkName = "saveFlashCardDetailToDatabase(response:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LearnJapanese.LibraryViewController.(saveFlashCardDetailToDatabase (response : Alamofire.DataResponse&lt;Any&gt;) -&gt; ()).(closure #1)"
-                  moduleName = "LearnJapanese"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/NguyenHaiDang/Desktop/My%20Project/Outsource/JapaneseDictionary/SourceCode/LearnJapanese/LearnJapanese/LearnJapanese/MoreFlow/LibraryViewController.swift"
-                  timestampString = "504749711.758988"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "198"
-                  endingLineNumber = "198"
-                  offsetFromSymbolStart = "6793">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LearnJapanese.LibraryViewController.(saveFlashCardDetailToDatabase (response : Alamofire.DataResponse&lt;Any&gt;) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "LearnJapanese"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/NguyenHaiDang/Desktop/My%20Project/Outsource/JapaneseDictionary/SourceCode/LearnJapanese/LearnJapanese/LearnJapanese/MoreFlow/LibraryViewController.swift"
-                  timestampString = "504749711.761097"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "199"
-                  endingLineNumber = "199"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
