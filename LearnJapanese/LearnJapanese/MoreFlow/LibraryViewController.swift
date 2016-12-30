@@ -16,41 +16,32 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var libraryTableView: UITableView!
     var numberOfSection: Int = 2
     
-    var libraryListArray = [["value":["なぜですか","いつですか","どきですか"],"key":"FlashCard của tôi"],["key":"từ đã lưu","value":["なぜですか","いつですか"]],["key":"chủ đề 1","value":["お願いします","どちらですか","始めますて","こ日は"]]]
-    var currentLibraryArray = [["value":["なぜですか","いつですか","どきですか"],"key":"FlashCard của tôi"],["key":"từ đã lưu","value":["なぜですか","いつですか"]],["key":"chủ đề 1","value":["お願いします","どちらですか","始めますて","こ日は"]]]
+    var titleArray = [FlashCard]()
+    var subWordArray = [FlashCardDetail]()
+    var currentHeader = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         libraryTableView.tableFooterView = UIView.init(frame: CGRect.zero)
-        for index in 0..<currentLibraryArray.count {
-            currentLibraryArray[index].removeValue(forKey: "value")
-        }
         DispatchQueue.global().async {
-        
+            self.getFlashCard()
         }
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        LoadingOverlay.shared.showOverlay(view: view)
+    }
     @IBAction func tappedAddDetailLibrary(_ sender: UIButton) {
-        currentLibraryArray.removeAll()
-        currentLibraryArray = libraryListArray
-        for index in 0..<currentLibraryArray.count {
-            currentLibraryArray[index].removeValue(forKey: "value")
-        }
         libraryTableView.reloadData()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return currentLibraryArray.count
+        return titleArray.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var numberOfRow = Int()
-        for index in 0..<currentLibraryArray.count {
-            if let value = currentLibraryArray[index]["value"] {
-                numberOfRow += 1
-            }
-        }
-        return numberOfRow
+        return subWordArray.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,21 +54,82 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VocabularyTableViewCell", for: indexPath) as! VocabularyTableViewCell
+        let word = subWordArray[indexPath.row]
+        cell.vocabularyLabel.text = word.word
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = Bundle.main.loadNibNamed("HeaderView", owner: self, options:[:])?.first as? HeaderView
+        let flashCardTitle = titleArray[section]
         headerView?.delegate = self
-        headerView?.titleLabel.text = currentLibraryArray[section]["key"] as! String?
-        headerView?.backgroundHeaderButton.tag = 500 + section
+        headerView?.titleLabel.text = flashCardTitle.title
+        if flashCardTitle.id != nil {
+            headerView?.backgroundHeaderButton.tag = Int(flashCardTitle.id!)!
+        }
+
         return (headerView as? UIView?)!
     }
     
     func tappedShowVocaburaryList(sender: UIButton) {
-        currentLibraryArray.removeAll()
-        currentLibraryArray.append(libraryListArray[sender.tag - 500])
-        libraryTableView.reloadData()
+        currentHeader = String(sender.tag)
+        LoadingOverlay.shared.showOverlay(view: view)
+        DispatchQueue.global().async {
+            self.getFlashCardDetail(flashCardId: String(sender.tag))
+        }
+    }
+    
+    /**
+     Get Flash Card detail
+     */
+    func getFlashCard() {
+        var parameter : [String:String] = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_flash_cart","pageindex":"1","pagesize":"300"]
+        let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
+        DispatchQueue.global().async {
+            APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
+                if Thread.isMainThread {
+                    DispatchQueue.global().async {
+                        self.saveFlashCardToDatabase(response:response)
+                    }
+                } else {
+                    self.saveFlashCardToDatabase(response:response)
+                }
+            })
+        }
+    }
+    
+    func saveFlashCardToDatabase(response : DataResponse<Any>) {
+        if response.result.error == nil && response.result.isSuccess && response.result.value != nil{
+            let resultDictionary = response.result.value! as! [String:AnyObject]
+            let dictionaryArray = resultDictionary["Data"] as! [[String : AnyObject]]
+            let localContext = NSManagedObjectContext.mr_default()
+
+            localContext.mr_save({localContext in
+                for flashCardDetailObject in dictionaryArray {
+                    let flashCardDetail = FlashCard.mr_createEntity()
+                    if let flash_id = flashCardDetailObject["Id"]{
+                        flashCardDetail?.id = String(describing: flash_id)
+                    }
+                    if let Word = flashCardDetailObject["Title"] {
+                        flashCardDetail?.title = Word as? String
+                    }
+                    
+                    if let Avatar = flashCardDetailObject["Avatar"] {
+                        flashCardDetail?.avatar = Avatar as? String
+                    }
+                }
+                self.titleArray = (FlashCard.mr_findAll() as? [FlashCard])!
+                DispatchQueue.main.async {
+                    LoadingOverlay.shared.hideOverlayView()
+                    self.libraryTableView.reloadData()
+                }
+            })
+        } else {
+            DispatchQueue.main.async {
+                LoadingOverlay.shared.hideOverlayView()
+            }
+        }
     }
     
     /**
@@ -103,13 +155,13 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         if response.result.error == nil && response.result.isSuccess && response.result.value != nil{
             let resultDictionary = response.result.value! as! [String:AnyObject]
             let dictionaryArray = resultDictionary["Data"] as! [[String : AnyObject]]
+            let localContext = NSManagedObjectContext.mr_default()
             
-            for flashCardDetailObject in dictionaryArray {
-                let localContext = NSManagedObjectContext.mr_default()
-                let flashCardDetail = FlashCardDetail.mr_createEntity()
-                localContext.mr_save({localContext in
+            localContext.mr_save({localContext in
+                for flashCardDetailObject in dictionaryArray {
+                        let flashCardDetail = FlashCardDetail.mr_createEntity()
                     if let flash_id = flashCardDetailObject["FlashCardId"]{
-                        flashCardDetail?.id = flash_id as? String
+                        flashCardDetail?.id = String(describing: flash_id)
                     }
                     if let Word = flashCardDetailObject["Word"] {
                         flashCardDetail?.word = Word as? String
@@ -130,7 +182,28 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     if let Meaning = flashCardDetailObject["Meaning"] {
                         flashCardDetail?.avatar = Meaning as? String
                     }
-                })
+                }
+                self.subWordArray = FlashCardDetail.mr_find(byAttribute: "id", withValue: self.currentHeader, in: localContext) as! [FlashCardDetail]
+                var parentFlash = FlashCard()
+                for flashCardObject : FlashCard in self.titleArray {
+                    if flashCardObject.id == self.currentHeader {
+                        parentFlash = flashCardObject
+                        break
+                    }
+                }
+                self.titleArray.removeAll()
+                self.titleArray.append(parentFlash)
+
+                
+                DispatchQueue.main.async {
+                    LoadingOverlay.shared.hideOverlayView()
+                    self.libraryTableView.reloadData()
+                }
+            })
+            
+        } else {
+            DispatchQueue.main.async {
+                LoadingOverlay.shared.hideOverlayView()
             }
         }
     }
