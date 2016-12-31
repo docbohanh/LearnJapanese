@@ -40,6 +40,9 @@
 		D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E121DED8B9D00EB3A6E /* Translate.storyboard */; };
 		D27FF8691DFF0A6300EA02D1 /* NSVBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27FF8671DFF0A6300EA02D1 /* NSVBarController.swift */; };
 		D27FF86A1DFF0A6300EA02D1 /* NSVTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27FF8681DFF0A6300EA02D1 /* NSVTabBarController.swift */; };
+		D29ACF5D1E17CC6F005CCA96 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29ACF5C1E17CC6F005CCA96 /* CoreAudio.framework */; };
+		D29ACF5F1E17CCEE005CCA96 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29ACF5E1E17CCEE005CCA96 /* AVFoundation.framework */; };
+		D29ACF611E17CCFB005CCA96 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29ACF601E17CCFB005CCA96 /* AVKit.framework */; };
 		D2EF304F1DFD4A2600287924 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EF304E1DFD4A2600287924 /* APIManager.swift */; };
 		EA2A8B781E0D1330009622F7 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B711E0D1330009622F7 /* Define.swift */; };
 		EA2A8B7A1E0D1330009622F7 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B731E0D1330009622F7 /* LoadingOverlay.swift */; };
@@ -113,6 +116,9 @@
 		D2688E121DED8B9D00EB3A6E /* Translate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Translate.storyboard; sourceTree = "<group>"; };
 		D27FF8671DFF0A6300EA02D1 /* NSVBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSVBarController.swift; sourceTree = "<group>"; };
 		D27FF8681DFF0A6300EA02D1 /* NSVTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSVTabBarController.swift; path = CustomTabbar/NSVTabBarController.swift; sourceTree = "<group>"; };
+		D29ACF5C1E17CC6F005CCA96 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D29ACF5E1E17CCEE005CCA96 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D29ACF601E17CCFB005CCA96 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		D2EF304E1DFD4A2600287924 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		E4EC133B8769AF912CC8E51B /* Pods_LearnJapaneseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapaneseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA2A8B711E0D1330009622F7 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
@@ -129,6 +135,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D29ACF611E17CCFB005CCA96 /* AVKit.framework in Frameworks */,
+				D29ACF5F1E17CCEE005CCA96 /* AVFoundation.framework in Frameworks */,
+				D29ACF5D1E17CC6F005CCA96 /* CoreAudio.framework in Frameworks */,
 				67B6C49519EA0F9B92203FBE /* Pods_LearnJapanese.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +164,9 @@
 		73B2AAECCE95D361A09536FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D29ACF601E17CCFB005CCA96 /* AVKit.framework */,
+				D29ACF5E1E17CCEE005CCA96 /* AVFoundation.framework */,
+				D29ACF5C1E17CC6F005CCA96 /* CoreAudio.framework */,
 				3E2DA111F1C49E3CCB7912D7 /* Pods_LearnJapanese.framework */,
 				8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */,
 				E4EC133B8769AF912CC8E51B /* Pods_LearnJapaneseUITests.framework */,

@@ -8,20 +8,28 @@
 
 import UIKit
 
+protocol VocabularyCellDelegate {
+    func playAudio() -> Void
+}
 class VocabularyTableViewCell: UITableViewCell {
 
     @IBOutlet weak var favoriteIconImageView: UIImageView!
     @IBOutlet weak var vocabularyLabel: UILabel!
     @IBOutlet weak var readVocabulary: UIButton!
+    var delegate : VocabularyCellDelegate?
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
     @IBAction func tappedReadVocabulary(_ sender: Any) {
+        self.delegate?.playAudio()
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+//        super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }

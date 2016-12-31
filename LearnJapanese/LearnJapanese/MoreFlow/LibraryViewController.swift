@@ -9,8 +9,9 @@
 import UIKit
 import MagicalRecord
 import Alamofire
+import AVFoundation
 
-class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ShowVocaburaryListDelegate {
+class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ShowVocaburaryListDelegate,VocabularyCellDelegate {
 
     @IBOutlet weak var DetailLibraryButton: UIButton!
     @IBOutlet weak var libraryTableView: UITableView!
@@ -19,6 +20,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var titleArray = [FlashCard]()
     var subWordArray = [FlashCardDetail]()
     var currentHeader = String()
+    var player : AVAudioPlayer?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +58,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "VocabularyTableViewCell", for: indexPath) as! VocabularyTableViewCell
         let word = subWordArray[indexPath.row]
         cell.vocabularyLabel.text = word.word
-
+        cell.delegate = self
         return cell
     }
     
@@ -67,7 +70,6 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         if flashCardTitle.id != nil {
             headerView?.backgroundHeaderButton.tag = Int(flashCardTitle.id!)!
         }
-
         return (headerView as? UIView?)!
     }
     
@@ -220,4 +222,38 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func playAudio() {
+        let urlstring = "http://radio.spainmedia.es/wp-content/uploads/2015/12/tailtoddle_lo4.mp3"
+        let url = NSURL(string: urlstring)
+        print("the url = \(url!)")
+        downloadFileFromURL(url: url!)
+    }
+    func downloadFileFromURL(url:NSURL){
+        var downloadTask:URLSessionDownloadTask
+        downloadTask = URLSession.shared.downloadTask(with: url as URL, completionHandler: { (URL, response, error) -> Void in
+            self.play(url: URL! as NSURL)
+        })
+        
+        downloadTask.resume()
+        
+    }
+    
+    func play(url:NSURL) {
+        print("playing \(url)")
+        
+        do {
+            self.player = try AVAudioPlayer(contentsOf: url as URL)
+            self.player?.prepareToPlay()
+            self.player?.volume = 1.0
+            self.player?.play()
+        } catch let error as NSError {
+            //self.player = nil
+            print(error.localizedDescription)
+        } catch {
+            print("AVAudioPlayer init failed")
+        }
+        
+    }
+    
 }
