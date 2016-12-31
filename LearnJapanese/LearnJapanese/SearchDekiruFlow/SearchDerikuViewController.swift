@@ -11,6 +11,7 @@ import MagicalRecord
 import Alamofire
 
 class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate {
+    @IBOutlet weak var changeLangueButton: UIButton!
     @IBOutlet weak var notFoundView: UIView!
     @IBOutlet weak var notFoundResultLabel: UILabel!
     @IBOutlet weak var introduceView: UIView!
@@ -26,11 +27,12 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     var popupView = SavePopupView()
     var wordArray = [Translate]()
+    var firstArray = [Translate]()
+    var secondArray = [Translate]()
     var searchWordArray = [Translate]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         tableView .register(UINib.init(nibName: "WordSearchTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WordSearchTableViewCell")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
@@ -56,8 +58,16 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func tappedAddNewWord(_ sender: UIButton) {
     }
     
+    @IBAction func tappedChangedLangue(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if (searchTextfield.text?.characters.count)! > 0 {
+            searchWord(text: searchTextfield.text!,isVietNhat: sender.isSelected)
+        }
+    }
+    
     @IBAction func tappedSearchWithGoogle(_ sender: Any) {
     }
+    
     func sendRequest(url: String, parameters: [String: String], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask {
         let parameterString = parameters.stringFromHttpParameters()
         let requestURL = URL(string:"\(url)?\(parameterString)")!
@@ -73,25 +83,8 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
 /* =============== ACTION BUTTON CLICKED =============== */
     @IBAction func searchButton_clicked(_ sender: Any) {
-        DispatchQueue.global().async {
-            for word in self.wordArray {
-                if (word.word?.hasPrefix(self.searchTextfield.text ?? ""))! || (word.meaning_name?.hasPrefix(self.searchTextfield.text ?? ""))! {
-                    self.searchWordArray.append(word)
-                    DispatchQueue.main.async {
-                        self.notFoundView.isHidden = true
-                        self.introduceView.isHidden = true
-                        self.tableView.isHidden = false
-                        self.tableView.reloadData()
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        self.notFoundView.isHidden = false
-                        self.introduceView.isHidden = true
-                        self.tableView.isHidden = true
-                    }
-                    print("Khong tim thay tu moi")
-                }
-            }
+        if (searchTextfield.text?.characters.count)! > 0 {
+            self.searchWord(text: searchTextfield.text!,isVietNhat: changeLangueButton.isSelected)
         }
     }
     
@@ -128,24 +121,26 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         let strIdentifer = "WordSearchTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: strIdentifer, for: indexPath) as! WordSearchTableViewCell
         if let word : Translate = searchWordArray[indexPath.row] {
-            cell.wordLabel.text = word.word
-            cell.contentLabel.text = word.meaning_name
+            if changeLangueButton.isSelected {
+                cell.wordLabel.text = word.meaning_name
+                cell.contentLabel.text = word.word
+            } else {
+                cell.wordLabel.text = word.word
+                cell.contentLabel.text = word.meaning_name            }
         }
         cell.initCell(wordModel: WordModel())
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDekiru", bundle: Bundle.main)
         let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "WordDetailViewController") as! WordDetailViewController
         self.navigationController?.pushViewController(detaiVC, animated: true)
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField.text?.characters.count)! > 0 {
-                self.searchWord(text: textField.text!)
+                self.searchWord(text: textField.text!,isVietNhat: changeLangueButton.isSelected)
                 self.introduceView.isHidden = true
         }
 
@@ -161,31 +156,63 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     func getWordFromDatabase() {
         DispatchQueue.global().async {
-            let localContext = NSManagedObjectContext.mr_default()
-            self.wordArray = Translate.mr_findAll(in: localContext) as! [Translate]
+            self.wordArray = Translate.mr_findAll() as! [Translate]
+            self.firstArray.removeAll()
+            for index in 0..<500 {
+                if self.wordArray.count > 500 {
+                    self.firstArray.append(self.wordArray[index])
+                }
+            }
+
             print("So tu moi" + String(self.wordArray.count))
         }
     }
     
-    func searchWord(text:String) {
+    func searchWord(text:String,isVietNhat:Bool) {
         DispatchQueue.global().async {
-            for word in self.wordArray {
-                if (word.word?.hasPrefix(self.searchTextfield.text ?? ""))! {
-                    self.searchWordArray.append(word)
-                    DispatchQueue.main.async {
-                        self.notFoundView.isHidden = true
-                        self.introduceView.isHidden = true
-                        self.tableView.isHidden = false
-                        self.tableView.reloadData()
+            self.searchWordArray.removeAll()
+            for word in self.firstArray {
+                print(word)
+                let searchWord = word.word
+                let searchName = word.meaning_name
+                if isVietNhat && searchName != nil {
+                    if searchName!.hasPrefix(text){
+                        self.searchWordArray.append(word)
+                        DispatchQueue.main.async {
+                            self.notFoundView.isHidden = true
+                            self.introduceView.isHidden = true
+                            self.tableView.isHidden = false
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.notFoundView.isHidden = false
+                            self.introduceView.isHidden = true
+                            self.tableView.isHidden = true
+                        }
+                        print("Khong tim thay tu moi")
                     }
-                } else {
-                    DispatchQueue.main.async {
-                        self.notFoundView.isHidden = false
-                        self.introduceView.isHidden = true
-                        self.tableView.isHidden = true
+                } else if !isVietNhat && searchWord != nil {
+                    if (searchWord!.hasPrefix(text)) {
+                        self.searchWordArray.append(word)
+                        DispatchQueue.main.async {
+                            self.notFoundView.isHidden = true
+                            self.introduceView.isHidden = true
+                            self.tableView.isHidden = false
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            self.notFoundView.isHidden = false
+                            self.introduceView.isHidden = true
+                            self.tableView.isHidden = true
+                        }
+                        print("Khong tim thay tu moi")
                     }
-                    print("Khong tim thay tu moi")
                 }
+                
+            }
+            DispatchQueue.main.async {
+                self.tableView.isHidden = false
+                self.tableView.reloadData()
             }
         }
     }

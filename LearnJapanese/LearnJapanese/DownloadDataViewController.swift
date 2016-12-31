@@ -25,6 +25,8 @@ class DownloadDataViewController: UIViewController {
     var progressView = UIView()
     var totalDouble = Float()
     var currentDouble: Float = 0
+    var isFinished:Bool = false
+    var progressTimer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +48,8 @@ class DownloadDataViewController: UIViewController {
         let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":(UserDefaults.standard.object(forKey: "version") as! String)]
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
         APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
-            if Thread.isMainThread {
-                DispatchQueue.global().async {
-                    self.saveDataToDatabase(response: response)
-                }
-            } else {
+            let version = UserDefaults.standard.object(forKey: "version") as! String
+            if version == "" {
                 self.saveDataToDatabase(response: response)
             }
         })
@@ -69,97 +68,101 @@ class DownloadDataViewController: UIViewController {
                      self.downloadedLabel.text = "0 MB"
                 }
             }
+            
+            if #available(iOS 10.0, *) {
+                progressTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: {_ in 
+                    if self.isFinished {
+                    }
+                })
+            } else {
+                // Fallback on earlier versions
+            }
             let resultDictionary = response.result.value! as! [String:AnyObject]
             let dictionaryArray = resultDictionary["Data"] as! [[String : AnyObject]]
-            let localContext = NSManagedObjectContext.mr_default()
 
+            let localContext = NSManagedObjectContext.mr_default()
             localContext.mr_save({localContext in
                 for index in 0..<dictionaryArray.count {
-                    let word = dictionaryArray[index]
-                    var wordData = Translate.mr_findFirst(byAttribute: "id", withValue: word["Id"]!, in: localContext)
-                    if wordData == nil {
-                        wordData = Translate.mr_createEntity(in: localContext)
-                    }
-                    if let word_id = word["Id"] {
-                        wordData?.id = word_id as? String
-                    }
-                    if let Word = word["Word"] {
-                        wordData?.word = Word as? String
-                    }
+                        let word = dictionaryArray[index]
+
+                        let wordData = Translate.mr_createEntity(in: localContext)
+                        if let word_id = word["Id"] {
+                            wordData?.id = String(describing: word_id)
+                        }
+                        if let Word = word["Word"] {
+                            wordData?.word = Word as? String
+                        }
+                        
+                        if let kana = word["Kana"] {
+                            wordData?.kana = kana as? String
+                        }
+                        if let Romaji = word["Romaji"] {
+                            wordData?.romaji = Romaji["Romaji"] as? String
+                        }
+                        if let SoundUrl = word["SoundUrl"] {
+                            wordData?.sound_url = SoundUrl["SoundUrl"] as? String
+                        }
+                        if let LastmodifiedDate = word["LastmodifiedDate"] {
+                            let trimString = LastmodifiedDate
+                            let timeStamp:String = trimString.substring(from: 5)
+                            wordData?.last_modified = timeStamp.substring(to: (timeStamp.characters.count - 7))
+                        }
+                        if let Modified = word["Modified"] {
+                            wordData?.modified = Modified as? String
+                        }
+                        if let SoundUrl = word["SoundUrl"] {
+                            wordData?.sound_url = SoundUrl as? String
+                        }
+                        if let Avatar = word["Avatar"] {
+                            wordData?.avatar = Avatar as? String
+                        }
+                        
+                        let meaningWord = word["Meaning"] as? [[String:AnyObject]]
+                        let first = meaningWord?.first
+                        if let Meaning  = first?["Meaning"] {
+                            wordData?.meaning_name = Meaning as? String
+                        }
+                        if let MeaningId = first?["MeaningId"] {
+                            wordData?.meaningId = MeaningId as? String
+                        }
+                        if let Type = first?["Type"] {
+                            wordData?.meaning_type = String(describing: Type)
+                        }
+                        
+                        let exampleWord = word["Example"] as? [[String:AnyObject]]
+                        let firstExample = exampleWord?.first
+
+                        if let ExampleId = firstExample?["ExampleId"] {
+                            wordData?.example_id = String(describing: ExampleId)
+                        }
+                        if let Example = firstExample?["Example"] {
+                            wordData?.example_name = Example as? String
+                        }
+                        if let Meaning = firstExample?["Meaning"] {
+                            wordData?.example_meaning_name = Meaning as? String
+                        }
+                        if let MeaningId = firstExample?["MeaningId"] {
+                            wordData?.example_meaning_id = String(describing: MeaningId)
+                        }
+                        if let Romaji = firstExample?["Romaji"] {
+                            wordData?.example_romaji = Romaji as? String
+                        }
+                        if let Kana = firstExample?["Kana"] {
+                            wordData?.example_kana = Kana as? String
+                        }
+                        if let SoundUrl = firstExample?["SoundUrl"] {
+                            wordData?.example_sound_url = SoundUrl as? String
+                        }
+                        self.checkProgress()
+                        print("Dang luu du lieu ")
                     
-                    if let kana = word["Kana"] {
-                        wordData?.kana = kana as? String
+                    print("Dang luu du lieu ")
+
                     }
-                    if let Romaji = word["Romaji"] {
-                        wordData?.romaji = Romaji["Romaji"] as? String
-                    }
-                    if let SoundUrl = word["SoundUrl"] {
-                        wordData?.sound_url = SoundUrl["SoundUrl"] as? String
-                    }
-                    if let LastmodifiedDate = word["LastmodifiedDate"] {
-                        let trimString = LastmodifiedDate
-                        let timeStamp:String = trimString.substring(from: 5)
-                        wordData?.last_modified = timeStamp.substring(to: (timeStamp.characters.count - 7))
-                    }
-                    if let Modified = word["Modified"] {
-                        wordData?.modified = Modified as? String
-                    }
-                    if let SoundUrl = word["SoundUrl"] {
-                        wordData?.sound_url = SoundUrl as? String
-                    }
-                    if let Avatar = word["Avatar"] {
-                        wordData?.avatar = Avatar as? String
-                    }
-                    
-                    let meaningWord = word["Meaning"] as? [String:AnyObject]
-                    if let Meaning  = meaningWord?["Meaning"] {
-                        wordData?.meaning_name = Meaning as? String
-                    }
-                    if let MeaningId = meaningWord?["MeaningId"] {
-                        wordData?.meaningId = MeaningId as? String
-                    }
-                    if let Type = meaningWord?["Type"] {
-                        wordData?.meaning_type = String(describing: Type)
-                    }
-                    
-                    let exampleWord = word["Example"] as? [String:AnyObject]
-                    if let ExampleId = exampleWord?["ExampleId"] {
-                        wordData?.example_id = ExampleId as? String
-                    }
-                    if let Example = exampleWord?["Example"] {
-                        wordData?.example_name = Example as? String
-                    }
-                    if let Meaning = exampleWord?["Meaning"] {
-                        wordData?.example_meaning_name = Meaning as? String
-                    }
-                    if let MeaningId = exampleWord?["MeaningId"] {
-                        wordData?.example_meaning_id = MeaningId as? String
-                    }
-                    if let Romaji = exampleWord?["Romaji"] {
-                        wordData?.example_romaji = Romaji as? String
-                    }
-                    if let Kana = exampleWord?["Kana"] {
-                        wordData?.example_kana = Kana as? String
-                    }
-                    if let SoundUrl = exampleWord?["SoundUrl"] {
-                        wordData?.example_sound_url = SoundUrl as? String
-                    }
-                    DispatchQueue.main.async {
-                        self.progressView.frame = CGRect.init(x: 0, y: 0, width: self.progressView.frame.size.width + self.fullTrackView.frame.size.width/40737, height: self.progressView.frame.height)
-                        self.currentDouble += self.totalDouble/40737
-                        self.downloadedLabel.text = String(format: "%.2f", self.currentDouble) + " MB"
-                        let percent = self.currentDouble/self.totalDouble * 100
-                        self.percentDownloadedLabel.text = String(format: "%.2f", percent) + " %"
-                    }
-                    }
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
-                }
-                }, completion: { contextDidSave in
-                    //saving is successful
-                    print("saving is successful")
-                })
-            
+            }, completion: { contextDidSave in
+                //saving is successful
+                print("saving is successful")
+            })
             //reload TableView
         } else {
             ProjectCommon.initAlertView(viewController: self, title: "", message: "Không có phiên bản mới", buttonArray: ["Cancel"], onCompletion: {_ in
@@ -172,6 +175,23 @@ class DownloadDataViewController: UIViewController {
     }
     }
 
+    func checkProgress() {
+        DispatchQueue.main.async {
+            var isPerformSegue:Bool = false
+            self.currentDouble += self.totalDouble/40737
+            let percent = self.currentDouble/self.totalDouble * 100
+            if percent < 100{
+                self.progressView.frame = CGRect.init(x: 0, y: 0, width: self.progressView.frame.size.width + self.fullTrackView.frame.size.width/40737, height: self.progressView.frame.height)
+                self.downloadedLabel.text = String(format: "%.2f", self.currentDouble) + " MB"
+                self.percentDownloadedLabel.text = String(format: "%.2f", percent) + " %"
+            } else {
+                if !isPerformSegue {
+                    self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
+                    isPerformSegue = true
+                }
+            }
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
