@@ -87,7 +87,6 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
 /* =============== ACTION BUTTON CLICKED =============== */
     @IBAction func searchButton_clicked(_ sender: Any) {
         if (searchTextfield.text?.characters.count)! > 0 {
-            self.searchWord(text: searchTextfield.text!,isVietNhat: changeLangueButton.isSelected)
         }
     }
     
@@ -112,11 +111,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return arrayWord.count
-        if searchActive {
             return filterArray.count
-        } else {
-            return firstArray.count
-        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -161,7 +156,6 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField.text?.characters.count)! > 0 {
-                self.searchWord(text: textField.text!,isVietNhat: changeLangueButton.isSelected)
                 self.introduceView.isHidden = true
         }
 
@@ -179,7 +173,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         DispatchQueue.global().async {
             self.wordArray = Translate.mr_findAll() as! [Translate]
             self.firstArray.removeAll()
-            for index in 0..<500 {
+            for index in 0..<10000 {
                 if self.wordArray.count > 500 {
                     self.firstArray.append(self.wordArray[index])
                 }
@@ -188,64 +182,15 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
             print("So tu moi" + String(self.wordArray.count))
         }
     }
-    
-    func searchWord(text:String,isVietNhat:Bool) {
-        DispatchQueue.global().async {
-            self.searchWordArray.removeAll()
-            for word in self.firstArray {
-                print(word)
-                let searchWord = word.word
-                let searchName = word.meaning_name
-                if isVietNhat && searchName != nil {
-                    if searchName!.hasPrefix(text){
-                        self.searchWordArray.append(word)
-                        DispatchQueue.main.async {
-                            self.notFoundView.isHidden = true
-                            self.introduceView.isHidden = true
-                            self.tableView.isHidden = false
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.notFoundView.isHidden = false
-                            self.introduceView.isHidden = true
-                            self.tableView.isHidden = true
-                        }
-                        print("Khong tim thay tu moi")
-                    }
-                } else if !isVietNhat && searchWord != nil {
-                    if (searchWord!.hasPrefix(text)) {
-                        self.searchWordArray.append(word)
-                        DispatchQueue.main.async {
-                            self.notFoundView.isHidden = true
-                            self.introduceView.isHidden = true
-                            self.tableView.isHidden = false
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.notFoundView.isHidden = false
-                            self.introduceView.isHidden = true
-                            self.tableView.isHidden = true
-                        }
-                        print("Khong tim thay tu moi")
-                    }
-                }
-                
-            }
-            DispatchQueue.main.async {
-                self.tableView.isHidden = false
-                self.tableView.reloadData()
-            }
-        }
-    }
+
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchString = searchText.lowercased()
         if changeLangueButton.isSelected {
-            if firstArray.count > 0 {
-                filterArray = firstArray.filter({ (object : Translate) -> Bool in
-                    
+            if wordArray.count > 0 {
+                filterArray = wordArray.filter({ (object : Translate) -> Bool in
                     if object.word != nil && object.meaning_name != nil  {
-                        let categoryMatch = (object.word?.lowercased().contains(searchString))! || (object.romaji?.lowercased().contains(searchString))!
+                        let categoryMatch = (object.word?.lowercased().contains(searchString))! || (object.meaning_name?.lowercased().contains(searchString))!
                         return categoryMatch
                     } else if object.word != nil{
                         print("word" + object.word!)
@@ -257,7 +202,6 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                     } else {
                         return false
                     }
-                    
                 })
             }
 
@@ -283,11 +227,16 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
 
         }
         
-        if(filterArray.count == 0 && searchString == ""){
+        if(filterArray.count == 0 || searchString == ""){
+            tableView.isHidden = true
+            notFoundView.isHidden = false
             searchActive = false;
         } else {
+            notFoundView.isHidden = true
+            tableView.isHidden = false
             searchActive = true;
         }
+        tableView.isHidden = false
         tableView.reloadData()
     }
 }

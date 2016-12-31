@@ -149,7 +149,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" backgroundImage="icon_flashcash_nav-1">
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -217,7 +217,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_flashcash_nav-1" width="31" height="31"/>
         <image name="icon_logo" width="33" height="33"/>
         <image name="icon_menu" width="17" height="17"/>
         <image name="icon_sound_green" width="17" height="16"/>

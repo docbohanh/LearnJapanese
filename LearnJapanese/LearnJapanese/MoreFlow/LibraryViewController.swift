@@ -20,8 +20,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var titleArray = [FlashCard]()
     var subWordArray = [FlashCardDetail]()
     var currentHeader = String()
-    var player : AVAudioPlayer?
-    
+    var audioPlayer : AVAudioPlayer?
+    var player = AVPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +58,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "VocabularyTableViewCell", for: indexPath) as! VocabularyTableViewCell
         let word = subWordArray[indexPath.row]
         cell.vocabularyLabel.text = word.word
+        cell.readVocabulary.tag = 312 + indexPath.row
         cell.delegate = self
         return cell
     }
@@ -65,11 +66,16 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = Bundle.main.loadNibNamed("HeaderView", owner: self, options:[:])?.first as? HeaderView
         let flashCardTitle = titleArray[section]
-        headerView?.delegate = self
-        headerView?.titleLabel.text = flashCardTitle.title
-        if flashCardTitle.id != nil {
-            headerView?.backgroundHeaderButton.tag = Int(flashCardTitle.id!)!
+        if flashCardTitle != nil {
+            headerView?.delegate = self
+            if flashCardTitle.title != nil {
+                headerView?.titleLabel.text = flashCardTitle.title
+            }
+            if flashCardTitle.id != nil {
+                headerView?.backgroundHeaderButton.tag = Int(flashCardTitle.id!)!
+            }
         }
+
         return (headerView as? UIView?)!
     }
     
@@ -91,7 +97,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
      Get Flash Card detail
      */
     func getFlashCard() {
-        var parameter : [String:String] = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_flash_cart","pageindex":"1","pagesize":"300"]
+        let parameter : [String:String] = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_flash_cart","pageindex":"1","pagesize":"300"]
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
         DispatchQueue.global().async {
             APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
@@ -147,13 +153,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
             DispatchQueue.global().async {
                 APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
-                    if Thread.isMainThread {
-                        DispatchQueue.global().async {
-                            self.saveFlashCardDetailToDatabase(response:response)
-                        }
-                    } else {
-                        self.saveFlashCardDetailToDatabase(response:response)
-                    }
+                    self.saveFlashCardDetailToDatabase(response:response)
+
                 })
             }
         }
@@ -164,9 +165,9 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let dictionaryArray = resultDictionary["Data"] as! [[String : AnyObject]]
             let localContext = NSManagedObjectContext.mr_default()
             
+             for flashCardDetailObject in dictionaryArray {
             localContext.mr_save({localContext in
-                for flashCardDetailObject in dictionaryArray {
-                        let flashCardDetail = FlashCardDetail.mr_createEntity()
+                    let flashCardDetail = FlashCardDetail.mr_createEntity()
                     if let Id = flashCardDetailObject["Id"]{
                         flashCardDetail?.id = String(describing: Id)
                     }
@@ -178,13 +179,13 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         flashCardDetail?.avatar = Avatar as? String
                     }
                     if let Romaji = flashCardDetailObject["Romaji"] {
-                        flashCardDetail?.avatar = Romaji as? String
+                        flashCardDetail?.romaji = Romaji as? String
                     }
                     if let Kana = flashCardDetailObject["Kana"] {
-                        flashCardDetail?.avatar = Kana as? String
+                        flashCardDetail?.kana = Kana as? String
                     }
                     if let SoundUrl = flashCardDetailObject["SoundUrl"] {
-                        flashCardDetail?.avatar = SoundUrl as? String
+                        flashCardDetail?.source_url = SoundUrl as? String
                     }
                     if let Meaning = flashCardDetailObject["Meaning"] {
                         flashCardDetail?.meaning = Meaning as? String
@@ -192,8 +193,6 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     if let FlashCardId = flashCardDetailObject["FlashCardId"] {
                         flashCardDetail?.flash_card_id = String(describing: FlashCardId)
                     }
-                }
-                
                 self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentHeader) as! [FlashCardDetail]//(byAttribute: "flash_card_id", withValue: self.currentHeader, in: localContext) as! [FlashCardDetail]
                 
                 var parentFlash = FlashCard()
@@ -205,11 +204,14 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 }
                 self.titleArray.removeAll()
                 self.titleArray.append(parentFlash)
+                })
+            }
+            
+
                 DispatchQueue.main.async {
                     LoadingOverlay.shared.hideOverlayView()
                     self.libraryTableView.reloadData()
                 }
-            })
             
         } else {
             DispatchQueue.main.async {
@@ -223,37 +225,20 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
-    func playAudio() {
-        let urlstring = "http://radio.spainmedia.es/wp-content/uploads/2015/12/tailtoddle_lo4.mp3"
-        let url = URL(string: urlstring)
-        print("the url = \(url!)")
-        downloadFileFromURL(url: url! as URL)
-    }
-    func downloadFileFromURL(url:URL){
-        var downloadTask:URLSessionDownloadTask
-        downloadTask = URLSession.shared.downloadTask(with: url as URL, completionHandler: { (URL, response, error) -> Void in
-            self.play(url: URL! as URL)
-        })
-        
-        downloadTask.resume()
-        
-    }
-    
-    func play(url:URL) {
-        print("playing \(url)")
-        
-        do {
-            self.player = try AVAudioPlayer(contentsOf: url as URL)
-            self.player?.prepareToPlay()
-            self.player?.volume = 1.0
-            self.player?.play()
-        } catch let error as Error {
-            //self.player = nil
-            print(error.localizedDescription)
-        } catch {
-            print("AVAudioPlayer init failed")
+    func playAudio(int: Int) {
+        DispatchQueue.main.async {
+            let flashDetail = self.subWordArray[int]
+            if flashDetail.source_url == nil {
+                ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in 
+            
+                })
+            } else {
+                let url = flashDetail.source_url
+                let playerItem = AVPlayerItem( url:URL(string:url! )! )
+                self.player = AVPlayer(playerItem:playerItem)
+                self.player.rate = 1.0;
+                self.player.play()
+            }
         }
-        
     }
-    
 }
