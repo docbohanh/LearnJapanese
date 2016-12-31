@@ -56,9 +56,12 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VocabularyTableViewCell", for: indexPath) as! VocabularyTableViewCell
-        let word = subWordArray[indexPath.row]
-        cell.vocabularyLabel.text = word.word
-        cell.readVocabulary.tag = 312 + indexPath.row
+        if subWordArray.count > indexPath.row {
+            let word = subWordArray[indexPath.row]
+            cell.vocabularyLabel.text = word.word
+            cell.readVocabulary.tag = 312 + indexPath.row
+        }
+
         cell.delegate = self
         return cell
     }
@@ -197,9 +200,11 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
                 var parentFlash = FlashCard()
                 for flashCardObject : FlashCard in self.titleArray {
-                    if flashCardObject.id == self.currentHeader {
-                        parentFlash = flashCardObject
-                        break
+                    if flashCardObject != nil {
+                        if flashCardObject.id == self.currentHeader {
+                            parentFlash = flashCardObject
+                            break
+                        }
                     }
                 }
                 self.titleArray.removeAll()
