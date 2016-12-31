@@ -11,6 +11,7 @@ import MagicalRecord
 import Alamofire
 
 class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate, UISearchBarDelegate {
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var changeLangueButton: UIButton!
     @IBOutlet weak var notFoundView: UIView!
     @IBOutlet weak var notFoundResultLabel: UILabel!
@@ -64,9 +65,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func tappedChangedLangue(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        if (searchTextfield.text?.characters.count)! > 0 {
-            searchWord(text: searchTextfield.text!,isVietNhat: sender.isSelected)
-        }
+        searchBar.reloadInputViews()
     }
     
     @IBAction func tappedSearchWithGoogle(_ sender: Any) {
@@ -242,16 +241,48 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchString = searchText.lowercased()
         if changeLangueButton.isSelected {
-            filterArray = firstArray.filter({ (object : Translate) -> Bool in
-                let categoryMatch = (object.romaji?.lowercased().contains(searchString))! || (object.meaning_name?.lowercased().contains(searchString))!
-                return categoryMatch
-            })
+            if firstArray.count > 0 {
+                filterArray = firstArray.filter({ (object : Translate) -> Bool in
+                    
+                    if object.word != nil && object.meaning_name != nil  {
+                        let categoryMatch = (object.word?.lowercased().contains(searchString))! || (object.romaji?.lowercased().contains(searchString))!
+                        return categoryMatch
+                    } else if object.word != nil{
+                        print("word" + object.word!)
+                        let categoryMatch = (object.word?.lowercased().contains(searchString))!
+                        return categoryMatch
+                    } else if object.meaning_name != nil{
+                        let categoryMatch = (object.romaji?.lowercased().contains(searchString))!
+                        return categoryMatch
+                    } else {
+                        return false
+                    }
+                    
+                })
+            }
+
         } else {
-            filterArray = firstArray.filter({ (object : Translate) -> Bool in
-                let categoryMatch = (object.word?.lowercased().contains(searchString))! || (object.example_kana?.lowercased().contains(searchString))! || (object.kana?.lowercased().contains(searchString))! || (object.example_meaning_name?.lowercased().contains(searchString))!
-                return categoryMatch
-            })
+            if firstArray.count > 0 {
+                filterArray = firstArray.filter({ (object : Translate) -> Bool in
+                    if object.word != nil && object.kana != nil  {
+                        let categoryMatch = (object.word?.lowercased().contains(searchString))! || (object.kana?.lowercased().contains(searchString))!
+                        return categoryMatch
+                    } else if object.kana != nil{
+                        let categoryMatch = (object.kana?.lowercased().contains(searchString))!
+                        return categoryMatch
+                    } else if object.word != nil {
+                        let categoryMatch = (object.word?.lowercased().contains(searchString))!
+                        return categoryMatch
+                    } else {
+                        return false
+                    }
+                    
+                    
+                })
+            }
+
         }
+        
         if(filterArray.count == 0 && searchString == ""){
             searchActive = false;
         } else {

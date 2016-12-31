@@ -49,9 +49,7 @@ class DownloadDataViewController: UIViewController {
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
         APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
             let version = UserDefaults.standard.object(forKey: "version") as! String
-            if version == "" {
                 self.saveDataToDatabase(response: response)
-            }
         })
     }
     
@@ -84,7 +82,7 @@ class DownloadDataViewController: UIViewController {
             localContext.mr_save({localContext in
                 for index in 0..<dictionaryArray.count {
                         let word = dictionaryArray[index]
-
+                    
                         let wordData = Translate.mr_createEntity(in: localContext)
                         if let word_id = word["Id"] {
                             wordData?.id = String(describing: word_id)
