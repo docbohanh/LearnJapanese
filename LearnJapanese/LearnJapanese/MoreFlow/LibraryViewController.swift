@@ -82,6 +82,20 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return (headerView as? UIView?)!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let searchDerikuStoryboard = UIStoryboard.init(name: "Library", bundle: Bundle.main)
+        let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "DetailFlashCardViewController") as! DetailFlashCardViewController
+        let detailTranslate = subWordArray[indexPath.row] as? FlashCardDetail
+        detaiVC.sound_url = detailTranslate?.source_url ?? ""
+        detaiVC.word = detailTranslate?.word ?? ""
+        self.present(detaiVC, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showWordDetail" {
+
+        }
+    }
     func tappedShowVocaburaryList(sender: UIButton) {
         currentHeader = String(sender.tag)
         LoadingOverlay.shared.showOverlay(view: view)

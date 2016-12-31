@@ -10,16 +10,29 @@ import UIKit
 
 class WordDetailViewController: UIViewController,saveWordDelegate {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var backgroundPopupView: UIView!
     @IBOutlet weak var searchResultScrollView: UIScrollView!
     @IBOutlet weak var searchWebView: UIWebView!
     
+    @IBOutlet weak var example2Label: UILabel!
+    @IBOutlet weak var meaning2Label: UILabel!
+    @IBOutlet weak var wordType2Label: UILabel!
+    @IBOutlet weak var examplelabel: UILabel!
+    @IBOutlet weak var meaningLabel: UILabel!
+    @IBOutlet weak var wordType: UILabel!
+    @IBOutlet weak var phienAm: UILabel!
     @IBOutlet weak var dekiruButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
     @IBOutlet weak var wikipediaButton: UIButton!
     @IBOutlet weak var bingButton: UIButton!
-    var searchText : String? = ""
+    
+    var searchText : String = ""
+    var wordId: String = ""
+    var detailTranslate = Translate()
+    
+    
     
     var popupView : SavePopupView?
     override func viewDidLoad() {
@@ -27,9 +40,23 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         searchTextField.text = searchText
         // Do any additional setup after loading the view.
         self.setupViewController()
+        
     }
 
+    override func viewDidLayoutSubviews() {
+        searchTextField.layer.borderWidth = 1
+        searchTextField.layer.cornerRadius = 4
+        searchTextField.layer.borderColor = UIColor.white.cgColor
+    }
     override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.global().async {
+            let detailTranslate = Translate.mr_find(byAttribute: "id", withValue: self.wordId)?.first as? Translate
+            DispatchQueue.main.async {
+                self.meaningLabel.text = detailTranslate?.meaning_name
+                self.examplelabel.text = detailTranslate?.example_meaning_name
+                self.titleLabel.text = self.searchText
+            }
+        }
         self.navigationController?.isNavigationBarHidden = true
     }
     override func didReceiveMemoryWarning() {

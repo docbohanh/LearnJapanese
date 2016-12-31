@@ -23,6 +23,7 @@
 		84057A001DEDC6EB0019C100 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840579FF1DEDC6EB0019C100 /* HeaderView.xib */; };
 		84057A021DEDC8CF0019C100 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */; };
 		844734B51DFB19F600A57640 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844734B41DFB19F600A57640 /* StringExtension.swift */; };
+		846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D5A241E181856002307CD /* DetailFlashCardViewController.swift */; };
 		849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C2C891E155C3B00350066 /* DownloadDataViewController.swift */; };
 		B84040B15AD6906377CA4F43 /* Pods_LearnJapaneseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */; };
 		D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */; };
@@ -96,6 +97,7 @@
 		84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		843D34371E14209700D4FDE3 /* LearnJapanese.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnJapanese.entitlements; sourceTree = "<group>"; };
 		844734B41DFB19F600A57640 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = ../StringExtension.swift; sourceTree = "<group>"; };
+		846D5A241E181856002307CD /* DetailFlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFlashCardViewController.swift; sourceTree = "<group>"; };
 		849C2C891E155C3B00350066 /* DownloadDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDataViewController.swift; sourceTree = "<group>"; };
 		8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapaneseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6A0240A367E383FA75F5428 /* Pods-LearnJapaneseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				840579FD1DEDC3AC0019C100 /* HeaderView.swift */,
 				840579FF1DEDC6EB0019C100 /* HeaderView.xib */,
 				84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */,
+				846D5A241E181856002307CD /* DetailFlashCardViewController.swift */,
 			);
 			name = Library;
 			path = MoreFlow;
@@ -422,7 +425,7 @@
 				TargetAttributes = {
 					840579B71DED79DA0019C100 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = RT689AHQ26;
+						DevelopmentTeam = Q38789M8SL;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -657,6 +660,7 @@
 				84057A021DEDC8CF0019C100 /* VocabularyTableViewCell.swift in Sources */,
 				D27FF86A1DFF0A6300EA02D1 /* NSVTabBarController.swift in Sources */,
 				EA2A8B7E1E0D1330009622F7 /* UIViewExtension.swift in Sources */,
+				846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */,
 				D27FF8691DFF0A6300EA02D1 /* NSVBarController.swift in Sources */,
 				EA2A8B781E0D1330009622F7 /* Define.swift in Sources */,
 				D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */,
@@ -820,13 +824,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = LearnJapanese/LearnJapanese.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = RT689AHQ26;
+				DEVELOPMENT_TEAM = Q38789M8SL;
 				INFOPLIST_FILE = LearnJapanese/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.medTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JapanseDict;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -840,13 +844,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = LearnJapanese/LearnJapanese.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = RT689AHQ26;
+				DEVELOPMENT_TEAM = Q38789M8SL;
 				INFOPLIST_FILE = LearnJapanese/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.medTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JapanseDict;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
