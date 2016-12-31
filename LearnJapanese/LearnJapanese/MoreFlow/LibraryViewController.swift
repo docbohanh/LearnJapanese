@@ -225,21 +225,21 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func playAudio() {
         let urlstring = "http://radio.spainmedia.es/wp-content/uploads/2015/12/tailtoddle_lo4.mp3"
-        let url = NSURL(string: urlstring)
+        let url = URL(string: urlstring)
         print("the url = \(url!)")
-        downloadFileFromURL(url: url!)
+        downloadFileFromURL(url: url! as URL)
     }
-    func downloadFileFromURL(url:NSURL){
+    func downloadFileFromURL(url:URL){
         var downloadTask:URLSessionDownloadTask
         downloadTask = URLSession.shared.downloadTask(with: url as URL, completionHandler: { (URL, response, error) -> Void in
-            self.play(url: URL! as NSURL)
+            self.play(url: URL! as URL)
         })
         
         downloadTask.resume()
         
     }
     
-    func play(url:NSURL) {
+    func play(url:URL) {
         print("playing \(url)")
         
         do {
@@ -247,7 +247,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             self.player?.prepareToPlay()
             self.player?.volume = 1.0
             self.player?.play()
-        } catch let error as NSError {
+        } catch let error as Error {
             //self.player = nil
             print(error.localizedDescription)
         } catch {
