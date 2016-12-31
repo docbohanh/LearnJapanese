@@ -9,7 +9,7 @@
 import UIKit
 
 protocol VocabularyCellDelegate {
-    func playAudio() -> Void
+    func playAudio(int:Int) -> Void
 }
 class VocabularyTableViewCell: UITableViewCell {
 
@@ -25,7 +25,7 @@ class VocabularyTableViewCell: UITableViewCell {
     }
 
     @IBAction func tappedReadVocabulary(_ sender: Any) {
-        self.delegate?.playAudio()
+        self.delegate?.playAudio(int: readVocabulary.tag - 312)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
