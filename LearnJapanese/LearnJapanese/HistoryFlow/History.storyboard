@@ -88,13 +88,22 @@
                                 </constraints>
                             </view>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Nhật-Việt" id="ovU-Kq-LIA">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="5Hu-Lz-fjI">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aHx-9c-FSv">
+                                <rect key="frame" x="267" y="9" width="127" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="icon_change_language"/>
+                                <state key="selected" image="viet_nhat"/>
+                                <connections>
+                                    <action selector="tappedChangeLangue:" destination="cko-PZ-URP" eventType="touchUpInside" id="7GT-aC-tG7"/>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="changeLangueButton" destination="aHx-9c-FSv" id="hAW-OV-hGu"/>
                         <outlet property="tableView" destination="yBI-iw-t7S" id="oEj-BO-PXs"/>
                     </connections>
                 </viewController>
@@ -104,7 +113,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon_change_language" width="73" height="26"/>
         <image name="icon_history" width="20" height="20"/>
         <image name="icon_logo" width="33" height="33"/>
+        <image name="viet_nhat" width="73" height="26"/>
     </resources>
 </document>

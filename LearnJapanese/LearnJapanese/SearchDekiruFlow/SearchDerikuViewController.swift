@@ -65,7 +65,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func tappedChangedLangue(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        searchBar.reloadInputViews()
+        self.searchBar(searchBar, textDidChange: searchBar.text ?? "")
     }
     
     @IBAction func tappedSearchWithGoogle(_ sender: Any) {
@@ -183,6 +183,77 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
 
+    func saveHistoryData(translate:Translate) {
+        let localContext = NSManagedObjectContext.mr_default()
+        localContext.mr_save({localContext in
+            
+                let history = History.mr_createEntity(in: localContext)
+                if let word_id = translate.id {
+                    history?.id = String(describing: word_id)
+                }
+                if let Word = translate.word {
+                    history?.word = Word
+                }
+                
+                if let kana = translate.kana {
+                    history?.kana = kana
+                }
+                if let Romaji = translate.romaji {
+                    history?.romaji = Romaji
+                }
+                if let SoundUrl = translate.sound_url {
+                    history?.sound_url = SoundUrl
+                }
+                if let LastmodifiedDate = translate.last_modified {
+                    history?.last_modified = LastmodifiedDate
+                }
+                if let Modified = translate.modified {
+                    history?.modified = Modified
+                }
+
+                if let Avatar = translate.avatar {
+                    history?.avatar = Avatar
+                }
+                
+                if let Meaning  = translate.meaning_name {
+                    history?.meaning_name = Meaning
+                }
+                if let MeaningId = translate.meaningId {
+                    history?.meaningId = MeaningId
+                }
+                if let Type = translate.meaning_type {
+                    history?.meaning_type = Type
+                }
+            
+                
+                if let ExampleId = translate.example_id {
+                    history?.example_id = ExampleId
+                }
+                if let Example = translate.example_name {
+                    history?.example_name = Example
+                }
+                if let Meaning = translate.example_meaning_name {
+                    history?.example_meaning_name = Meaning
+                }
+                if let MeaningId = translate.example_meaning_id {
+                    history?.example_meaning_id = MeaningId
+                }
+                if let Romaji = translate.romaji {
+                    history?.example_romaji = Romaji
+                }
+                if let Kana = translate.kana {
+                    history?.example_kana = Kana
+                }
+                if let SoundUrl = translate.sound_url {
+                    history?.example_sound_url = SoundUrl
+                }
+            
+        }, completion: { contextDidSave in
+            //saving is successful
+            print("saving is successful")
+        })
+
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchString = searchText.lowercased()
@@ -235,8 +306,13 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
             notFoundView.isHidden = true
             tableView.isHidden = false
             searchActive = true;
+            DispatchQueue.global().async {
+                for index in 0..<self.filterArray.count {
+                    let object = self.filterArray[index]
+                    self.saveHistoryData(translate: object)
+                }
+            }
         }
-        tableView.isHidden = false
         tableView.reloadData()
     }
 }

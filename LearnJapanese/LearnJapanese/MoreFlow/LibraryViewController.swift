@@ -156,6 +156,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
             DispatchQueue.global().async {
                 APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
+                    
                     self.saveFlashCardDetailToDatabase(response:response)
 
                 })
@@ -169,7 +170,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let localContext = NSManagedObjectContext.mr_default()
             
              for flashCardDetailObject in dictionaryArray {
-            localContext.mr_save({localContext in
+            localContext.mr_save(blockAndWait:{localContext in
                     let flashCardDetail = FlashCardDetail.mr_createEntity()
                     if let Id = flashCardDetailObject["Id"]{
                         flashCardDetail?.id = String(describing: Id)
@@ -235,7 +236,6 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let flashDetail = self.subWordArray[int]
             if flashDetail.source_url == nil {
                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in 
-            
                 })
             } else {
                 let url = flashDetail.source_url
