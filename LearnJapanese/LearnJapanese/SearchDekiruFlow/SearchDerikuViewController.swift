@@ -10,16 +10,18 @@ import UIKit
 import MagicalRecord
 import Alamofire
 
-class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate {
+class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UITextFieldDelegate, UISearchBarDelegate {
     @IBOutlet weak var changeLangueButton: UIButton!
     @IBOutlet weak var notFoundView: UIView!
     @IBOutlet weak var notFoundResultLabel: UILabel!
     @IBOutlet weak var introduceView: UIView!
     @IBOutlet weak var topView: UIView!
+    
     @IBOutlet weak var searchBarView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var deleteSearchButton: UIButton!
     @IBOutlet weak var searchTextfield: UITextField!
+    
     @IBOutlet weak var paintSearchButton: UIButton!
     @IBOutlet weak var recordSearchButton: UIButton!
     @IBOutlet weak var photoSearchButton: UIButton!
@@ -30,6 +32,8 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     var firstArray = [Translate]()
     var secondArray = [Translate]()
     var searchWordArray = [Translate]()
+    var filterArray = [Translate]()
+    var searchActive = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +45,9 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
 
     override func viewDidLayoutSubviews() {
-        searchBarView.layer.cornerRadius = 5
-        searchBarView.layer.borderWidth = 1
-        searchBarView.layer.borderColor = UIColor.white.cgColor
+//        searchBarView.layer.cornerRadius = 5
+//        searchBarView.layer.borderWidth = 1
+//        searchBarView.layer.borderColor = UIColor.white.cgColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,7 +113,11 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return arrayWord.count
-        return searchWordArray.count
+        if searchActive {
+            return filterArray.count
+        } else {
+            return firstArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -120,14 +128,28 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         
         let strIdentifer = "WordSearchTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: strIdentifer, for: indexPath) as! WordSearchTableViewCell
-        if let word : Translate = searchWordArray[indexPath.row] {
-            if changeLangueButton.isSelected {
-                cell.wordLabel.text = word.meaning_name
-                cell.contentLabel.text = word.word
-            } else {
-                cell.wordLabel.text = word.word
-                cell.contentLabel.text = word.meaning_name            }
+        if searchActive {
+            if let word : Translate = filterArray[indexPath.row] {
+                if changeLangueButton.isSelected {
+                    cell.wordLabel.text = word.meaning_name
+                    cell.contentLabel.text = word.word
+                } else {
+                    cell.wordLabel.text = word.word
+                    cell.contentLabel.text = word.meaning_name
+                }
+            }
+        }else {
+            if let word : Translate = firstArray[indexPath.row] {
+                if changeLangueButton.isSelected {
+                    cell.wordLabel.text = word.meaning_name
+                    cell.contentLabel.text = word.word
+                } else {
+                    cell.wordLabel.text = word.word
+                    cell.contentLabel.text = word.meaning_name
+                }
+            }
         }
+        
         cell.initCell(wordModel: WordModel())
         return cell
     }
@@ -215,5 +237,26 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let searchString = searchText.lowercased()
+        if changeLangueButton.isSelected {
+            filterArray = firstArray.filter({ (object : Translate) -> Bool in
+                let categoryMatch = (object.romaji?.lowercased().contains(searchString))! || (object.meaning_name?.lowercased().contains(searchString))!
+                return categoryMatch
+            })
+        } else {
+            filterArray = firstArray.filter({ (object : Translate) -> Bool in
+                let categoryMatch = (object.word?.lowercased().contains(searchString))! || (object.example_kana?.lowercased().contains(searchString))! || (object.kana?.lowercased().contains(searchString))! || (object.example_meaning_name?.lowercased().contains(searchString))!
+                return categoryMatch
+            })
+        }
+        if(filterArray.count == 0 && searchString == ""){
+            searchActive = false;
+        } else {
+            searchActive = true;
+        }
+        tableView.reloadData()
     }
 }
