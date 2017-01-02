@@ -141,7 +141,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="1nh-iQ-Z4O">
             <objects>
-                <tabBarController useStoryboardIdentifierAsRestorationIdentifier="YES" id="HJc-6p-mX2" customClass="NSVTabBarController" customModule="LearnJapanese" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="NSVTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HJc-6p-mX2" customClass="NSVTabBarController" customModule="LearnJapanese" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="K8L-T3-iIm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

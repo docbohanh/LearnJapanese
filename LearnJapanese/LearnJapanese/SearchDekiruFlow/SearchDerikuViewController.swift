@@ -179,7 +179,12 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     func getWordFromDatabase() {
         DispatchQueue.global().async {
             self.wordArray.removeAll()
-            self.wordArray = Translate.mr_findAll() as! [Translate]
+            if appDelegate.wordArray.count > 0 {
+                self.wordArray = appDelegate.wordArray
+            } else {
+                self.wordArray.removeAll()
+                self.wordArray = Translate.mr_findAll() as! [Translate]
+            }
             self.firstArray.removeAll()
             for index in 0..<10000 {
                 if self.wordArray.count > 500 {
@@ -267,51 +272,36 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchString = searchText.lowercased()
-        if changeLangueButton.isSelected {
             if wordArray.count > 0 {
+                let object = wordArray[0]
                 filterArray = wordArray.filter({ (object : Translate) -> Bool in
-                    if object.word != nil && object.meaning_name != nil  {
-                        let categoryMatch = (object.word?.lowercased().contains(searchString))! || (object.meaning_name?.lowercased().contains(searchString))!
+                    if (object.word != nil) && (object.meaning_name != nil) && (object.kana != nil)  {
+                        let categoryMatch = (object.word!.lowercased().contains(searchString)) || (object.meaning_name!.lowercased().contains(searchString)) || (object.kana!.lowercased().contains(searchString))
+                        return categoryMatch
+                    } else if (object.word != nil) && (object.kana != nil) {
+                        print("word" + object.word!)
+                        let categoryMatch = (object.word!.lowercased().contains(searchString)) || (object.kana!.lowercased().contains(searchString))
+                        return categoryMatch
+                    } else if (object.meaning_name != nil) && (object.word != nil) {
+                        let categoryMatch = (object.meaning_name!.lowercased().contains(searchString)) || (object.word!.lowercased().contains(searchString))
+                        return categoryMatch
+                    } else if object.kana != nil && object.meaning_name != nil{
+                        let categoryMatch = (object.kana!.lowercased().contains(searchString)) || (object.meaning_name!.lowercased().contains(searchString))
                         return categoryMatch
                     } else if object.word != nil{
-                        print("word" + object.word!)
-                        let categoryMatch = (object.word?.lowercased().contains(searchString))!
+                        let categoryMatch = (object.word!.lowercased().contains(searchString))
                         return categoryMatch
-                    } else if object.meaning_name != nil{
-                        let categoryMatch = (object.romaji?.lowercased().contains(searchString))!
+                    }  else if object.meaning_name != nil{
+                        let categoryMatch = (object.meaning_name!.lowercased().contains(searchString))
                         return categoryMatch
-                    } else if object.kana != nil{
-                        let categoryMatch = (object.kana?.lowercased().contains(searchString))!
+                    }  else if object.kana != nil{
+                        let categoryMatch = (object.kana!.lowercased().contains(searchString))
                         return categoryMatch
                     } else {
                         return false
                     }
                 })
             }
-
-        } else {
-            if firstArray.count > 0 {
-                filterArray = firstArray.filter({ (object : Translate) -> Bool in
-                    if object.word != nil && object.kana != nil  {
-                        let categoryMatch = (object.word?.lowercased().contains(searchString))! || (object.kana?.lowercased().contains(searchString))!
-                        return categoryMatch
-                    } else if object.kana != nil{
-                        let categoryMatch = (object.kana?.lowercased().contains(searchString))!
-                        return categoryMatch
-                    } else if object.word != nil {
-                        let categoryMatch = (object.word?.lowercased().contains(searchString))!
-                        return categoryMatch
-                    } else if object.meaning_name != nil{
-                        let categoryMatch = (object.romaji?.lowercased().contains(searchString))!
-                        return categoryMatch
-                    } else {
-                        return false
-                    }
-
-                })
-            }
-
-        }
         
         if(filterArray.count == 0 || searchString == ""){
             tableView.isHidden = true
