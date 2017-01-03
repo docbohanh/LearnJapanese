@@ -35,6 +35,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     var searchWordArray = [Translate]()
     var filterArray = [Translate]()
     var searchActive = false
+    var currentDetailTranslate = Translate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,8 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.getWordFromDatabase()
+
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
@@ -72,7 +75,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func tappedChangedLangue(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        searchBar.reloadInputViews()
+        self.searchBar(searchBar, textDidChange: searchBar.text ?? "")
     }
     
     @IBAction func tappedSearchWithGoogle(_ sender: Any) {
@@ -158,6 +161,10 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDekiru", bundle: Bundle.main)
         let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "WordDetailViewController") as! WordDetailViewController
+        currentDetailTranslate = filterArray[indexPath.row]
+        detaiVC.detailTranslate = currentDetailTranslate
+        detaiVC.searchText = currentDetailTranslate.word ?? ""
+        detaiVC.wordId = currentDetailTranslate.id ?? ""
         self.navigationController?.pushViewController(detaiVC, animated: true)
     }
     
@@ -173,12 +180,19 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gotoWordDetail" {
             let wordDetailViewController = segue.destination as? WordDetailViewController
-            wordDetailViewController?.searchText = searchTextfield.text
+            wordDetailViewController?.searchText = searchTextfield.text!
+            wordDetailViewController?.wordId = currentDetailTranslate.id ?? ""
         }
     }
     func getWordFromDatabase() {
         DispatchQueue.global().async {
-            self.wordArray = Translate.mr_findAll() as! [Translate]
+            self.wordArray.removeAll()
+            if appDelegate.wordArray.count > 0 {
+                self.wordArray = appDelegate.wordArray
+            } else {
+                self.wordArray.removeAll()
+                self.wordArray = Translate.mr_findAll() as! [Translate]
+            }
             self.firstArray.removeAll()
             for index in 0..<10000 {
                 if self.wordArray.count > 500 {
@@ -190,49 +204,112 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
 
+    func saveHistoryData(translateArray:[Translate]) {
+        let localContext = NSManagedObjectContext.mr_default()
+        for index in 0..<translateArray.count {
+            localContext.mr_save({localContext in
+                let translate = translateArray[index]
+                let history = History.mr_createEntity(in: localContext)
+                if let word_id = translate.id {
+                    history?.id = String(describing: word_id)
+                }
+                if let Word = translate.word {
+                    history?.word = Word
+                }
+                
+                if let kana = translate.kana {
+                    history?.kana = kana
+                }
+                if let Romaji = translate.romaji {
+                    history?.romaji = Romaji
+                }
+                if let SoundUrl = translate.sound_url {
+                    history?.sound_url = SoundUrl
+                }
+                if let LastmodifiedDate = translate.last_modified {
+                    history?.last_modified = LastmodifiedDate
+                }
+                if let Modified = translate.modified {
+                    history?.modified = Modified
+                }
+
+                if let Avatar = translate.avatar {
+                    history?.avatar = Avatar
+                }
+                
+                if let Meaning  = translate.meaning_name {
+                    history?.meaning_name = Meaning
+                }
+                if let MeaningId = translate.meaningId {
+                    history?.meaningId = MeaningId
+                }
+                if let Type = translate.meaning_type {
+                    history?.meaning_type = Type
+                }
+            
+                
+                if let ExampleId = translate.example_id {
+                    history?.example_id = ExampleId
+                }
+                if let Example = translate.example_name {
+                    history?.example_name = Example
+                }
+                if let Meaning = translate.example_meaning_name {
+                    history?.example_meaning_name = Meaning
+                }
+                if let MeaningId = translate.example_meaning_id {
+                    history?.example_meaning_id = MeaningId
+                }
+                if let Romaji = translate.romaji {
+                    history?.example_romaji = Romaji
+                }
+                if let Kana = translate.kana {
+                    history?.example_kana = Kana
+                }
+                if let SoundUrl = translate.sound_url {
+                    history?.example_sound_url = SoundUrl
+                }
+            
+        }, completion: { contextDidSave in
+            //saving is successful
+            print("saving is successful")
+        })
+        }
+
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchString = searchText.lowercased()
-        if changeLangueButton.isSelected {
             if wordArray.count > 0 {
+                let object = wordArray[0]
                 filterArray = wordArray.filter({ (object : Translate) -> Bool in
-                    if object.word != nil && object.meaning_name != nil  {
-                        let categoryMatch = (object.word?.lowercased().contains(searchString))! || (object.meaning_name?.lowercased().contains(searchString))!
+                    if (object.word != nil) && (object.meaning_name != nil) && (object.kana != nil)  {
+                        let categoryMatch = (object.word!.lowercased().contains(searchString)) || (object.meaning_name!.lowercased().contains(searchString)) || (object.kana!.lowercased().contains(searchString))
+                        return categoryMatch
+                    } else if (object.word != nil) && (object.kana != nil) {
+                        print("word" + object.word!)
+                        let categoryMatch = (object.word!.lowercased().contains(searchString)) || (object.kana!.lowercased().contains(searchString))
+                        return categoryMatch
+                    } else if (object.meaning_name != nil) && (object.word != nil) {
+                        let categoryMatch = (object.meaning_name!.lowercased().contains(searchString)) || (object.word!.lowercased().contains(searchString))
+                        return categoryMatch
+                    } else if object.kana != nil && object.meaning_name != nil{
+                        let categoryMatch = (object.kana!.lowercased().contains(searchString)) || (object.meaning_name!.lowercased().contains(searchString))
                         return categoryMatch
                     } else if object.word != nil{
-                        print("word" + object.word!)
-                        let categoryMatch = (object.word?.lowercased().contains(searchString))!
+                        let categoryMatch = (object.word!.lowercased().contains(searchString))
                         return categoryMatch
-                    } else if object.meaning_name != nil{
-                        let categoryMatch = (object.romaji?.lowercased().contains(searchString))!
+                    }  else if object.meaning_name != nil{
+                        let categoryMatch = (object.meaning_name!.lowercased().contains(searchString))
+                        return categoryMatch
+                    }  else if object.kana != nil{
+                        let categoryMatch = (object.kana!.lowercased().contains(searchString))
                         return categoryMatch
                     } else {
                         return false
                     }
                 })
             }
-
-        } else {
-            if firstArray.count > 0 {
-                filterArray = firstArray.filter({ (object : Translate) -> Bool in
-                    if object.word != nil && object.kana != nil  {
-                        let categoryMatch = (object.word?.lowercased().contains(searchString))! || (object.kana?.lowercased().contains(searchString))!
-                        return categoryMatch
-                    } else if object.kana != nil{
-                        let categoryMatch = (object.kana?.lowercased().contains(searchString))!
-                        return categoryMatch
-                    } else if object.word != nil {
-                        let categoryMatch = (object.word?.lowercased().contains(searchString))!
-                        return categoryMatch
-                    } else {
-                        return false
-                    }
-                    
-                    
-                })
-            }
-
-        }
         
         if(filterArray.count == 0 || searchString == ""){
             tableView.isHidden = true
@@ -242,8 +319,17 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
             notFoundView.isHidden = true
             tableView.isHidden = false
             searchActive = true;
+            DispatchQueue.global().async {
+                var historyArray = [Translate]()
+                for index in 0...5 {
+                    if self.filterArray.count > index {
+                        historyArray.append(self.filterArray[index])
+                    }
+                }
+                
+                    self.saveHistoryData(translateArray:historyArray)
+            }
         }
-        tableView.isHidden = false
         tableView.reloadData()
     }
     

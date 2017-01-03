@@ -56,9 +56,12 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VocabularyTableViewCell", for: indexPath) as! VocabularyTableViewCell
-        let word = subWordArray[indexPath.row]
-        cell.vocabularyLabel.text = word.word
-        cell.readVocabulary.tag = 312 + indexPath.row
+        if subWordArray.count > indexPath.row {
+            let word = subWordArray[indexPath.row]
+            cell.vocabularyLabel.text = word.word
+            cell.readVocabulary.tag = 312 + indexPath.row
+        }
+
         cell.delegate = self
         return cell
     }
@@ -79,6 +82,20 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         return (headerView as? UIView?)!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let searchDerikuStoryboard = UIStoryboard.init(name: "Library", bundle: Bundle.main)
+        let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "DetailFlashCardViewController") as! DetailFlashCardViewController
+        let detailTranslate = subWordArray[indexPath.row] as? FlashCardDetail
+        detaiVC.sound_url = detailTranslate?.source_url ?? ""
+        detaiVC.word = detailTranslate?.word ?? ""
+        self.present(detaiVC, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showWordDetail" {
+
+        }
+    }
     func tappedShowVocaburaryList(sender: UIButton) {
         currentHeader = String(sender.tag)
         LoadingOverlay.shared.showOverlay(view: view)
@@ -153,6 +170,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
             DispatchQueue.global().async {
                 APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
+                    
                     self.saveFlashCardDetailToDatabase(response:response)
 
                 })
@@ -166,7 +184,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let localContext = NSManagedObjectContext.mr_default()
             
              for flashCardDetailObject in dictionaryArray {
-            localContext.mr_save({localContext in
+            localContext.mr_save(blockAndWait:{localContext in
                     let flashCardDetail = FlashCardDetail.mr_createEntity()
                     if let Id = flashCardDetailObject["Id"]{
                         flashCardDetail?.id = String(describing: Id)
@@ -197,9 +215,11 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 
                 var parentFlash = FlashCard()
                 for flashCardObject : FlashCard in self.titleArray {
-                    if flashCardObject.id == self.currentHeader {
-                        parentFlash = flashCardObject
-                        break
+                    if flashCardObject != nil {
+                        if flashCardObject.id == self.currentHeader {
+                            parentFlash = flashCardObject
+                            break
+                        }
                     }
                 }
                 self.titleArray.removeAll()
@@ -230,7 +250,6 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let flashDetail = self.subWordArray[int]
             if flashDetail.source_url == nil {
                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in 
-            
                 })
             } else {
                 let url = flashDetail.source_url
