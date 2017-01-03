@@ -90,7 +90,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="5Hu-Lz-fjI">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aHx-9c-FSv">
-                                <rect key="frame" x="267" y="9" width="127" height="26"/>
+                                <rect key="frame" x="314" y="9" width="80" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="icon_change_language"/>
                                 <state key="selected" image="viet_nhat"/>
