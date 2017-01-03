@@ -9,8 +9,8 @@
 import UIKit
 
 class TranslateViewController: UIViewController {
-    
-    @IBOutlet weak var inputTextView: UITextView!
+
+    @IBOutlet weak var inputTextView: KMPlaceholderTextView!
     @IBOutlet weak var clearTextButton: UIButton!
     @IBOutlet weak var outputTextView: UIView!
     @IBOutlet weak var translateButton: UIButton!
@@ -22,11 +22,18 @@ class TranslateViewController: UIViewController {
         super.viewDidLoad()
         ProjectCommon.boundViewWithCornerRadius(button: translateButton,cornerRadius: 4.0)
         // Do any additional setup after loading the view.
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         inputTextView.setContentOffset(CGPoint.zero, animated: false)
+    }
+    
+    func hideKeyboard() {
+        view.endEditing(true)
     }
     
     @IBAction func tappedBack(_ sender: Any) {
@@ -47,12 +54,10 @@ class TranslateViewController: UIViewController {
     }
     
     @IBAction func tappedTranslate(_ sender: Any) {
-        outputTextView.isHidden = false
-        translateButton.isHidden = true
+       
         var source:String = "ja"
         var target:String = "vi"
-        
-        
+    
         if chooseDictionaryButton.isSelected {
             source = "vi"
             target = "ja"
@@ -61,11 +66,13 @@ class TranslateViewController: UIViewController {
             target = "vi"
         }
         LoadingOverlay.shared.showOverlay(view: self.view)
-        let parameter:  [String : String] = ["q":inputTextView.text,"key":"AIzaSyBWIcG95Sr_hwE2_cgRW_N91FnXCqE6soM","source":source,"target":target,"format":"text"]
+        let parameter:  [String : String] = ["q":inputTextView.text,"key":API_KEY_TRANSLATE_GOOGLE,"source":source,"target":target]
         
-        APIManager.sharedInstance.getDataToURL(url: "https://www.googleapis.com/language/translate/v2", parameters:parameter , onCompletion: {response in
+        APIManager.sharedInstance.getDataToURL(url: "https://translation.googleapis.com/language/translate/v2", parameters:parameter , onCompletion: {response in
             print(response)
             LoadingOverlay.shared.hideOverlayView()
+//            self.outputTextView.isHidden = false
+//            self.translateButton.isHidden = true
         })
     }
     

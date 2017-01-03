@@ -10,13 +10,77 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LearnJapanese/TranslateFlow/TranslateViewController.swift"
-            timestampString = "505152107.261527"
+            timestampString = "505155908.385632"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "searchWithTex(text:)"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "tappedTranslate(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LearnJapanese/APIManager/APIManager.swift"
+            timestampString = "505157432.427202"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getDataToURL(url:parameters:onCompletion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LearnJapanese/TranslateFlow/TranslateViewController.swift"
+            timestampString = "505157862.667719"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "tappedTranslate(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LearnJapanese.TranslateViewController.tappedTranslate (Any) -&gt; ()"
+                  moduleName = "LearnJapanese"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Thuyph312/Desktop/Outsource/LearnJapanese/LearnJapanese/LearnJapanese/TranslateFlow/TranslateViewController.swift"
+                  timestampString = "505157990.991954"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "1714">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LearnJapanese.TranslateViewController.(tappedTranslate (Any) -&gt; ()).(closure #1)"
+                  moduleName = "LearnJapanese"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Thuyph312/Desktop/Outsource/LearnJapanese/LearnJapanese/LearnJapanese/TranslateFlow/TranslateViewController.swift"
+                  timestampString = "505157990.993805"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "13">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
