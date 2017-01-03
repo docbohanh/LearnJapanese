@@ -58,9 +58,10 @@ class TranslateViewController: UIViewController {
 
     func searchWithTex(text:String) -> Void {
         let textToTranslate = text
-        let parameters = ["key":"AIzaSyDUe-gcbckLcF-pW8Pg1tgfwo6YKfacXNQ","q":"\(textToTranslate)",
-            "source":"zh-CN","target":"en"]
+        let parameters = ["key":API_KEY_TRANSLATE_GOOGLE,"q":"\(textToTranslate)",
+            "source":"vi","target":"ja"]
         APIManager.sharedInstance.getDataToURL(url: "https://www.googleapis.com/language/translate/v2/languages", parameters: parameters, onCompletion: {(response) in
+            print(response)
         
         })
     }

@@ -30,4 +30,6 @@ let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
 let THEME_COLOR_MAIN = [0x2ecc71,0xf1c40f,0x1abc9c,0xe67e22,0x3498db,0x9b59b6]
 let THEME_COLOR_SECONDARY = [0x27ae60,0xf39c12,0x16a085,0xd35400,0x2980b9,0x9b59b6]
-		
+let API_KEY_TRANSLATE_GOOGLE = "AIzaSyAWMT0WwhDsoxFX37p9SXwUstslgnS_FVY"
+
+
