@@ -12,7 +12,7 @@ class TranslateViewController: UIViewController {
 
     @IBOutlet weak var inputTextView: KMPlaceholderTextView!
     @IBOutlet weak var clearTextButton: UIButton!
-    @IBOutlet weak var outputTextView: UIView!
+    @IBOutlet weak var outputTextView: UITextView!
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var chooseDictionaryButton: UIButton!
     @IBOutlet weak var backToFirstButton: UIButton!
@@ -40,24 +40,21 @@ class TranslateViewController: UIViewController {
     }
     
     @IBAction func tappedChooseDictionary(_ sender: UIButton) {
-        if sender.isSelected {
-            chooseDictionaryButton.setBackgroundImage(UIImage.init(named: "icon_change_language"), for: UIControlState.normal)
-        } else {
-//            chooseDictionaryButton.setBackgroundImage(UIImage.init(named: ""), for: UIControlState.normal)
-        }
         sender.isSelected = !sender.isSelected
+        if inputTextView.text != "" {
+            self.tappedTranslate(translateButton)
+        }
     }
     
     @IBAction func tappedClearText(_ sender: Any) {
+        inputTextView.text = ""
         outputTextView.isHidden = true
         translateButton.isHidden = false
     }
     
     @IBAction func tappedTranslate(_ sender: Any) {
-       
         var source:String = "ja"
         var target:String = "vi"
-    
         if chooseDictionaryButton.isSelected {
             source = "vi"
             target = "ja"
@@ -68,27 +65,33 @@ class TranslateViewController: UIViewController {
         LoadingOverlay.shared.showOverlay(view: self.view)
         let parameter:  [String : String] = ["q":inputTextView.text,"key":API_KEY_TRANSLATE_GOOGLE,"source":source,"target":target]
         
-        APIManager.sharedInstance.getDataToURL(url: "https://translation.googleapis.com/language/translate/v2", parameters:parameter , onCompletion: {response in
+        APIManager.sharedInstance.postDataToURL(url: "https://translation.googleapis.com/language/translate/v2", parameters:parameter , onCompletion: {response in
             print(response)
-            LoadingOverlay.shared.hideOverlayView()
-//            self.outputTextView.isHidden = false
-//            self.translateButton.isHidden = true
+            DispatchQueue.main.async {
+                LoadingOverlay.shared.hideOverlayView()
+                if (response.result.error != nil) {
+                    ProjectCommon.initAlertView(viewController: self, title: "Error", message: (response.result.error?.localizedDescription)!, buttonArray: ["OK"], onCompletion: { (index) in
+                    })
+                }else {
+                    let resultDictionary = response.result.value as! [String:AnyObject]
+                    let dictResult = resultDictionary["data"] as! [String:AnyObject]
+                    let data = dictResult["translations"] as! [AnyObject]
+                    if data.count > 0 {
+                        let object = data[0] as! [String:AnyObject]
+                        let text = object["translatedText"] as! String
+                        self.outputTextView.text = text
+                        self.outputTextView.isHidden = false
+                        self.translateButton.isHidden = true
+
+                    }
+                }
+            }
         })
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    func searchWithTex(text:String) -> Void {
-        let textToTranslate = text
-        let parameters = ["key":API_KEY_TRANSLATE_GOOGLE,"q":"\(textToTranslate)",
-            "source":"vi","target":"ja"]
-        APIManager.sharedInstance.getDataToURL(url: "https://www.googleapis.com/language/translate/v2/languages", parameters: parameters, onCompletion: {(response) in
-            print(response)
-        
-        })
     }
 
 }

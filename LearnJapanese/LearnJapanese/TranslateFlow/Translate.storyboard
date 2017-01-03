@@ -41,7 +41,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vde-9B-gm8">
-                                <rect key="frame" x="0.0" y="274" width="414" height="1"/>
+                                <rect key="frame" x="0.0" y="234" width="414" height="1"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="ki0-2Q-XDE"/>
@@ -60,14 +60,14 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z8S-cG-cpp">
-                                <rect key="frame" x="0.0" y="302" width="414" height="1"/>
+                                <rect key="frame" x="0.0" y="262" width="414" height="1"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="FXq-WC-161"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycl-lk-eK9">
-                                <rect key="frame" x="157" y="333" width="100" height="40"/>
+                                <rect key="frame" x="157" y="278" width="100" height="40"/>
                                 <color key="backgroundColor" red="0.061138659720000002" green="0.47626364230000001" blue="0.42406085129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Bns-ty-Oil"/>
@@ -82,7 +82,7 @@
                                 </connections>
                             </button>
                             <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bs5-5h-Gfm">
-                                <rect key="frame" x="0.0" y="304" width="414" height="353"/>
+                                <rect key="frame" x="0.0" y="264" width="414" height="393"/>
                                 <color key="backgroundColor" red="0.79991227388381958" green="0.80005055665969849" blue="0.7999035120010376" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -92,9 +92,9 @@
                                 </connections>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COj-cH-lSP" customClass="KMPlaceholderTextView" customModule="LearnJapanese" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="74" width="384" height="200"/>
+                                <rect key="frame" x="0.0" y="74" width="384" height="160"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="sNc-HI-OWa"/>
+                                    <constraint firstAttribute="height" constant="160" id="sNc-HI-OWa"/>
                                 </constraints>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -115,7 +115,7 @@
                             <constraint firstItem="uy5-dK-xj9" firstAttribute="leading" secondItem="COj-cH-lSP" secondAttribute="trailing" id="0Wb-3u-7Fo"/>
                             <constraint firstItem="Vde-9B-gm8" firstAttribute="leading" secondItem="cGR-MP-AGz" secondAttribute="leading" id="1ZX-eB-8Di"/>
                             <constraint firstItem="bs5-5h-Gfm" firstAttribute="top" secondItem="COj-cH-lSP" secondAttribute="bottom" constant="30" id="1sv-Yl-qG8"/>
-                            <constraint firstItem="Ycl-lk-eK9" firstAttribute="top" secondItem="Z8S-cG-cpp" secondAttribute="bottom" constant="30" id="4za-Oc-oK0"/>
+                            <constraint firstItem="Ycl-lk-eK9" firstAttribute="top" secondItem="Z8S-cG-cpp" secondAttribute="bottom" constant="15" id="4za-Oc-oK0"/>
                             <constraint firstItem="Z8S-cG-cpp" firstAttribute="leading" secondItem="cGR-MP-AGz" secondAttribute="leading" id="8e3-f3-nJP"/>
                             <constraint firstItem="Vde-9B-gm8" firstAttribute="top" secondItem="COj-cH-lSP" secondAttribute="bottom" id="Jg1-bk-znH"/>
                             <constraint firstAttribute="trailing" secondItem="Vde-9B-gm8" secondAttribute="trailing" id="Ldr-xS-ASW"/>
@@ -188,7 +188,7 @@
                         <outlet property="clearTextButton" destination="uy5-dK-xj9" id="XOR-Br-cPH"/>
                         <outlet property="iconAppImageView" destination="t2a-uQ-vkI" id="ocv-tE-Z3M"/>
                         <outlet property="inputTextView" destination="COj-cH-lSP" id="gUY-F4-cS8"/>
-                        <outlet property="outputTextView" destination="bs5-5h-Gfm" id="dFh-dS-OrY"/>
+                        <outlet property="outputTextView" destination="bs5-5h-Gfm" id="KhB-n9-P95"/>
                         <outlet property="translateButton" destination="Ycl-lk-eK9" id="Szt-3a-6WR"/>
                     </connections>
                 </viewController>
