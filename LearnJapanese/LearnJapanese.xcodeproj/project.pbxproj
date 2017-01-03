@@ -23,6 +23,7 @@
 		84057A001DEDC6EB0019C100 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840579FF1DEDC6EB0019C100 /* HeaderView.xib */; };
 		84057A021DEDC8CF0019C100 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */; };
 		844734B51DFB19F600A57640 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844734B41DFB19F600A57640 /* StringExtension.swift */; };
+		844AA44E1E1C3874002C741B /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 844AA44D1E1C3874002C741B /* Model.xcmappingmodel */; };
 		846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D5A241E181856002307CD /* DetailFlashCardViewController.swift */; };
 		849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C2C891E155C3B00350066 /* DownloadDataViewController.swift */; };
 		B84040B15AD6906377CA4F43 /* Pods_LearnJapaneseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */; };
@@ -51,7 +52,6 @@
 		EA2A8B7C1E0D1330009622F7 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B751E0D1330009622F7 /* UIButtonExtension.swift */; };
 		EA2A8B7D1E0D1330009622F7 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B761E0D1330009622F7 /* UILabelExtension.swift */; };
 		EA2A8B7E1E0D1330009622F7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B771E0D1330009622F7 /* UIViewExtension.swift */; };
-		EA968B2B1E1609990067352E /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = EA968B2A1E1609990067352E /* Model.xcmappingmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +97,7 @@
 		84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		843D34371E14209700D4FDE3 /* LearnJapanese.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnJapanese.entitlements; sourceTree = "<group>"; };
 		844734B41DFB19F600A57640 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = ../StringExtension.swift; sourceTree = "<group>"; };
+		844AA44D1E1C3874002C741B /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 		846D5A241E181856002307CD /* DetailFlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFlashCardViewController.swift; sourceTree = "<group>"; };
 		849C2C891E155C3B00350066 /* DownloadDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDataViewController.swift; sourceTree = "<group>"; };
 		8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapaneseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,7 +130,6 @@
 		EA2A8B751E0D1330009622F7 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		EA2A8B761E0D1330009622F7 /* UILabelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		EA2A8B771E0D1330009622F7 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		EA968B2A1E1609990067352E /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,7 +343,7 @@
 		EA2A8B811E0D36B0009622F7 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				EA968B2A1E1609990067352E /* Model.xcmappingmodel */,
+				844AA44D1E1C3874002C741B /* Model.xcmappingmodel */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -664,13 +664,13 @@
 				D27FF8691DFF0A6300EA02D1 /* NSVBarController.swift in Sources */,
 				EA2A8B781E0D1330009622F7 /* Define.swift in Sources */,
 				D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */,
-				EA968B2B1E1609990067352E /* Model.xcmappingmodel in Sources */,
 				D2EF304F1DFD4A2600287924 /* APIManager.swift in Sources */,
 				D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */,
 				EA2A8B7C1E0D1330009622F7 /* UIButtonExtension.swift in Sources */,
 				D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */,
 				840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */,
 				840579F81DED8CF80019C100 /* DictionaryTabBarViewController.swift in Sources */,
+				844AA44E1E1C3874002C741B /* Model.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 
 import UIKit
 protocol saveWordDelegate {
-    func saveWordToLocal()
+    func saveWordToLocal(type:MyStoreType)
 }
 typealias CompletionBlock = () -> Void
 
@@ -21,8 +21,8 @@ class SavePopupView: UIView {
     @IBOutlet weak var meaningTextView: KMPlaceholderTextView!
     @IBOutlet weak var saveButton: UIButton!
     var delegate : saveWordDelegate?
-    
     var saveBlock : CompletionBlock?
+    var storeType: MyStoreType!
     
     override func awakeFromNib() {
         ProjectCommon.boundView(button: meaningTextView, cornerRadius: 3.0, color: UIColor.lightGray, borderWith: 1.0)
@@ -36,7 +36,7 @@ class SavePopupView: UIView {
     }
     
     @IBAction func saveButton_clicked(_ sender: Any) {
-        delegate?.saveWordToLocal()
+        delegate?.saveWordToLocal(type: storeType)
     }
     /*
     // Only override draw() if you perform custom drawing.

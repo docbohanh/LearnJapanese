@@ -47,6 +47,9 @@ class DownloadDataViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        print("will disappear download")
+    }
     func getdataLocal() {
         let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":(UserDefaults.standard.object(forKey: "version") as! String)]
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
@@ -154,94 +157,10 @@ class DownloadDataViewController: UIViewController {
 
                 }, completion: {(contextDidSave,error) in
                     print("saving is successful")
+                    self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
 
                 })
-                
-//            let localContext = NSManagedObjectContext.mr_default()
-//            localContext.mr_save({localContext in
-//                        let word = dictionaryArray[index]
-//                    
-//                        let wordData = Translate.mr_createEntity()
-//                        if let word_id = word["Id"] {
-//                            wordData?.id = String(describing: word_id)
-//                        }
-//                        if let Word = word["Word"] {
-//                            wordData?.word = Word as? String
-//                        }
-//                        
-//                        if let kana = word["Kana"] {
-//                            wordData?.kana = kana as? String
-//                        }
-//                        if let Romaji = word["Romaji"] {
-//                            wordData?.romaji = Romaji["Romaji"] as? String
-//                        }
-//                        if let SoundUrl = word["SoundUrl"] {
-//                            wordData?.sound_url = SoundUrl["SoundUrl"] as? String
-//                        }
-//                        if let LastmodifiedDate = word["LastmodifiedDate"] {
-//                            let trimString = LastmodifiedDate
-//                            let timeStamp:String = trimString.substring(from: 5)
-//                            wordData?.last_modified = timeStamp.substring(to: (timeStamp.characters.count - 7))
-//                        }
-//                        if let Modified = word["Modified"] {
-//                            wordData?.modified = Modified as? String
-//                        }
-//                        if let SoundUrl = word["SoundUrl"] {
-//                            wordData?.sound_url = SoundUrl as? String
-//                        }
-//                        if let Avatar = word["Avatar"] {
-//                            wordData?.avatar = Avatar as? String
-//                        }
-//                        
-//                        let meaningWord = word["Meaning"] as? [[String:AnyObject]]
-//                        let first = meaningWord?.first
-//                        if let Meaning  = first?["Meaning"] {
-//                            wordData?.meaning_name = Meaning as? String
-//                        }
-//                        if let MeaningId = first?["MeaningId"] {
-//                            wordData?.meaningId = MeaningId as? String
-//                        }
-//                        if let Type = first?["Type"] {
-//                            wordData?.meaning_type = String(describing: Type)
-//                        }
-//                        
-//                        let exampleWord = word["Example"] as? [[String:AnyObject]]
-//                        let firstExample = exampleWord?.first
-//
-//                        if let ExampleId = firstExample?["ExampleId"] {
-//                            wordData?.example_id = String(describing: ExampleId)
-//                        }
-//                        if let Example = firstExample?["Example"] {
-//                            wordData?.example_name = Example as? String
-//                        }
-//                        if let Meaning = firstExample?["Meaning"] {
-//                            wordData?.example_meaning_name = Meaning as? String
-//                        }
-//                        if let MeaningId = firstExample?["MeaningId"] {
-//                            wordData?.example_meaning_id = String(describing: MeaningId)
-//                        }
-//                        if let Romaji = firstExample?["Romaji"] {
-//                            wordData?.example_romaji = Romaji as? String
-//                        }
-//                        if let Kana = firstExample?["Kana"] {
-//                            wordData?.example_kana = Kana as? String
-//                        }
-//                        if let SoundUrl = firstExample?["SoundUrl"] {
-//                            wordData?.example_sound_url = SoundUrl as? String
-//                        }
-//                    self.appDelegate.wordArray.append(wordData!)
-//                        self.checkProgress()
-//                        print("Dang luu du lieu ")
-//                    
-//                    print("Dang luu du lieu ")
-//
-//                
-//            }, completion: { contextDidSave in
-//                //saving is successful
-//                print("saving is successful")
-//            })
             
-            //reload TableView
         } else {
             ProjectCommon.initAlertView(viewController: self, title: "", message: "Không có phiên bản mới", buttonArray: ["Cancel"], onCompletion: {_ in
                 DispatchQueue.main.async {
@@ -264,14 +183,7 @@ class DownloadDataViewController: UIViewController {
                 self.downloadedLabel.text = String(format: "%.2f", self.currentDouble) + " MB"
                 self.percentDownloadedLabel.text = String(format: "%.2f", percent) + " %"
             } else {
-                let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let tabBarViewController = mainStoryboard.instantiateViewController(withIdentifier: "NSVTabBarController") as! NSVTabBarController
 
-                self.present(tabBarViewController, animated: true, completion: nil)
-//                if !isPerformSegue {
-//                    self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
-//                    isPerformSegue = true
-//                }
             }
         }
     }

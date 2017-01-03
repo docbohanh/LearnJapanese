@@ -26,6 +26,11 @@ enum HttpMethod: String {
     case get = "GET"
 }
 
+enum MyStoreType:Int {
+    case flash_card = 0
+    case word = 1
+}
+
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
 let THEME_COLOR_MAIN = [0x2ecc71,0xf1c40f,0x1abc9c,0xe67e22,0x3498db,0x9b59b6]

@@ -13,7 +13,7 @@
         <!--Search Deriku View Controller-->
         <scene sceneID="9lL-37-0jz">
             <objects>
-                <viewController id="1EX-a4-4Wh" customClass="SearchDerikuViewController" customModule="LearnJapanese" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchDerikuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1EX-a4-4Wh" customClass="SearchDerikuViewController" customModule="LearnJapanese" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QsC-By-uf9"/>
                         <viewControllerLayoutGuide type="bottom" id="Jtg-dB-lZl"/>

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVFoundation
+import MagicalRecord
 
 class WordDetailViewController: UIViewController,saveWordDelegate {
 
@@ -31,7 +33,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     var searchText : String = ""
     var wordId: String = ""
     var detailTranslate = Translate()
-    
+    var player: AVPlayer!
     
     
     var popupView : SavePopupView?
@@ -76,6 +78,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         popupView = UINib(nibName: "SavePopupView", bundle: Bundle.main).instantiate(withOwner: nil, options: nil)[0] as? SavePopupView
         popupView?.clipsToBounds = true
         popupView?.layer.cornerRadius = 5.0
+        popupView?.delegate = self
         popupView?.translatesAutoresizingMaskIntoConstraints = false
 //        popupView.delegate = self
         backgroundPopupView.addSubview(popupView!)
@@ -114,17 +117,29 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     @IBAction func tappedDeleteButton(_ sender: Any) {
     }
     @IBAction func tappedSoundButton(_ sender: Any) {
+        if detailTranslate.sound_url == nil || detailTranslate.sound_url?.characters.count == 0 {
+            ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in
+            })
+        } else {
+            let playerItem = AVPlayerItem( url:URL(string:detailTranslate.sound_url! )! )
+            self.player = AVPlayer(playerItem:playerItem)
+            self.player.rate = 1.0;
+            self.player.play()
+        }
     }
     @IBAction func tappedFavoriteButton(_ sender: Any) {
         popupView?.wordLabel.text = searchTextField.text
         backgroundPopupView.isHidden = false
+        popupView?.meaningTextView.text = detailTranslate.meaning_name
         popupView?.myFlashCardsLabel.text = "Lưu từ"
-        
+        popupView?.storeType = .word
     }
     @IBAction func tappedSaveFlashCashButton(_ sender: Any) {
         popupView?.wordLabel.text = searchTextField.text
+        popupView?.meaningTextView.text = detailTranslate.meaning_name
         backgroundPopupView.isHidden = false
         popupView?.myFlashCardsLabel.text = "Flash Cards của tôi"
+        popupView?.storeType = .flash_card
     }
     @IBAction func tappedClosePopupButton(_ sender: Any) {
         backgroundPopupView.isHidden = true
@@ -155,12 +170,36 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         let wordSearch = searchTextField.text ?? "dekiru"
 
         let url = NSURL (string: "http://www.bing.com/search?q=" + wordSearch);
-        let requestObj = NSURLRequest(url: url! as URL);
-        searchWebView.loadRequest(requestObj as URLRequest);
+        if url != nil {
+            let requestObj = NSURLRequest(url: url! as URL);
+            searchWebView.loadRequest(requestObj as URLRequest);
+        }
+
     }
 
-    func saveWordToLocal() {
-        backgroundPopupView.isHidden = true
-        ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+    func saveWordToLocal(type: MyStoreType) {
+        let localContext = NSManagedObjectContext()
+        
+        
+            MagicalRecord.save({localContext in
+                let wordData = FlashCardDetail.mr_createEntity(in:localContext)
+                wordData?.kana = self.detailTranslate.kana ?? ""
+                wordData?.word = self.detailTranslate.word ?? ""
+                wordData?.source_url = self.detailTranslate.sound_url ?? ""
+                wordData?.meaning = self.detailTranslate.meaning_name ?? ""
+                wordData?.romaji = self.detailTranslate.romaji ?? ""
+                wordData?.id = self.detailTranslate.id ?? ""
+                
+                if type == .flash_card {
+                    wordData?.flash_card_id = "flashcard"
+                } else {
+                    wordData?.flash_card_id = "word"
+
+                }
+            }, completion: {didContext in
+                self.backgroundPopupView.isHidden = true
+                ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+            })
+
     }
 }

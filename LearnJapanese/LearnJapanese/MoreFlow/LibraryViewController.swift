@@ -17,11 +17,11 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var libraryTableView: UITableView!
     var numberOfSection: Int = 2
     
-    var titleArray = [FlashCard]()
-    var subWordArray = [FlashCardDetail]()
+    var titleArray: [FlashCard]!
+    var subWordArray: [FlashCardDetail]!
     var currentHeader = String()
     var audioPlayer : AVAudioPlayer?
-    var player = AVPlayer()
+    var player: AVPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,17 +33,19 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        titleArray = FlashCard.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [FlashCard]
+        libraryTableView.reloadData()
     }
     @IBAction func tappedAddDetailLibrary(_ sender: UIButton) {
         libraryTableView.reloadData()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return titleArray.count
+        return titleArray != nil ? titleArray.count : 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subWordArray.count
+        return subWordArray != nil ? subWordArray.count : 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -118,13 +120,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
         DispatchQueue.global().async {
             APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
-                if Thread.isMainThread {
-                    DispatchQueue.global().async {
-                        self.saveFlashCardToDatabase(response:response)
-                    }
-                } else {
                     self.saveFlashCardToDatabase(response:response)
-                }
             })
         }
     }
@@ -133,11 +129,9 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         if response.result.error == nil && response.result.isSuccess && response.result.value != nil{
             let resultDictionary = response.result.value! as! [String:AnyObject]
             let dictionaryArray = resultDictionary["Data"] as! [[String : AnyObject]]
-            let localContext = NSManagedObjectContext.mr_default()
-
-            localContext.mr_save({localContext in
+            MagicalRecord.save({localContext in
                 for flashCardDetailObject in dictionaryArray {
-                    let flashCardDetail = FlashCard.mr_createEntity()
+                    let flashCardDetail = FlashCard.mr_createEntity(in: localContext)
                     if let flash_id = flashCardDetailObject["Id"]{
                         flashCardDetail?.id = String(describing: flash_id)
                     }
@@ -149,13 +143,16 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         flashCardDetail?.avatar = Avatar as? String
                     }
                 }
-                self.titleArray = (FlashCard.mr_findAll() as? [FlashCard])!
-                DispatchQueue.main.async {
-                    LoadingOverlay.shared.hideOverlayView()
-                    self.libraryTableView.reloadData()
-                }
+
+            }, completion: {didContext in
+                self.titleArray = FlashCard.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [FlashCard]
+                LoadingOverlay.shared.hideOverlayView()
+                self.libraryTableView.reloadData()
+                ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã tải thành công các chủ đề", buttonArray: ["Đóng"], onCompletion: { _ in
+                    
+                })
             })
-        } else {
+                    } else {
             DispatchQueue.main.async {
                 LoadingOverlay.shared.hideOverlayView()
             }
@@ -170,9 +167,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
             DispatchQueue.global().async {
                 APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
-                    
                     self.saveFlashCardDetailToDatabase(response:response)
-
                 })
             }
         }

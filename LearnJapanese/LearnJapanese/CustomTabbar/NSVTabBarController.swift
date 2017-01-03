@@ -17,22 +17,22 @@ class NSVTabBarController: UITabBarController , UITabBarControllerDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("nsvTabbar")
         self.delegate = self
-        
+        print("SearchDekiru")
         //Exchange
         let dictionary = UIStoryboard.init(name: "SearchDekiru", bundle: nil)
         let dictionaryViewController = dictionary.instantiateViewController(withIdentifier: "DictionaryNavigation") as! UINavigationController
-        
+        print("History")
         //Report
         let historyStoryboard = UIStoryboard.init(name: "History", bundle: nil)
         let historyViewController = historyStoryboard.instantiateViewController(withIdentifier: "HistoryViewController") as! UINavigationController
         
-        
+        print("Translate")
         //Schedule
         let documentStoryBoard = UIStoryboard.init(name: "Translate", bundle: nil)
         let documentViewController = documentStoryBoard.instantiateViewController(withIdentifier: "DocumentNavigation") as! UINavigationController
-        
+        print("Library")
         // Other
         let libraryStoryboard = UIStoryboard.init(name: "Library", bundle: nil)
         let libraryViewController = libraryStoryboard.instantiateViewController(withIdentifier: "LibraryNavigation") as! UINavigationController

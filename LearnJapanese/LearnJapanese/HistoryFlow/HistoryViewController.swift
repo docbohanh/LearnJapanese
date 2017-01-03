@@ -11,20 +11,21 @@ import UIKit
 class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var historyArray = [History]()
+    var historyArray: [History]!
     
     @IBOutlet weak var changeLangueButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.global().async {
-            self.historyArray = History.mr_findAll() as! [History]
-           self.tableView.reloadData()
-        }
+
         // Do any additional setup after loading the view.
         tableView .register(UINib.init(nibName: "WordSearchTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WordSearchTableViewCell")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.historyArray = History.mr_findAll() as! [History]
+        self.tableView.reloadData()
+    }
     @IBAction func tappedChangeLangue(_ sender: UIButton) {
     }
     override func didReceiveMemoryWarning() {
@@ -39,7 +40,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //        return arrayWord.count
-        return historyArray.count
+        return historyArray != nil ? historyArray.count : 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -51,13 +52,15 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let strIdentifer = "WordSearchTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: strIdentifer, for: indexPath) as! WordSearchTableViewCell
         cell.initHistoryCell(wordModel: WordModel())
-        let history = historyArray[indexPath.row]
-        if changeLangueButton.isSelected {
-            cell.wordLabel.text = history.meaning_name
-            cell.contentLabel.text = history.word
-        } else {
-            cell.wordLabel.text = history.word
-            cell.contentLabel.text = history.meaning_name
+        if historyArray.count > indexPath.row {
+            let history = historyArray[indexPath.row]
+            if changeLangueButton.isSelected {
+                cell.wordLabel.text = history.meaning_name
+                cell.contentLabel.text = history.word
+            } else {
+                cell.wordLabel.text = history.word
+                cell.contentLabel.text = history.meaning_name
+            }
         }
 
         return cell

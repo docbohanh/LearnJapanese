@@ -29,21 +29,21 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableView: UITableView!
     
     var popupView = SavePopupView()
-    var wordArray = [Translate]()
+    var wordArray: [Translate]!
     var firstArray = [Translate]()
     var secondArray = [Translate]()
     var searchWordArray = [Translate]()
     var filterArray = [Translate]()
     var searchActive = false
-    var currentDetailTranslate = Translate()
+    var currentDetailTranslate: Translate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("search Dekiru")
         // Do any additional setup after loading the view.
         tableView .register(UINib.init(nibName: "WordSearchTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WordSearchTableViewCell")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         popupView = Bundle.main.loadNibNamed("SavePopupView", owner: self, options: nil)?.first as! SavePopupView
-        self.getWordFromDatabase()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
@@ -57,7 +57,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         self.getWordFromDatabase()
-
+        self.addFlashCard()
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
     }
@@ -134,6 +134,12 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: strIdentifer, for: indexPath) as! WordSearchTableViewCell
         if searchActive {
             if let word : Translate = filterArray[indexPath.row] {
+                if word.isSearch {
+                    cell.iconImageView.image = UIImage(named: "icon_history")
+                } else {
+                    cell.iconImageView.image = UIImage(named: "icon_search")
+
+                }
                 if changeLangueButton.isSelected {
                     cell.wordLabel.text = word.meaning_name
                     cell.contentLabel.text = word.word
@@ -185,29 +191,30 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     func getWordFromDatabase() {
-        DispatchQueue.global().async {
-            self.wordArray.removeAll()
-            if appDelegate.wordArray.count > 0 {
-                self.wordArray = appDelegate.wordArray
-            } else {
-                self.wordArray.removeAll()
-                self.wordArray = Translate.mr_findAll() as! [Translate]
-            }
-            self.firstArray.removeAll()
-            for index in 0..<10000 {
-                if self.wordArray.count > index {
-//                    self.firstArray.append(self.wordArray[index])
-                }
-            }
-
-            print("So tu moi" + String(self.wordArray.count))
-        }
+        LoadingOverlay.shared.showOverlay(view: self.view)
+                wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
+        tableView.reloadData()
+        LoadingOverlay.shared.hideOverlayView()
     }
 
+    func updateWordHistory(wordId:String) {
+        let currentWord = Translate.mr_find(byAttribute: "id", withValue: wordId)?.first as! Translate
+        if currentWord != nil {
+            let localContext = NSManagedObjectContext.mr_default()
+            MagicalRecord.save({localContext in
+                currentWord.isSearch = true
+            
+            })
+//            localContext.mr_saveToPersistentStore(completion: {context in
+//                self.wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
+//
+//                self.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableViewRowAnimation.none)
+//            })
+        }
+    }
     func saveHistoryData(translateArray:[Translate]) {
-        let localContext = NSManagedObjectContext.mr_default()
         for index in 0..<translateArray.count {
-            localContext.mr_save({localContext in
+            MagicalRecord.save({localContext in
                 let translate = translateArray[index]
                 let history = History.mr_createEntity(in: localContext)
                 if let word_id = translate.id {
@@ -232,7 +239,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                 if let Modified = translate.modified {
                     history?.modified = Modified
                 }
-
+                
                 if let Avatar = translate.avatar {
                     history?.avatar = Avatar
                 }
@@ -246,7 +253,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                 if let Type = translate.meaning_type {
                     history?.meaning_type = Type
                 }
-            
+                
                 
                 if let ExampleId = translate.example_id {
                     history?.example_id = ExampleId
@@ -269,8 +276,8 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                 if let SoundUrl = translate.sound_url {
                     history?.example_sound_url = SoundUrl
                 }
-            
-        }, completion: { contextDidSave in
+                
+            }, completion: { contextDidSave in
             //saving is successful
             print("saving is successful")
         })
@@ -278,10 +285,36 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
 
     }
     
+    func addFlashCard() {
+        let flash_card = FlashCard.mr_find(byAttribute: "id", withValue: "flashcard")
+        if flash_card == nil {
+            MagicalRecord.save({context in
+                let wordData = FlashCard.mr_createEntity(in:context)
+                wordData?.id = "flashcard"
+                wordData?.title = "Flash card của tôi"
+            }, completion: {didContext in
+                print("da luu thanh cong title flash card")
+            
+            })
+        }
+        
+        let word = FlashCard.mr_find(byAttribute: "id", withValue: "word")
+        if word == nil {
+            MagicalRecord.save({context in
+                let wordData = FlashCard.mr_createEntity(in:context)
+                wordData?.id = "flashcard"
+                wordData?.title = "Từ đã lưu"
+            }, completion: {didContext in
+            print("da luu thanh cong tu")
+            })
+        }
+        
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchString = searchText.lowercased()
             if wordArray.count > 0 {
-                let object = wordArray[0]
+                let object = wordArray[50]
                 filterArray = wordArray.filter({ (object : Translate) -> Bool in
                     if (object.word != nil) && (object.meaning_name != nil) && (object.kana != nil)  {
                         let categoryMatch = (object.word!.lowercased().contains(searchString)) || (object.meaning_name!.lowercased().contains(searchString)) || (object.kana!.lowercased().contains(searchString))
@@ -308,7 +341,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                     } else {
                         return false
                     }
-                })
+                } )
             }
         
         if(filterArray.count == 0 || searchString == ""){
@@ -321,12 +354,15 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
             searchActive = true;
             DispatchQueue.global().async {
                 var historyArray = [Translate]()
-                for index in 0...5 {
+                for index in 0...1 {
                     if self.filterArray.count > index {
-                        historyArray.append(self.filterArray[index])
+                        let object = self.filterArray[index]
+                        historyArray.append(object)
+                        if object.id != nil && index == 0 {
+                            self.updateWordHistory(wordId: (object.id!))
+                        }
                     }
                 }
-                
                     self.saveHistoryData(translateArray:historyArray)
             }
         }
