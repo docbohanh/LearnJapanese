@@ -43,6 +43,10 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         tableView .register(UINib.init(nibName: "WordSearchTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "WordSearchTableViewCell")
         tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         popupView = Bundle.main.loadNibNamed("SavePopupView", owner: self, options: nil)?.first as! SavePopupView
+        self.getWordFromDatabase()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
     }
 
     override func viewDidLayoutSubviews() {
@@ -56,6 +60,10 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
 
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    func hideKeyboard() {
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -324,4 +332,5 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         }
         tableView.reloadData()
     }
+    
 }
