@@ -195,8 +195,8 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
             }
             self.firstArray.removeAll()
             for index in 0..<10000 {
-                if self.wordArray.count > 500 {
-                    self.firstArray.append(self.wordArray[index])
+                if self.wordArray.count > index {
+//                    self.firstArray.append(self.wordArray[index])
                 }
             }
 

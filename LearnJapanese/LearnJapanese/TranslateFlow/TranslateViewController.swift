@@ -49,6 +49,24 @@ class TranslateViewController: UIViewController {
     @IBAction func tappedTranslate(_ sender: Any) {
         outputTextView.isHidden = false
         translateButton.isHidden = true
+        var source:String = "ja"
+        var target:String = "vi"
+        
+        
+        if chooseDictionaryButton.isSelected {
+            source = "vi"
+            target = "ja"
+        } else {
+            source = "ja"
+            target = "vi"
+        }
+        LoadingOverlay.shared.showOverlay(view: self.view)
+        let parameter:  [String : String] = ["q":inputTextView.text,"key":"AIzaSyBWIcG95Sr_hwE2_cgRW_N91FnXCqE6soM","source":source,"target":target,"format":"text"]
+        
+        APIManager.sharedInstance.getDataToURL(url: "https://www.googleapis.com/language/translate/v2", parameters:parameter , onCompletion: {response in
+            print(response)
+            LoadingOverlay.shared.hideOverlayView()
+        })
     }
     
     override func didReceiveMemoryWarning() {
