@@ -64,6 +64,7 @@ class DownloadDataViewController: UIViewController {
     func saveDataToDatabase(response : DataResponse<Any>) {
         //        DispatchQueue.main.async {
         
+        ///Thành Lã: 2017/01/05
         guard let value = response.result.value as? [String:AnyObject] else { return }
         
         guard response.result.error == nil,
