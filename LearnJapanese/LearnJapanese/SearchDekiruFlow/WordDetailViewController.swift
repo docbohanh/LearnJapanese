@@ -32,7 +32,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     
     var searchText : String = ""
     var wordId: String = ""
-    var detailTranslate = Translate()
+    var detailTranslate: Translate!
     var player: AVPlayer!
     
     
@@ -160,8 +160,13 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         searchWebView.isHidden = false
         let wordSearch = searchTextField.text ?? "dekiru"
         
-        let url = NSURL (string: ("https://vi.wikipedia.org/wiki/Special:Search?search=" + wordSearch));
-        let requestObj = NSURLRequest(url: url! as URL);
+        let string = "https://vi.wikipedia.org/wiki/Special:Search?search=\(wordSearch)"
+        
+        guard let stringURL = string.addingPercentEscapes(using: String.Encoding.utf8),
+            let url = URL(string: stringURL)
+            else { return }
+        
+        let requestObj = NSURLRequest(url: url);
         searchWebView.loadRequest(requestObj as URLRequest);
     }
     @IBAction func tappedBingButton(_ sender: Any) {
