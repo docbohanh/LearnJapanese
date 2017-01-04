@@ -208,17 +208,25 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     }
                 self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentHeader) as! [FlashCardDetail]//(byAttribute: "flash_card_id", withValue: self.currentHeader, in: localContext) as! [FlashCardDetail]
                 
-                var parentFlash = FlashCard()
-                for flashCardObject : FlashCard in self.titleArray {
-                    if flashCardObject != nil {
-                        if flashCardObject.id == self.currentHeader {
-                            parentFlash = flashCardObject
-                            break
-                        }
-                    }
-                }
+//                var parentFlash = FlashCard()
+//                for flashCardObject : FlashCard in self.titleArray {
+//                    if flashCardObject != nil {
+//                        if flashCardObject.id == self.currentHeader {
+//                            parentFlash = flashCardObject
+//                            break
+//                        }
+//                    }
+//                }
+//                self.titleArray.removeAll()
+//                self.titleArray.append(parentFlash)
+                
+                
+                ///Editor: Thành Lã - 2017/01/05
+                guard let flashCardObject = (self.titleArray.first { $0.id == self.currentHeader }) else { return }
+                
                 self.titleArray.removeAll()
-                self.titleArray.append(parentFlash)
+                self.titleArray.append(flashCardObject)
+                
                 })
             }
             
