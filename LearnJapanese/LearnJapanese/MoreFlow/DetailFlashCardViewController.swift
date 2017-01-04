@@ -36,12 +36,28 @@ class DetailFlashCardViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func tappedSound(_ sender: Any) {
+//        DispatchQueue.main.async {
+//            if self.sound_url == nil {
+//                ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in
+//                })
+//            } else {
+//                let playerItem = AVPlayerItem( url:URL(string:self.sound_url )! )
+//                self.player = AVPlayer(playerItem:playerItem)
+//                self.player.rate = 1.0;
+//                self.player.play()
+//            }
+//        }
+        
+        ///Thành Lã: 2016/01/05
         DispatchQueue.main.async {
-            if self.sound_url == nil {
+            if self.sound_url.characters.count == 0 {
                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in
                 })
             } else {
-                let playerItem = AVPlayerItem( url:URL(string:self.sound_url )! )
+                
+                guard let url = URL(string:self.sound_url) else { return }
+                
+                let playerItem = AVPlayerItem(url: url)
                 self.player = AVPlayer(playerItem:playerItem)
                 self.player.rate = 1.0;
                 self.player.play()
