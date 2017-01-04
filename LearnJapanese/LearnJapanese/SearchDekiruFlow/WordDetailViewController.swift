@@ -160,6 +160,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         searchWebView.isHidden = false
         let wordSearch = searchTextField.text ?? "dekiru"
         
+        ///Thành Lã: 2017/01/05
         let string = "https://vi.wikipedia.org/wiki/Special:Search?search=\(wordSearch)"
         
         guard let stringURL = string.addingPercentEscapes(using: String.Encoding.utf8),
