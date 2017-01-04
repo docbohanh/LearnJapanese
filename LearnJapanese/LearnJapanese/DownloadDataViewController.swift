@@ -69,7 +69,7 @@ class DownloadDataViewController: UIViewController {
         
         guard response.result.error == nil,
             response.result.isSuccess,
-            let data = value[JSON.data..], data.count > 0,
+            let data = value["Data"], data.count > 0,
             let dictionaryArray = data as? [[String : AnyObject]] else {
                 
                 ProjectCommon.initAlertView(
@@ -88,7 +88,7 @@ class DownloadDataViewController: UIViewController {
         }
         
         
-        UserDefaults.standard.set(value[JSON.version..] as! String, forKey: "version")
+        UserDefaults.standard.set(value["Version"] as! String, forKey: "version")
         DispatchQueue.main.async {
             
             guard let data = response.data else { return }
