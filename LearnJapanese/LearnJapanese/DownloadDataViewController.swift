@@ -56,7 +56,7 @@ class DownloadDataViewController: UIViewController {
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
         APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
             //            let version = UserDefaults.standard.object(forKey: "version") as! String
-            print("response: \(response)")
+            
             self.saveDataToDatabase(response: response)
         })
     }
