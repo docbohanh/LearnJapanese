@@ -30,14 +30,12 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     var popupView = SavePopupView()
     var wordArray: [Translate]!
-    var firstArray = [Translate]()
     var secondArray = [Translate]()
     var searchWordArray = [Translate]()
     var filterArray = [Translate]()
     var filterDisplayArray = [Translate]()
-    
     var searchPlaceArray = [[Translate]]()
-    
+    var searchResultArray = [[Translate]]()
     
     var searchActive = false
     var currentDetailTranslate: Translate!
@@ -205,19 +203,19 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         LoadingOverlay.shared.hideOverlayView()
         DispatchQueue.global().async {
             self.wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
-            if self.wordArray != nil && self.wordArray.count == 0 {
-                for index in 0..<100 {
-                    if self.wordArray.count > ((self.searchPlaceArray.count * 100) + index)  {
-                        let existNumber = self.searchPlaceArray.count
-                        let array:[Translate] = [self.wordArray![(existNumber * 100) + index]]
-                        self.searchPlaceArray.append(array)
-                    } else {
-                        break
-                    }
-
-                    
-                }
-            }
+//            if self.wordArray != nil && self.wordArray.count > 0 {
+//                for index in 0..<500 {
+//                    if self.wordArray.count > ((self.searchPlaceArray.count * 500) + index)  {
+//                        let existNumber = self.searchPlaceArray.count
+//                        let array:[Translate] = [self.wordArray![(existNumber * 500) + index]]
+//                        self.searchPlaceArray.append(array)
+//                    } else {
+//                        break
+//                    }
+//
+//                    
+//                }
+//            }
 
         }
 
@@ -275,10 +273,38 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         let searchString = searchText.lowercased()
 
         DispatchQueue.global().async {
-        if self.wordArray.count > 0 {
+           self.searchWordInArray(firstArray: self.wordArray, searchText: searchText)
+            for index in 0..<30 {
+                if self.filterArray.count > index {
+                    self.filterDisplayArray.append(self.filterArray[index])
+                }
+            }
+            DispatchQueue.main.async {
+                if(self.filterArray.count == 0 || searchString == "") {
+                    self.tableView.isHidden = true
+                    self.notFoundView.isHidden = false
+                    self.searchActive = false;
+                } else {
+                    self.notFoundView.isHidden = true
+                    self.tableView.isHidden = false
+                    self.searchActive = true;
+                    
+                }
+                self.tableView.reloadData()
+            }
+            
+        }
+
+
+
+    }
+    
+    func searchWordInArray(firstArray:[Translate],searchText:String) {
+        let searchString = searchText.lowercased()
+        if firstArray.count > 0 {
             if self.changeLangueButton.isSelected {
                 //Viet -> Nhat
-                self.filterArray = self.wordArray.filter({ (object : Translate) -> Bool in
+                self.filterArray = firstArray.filter({ (object : Translate) -> Bool in
                     if (object.word != nil) && (object.meaning_name != nil) {
                         let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
                         return categoryMatch
@@ -293,9 +319,9 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                         return false
                     }
                 } )
-
+                
             } else {
-                self.filterArray = self.wordArray.filter({ (object : Translate) -> Bool in
+                self.filterArray = firstArray.filter({ (object : Translate) -> Bool in
                     if (object.word != nil) && (object.romaji != nil) && (object.kana != nil)  {
                         let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.romaji!.lowercased().hasPrefix(searchString.lowercased())) || (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
                         return categoryMatch
@@ -322,34 +348,10 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                         return false
                     }
                 } )
-
+                
                 //Nhat - > Viet
-                
             }
         }
-                for index in 0...30 {
-                    if self.filterArray.count > index {
-                        let object = self.filterArray[index]
-                        if index < 30 {
-                            self.filterDisplayArray.append(object)
-                        }
-                    }
-                }
-    }
-        DispatchQueue.main.async {
-            if(self.filterArray.count == 0 || searchString == "") {
-                self.tableView.isHidden = true
-                self.notFoundView.isHidden = false
-                self.searchActive = false;
-            } else {
-                self.notFoundView.isHidden = true
-                self.tableView.isHidden = false
-                self.searchActive = true;
-                
-            }
-            self.tableView.reloadData()
-        }
-
     }
     
 }
