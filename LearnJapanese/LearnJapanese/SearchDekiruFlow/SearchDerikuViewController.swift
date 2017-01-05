@@ -326,26 +326,26 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
 //            let object = wordArray[50]
             filterArray = wordArray.filter({ (object : Translate) -> Bool in
                 if (object.word != nil) && (object.meaning_name != nil) && (object.kana != nil)  {
-                    let categoryMatch = (object.word!.lowercased().contains(searchString)) || (object.meaning_name!.lowercased().contains(searchString)) || (object.kana!.lowercased().contains(searchString))
+                    let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased())) || (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
                     return categoryMatch
                 } else if (object.word != nil) && (object.kana != nil) {
 //                    print("word" + object.word!)
-                    let categoryMatch = (object.word!.lowercased().contains(searchString)) || (object.kana!.lowercased().contains(searchString))
+                    let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
                     return categoryMatch
                 } else if (object.meaning_name != nil) && (object.word != nil) {
-                    let categoryMatch = (object.meaning_name!.lowercased().contains(searchString)) || (object.word!.lowercased().contains(searchString))
+                    let categoryMatch = (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased())) || (object.word!.lowercased().hasPrefix(searchString.lowercased()))
                     return categoryMatch
                 } else if object.kana != nil && object.meaning_name != nil{
-                    let categoryMatch = (object.kana!.lowercased().contains(searchString)) || (object.meaning_name!.lowercased().contains(searchString))
+                    let categoryMatch = (object.kana!.lowercased().hasPrefix(searchString.lowercased())) || (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
                     return categoryMatch
                 } else if object.word != nil{
-                    let categoryMatch = (object.word!.lowercased().contains(searchString))
+                    let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased()))
                     return categoryMatch
                 }  else if object.meaning_name != nil{
-                    let categoryMatch = (object.meaning_name!.lowercased().contains(searchString))
+                    let categoryMatch = (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
                     return categoryMatch
                 }  else if object.kana != nil{
-                    let categoryMatch = (object.kana!.lowercased().contains(searchString))
+                    let categoryMatch = (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
                     return categoryMatch
                 } else {
                     return false
