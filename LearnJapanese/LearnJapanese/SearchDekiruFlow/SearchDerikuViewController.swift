@@ -34,6 +34,11 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     var secondArray = [Translate]()
     var searchWordArray = [Translate]()
     var filterArray = [Translate]()
+    var filterDisplayArray = [Translate]()
+    
+    var searchPlaceArray = [[Translate]]()
+    
+    
     var searchActive = false
     var currentDetailTranslate: Translate!
     
@@ -121,7 +126,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //        return arrayWord.count
-        return filterArray.count
+        return filterDisplayArray.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -132,26 +137,27 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         
         let strIdentifer = "WordSearchTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: strIdentifer, for: indexPath) as! WordSearchTableViewCell
-        
-        let translate = filterArray[indexPath.row]
-        
-        if searchActive {
+        if filterDisplayArray.count > indexPath.row {
+            let translate = filterDisplayArray[indexPath.row]
             
-            cell.iconImageView.image = translate.isSearch ? UIImage(named: "icon_history") : UIImage(named: "icon_search")
-            
-            //            if word.isSearch {
-            //                cell.iconImageView.image = UIImage(named: "icon_history")
-            //            } else {
-            //                cell.iconImageView.image = UIImage(named: "icon_search")
-            //
-            //            }
-            if changeLangueButton.isSelected {
-                cell.wordLabel.text = translate.meaning_name
-                cell.contentLabel.text = translate.word
-            } else {
-                cell.wordLabel.text = translate.word
-                cell.contentLabel.text = translate.meaning_name
-            }
+            if searchActive {
+                
+                cell.iconImageView.image = translate.isSearch ? UIImage(named: "icon_history") : UIImage(named: "icon_search")
+                
+                //            if word.isSearch {
+                //                cell.iconImageView.image = UIImage(named: "icon_history")
+                //            } else {
+                //                cell.iconImageView.image = UIImage(named: "icon_search")
+                //
+                //            }
+                if changeLangueButton.isSelected {
+                    cell.wordLabel.text = translate.meaning_name
+                    cell.contentLabel.text = translate.word
+                } else {
+                    cell.wordLabel.text = translate.word
+                    cell.contentLabel.text = translate.meaning_name
+                }
+ 
         }else {
             if changeLangueButton.isSelected {
                 cell.wordLabel.text = translate.meaning_name
@@ -161,8 +167,8 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                 cell.contentLabel.text = translate.meaning_name
             }
             
+            }
         }
-        
         cell.initCell(wordModel: WordModel())
         return cell
     }
@@ -170,7 +176,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDekiru", bundle: Bundle.main)
         let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "WordDetailViewController") as! WordDetailViewController
-        currentDetailTranslate = filterArray[indexPath.row]
+        currentDetailTranslate = filterDisplayArray[indexPath.row]
         detaiVC.detailTranslate = currentDetailTranslate
         detaiVC.searchText = currentDetailTranslate.word ?? ""
         detaiVC.wordId = currentDetailTranslate.id ?? ""
@@ -195,9 +201,26 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     func getWordFromDatabase() {
         LoadingOverlay.shared.showOverlay(view: self.view)
-        wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
         tableView.reloadData()
         LoadingOverlay.shared.hideOverlayView()
+        DispatchQueue.global().async {
+            self.wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
+            if self.wordArray != nil && self.wordArray.count == 0 {
+                for index in 0..<100 {
+                    if self.wordArray.count > ((self.searchPlaceArray.count * 100) + index)  {
+                        let existNumber = self.searchPlaceArray.count
+                        let array:[Translate] = [self.wordArray![(existNumber * 100) + index]]
+                        self.searchPlaceArray.append(array)
+                    } else {
+                        break
+                    }
+
+                    
+                }
+            }
+
+        }
+
     }
     
     func updateWordHistory(wordId:String) {
@@ -221,79 +244,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         //            })
         //        }
     }
-    func saveHistoryData(translateArray:[Translate]) {
-        for index in 0..<translateArray.count {
-            MagicalRecord.save({localContext in
-                let translate = translateArray[index]
-                let history = History.mr_createEntity(in: localContext)
-                if let word_id = translate.id {
-                    history?.id = String(describing: word_id)
-                }
-                if let Word = translate.word {
-                    history?.word = Word
-                }
-                
-                if let kana = translate.kana {
-                    history?.kana = kana
-                }
-                if let Romaji = translate.romaji {
-                    history?.romaji = Romaji
-                }
-                if let SoundUrl = translate.sound_url {
-                    history?.sound_url = SoundUrl
-                }
-                if let LastmodifiedDate = translate.last_modified {
-                    history?.last_modified = LastmodifiedDate
-                }
-                if let Modified = translate.modified {
-                    history?.modified = Modified
-                }
-                
-                if let Avatar = translate.avatar {
-                    history?.avatar = Avatar
-                }
-                
-                if let Meaning  = translate.meaning_name {
-                    history?.meaning_name = Meaning
-                }
-                if let MeaningId = translate.meaningId {
-                    history?.meaningId = MeaningId
-                }
-                if let Type = translate.meaning_type {
-                    history?.meaning_type = Type
-                }
-                
-                
-                if let ExampleId = translate.example_id {
-                    history?.example_id = ExampleId
-                }
-                if let Example = translate.example_name {
-                    history?.example_name = Example
-                }
-                if let Meaning = translate.example_meaning_name {
-                    history?.example_meaning_name = Meaning
-                }
-                if let MeaningId = translate.example_meaning_id {
-                    history?.example_meaning_id = MeaningId
-                }
-                if let Romaji = translate.romaji {
-                    history?.example_romaji = Romaji
-                }
-                if let Kana = translate.kana {
-                    history?.example_kana = Kana
-                }
-                if let SoundUrl = translate.sound_url {
-                    history?.example_sound_url = SoundUrl
-                }
-                
-            }, completion: { contextDidSave in
-                //saving is successful
-                print("saving is successful")
-            })
-        }
-        
-    }
-    
+
     func addFlashCard() {
         let flash_card = FlashCard.mr_find(byAttribute: "id", withValue: "flashcard")
         if flash_card == nil {
@@ -322,60 +273,83 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchString = searchText.lowercased()
-        if wordArray.count > 0 {
-//            let object = wordArray[50]
-            filterArray = wordArray.filter({ (object : Translate) -> Bool in
-                if (object.word != nil) && (object.meaning_name != nil) && (object.kana != nil)  {
-                    let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased())) || (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
-                    return categoryMatch
-                } else if (object.word != nil) && (object.kana != nil) {
-//                    print("word" + object.word!)
-                    let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
-                    return categoryMatch
-                } else if (object.meaning_name != nil) && (object.word != nil) {
-                    let categoryMatch = (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased())) || (object.word!.lowercased().hasPrefix(searchString.lowercased()))
-                    return categoryMatch
-                } else if object.kana != nil && object.meaning_name != nil{
-                    let categoryMatch = (object.kana!.lowercased().hasPrefix(searchString.lowercased())) || (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
-                    return categoryMatch
-                } else if object.word != nil{
-                    let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased()))
-                    return categoryMatch
-                }  else if object.meaning_name != nil{
-                    let categoryMatch = (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
-                    return categoryMatch
-                }  else if object.kana != nil{
-                    let categoryMatch = (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
-                    return categoryMatch
-                } else {
-                    return false
-                }
-            } )
+
+        DispatchQueue.global().async {
+        if self.wordArray.count > 0 {
+            if self.changeLangueButton.isSelected {
+                //Viet -> Nhat
+                self.filterArray = self.wordArray.filter({ (object : Translate) -> Bool in
+                    if (object.word != nil) && (object.meaning_name != nil) {
+                        let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
+                        return categoryMatch
+                    } else if (object.word != nil) {
+                        //                    print("word" + object.word!)
+                        let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased()))
+                        return categoryMatch
+                    } else if (object.meaning_name != nil) {
+                        let categoryMatch = (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
+                        return categoryMatch
+                    } else {
+                        return false
+                    }
+                } )
+
+            } else {
+                self.filterArray = self.wordArray.filter({ (object : Translate) -> Bool in
+                    if (object.word != nil) && (object.romaji != nil) && (object.kana != nil)  {
+                        let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.romaji!.lowercased().hasPrefix(searchString.lowercased())) || (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
+                        return categoryMatch
+                    } else if (object.word != nil) && (object.kana != nil) {
+                        //                    print("word" + object.word!)
+                        let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
+                        return categoryMatch
+                    } else if (object.romaji != nil) && (object.word != nil) {
+                        let categoryMatch = (object.romaji!.lowercased().hasPrefix(searchString.lowercased())) || (object.word!.lowercased().hasPrefix(searchString.lowercased()))
+                        return categoryMatch
+                    } else if object.kana != nil && object.romaji != nil{
+                        let categoryMatch = (object.kana!.lowercased().hasPrefix(searchString.lowercased())) || (object.romaji!.lowercased().hasPrefix(searchString.lowercased()))
+                        return categoryMatch
+                    } else if object.word != nil{
+                        let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased()))
+                        return categoryMatch
+                    }  else if object.romaji != nil{
+                        let categoryMatch = (object.romaji!.lowercased().hasPrefix(searchString.lowercased()))
+                        return categoryMatch
+                    }  else if object.kana != nil{
+                        let categoryMatch = (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
+                        return categoryMatch
+                    } else {
+                        return false
+                    }
+                } )
+
+                //Nhat - > Viet
+                
+            }
         }
-        
-        if(filterArray.count == 0 || searchString == "") {
-            tableView.isHidden = true
-            notFoundView.isHidden = false
-            searchActive = false;
-        } else {
-            notFoundView.isHidden = true
-            tableView.isHidden = false
-            searchActive = true;
-            DispatchQueue.global().async {
-                var historyArray = [Translate]()
-                for index in 0...1 {
+                for index in 0...30 {
                     if self.filterArray.count > index {
                         let object = self.filterArray[index]
-                        historyArray.append(object)
-                        if object.id != nil && index == 0 {
-                            self.updateWordHistory(wordId: (object.id!))
+                        if index < 30 {
+                            self.filterDisplayArray.append(object)
                         }
                     }
                 }
-                self.saveHistoryData(translateArray:historyArray)
+    }
+        DispatchQueue.main.async {
+            if(self.filterArray.count == 0 || searchString == "") {
+                self.tableView.isHidden = true
+                self.notFoundView.isHidden = false
+                self.searchActive = false;
+            } else {
+                self.notFoundView.isHidden = true
+                self.tableView.isHidden = false
+                self.searchActive = true;
+                
             }
+            self.tableView.reloadData()
         }
-        tableView.reloadData()
+
     }
     
 }

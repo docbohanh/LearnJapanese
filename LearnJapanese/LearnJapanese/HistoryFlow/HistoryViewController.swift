@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MagicalRecord
 
-class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,HistorySearchDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     var historyArray: [History]!
@@ -27,6 +28,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.reloadData()
     }
     @IBAction func tappedChangeLangue(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        tableView.reloadData()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -51,6 +54,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let strIdentifer = "WordSearchTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: strIdentifer, for: indexPath) as! WordSearchTableViewCell
+        cell.delegate = self
+        cell.deleteButton.tag = 690 + indexPath.row
         cell.initHistoryCell(wordModel: WordModel())
         if historyArray.count > indexPath.row {
             let history = historyArray[indexPath.row]
@@ -66,17 +71,15 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
         
     }
-    
+        
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func deleteWord(historyWord: History, atIndex: Int) {
+        let historyObject = historyArray[atIndex]
+        historyArray.remove(at: atIndex)
+        tableView.reloadData()
+        
+        let localContext = NSManagedObjectContext.mr_default()
+        historyObject.mr_deleteEntity(in: localContext)
+        localContext.mr_saveToPersistentStoreAndWait()
     }
-    */
-    
-
 }

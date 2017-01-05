@@ -42,7 +42,9 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         searchTextField.text = searchText
         // Do any additional setup after loading the view.
         self.setupViewController()
-        
+        DispatchQueue.global().async {
+            self.saveHistoryData(translate: self.detailTranslate)
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -183,6 +185,76 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
 
     }
 
+    func saveHistoryData(translate:Translate) {
+            MagicalRecord.save({localContext in
+                let history = History.mr_createEntity(in: localContext)
+                if let word_id = translate.id {
+                    history?.id = String(describing: word_id)
+                }
+                if let Word = translate.word {
+                    history?.word = Word
+                }
+                
+                if let kana = translate.kana {
+                    history?.kana = kana
+                }
+                if let Romaji = translate.romaji {
+                    history?.romaji = Romaji
+                }
+                if let SoundUrl = translate.sound_url {
+                    history?.sound_url = SoundUrl
+                }
+                if let LastmodifiedDate = translate.last_modified {
+                    history?.last_modified = LastmodifiedDate
+                }
+                if let Modified = translate.modified {
+                    history?.modified = Modified
+                }
+                
+                if let Avatar = translate.avatar {
+                    history?.avatar = Avatar
+                }
+                
+                if let Meaning  = translate.meaning_name {
+                    history?.meaning_name = Meaning
+                }
+                if let MeaningId = translate.meaningId {
+                    history?.meaningId = MeaningId
+                }
+                if let Type = translate.meaning_type {
+                    history?.meaning_type = Type
+                }
+                
+                
+                if let ExampleId = translate.example_id {
+                    history?.example_id = ExampleId
+                }
+                if let Example = translate.example_name {
+                    history?.example_name = Example
+                }
+                if let Meaning = translate.example_meaning_name {
+                    history?.example_meaning_name = Meaning
+                }
+                if let MeaningId = translate.example_meaning_id {
+                    history?.example_meaning_id = MeaningId
+                }
+                if let Romaji = translate.romaji {
+                    history?.example_romaji = Romaji
+                }
+                if let Kana = translate.kana {
+                    history?.example_kana = Kana
+                }
+                if let SoundUrl = translate.sound_url {
+                    history?.example_sound_url = SoundUrl
+                }
+                
+            }, completion: { contextDidSave in
+                //saving is successful
+                print("saving is successful")
+            })
+        
+    }
+    
     func saveWordToLocal(type: MyStoreType) {
         let localContext = NSManagedObjectContext()
         

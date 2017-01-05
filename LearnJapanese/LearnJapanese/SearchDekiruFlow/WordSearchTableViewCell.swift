@@ -7,13 +7,18 @@
 //
 
 import UIKit
-
+protocol HistorySearchDelegate {
+    func deleteWord(historyWord:History,atIndex:Int)
+}
 class WordSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var wordTrailingConstraint: NSLayoutConstraint!
+    var delegate: HistorySearchDelegate?
+    var historyWord = History()
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +31,7 @@ class WordSearchTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func deleteButton_clicked(_ sender: Any) {
+        delegate?.deleteWord(historyWord: historyWord,atIndex: deleteButton.tag - 690)
     }
     
     func initCell(wordModel: WordModel) -> Void {
