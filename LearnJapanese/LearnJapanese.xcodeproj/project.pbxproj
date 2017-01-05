@@ -28,6 +28,8 @@
 		849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C2C891E155C3B00350066 /* DownloadDataViewController.swift */; };
 		B84040B15AD6906377CA4F43 /* Pods_LearnJapaneseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */; };
 		D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */; };
+		D24847F51E1EBA1C00603164 /* RotateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24847F41E1EBA1C00603164 /* RotateView.xib */; };
+		D24847F71E1EBA3800603164 /* RotateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24847F61E1EBA3800603164 /* RotateView.swift */; };
 		D249C7991DF05EFB00FF0E44 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D249C7981DF05EFB00FF0E44 /* Library.storyboard */; };
 		D24A13581DED8E2A00E9E063 /* SearchDerikuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13571DED8E2A00E9E063 /* SearchDerikuViewController.swift */; };
 		D24A135B1DED966400E9E063 /* WordSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13591DED966400E9E063 /* WordSearchTableViewCell.swift */; };
@@ -105,6 +107,8 @@
 		B528F679D54539D047D124D8 /* Pods-LearnJapanese.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapanese.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese.release.xcconfig"; sourceTree = "<group>"; };
 		B71028C69EA800855790B3A5 /* Pods-LearnJapaneseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDetailViewController.swift; sourceTree = "<group>"; };
+		D24847F41E1EBA1C00603164 /* RotateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RotateView.xib; sourceTree = "<group>"; };
+		D24847F61E1EBA3800603164 /* RotateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateView.swift; sourceTree = "<group>"; };
 		D249C7981DF05EFB00FF0E44 /* Library.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
 		D24A13571DED8E2A00E9E063 /* SearchDerikuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDerikuViewController.swift; sourceTree = "<group>"; };
 		D24A13591DED966400E9E063 /* WordSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordSearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -282,6 +286,8 @@
 				840579FF1DEDC6EB0019C100 /* HeaderView.xib */,
 				84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */,
 				846D5A241E181856002307CD /* DetailFlashCardViewController.swift */,
+				D24847F41E1EBA1C00603164 /* RotateView.xib */,
+				D24847F61E1EBA3800603164 /* RotateView.swift */,
 			);
 			name = Library;
 			path = MoreFlow;
@@ -476,6 +482,7 @@
 				840579C91DED79DA0019C100 /* LaunchScreen.storyboard in Resources */,
 				D24A135C1DED966400E9E063 /* WordSearchTableViewCell.xib in Resources */,
 				D24A13651DEDA98300E9E063 /* History.storyboard in Resources */,
+				D24847F51E1EBA1C00603164 /* RotateView.xib in Resources */,
 				D2688E141DED8B9D00EB3A6E /* SearchDekiru.storyboard in Resources */,
 				D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */,
 				840579C61DED79DA0019C100 /* Assets.xcassets in Resources */,
@@ -653,6 +660,7 @@
 				EA2A8B7B1E0D1330009622F7 /* ProjectCommon.swift in Sources */,
 				840579FE1DEDC3AC0019C100 /* HeaderView.swift in Sources */,
 				EA2A8B7A1E0D1330009622F7 /* LoadingOverlay.swift in Sources */,
+				D24847F71E1EBA3800603164 /* RotateView.swift in Sources */,
 				849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */,
 				840579FC1DEDC33C0019C100 /* LibraryViewController.swift in Sources */,
 				840579FA1DED8E5E0019C100 /* TranslateViewController.swift in Sources */,

@@ -9,75 +9,107 @@
 import UIKit
 import AVFoundation
 
-class DetailFlashCardViewController: UIViewController {
+class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, RotateViewDelegate {
     
-    @IBOutlet weak var rotateView: UIView!
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var backLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var wordLabel: UILabel!
-    @IBOutlet weak var helloLabel: UILabel!
-    var word:String = ""
-    var sound_url:String = ""
-    var player = AVPlayer()
+    @IBOutlet weak var scrollView: UIScrollView!
+     @IBOutlet weak var backgroundProgressView: UIView!
+
+    @IBOutlet weak var progressView: UIView!
+    @IBOutlet weak var progressWidthConstraint: NSLayoutConstraint!
+   
+    var listWord : [FlashCardDetail]!
+    var currentIndexWord : Int!
+    var audioPlayer : AVAudioPlayer?
+    var player: AVPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         setupRotateView()
+        self.initScrollView()
+        self.setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        wordLabel.text = word
-    }
-    @IBAction func tappedStoreWord(_ sender: UIButton) {
+//        wordLabel.text = word
     }
     
+    func initScrollView() -> Void {
+        //1
+        self.scrollView.frame = CGRect(x:0, y:100, width:self.view.frame.width, height:self.view.frame.height - 110)
+        scrollView.isPagingEnabled = true
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = true
+        self.scrollView.delegate = self
+        let scrollViewWidth:CGFloat = self.scrollView.frame.width
+        let scrollViewHeight:CGFloat = self.scrollView.frame.height
+        
+        for i in 0..<listWord.count {
+            let word = listWord[i]
+            let customView = UINib(nibName: "RotateView", bundle: Bundle.main).instantiate(withOwner: self, options: nil)[0] as? RotateView
+            customView?.frame = CGRect.init(x: 10 + CGFloat(i) * CGFloat(scrollView.frame.size.width), y: 0, width: scrollViewWidth - 20, height: scrollViewHeight)
+            
+            customView?.translateTextLabel.text = word.word
+            customView?.textLabel.text = word.meaning
+            customView?.clipsToBounds = true
+            customView?.layer.cornerRadius = 5.0
+            customView?.index = i
+            customView?.delegate = self
+            scrollView.addSubview(customView!)
+        }
+        self.scrollView.contentSize = CGSize(width:self.scrollView.frame.width * CGFloat(listWord.count), height:self.scrollView.frame.height)
+    }
+    
+    func setupView() -> Void {
+        backgroundProgressView.clipsToBounds = true
+        backgroundProgressView.layer.cornerRadius = backgroundProgressView.frame.height/2
+        progressView.clipsToBounds = true
+        progressView.layer.cornerRadius = progressView.frame.height/2
+        
+        self.scrollView.contentOffset = CGPoint.init(x: scrollView.frame.size.width*CGFloat(currentIndexWord), y: 0)
+        progressWidthConstraint.constant = CGFloat((Float(currentIndexWord + 1)/Float(listWord.count)))*backgroundProgressView.frame.size.width
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentPage = Int(scrollView.contentOffset.x/scrollView.frame.size.width)
+        currentIndexWord = currentPage
+        print(currentPage)
+        progressWidthConstraint.constant = CGFloat((Float(currentIndexWord + 1)/Float(listWord.count)))*backgroundProgressView.frame.size.width
+    }
+
     @IBAction func tappedBack(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    @IBAction func tappedSound(_ sender: Any) {
-        //        DispatchQueue.main.async {
-        //            if self.sound_url == nil {
-        //                ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in
-        //                })
-        //            } else {
-        //                let playerItem = AVPlayerItem( url:URL(string:self.sound_url )! )
-        //                self.player = AVPlayer(playerItem:playerItem)
-        //                self.player.rate = 1.0;
-        //                self.player.play()
-        //            }
-        //        }
-        
-        ///Thành Lã: 2016/01/05
-        DispatchQueue.main.async {
-            if self.sound_url.characters.count == 0 {
-                ProjectCommon.initAlertView(
-                    viewController: self,
-                    title: "",
-                    message: "Không tìm thấy âm thanh",
-                    buttonArray: ["Đóng"],
-                    onCompletion: {_ in
-                })
-            } else {
-                
-                guard let url = URL(string:self.sound_url) else { return }
-                
-                let playerItem = AVPlayerItem(url: url)
-                self.player = AVPlayer(playerItem:playerItem)
-                self.player.rate = 1.0;
-                self.player.play()
-            }
-        }
-    }
     
-    @IBAction func tappedFavorite(_ sender: UIButton) {
-    }
-    @IBOutlet weak var tappedBack: UIButton!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    /* ========= ROTATE VIEW DELEGATE ======== */
+    func flashCardTapped(index: Int) {
+        
+    }
+    func favoriteTapped(index: Int) {
+        
+    }
+    func playSoundTapped(index: Int) {
+        let object = listWord[index]
+        if object.source_url != nil {
+            let url = object.source_url
+            let playerItem = AVPlayerItem( url:URL(string:url! )!)
+            self.player = AVPlayer(playerItem:playerItem)
+            self.player.rate = 1.0;
+            self.player.play()
+        }else {
+            ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["OK"], onCompletion: { (index) in
+                
+            })
+        }
     }
     
     
@@ -100,17 +132,16 @@ extension DetailFlashCardViewController {
     fileprivate func setupRotateView() {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapOnRotateView))
-        rotateView.addGestureRecognizer(tap)
+//        rotateView.addGestureRecognizer(tap)
     }
 }
 
 //MARK: SELECTOR
 extension DetailFlashCardViewController {
     func tapOnRotateView() {
-        rotateView.rotate()
+//        rotateView.rotate()
     }
 }
-
 
 extension UIView {
     
