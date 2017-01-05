@@ -71,6 +71,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = Bundle.main.loadNibNamed("HeaderView", owner: self, options:[:])?.first as? HeaderView
         let flashCardTitle = titleArray[section]
+        headerView?.delegate = self
 //        if flashCardTitle != nil {
 //            headerView?.delegate = self
 //            if flashCardTitle.title != nil {
@@ -107,7 +108,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tappedShowVocaburaryList(sender: UIButton) {
         currentHeader = String(sender.tag)
         LoadingOverlay.shared.showOverlay(view: view)
-        DispatchQueue.global().async {
+//        DispatchQueue.global().async {
             if self.titleArray.count > 1 {
                 self.getFlashCardDetail(flashCardId: String(sender.tag))
             } else {
@@ -115,7 +116,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 self.subWordArray.removeAll()
                 self.getFlashCard()
             }
-        }
+//        }
     }
     
     /**
