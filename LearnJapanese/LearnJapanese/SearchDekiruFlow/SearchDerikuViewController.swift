@@ -48,11 +48,11 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
     }
-
+    
     override func viewDidLayoutSubviews() {
-//        searchBarView.layer.cornerRadius = 5
-//        searchBarView.layer.borderWidth = 1
-//        searchBarView.layer.borderColor = UIColor.white.cgColor
+        //        searchBarView.layer.cornerRadius = 5
+        //        searchBarView.layer.borderWidth = 1
+        //        searchBarView.layer.borderColor = UIColor.white.cgColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,7 +94,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         return task
     }
     
-/* =============== ACTION BUTTON CLICKED =============== */
+    /* =============== ACTION BUTTON CLICKED =============== */
     @IBAction func searchButton_clicked(_ sender: Any) {
         if (searchTextfield.text?.characters.count)! > 0 {
         }
@@ -112,16 +112,16 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func photoSearchButton_clicked(_ sender: Any) {
     }
-/* ===================================================== */
+    /* ===================================================== */
     
-/* =============== TABLEVIEW DATASOURCE =============== */
+    /* =============== TABLEVIEW DATASOURCE =============== */
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return arrayWord.count
-            return filterArray.count
+        //        return arrayWord.count
+        return filterArray.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -132,32 +132,35 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         
         let strIdentifer = "WordSearchTableViewCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: strIdentifer, for: indexPath) as! WordSearchTableViewCell
+        
+        let translate = filterArray[indexPath.row]
+        
         if searchActive {
-            if let word : Translate = filterArray[indexPath.row] {
-                if word.isSearch {
-                    cell.iconImageView.image = UIImage(named: "icon_history")
-                } else {
-                    cell.iconImageView.image = UIImage(named: "icon_search")
-
-                }
-                if changeLangueButton.isSelected {
-                    cell.wordLabel.text = word.meaning_name
-                    cell.contentLabel.text = word.word
-                } else {
-                    cell.wordLabel.text = word.word
-                    cell.contentLabel.text = word.meaning_name
-                }
+            
+            cell.iconImageView.image = translate.isSearch ? UIImage(named: "icon_history") : UIImage(named: "icon_search")
+            
+            //            if word.isSearch {
+            //                cell.iconImageView.image = UIImage(named: "icon_history")
+            //            } else {
+            //                cell.iconImageView.image = UIImage(named: "icon_search")
+            //
+            //            }
+            if changeLangueButton.isSelected {
+                cell.wordLabel.text = translate.meaning_name
+                cell.contentLabel.text = translate.word
+            } else {
+                cell.wordLabel.text = translate.word
+                cell.contentLabel.text = translate.meaning_name
             }
         }else {
-            if let word : Translate = firstArray[indexPath.row] {
-                if changeLangueButton.isSelected {
-                    cell.wordLabel.text = word.meaning_name
-                    cell.contentLabel.text = word.word
-                } else {
-                    cell.wordLabel.text = word.word
-                    cell.contentLabel.text = word.meaning_name
-                }
+            if changeLangueButton.isSelected {
+                cell.wordLabel.text = translate.meaning_name
+                cell.contentLabel.text = translate.word
+            } else {
+                cell.wordLabel.text = translate.word
+                cell.contentLabel.text = translate.meaning_name
             }
+            
         }
         
         cell.initCell(wordModel: WordModel())
@@ -176,9 +179,9 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if (textField.text?.characters.count)! > 0 {
-                self.introduceView.isHidden = true
+            self.introduceView.isHidden = true
         }
-
+        
         textField.resignFirstResponder()
         return true
     }
@@ -192,25 +195,31 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     func getWordFromDatabase() {
         LoadingOverlay.shared.showOverlay(view: self.view)
-                wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
+        wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
         tableView.reloadData()
         LoadingOverlay.shared.hideOverlayView()
     }
-
+    
     func updateWordHistory(wordId:String) {
-        let currentWord = Translate.mr_find(byAttribute: "id", withValue: wordId)?.first as! Translate
-        if currentWord != nil {
-            let localContext = NSManagedObjectContext.mr_default()
-            MagicalRecord.save({localContext in
-                currentWord.isSearch = true
+        guard let currentWord = Translate.mr_find(byAttribute: "id", withValue: wordId)?.first as? Translate else { return }
+        
+        MagicalRecord.save({ localContext in
+            currentWord.isSearch = true
             
-            })
-//            localContext.mr_saveToPersistentStore(completion: {context in
-//                self.wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
-//
-//                self.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableViewRowAnimation.none)
-//            })
-        }
+        })
+        
+        //        if currentWord != nil {
+        //            let localContext = NSManagedObjectContext.mr_default()
+        //            MagicalRecord.save({localContext in
+        //                currentWord.isSearch = true
+        //
+        //            })
+        //            localContext.mr_saveToPersistentStore(completion: {context in
+        //                self.wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
+        //
+        //                self.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableViewRowAnimation.none)
+        //            })
+        //        }
     }
     func saveHistoryData(translateArray:[Translate]) {
         for index in 0..<translateArray.count {
@@ -278,11 +287,11 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                 }
                 
             }, completion: { contextDidSave in
-            //saving is successful
-            print("saving is successful")
-        })
+                //saving is successful
+                print("saving is successful")
+            })
         }
-
+        
     }
     
     func addFlashCard() {
@@ -294,7 +303,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                 wordData?.title = "Flash card của tôi"
             }, completion: {didContext in
                 print("da luu thanh cong title flash card")
-            
+                
             })
         }
         
@@ -305,7 +314,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                 wordData?.id = "flashcard"
                 wordData?.title = "Từ đã lưu"
             }, completion: {didContext in
-            print("da luu thanh cong tu")
+                print("da luu thanh cong tu")
             })
         }
         
@@ -313,38 +322,38 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchString = searchText.lowercased()
-            if wordArray.count > 0 {
-                let object = wordArray[50]
-                filterArray = wordArray.filter({ (object : Translate) -> Bool in
-                    if (object.word != nil) && (object.meaning_name != nil) && (object.kana != nil)  {
-                        let categoryMatch = (object.word!.lowercased().contains(searchString)) || (object.meaning_name!.lowercased().contains(searchString)) || (object.kana!.lowercased().contains(searchString))
-                        return categoryMatch
-                    } else if (object.word != nil) && (object.kana != nil) {
-                        print("word" + object.word!)
-                        let categoryMatch = (object.word!.lowercased().contains(searchString)) || (object.kana!.lowercased().contains(searchString))
-                        return categoryMatch
-                    } else if (object.meaning_name != nil) && (object.word != nil) {
-                        let categoryMatch = (object.meaning_name!.lowercased().contains(searchString)) || (object.word!.lowercased().contains(searchString))
-                        return categoryMatch
-                    } else if object.kana != nil && object.meaning_name != nil{
-                        let categoryMatch = (object.kana!.lowercased().contains(searchString)) || (object.meaning_name!.lowercased().contains(searchString))
-                        return categoryMatch
-                    } else if object.word != nil{
-                        let categoryMatch = (object.word!.lowercased().contains(searchString))
-                        return categoryMatch
-                    }  else if object.meaning_name != nil{
-                        let categoryMatch = (object.meaning_name!.lowercased().contains(searchString))
-                        return categoryMatch
-                    }  else if object.kana != nil{
-                        let categoryMatch = (object.kana!.lowercased().contains(searchString))
-                        return categoryMatch
-                    } else {
-                        return false
-                    }
-                } )
-            }
+        if wordArray.count > 0 {
+//            let object = wordArray[50]
+            filterArray = wordArray.filter({ (object : Translate) -> Bool in
+                if (object.word != nil) && (object.meaning_name != nil) && (object.kana != nil)  {
+                    let categoryMatch = (object.word!.lowercased().contains(searchString)) || (object.meaning_name!.lowercased().contains(searchString)) || (object.kana!.lowercased().contains(searchString))
+                    return categoryMatch
+                } else if (object.word != nil) && (object.kana != nil) {
+//                    print("word" + object.word!)
+                    let categoryMatch = (object.word!.lowercased().contains(searchString)) || (object.kana!.lowercased().contains(searchString))
+                    return categoryMatch
+                } else if (object.meaning_name != nil) && (object.word != nil) {
+                    let categoryMatch = (object.meaning_name!.lowercased().contains(searchString)) || (object.word!.lowercased().contains(searchString))
+                    return categoryMatch
+                } else if object.kana != nil && object.meaning_name != nil{
+                    let categoryMatch = (object.kana!.lowercased().contains(searchString)) || (object.meaning_name!.lowercased().contains(searchString))
+                    return categoryMatch
+                } else if object.word != nil{
+                    let categoryMatch = (object.word!.lowercased().contains(searchString))
+                    return categoryMatch
+                }  else if object.meaning_name != nil{
+                    let categoryMatch = (object.meaning_name!.lowercased().contains(searchString))
+                    return categoryMatch
+                }  else if object.kana != nil{
+                    let categoryMatch = (object.kana!.lowercased().contains(searchString))
+                    return categoryMatch
+                } else {
+                    return false
+                }
+            } )
+        }
         
-        if(filterArray.count == 0 || searchString == ""){
+        if(filterArray.count == 0 || searchString == "") {
             tableView.isHidden = true
             notFoundView.isHidden = false
             searchActive = false;
@@ -363,7 +372,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                         }
                     }
                 }
-                    self.saveHistoryData(translateArray:historyArray)
+                self.saveHistoryData(translateArray:historyArray)
             }
         }
         tableView.reloadData()
