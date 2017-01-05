@@ -17,8 +17,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     @IBOutlet weak var libraryTableView: UITableView!
     var numberOfSection: Int = 2
     
-    var titleArray: [FlashCard]!
-    var subWordArray: [FlashCardDetail]!
+    var titleArray : [FlashCard]!
+    var subWordArray : [FlashCardDetail]!
     var currentIdFlashCard = String()
     var audioPlayer : AVAudioPlayer?
     var player: AVPlayer!
@@ -115,11 +115,18 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         currentIdFlashCard = String(button.tag)
         isShowListWord = !isShowListWord
         if isShowListWord {
+            if subWordArray != nil {
+                if subWordArray.count > 0 {
+                    subWordArray.removeAll()
+                }
+            }
             LoadingOverlay.shared.showOverlay(view: view)
             self.getFlashCardDetail(flashCardId: currentIdFlashCard)
         } else {
-            if subWordArray.count > 0 {
-                subWordArray.removeAll()
+            if subWordArray != nil {
+                if subWordArray.count > 0 {
+                    subWordArray.removeAll()
+                }
             }
             libraryTableView.reloadData()
         }
@@ -163,7 +170,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     }
                 }
             }, completion: {didContext in
-                self.titleArray = FlashCard.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [FlashCard]
+                self.titleArray = FlashCard.mr_findAllSorted(by: "id", ascending: true) as! [FlashCard]
                 LoadingOverlay.shared.hideOverlayView()
                 self.libraryTableView.reloadData()
                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã tải thành công các chủ đề", buttonArray: ["Đóng"], onCompletion: { _ in
@@ -197,33 +204,40 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
              for flashCardDetailObject in dictionaryArray {
             localContext.mr_save(blockAndWait:{localContext in
+                var flashCardDetail : FlashCardDetail!
+                let foundFlashCard = FlashCardDetail.mr_find(byAttribute: "id", withValue: String(describing: flashCardDetailObject["Id"])) as! [FlashCardDetail]
+                if foundFlashCard.count > 0 {
+                    flashCardDetail = foundFlashCard[0]
+                }else {
+                    flashCardDetail = FlashCardDetail.mr_createEntity(in:localContext)
+                }
                 
-                    let flashCardDetail = FlashCardDetail.mr_createEntity()
-                    if let Id = flashCardDetailObject["Id"]{
-                        flashCardDetail?.id = String(describing: Id)
-                    }
-                    if let Word = flashCardDetailObject["Word"] {
-                        flashCardDetail?.word = Word as? String
-                    }
-                    if let Avatar = flashCardDetailObject["Avatar"] {
-                        flashCardDetail?.avatar = Avatar as? String
-                    }
-                    if let Romaji = flashCardDetailObject["Romaji"] {
-                        flashCardDetail?.romaji = Romaji as? String
-                    }
-                    if let Kana = flashCardDetailObject["Kana"] {
-                        flashCardDetail?.kana = Kana as? String
-                    }
-                    if let SoundUrl = flashCardDetailObject["SoundUrl"] {
-                        flashCardDetail?.source_url = SoundUrl as? String
-                    }
-                    if let Meaning = flashCardDetailObject["WordMeaning"] {
-                        flashCardDetail?.meaning = Meaning as? String
-                    }
-                    if let FlashCardId = flashCardDetailObject["FlashCardId"] {
-                        flashCardDetail?.flash_card_id = String(describing: FlashCardId)
-                    }
-                self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentIdFlashCard) as! [FlashCardDetail]
+                if let Id = flashCardDetailObject["Id"]{
+                    flashCardDetail?.id = String(describing: Id)
+                }
+                if let Word = flashCardDetailObject["Word"] {
+                    flashCardDetail?.word = Word as? String
+                }
+                if let Avatar = flashCardDetailObject["Avatar"] {
+                    flashCardDetail?.avatar = Avatar as? String
+                }
+                if let Romaji = flashCardDetailObject["Romaji"] {
+                    flashCardDetail?.romaji = Romaji as? String
+                }
+                if let Kana = flashCardDetailObject["Kana"] {
+                    flashCardDetail?.kana = Kana as? String
+                }
+                if let SoundUrl = flashCardDetailObject["SoundUrl"] {
+                    flashCardDetail?.source_url = SoundUrl as? String
+                }
+                if let Meaning = flashCardDetailObject["WordMeaning"] {
+                    flashCardDetail?.meaning = Meaning as? String
+                }
+                if let FlashCardId = flashCardDetailObject["FlashCardId"] {
+                    flashCardDetail?.flash_card_id = String(describing: FlashCardId)
+                }
+//                self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentIdFlashCard) as! [FlashCardDetail]    
+                self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentIdFlashCard, andOrderBy: "id", ascending: true) as![FlashCardDetail]
                 ///Editor: Thành Lã - 2017/01/05
                 guard let flashCardObject = (self.titleArray.first { $0.id == self.currentIdFlashCard }) else { return }
                 })
