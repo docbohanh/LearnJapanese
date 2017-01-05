@@ -8,7 +8,7 @@
 
 import UIKit
 protocol ShowVocaburaryListDelegate {
-    func tappedShowVocaburaryList(sender: UIButton)
+    func tappedShowVocaburaryList(sender: HeaderView)
 }
 class HeaderView: UIView {
     var delegate: ShowVocaburaryListDelegate?
@@ -18,7 +18,7 @@ class HeaderView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
 
      @IBAction func tappedShowVocabulary(_ sender: Any) {
-        delegate?.tappedShowVocaburaryList(sender: sender as! UIButton)
+        delegate?.tappedShowVocaburaryList(sender: self)
      }
  
 
