@@ -71,25 +71,31 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = Bundle.main.loadNibNamed("HeaderView", owner: self, options:[:])?.first as? HeaderView
         let flashCardTitle = titleArray[section]
-        if flashCardTitle != nil {
-            headerView?.delegate = self
-            if flashCardTitle.title != nil {
-                headerView?.titleLabel.text = flashCardTitle.title
-            }
-            if flashCardTitle.id != nil {
-                headerView?.backgroundHeaderButton.tag = Int(flashCardTitle.id!)!
-            }
-        }
+//        if flashCardTitle != nil {
+//            headerView?.delegate = self
+//            if flashCardTitle.title != nil {
+//                headerView?.titleLabel.text = flashCardTitle.title
+//            }
+//            if flashCardTitle.id != nil {
+//                headerView?.backgroundHeaderButton.tag = Int(flashCardTitle.id!)!
+//            }
+//        }
 
-        return (headerView as? UIView?)!
+        ///Thành Lã: 2017/01/05
+        guard let cardTitle = flashCardTitle.title, let cardID = flashCardTitle.id else { return nil }
+        headerView?.titleLabel.text = cardTitle
+        headerView?.backgroundHeaderButton.tag = Int(cardID) ?? 0
+        
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let searchDerikuStoryboard = UIStoryboard.init(name: "Library", bundle: Bundle.main)
         let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "DetailFlashCardViewController") as! DetailFlashCardViewController
-        let detailTranslate = subWordArray[indexPath.row] as? FlashCardDetail
-        detaiVC.sound_url = detailTranslate?.source_url ?? ""
-        detaiVC.word = detailTranslate?.word ?? ""
+        
+        let detailTranslate = subWordArray[indexPath.row]
+        detaiVC.sound_url = detailTranslate.source_url ?? ""
+        detaiVC.word = detailTranslate.word ?? ""
         self.present(detaiVC, animated: true, completion: nil)
     }
     
