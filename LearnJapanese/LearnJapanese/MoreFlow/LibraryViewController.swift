@@ -152,22 +152,25 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             MagicalRecord.save({localContext in
                 for flashCardDetailObject in dictionaryArray {
                     var flashCard : FlashCard!
-                    let foundFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: String(describing: flashCardDetailObject["Id"])) as! [FlashCard]
-                    if foundFlashCard.count > 0 {
-                        flashCard = foundFlashCard[0]
-                    }else {
-                        flashCard = FlashCard.mr_createEntity(in:localContext)
+                    if flashCardDetailObject["Id"] != nil {
+                        let foundFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: String(describing: flashCardDetailObject["Id"]!)) as! [FlashCard]
+                        if foundFlashCard.count > 0 {
+                            flashCard = foundFlashCard[0]
+                        }else {
+                            flashCard = FlashCard.mr_createEntity(in:localContext)
+                        }
+                        if let flash_id = flashCardDetailObject["Id"]{
+                            flashCard?.id = String(describing: flash_id)
+                        }
+                        if let Word = flashCardDetailObject["Title"] {
+                            flashCard?.title = Word as? String
+                        }
+                        
+                        if let Avatar = flashCardDetailObject["Avatar"] {
+                            flashCard?.avatar = Avatar as? String
+                        }
                     }
-                    if let flash_id = flashCardDetailObject["Id"]{
-                        flashCard?.id = String(describing: flash_id)
-                    }
-                    if let Word = flashCardDetailObject["Title"] {
-                        flashCard?.title = Word as? String
-                    }
-                    
-                    if let Avatar = flashCardDetailObject["Avatar"] {
-                        flashCard?.avatar = Avatar as? String
-                    }
+ 
                 }
             }, completion: {didContext in
                 self.titleArray = FlashCard.mr_findAllSorted(by: "id", ascending: true) as! [FlashCard]
