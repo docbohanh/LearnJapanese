@@ -77,7 +77,7 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentPage = Int(scrollView.contentOffset.x/scrollView.frame.size.width)
         currentIndexWord = currentPage
-        print(currentPage)
+//        print(currentPage)
         progressWidthConstraint.constant = CGFloat((Float(currentIndexWord + 1)/Float(listWord.count)))*backgroundProgressView.frame.size.width
     }
 

@@ -208,41 +208,43 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
              for flashCardDetailObject in dictionaryArray {
             localContext.mr_save(blockAndWait:{localContext in
                 var flashCardDetail : FlashCardDetail!
-                let foundFlashCard = FlashCardDetail.mr_find(byAttribute: "id", withValue: String(describing: flashCardDetailObject["Id"])) as! [FlashCardDetail]
-                if foundFlashCard.count > 0 {
-                    flashCardDetail = foundFlashCard[0]
-                }else {
-                    flashCardDetail = FlashCardDetail.mr_createEntity(in:localContext)
+                if flashCardDetailObject["Id"] != nil {
+                    let foundFlashCard = FlashCardDetail.mr_find(byAttribute: "id", withValue: String(describing: flashCardDetailObject["Id"]!)) as! [FlashCardDetail]
+                    if foundFlashCard.count > 0 {
+                        flashCardDetail = foundFlashCard[0]
+                    }else {
+                        flashCardDetail = FlashCardDetail.mr_createEntity(in:localContext)
+                    }
+                    
+                    if let Id = flashCardDetailObject["Id"]{
+                        flashCardDetail?.id = String(describing: Id)
+                    }
+                    if let Word = flashCardDetailObject["Word"] {
+                        flashCardDetail?.word = Word as? String
+                    }
+                    if let Avatar = flashCardDetailObject["Avatar"] {
+                        flashCardDetail?.avatar = Avatar as? String
+                    }
+                    if let Romaji = flashCardDetailObject["Romaji"] {
+                        flashCardDetail?.romaji = Romaji as? String
+                    }
+                    if let Kana = flashCardDetailObject["Kana"] {
+                        flashCardDetail?.kana = Kana as? String
+                    }
+                    if let SoundUrl = flashCardDetailObject["SoundUrl"] {
+                        flashCardDetail?.source_url = SoundUrl as? String
+                    }
+                    if let Meaning = flashCardDetailObject["WordMeaning"] {
+                        flashCardDetail?.meaning = Meaning as? String
+                    }
+                    if let FlashCardId = flashCardDetailObject["FlashCardId"] {
+                        flashCardDetail?.flash_card_id = String(describing: FlashCardId)
+                    }
+                    //                self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentIdFlashCard) as! [FlashCardDetail]
+                    self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentIdFlashCard, andOrderBy: "id", ascending: true) as![FlashCardDetail]
+                    ///Editor: Thành Lã - 2017/01/05
+                    guard let flashCardObject = (self.titleArray.first { $0.id == self.currentIdFlashCard }) else { return }
                 }
-                
-                if let Id = flashCardDetailObject["Id"]{
-                    flashCardDetail?.id = String(describing: Id)
-                }
-                if let Word = flashCardDetailObject["Word"] {
-                    flashCardDetail?.word = Word as? String
-                }
-                if let Avatar = flashCardDetailObject["Avatar"] {
-                    flashCardDetail?.avatar = Avatar as? String
-                }
-                if let Romaji = flashCardDetailObject["Romaji"] {
-                    flashCardDetail?.romaji = Romaji as? String
-                }
-                if let Kana = flashCardDetailObject["Kana"] {
-                    flashCardDetail?.kana = Kana as? String
-                }
-                if let SoundUrl = flashCardDetailObject["SoundUrl"] {
-                    flashCardDetail?.source_url = SoundUrl as? String
-                }
-                if let Meaning = flashCardDetailObject["WordMeaning"] {
-                    flashCardDetail?.meaning = Meaning as? String
-                }
-                if let FlashCardId = flashCardDetailObject["FlashCardId"] {
-                    flashCardDetail?.flash_card_id = String(describing: FlashCardId)
-                }
-//                self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentIdFlashCard) as! [FlashCardDetail]    
-                self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentIdFlashCard, andOrderBy: "id", ascending: true) as![FlashCardDetail]
-                ///Editor: Thành Lã - 2017/01/05
-                guard let flashCardObject = (self.titleArray.first { $0.id == self.currentIdFlashCard }) else { return }
                 })
             }
 
