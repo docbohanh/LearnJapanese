@@ -181,6 +181,7 @@ class DownloadDataViewController: UIViewController {
             
         }, completion: {(contextDidSave,error) in
 //            print("saving is successful")
+            
             self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
             
         })

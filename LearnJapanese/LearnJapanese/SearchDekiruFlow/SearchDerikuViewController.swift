@@ -30,6 +30,15 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     var popupView = SavePopupView()
     var wordArray: [Translate]!
+    var oneArray: [Translate]!
+    var twoArray: [Translate]!
+    var threeArray: [Translate]!
+    var fourArray: [Translate]!
+    var fineArray: [Translate]!
+    var sixArray: [Translate]!
+    var sevenArray: [Translate]!
+    var eightArray: [Translate]!
+    
     var secondArray = [Translate]()
     var searchWordArray = [Translate]()
     var filterArray = [Translate]()
@@ -50,6 +59,8 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGesture)
+        self.getWordFromDatabase()
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -59,7 +70,6 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.getWordFromDatabase()
         self.addFlashCard()
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
@@ -201,46 +211,15 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         LoadingOverlay.shared.showOverlay(view: self.view)
         tableView.reloadData()
         LoadingOverlay.shared.hideOverlayView()
-        DispatchQueue.global().async {
-            self.wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
-//            if self.wordArray != nil && self.wordArray.count > 0 {
-//                for index in 0..<500 {
-//                    if self.wordArray.count > ((self.searchPlaceArray.count * 500) + index)  {
-//                        let existNumber = self.searchPlaceArray.count
-//                        let array:[Translate] = [self.wordArray![(existNumber * 500) + index]]
-//                        self.searchPlaceArray.append(array)
-//                    } else {
-//                        break
-//                    }
-//
-//                    
-//                }
-//            }
+            let localContext = NSManagedObjectContext.mr_context(withParent: NSManagedObjectContext.mr_default())
+            self.wordArray = Translate.mr_findAll(in:localContext ) as! [Translate]!
 
-        }
+//        DispatchQueue.global().async {
+//            self.oneArray = self.wordArray[0...5000]
+//            twoArray =
+//        }
+//        
 
-    }
-    
-    func updateWordHistory(wordId:String) {
-        guard let currentWord = Translate.mr_find(byAttribute: "id", withValue: wordId)?.first as? Translate else { return }
-        
-        MagicalRecord.save({ localContext in
-            currentWord.isSearch = true
-            
-        })
-        
-        //        if currentWord != nil {
-        //            let localContext = NSManagedObjectContext.mr_default()
-        //            MagicalRecord.save({localContext in
-        //                currentWord.isSearch = true
-        //
-        //            })
-        //            localContext.mr_saveToPersistentStore(completion: {context in
-        //                self.wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
-        //
-        //                self.tableView.reloadRows(at: [IndexPath.init(row: 0, section: 0)], with: UITableViewRowAnimation.none)
-        //            })
-        //        }
     }
 
     func addFlashCard() {
@@ -271,9 +250,69 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchString = searchText.lowercased()
-
+        let first = self.wordArray[0] as! Translate
+        
+        print(self.wordArray[0])
         DispatchQueue.global().async {
-           self.searchWordInArray(firstArray: self.wordArray, searchText: searchText)
+            if self.wordArray.count > 0 {
+                if self.changeLangueButton.isSelected {
+                    //Viet -> Nhat
+                    self.filterArray = self.wordArray.filter({ (object : Translate) -> Bool in
+                        if (object.word != nil) && (object.meaning_name != nil) {
+                            let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
+                            return categoryMatch
+                        } else if (object.word != nil) {
+                            //                    print("word" + object.word!)
+                            let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased()))
+                            return categoryMatch
+                        } else if (object.meaning_name != nil) {
+                            let categoryMatch = (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
+                            return categoryMatch
+                        } else {
+                            return false
+                        }
+                    } )
+                    
+                } else {
+                    self.filterArray = self.wordArray.filter({ (object : Translate) -> Bool in
+                        if object.meaning_name != nil{
+                            let categoryMatch = (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
+                            return categoryMatch
+                        }else{
+                        
+                       return false
+                        }
+//                        if (object.word != nil) && (object.romaji != nil) && (object.kana != nil)  {
+//                            let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.romaji!.lowercased().hasPrefix(searchString.lowercased())) || (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
+//                            return categoryMatch
+//                        } else if (object.word != nil) && (object.kana != nil) {
+//                            //                    print("word" + object.word!)
+//                            let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
+//                            return categoryMatch
+//                        } else if (object.romaji != nil) && (object.word != nil) {
+//                            let categoryMatch = (object.romaji!.lowercased().hasPrefix(searchString.lowercased())) || (object.word!.lowercased().hasPrefix(searchString.lowercased()))
+//                            return categoryMatch
+//                        } else if object.kana != nil && object.romaji != nil{
+//                            let categoryMatch = (object.kana!.lowercased().hasPrefix(searchString.lowercased())) || (object.romaji!.lowercased().hasPrefix(searchString.lowercased()))
+//                            return categoryMatch
+//                        } else if object.word != nil{
+//                            let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased()))
+//                            return categoryMatch
+//                        }  else if object.romaji != nil{
+//                            let categoryMatch = (object.romaji!.lowercased().hasPrefix(searchString.lowercased()))
+//                            return categoryMatch
+//                        }  else if object.kana != nil{
+//                            let categoryMatch = (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
+//                            return categoryMatch
+//                        } else {
+//                            return false
+//                        }
+                    } )
+                    
+                    //Nhat - > Viet
+                }
+            }
+            
             for index in 0..<30 {
                 if self.filterArray.count > index {
                     self.filterDisplayArray.append(self.filterArray[index])
@@ -294,64 +333,6 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
             }
             
         }
-
-
-
     }
-    
-    func searchWordInArray(firstArray:[Translate],searchText:String) {
-        let searchString = searchText.lowercased()
-        if firstArray.count > 0 {
-            if self.changeLangueButton.isSelected {
-                //Viet -> Nhat
-                self.filterArray = firstArray.filter({ (object : Translate) -> Bool in
-                    if (object.word != nil) && (object.meaning_name != nil) {
-                        let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
-                        return categoryMatch
-                    } else if (object.word != nil) {
-                        //                    print("word" + object.word!)
-                        let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased()))
-                        return categoryMatch
-                    } else if (object.meaning_name != nil) {
-                        let categoryMatch = (object.meaning_name!.lowercased().hasPrefix(searchString.lowercased()))
-                        return categoryMatch
-                    } else {
-                        return false
-                    }
-                } )
-                
-            } else {
-                self.filterArray = firstArray.filter({ (object : Translate) -> Bool in
-                    if (object.word != nil) && (object.romaji != nil) && (object.kana != nil)  {
-                        let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.romaji!.lowercased().hasPrefix(searchString.lowercased())) || (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
-                        return categoryMatch
-                    } else if (object.word != nil) && (object.kana != nil) {
-                        //                    print("word" + object.word!)
-                        let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased())) || (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
-                        return categoryMatch
-                    } else if (object.romaji != nil) && (object.word != nil) {
-                        let categoryMatch = (object.romaji!.lowercased().hasPrefix(searchString.lowercased())) || (object.word!.lowercased().hasPrefix(searchString.lowercased()))
-                        return categoryMatch
-                    } else if object.kana != nil && object.romaji != nil{
-                        let categoryMatch = (object.kana!.lowercased().hasPrefix(searchString.lowercased())) || (object.romaji!.lowercased().hasPrefix(searchString.lowercased()))
-                        return categoryMatch
-                    } else if object.word != nil{
-                        let categoryMatch = (object.word!.lowercased().hasPrefix(searchString.lowercased()))
-                        return categoryMatch
-                    }  else if object.romaji != nil{
-                        let categoryMatch = (object.romaji!.lowercased().hasPrefix(searchString.lowercased()))
-                        return categoryMatch
-                    }  else if object.kana != nil{
-                        let categoryMatch = (object.kana!.lowercased().hasPrefix(searchString.lowercased()))
-                        return categoryMatch
-                    } else {
-                        return false
-                    }
-                } )
-                
-                //Nhat - > Viet
-            }
-        }
-    }
-    
+
 }

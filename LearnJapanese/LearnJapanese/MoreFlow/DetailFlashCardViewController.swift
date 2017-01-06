@@ -52,7 +52,7 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
             let word = listWord[i]
             let customView = UINib(nibName: "RotateView", bundle: Bundle.main).instantiate(withOwner: self, options: nil)[0] as? RotateView
             customView?.frame = CGRect.init(x: 10 + CGFloat(i) * CGFloat(scrollView.frame.size.width), y: 0, width: scrollViewWidth - 20, height: scrollViewHeight)
-            
+
             customView?.translateTextLabel.text = word.word
             customView?.textLabel.text = word.meaning
             customView?.clipsToBounds = true
@@ -107,8 +107,9 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
             }
             
         }
-//        UIView.transition(with: viewAnimate!, duration: 0.5, options: option, animations: nil, completion: nil)
+        UIView.transition(with: viewAnimate, duration: 0.5, options: option, animations: nil, completion: nil)
     }
+    
     func playSoundTapped(index: Int) {
         let object = listWord[index]
         if object.source_url != nil {
