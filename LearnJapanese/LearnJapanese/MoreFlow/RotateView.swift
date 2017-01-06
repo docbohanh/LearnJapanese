@@ -20,6 +20,8 @@ class RotateView: UIView {
     @IBOutlet weak var translateTextLabel: UILabel!
     var index : Int!
     var delegate : RotateViewDelegate!
+    var isShowImage = false
+    
 
     @IBAction func flashCardButton_clicked(_ sender: Any) {
         self.delegate.flashCardTapped(index: index)

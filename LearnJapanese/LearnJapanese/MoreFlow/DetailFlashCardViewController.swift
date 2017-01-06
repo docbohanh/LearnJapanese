@@ -59,6 +59,7 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
             customView?.layer.cornerRadius = 5.0
             customView?.index = i
             customView?.delegate = self
+            customView?.tag = 1000 + i
             scrollView.addSubview(customView!)
         }
         self.scrollView.contentSize = CGSize(width:self.scrollView.frame.width * CGFloat(listWord.count), height:self.scrollView.frame.height)
@@ -95,7 +96,18 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
         
     }
     func favoriteTapped(index: Int) {
-        
+        let viewAnimate = view.viewWithTag(1000 + index) as! RotateView
+        let option:UIViewAnimationOptions = .transitionFlipFromLeft
+        UIView.transition(with: viewAnimate, duration: 0.5, options: option, animations: nil) { (isSuccess) in
+            viewAnimate.isShowImage = !viewAnimate.isShowImage
+            if viewAnimate.isShowImage {
+                viewAnimate.textLabel.backgroundColor = UIColor.red
+            }else {
+                viewAnimate.textLabel.backgroundColor = UIColor.blue
+            }
+            
+        }
+//        UIView.transition(with: viewAnimate!, duration: 0.5, options: option, animations: nil, completion: nil)
     }
     func playSoundTapped(index: Int) {
         let object = listWord[index]
