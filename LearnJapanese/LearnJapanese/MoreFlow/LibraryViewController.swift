@@ -36,6 +36,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.tabBarController?.tabBar.isHidden = false
+
 //        titleArray = FlashCard.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [FlashCard]
 //        libraryTableView.reloadData()
     }
@@ -101,7 +103,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "DetailFlashCardViewController") as! DetailFlashCardViewController
         detaiVC.listWord = subWordArray
         detaiVC.currentIndexWord = indexPath.row
-        self.present(detaiVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(detaiVC, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

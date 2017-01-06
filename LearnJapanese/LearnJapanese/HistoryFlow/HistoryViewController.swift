@@ -24,6 +24,8 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+
         self.historyArray = History.mr_findAll() as! [History]
         self.tableView.reloadData()
     }

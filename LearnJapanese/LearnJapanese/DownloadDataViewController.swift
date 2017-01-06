@@ -37,6 +37,7 @@ class DownloadDataViewController: UIViewController {
         progressView.frame = CGRect.init(x: 0, y: 0, width: 0, height: fullTrackView.frame.height)
         fullTrackView.addSubview(progressView)
         if UserDefaults.standard.object(forKey: "version") == nil {
+//            self.createDefaultData()
             UserDefaults.standard.set("", forKey: "version")
         } else {
             
@@ -49,6 +50,112 @@ class DownloadDataViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         print("will disappear download")
+    }
+    
+    func createDefaultData() -> Void {
+        if let filepath = Bundle.main.path(forResource: "data", ofType: "json") {
+            do {
+                let contents = try String(contentsOfFile: filepath)
+                let data = contents.data(using:.utf8)
+                guard let json = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String:AnyObject] else {
+                    return
+                }
+                print("json:", json)
+                UserDefaults.standard.set(json["Version"] as! String, forKey: "version")
+
+                for i in 0 ..< json.count {
+                    if let word = json["Data"] as? [String:AnyObject] {
+                        MagicalRecord.save({ (localContext) in
+                            
+                            let wordData = Translate.mr_createEntity(in: localContext)
+                            
+                            if let word_id = word["Id"] {
+                                wordData?.id = String(describing: word_id)
+                            }
+                            if let Word = word["Word"] {
+                                wordData?.word = Word as? String
+                            }
+                            
+                            if let kana = word["Kana"] {
+                                wordData?.kana = kana as? String
+                            }
+                            if let Romaji = word["Romaji"] {
+                                wordData?.romaji = Romaji["Romaji"] as? String
+                            }
+                            if let SoundUrl = word["SoundUrl"] {
+                                wordData?.sound_url = SoundUrl["SoundUrl"] as? String
+                            }
+                            if let LastmodifiedDate = word["LastmodifiedDate"] {
+                                let trimString = LastmodifiedDate
+                                let timeStamp:String = trimString.substring(from: 5)
+                                wordData?.last_modified = timeStamp.substring(to: (timeStamp.characters.count - 7))
+                            }
+                            if let Modified = word["Modified"] {
+                                wordData?.modified = Modified as? String
+                            }
+                            if let SoundUrl = word["SoundUrl"] {
+                                wordData?.sound_url = SoundUrl as? String
+                            }
+                            if let Avatar = word["Avatar"] {
+                                wordData?.avatar = Avatar as? String
+                            }
+                            
+                            let meaningWord = word["Meaning"] as? [[String:AnyObject]]
+                            let first = meaningWord?.first
+                            if let Meaning  = first?["Meaning"] {
+                                wordData?.meaning_name = Meaning as? String
+                            }
+                            if let MeaningId = first?["MeaningId"] {
+                                wordData?.meaningId = MeaningId as? String
+                            }
+                            if let Type = first?["Type"] {
+                                wordData?.meaning_type = String(describing: Type)
+                            }
+                            
+                            let exampleWord = word["Example"] as? [[String:AnyObject]]
+                            let firstExample = exampleWord?.first
+                            
+                            if let ExampleId = firstExample?["ExampleId"] {
+                                wordData?.example_id = String(describing: ExampleId)
+                            }
+                            if let Example = firstExample?["Example"] {
+                                wordData?.example_name = Example as? String
+                            }
+                            if let Meaning = firstExample?["Meaning"] {
+                                wordData?.example_meaning_name = Meaning as? String
+                            }
+                            if let MeaningId = firstExample?["MeaningId"] {
+                                wordData?.example_meaning_id = String(describing: MeaningId)
+                            }
+                            if let Romaji = firstExample?["Romaji"] {
+                                wordData?.example_romaji = Romaji as? String
+                            }
+                            if let Kana = firstExample?["Kana"] {
+                                wordData?.example_kana = Kana as? String
+                            }
+                            if let SoundUrl = firstExample?["SoundUrl"] {
+                                wordData?.example_sound_url = SoundUrl as? String
+                            }
+                            
+                            self.appDelegate.wordArray.append(wordData!)
+                            self.checkProgress()
+                            
+                        }, completion: {(contextDidSave,error) in
+                            //            print("saving is successful")
+                            
+                            self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
+                            
+                        })
+                    }
+                    
+                    
+                }
+
+            } catch {
+                // contents could not be loaded
+            }
+        } else {
+        }
     }
     
     func getdataLocal() {

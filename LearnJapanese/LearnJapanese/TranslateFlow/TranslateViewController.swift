@@ -32,6 +32,10 @@ class TranslateViewController: UIViewController {
         inputTextView.setContentOffset(CGPoint.zero, animated: false)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = false
+
+    }
     func hideKeyboard() {
         view.endEditing(true)
     }

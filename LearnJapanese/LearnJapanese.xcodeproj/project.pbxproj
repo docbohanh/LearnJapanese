@@ -26,6 +26,7 @@
 		844AA44E1E1C3874002C741B /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 844AA44D1E1C3874002C741B /* Model.xcmappingmodel */; };
 		846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D5A241E181856002307CD /* DetailFlashCardViewController.swift */; };
 		849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C2C891E155C3B00350066 /* DownloadDataViewController.swift */; };
+		84A200CC1E202DD200E7290A /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A200CB1E202DD200E7290A /* data.json */; };
 		B84040B15AD6906377CA4F43 /* Pods_LearnJapaneseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */; };
 		D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */; };
 		D24847F51E1EBA1C00603164 /* RotateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24847F41E1EBA1C00603164 /* RotateView.xib */; };
@@ -102,6 +103,7 @@
 		844AA44D1E1C3874002C741B /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 		846D5A241E181856002307CD /* DetailFlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFlashCardViewController.swift; sourceTree = "<group>"; };
 		849C2C891E155C3B00350066 /* DownloadDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDataViewController.swift; sourceTree = "<group>"; };
+		84A200CB1E202DD200E7290A /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapaneseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6A0240A367E383FA75F5428 /* Pods-LearnJapaneseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B528F679D54539D047D124D8 /* Pods-LearnJapanese.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapanese.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese.release.xcconfig"; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 		EA2A8B811E0D36B0009622F7 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				84A200CB1E202DD200E7290A /* data.json */,
 				844AA44D1E1C3874002C741B /* Model.xcmappingmodel */,
 			);
 			path = Database;
@@ -485,6 +488,7 @@
 				D24847F51E1EBA1C00603164 /* RotateView.xib in Resources */,
 				D2688E141DED8B9D00EB3A6E /* SearchDekiru.storyboard in Resources */,
 				D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */,
+				84A200CC1E202DD200E7290A /* data.json in Resources */,
 				840579C61DED79DA0019C100 /* Assets.xcassets in Resources */,
 				840579C11DED79DA0019C100 /* Main.storyboard in Resources */,
 				D249C7991DF05EFB00FF0E44 /* Library.storyboard in Resources */,

@@ -35,6 +35,7 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
 //        wordLabel.text = word
     }
     
@@ -83,7 +84,7 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     }
 
     @IBAction func tappedBack(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,7 +94,11 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     
     /* ========= ROTATE VIEW DELEGATE ======== */
     func flashCardTapped(index: Int) {
-        
+        let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDekiru", bundle: Bundle.main)
+        let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "WordDetailViewController") as! WordDetailViewController
+        detaiVC.searchText = listWord[index].word ?? ""
+        detaiVC.wordId = listWord[index].id ?? ""
+        self.navigationController?.pushViewController(detaiVC, animated: true)
     }
     func favoriteTapped(index: Int) {
         let viewAnimate = view.viewWithTag(1000 + index) as! RotateView

@@ -33,6 +33,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     var searchText : String = ""
     var wordId: String = ""
     var detailTranslate: Translate!
+    var detailFlashCard: Translate!
     var player: AVPlayer!
     
     
@@ -43,7 +44,9 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         // Do any additional setup after loading the view.
         self.setupViewController()
         DispatchQueue.global().async {
-            self.saveHistoryData(translate: self.detailTranslate)
+            if self.detailTranslate != nil {
+                self.saveHistoryData(translate: self.detailTranslate)
+            }
         }
     }
 
@@ -53,9 +56,13 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         searchTextField.layer.borderColor = UIColor.white.cgColor
     }
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+
         DispatchQueue.global().async {
+            
             let detailTranslate = Translate.mr_find(byAttribute: "id", withValue: self.wordId)?.first as? Translate
             DispatchQueue.main.async {
+                
                 self.meaningLabel.text = detailTranslate?.meaning_name
                 self.examplelabel.text = detailTranslate?.example_meaning_name
                 self.titleLabel.text = self.searchText
@@ -142,6 +149,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         backgroundPopupView.isHidden = false
         popupView?.myFlashCardsLabel.text = "Flash Cards của tôi"
         popupView?.storeType = .flash_card
+        self.saveWordToLocal(type: .flash_card)
     }
     @IBAction func tappedClosePopupButton(_ sender: Any) {
         backgroundPopupView.isHidden = true
@@ -251,14 +259,43 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
             }, completion: { contextDidSave in
                 //saving is successful
                 print("saving is successful")
+
             })
         
     }
     
     func saveWordToLocal(type: MyStoreType) {
         let localContext = NSManagedObjectContext()
-        
-        
+        let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: "myWord")
+        if oldFlashCard == nil {
+            MagicalRecord.save({localContext in
+                let wordData = FlashCard.mr_createEntity(in:localContext)
+                wordData?.id = type == .word ? "word" : "flashcard"
+                wordData?.title = "Từ đã lưu"
+                wordData?.avatar =  ""
+            }, completion: {didContext in
+                self.backgroundPopupView.isHidden = true
+                MagicalRecord.save({localContext in
+                    let wordData = FlashCardDetail.mr_createEntity(in:localContext)
+                    wordData?.kana = self.detailTranslate.kana ?? ""
+                    wordData?.word = self.detailTranslate.word ?? ""
+                    wordData?.source_url = self.detailTranslate.sound_url ?? ""
+                    wordData?.meaning = self.detailTranslate.meaning_name ?? ""
+                    wordData?.romaji = self.detailTranslate.romaji ?? ""
+                    wordData?.id = self.detailTranslate.id ?? ""
+                    
+                    if type == .flash_card {
+                        wordData?.flash_card_id = "flashcard"
+                    } else {
+                        wordData?.flash_card_id = "word"
+                        
+                    }
+                }, completion: {didContext in
+                    self.backgroundPopupView.isHidden = true
+                    ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+                })
+            })
+        } else {
             MagicalRecord.save({localContext in
                 let wordData = FlashCardDetail.mr_createEntity(in:localContext)
                 wordData?.kana = self.detailTranslate.kana ?? ""
@@ -272,12 +309,15 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
                     wordData?.flash_card_id = "flashcard"
                 } else {
                     wordData?.flash_card_id = "word"
-
+                    
                 }
             }, completion: {didContext in
                 self.backgroundPopupView.isHidden = true
                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
             })
 
+        }
+
+        
     }
 }
