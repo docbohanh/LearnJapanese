@@ -299,6 +299,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
 
     }
     
+    //This is back up version
     func searchWordInArray(firstArray:[Translate],searchText:String) {
         let searchString = searchText.lowercased()
         if firstArray.count > 0 {
