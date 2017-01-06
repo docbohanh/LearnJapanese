@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Lịch sử-->
+        <scene sceneID="Knh-7t-PBi">
+            <objects>
+                <navigationController storyboardIdentifier="HistoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GKt-OB-eAd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Lịch sử" image="icon_history" id="wzq-tB-Qv9"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yvz-xY-IMP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.061138659720000002" green="0.47626364230000001" blue="0.42406085129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="cko-PZ-URP" kind="relationship" relationship="rootViewController" id="kpr-Yd-gPo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ToB-vI-gqV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-700" y="36"/>
+        </scene>
+        <!--Lịch sử-->
+        <scene sceneID="kQl-rC-h3y">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="cko-PZ-URP" customClass="HistoryViewController" customModule="LearnJapanese" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VVn-sv-156"/>
+                        <viewControllerLayoutGuide type="bottom" id="cMf-zq-RbB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3yN-TE-5Qj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yBI-iw-t7S">
+                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="cko-PZ-URP" id="efq-uz-Ir2"/>
+                                    <outlet property="delegate" destination="cko-PZ-URP" id="v6D-pK-1fp"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yBI-iw-t7S" secondAttribute="trailing" id="4za-OO-o2w"/>
+                            <constraint firstItem="yBI-iw-t7S" firstAttribute="top" secondItem="VVn-sv-156" secondAttribute="bottom" id="ikZ-3h-RSD"/>
+                            <constraint firstItem="yBI-iw-t7S" firstAttribute="leading" secondItem="3yN-TE-5Qj" secondAttribute="leading" id="sHr-Ww-U33"/>
+                            <constraint firstItem="cMf-zq-RbB" firstAttribute="top" secondItem="yBI-iw-t7S" secondAttribute="bottom" id="vgT-Vy-kkZ"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Lịch sử" image="icon_history" id="kUO-Wj-FUA"/>
+                    <navigationItem key="navigationItem" id="mJr-zj-53X">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="M6e-N4-tNK">
+                            <view key="customView" contentMode="scaleToFill" id="gIs-5o-njC">
+                                <rect key="frame" x="20" y="5" width="150" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLZ-2v-gxB">
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="110" id="QVl-wC-hwh"/>
+                                        </constraints>
+                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Lịch sử" image="icon_logo">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="dLZ-2v-gxB" firstAttribute="leading" secondItem="gIs-5o-njC" secondAttribute="leading" id="Q2p-V4-IfP"/>
+                                    <constraint firstItem="dLZ-2v-gxB" firstAttribute="top" secondItem="gIs-5o-njC" secondAttribute="top" id="QbZ-bS-cBj"/>
+                                    <constraint firstAttribute="bottom" secondItem="dLZ-2v-gxB" secondAttribute="bottom" id="wD3-8c-asU"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="5Hu-Lz-fjI">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aHx-9c-FSv">
+                                <rect key="frame" x="314" y="9" width="80" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="icon_change_language"/>
+                                <state key="selected" image="viet_nhat"/>
+                                <connections>
+                                    <action selector="tappedChangeLangue:" destination="cko-PZ-URP" eventType="touchUpInside" id="7GT-aC-tG7"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="changeLangueButton" destination="aHx-9c-FSv" id="hAW-OV-hGu"/>
+                        <outlet property="tableView" destination="yBI-iw-t7S" id="oEj-BO-PXs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cVg-5y-46r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34" y="36"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_change_language" width="73" height="26"/>
+        <image name="icon_history" width="20" height="20"/>
+        <image name="icon_logo" width="33" height="33"/>
+        <image name="viet_nhat" width="73" height="26"/>
+    </resources>
+</document>

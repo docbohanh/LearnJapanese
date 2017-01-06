@@ -1,0 +1,51 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++83B6342",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++FD5479F" : 9223372036854775807,
+    "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++83B6342" : 9223372036854775807,
+    "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++70E25A7" : 9223372036854775807,
+    "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++B4D13C2" : 9223372036854775807,
+    "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++C875F1F" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9919D06B-2DAF-4A35-8CE5-82261F34F567",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++FD5479F" : "",
+    "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++83B6342" : "Japanese\/",
+    "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++70E25A7" : "SourceCode\/",
+    "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++B4D13C2" : "",
+    "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++C875F1F" : "LearnJapanese\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "LearnJapanese",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LearnJapanese\/LearnJapanese.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lighthouse2403\/LearnJapanese",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++70E25A7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lighthouse2403\/LearnJapanese",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++83B6342"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lighthouse2403\/LearnJapanese",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++B4D13C2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lighthouse2403\/LearnJapanese.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++C875F1F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lighthouse2403\/LearnJapanese",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "69EB3A64C314503DA6E8FE151D7047C3B397F7B8+++FD5479F"
+    }
+  ]
+}

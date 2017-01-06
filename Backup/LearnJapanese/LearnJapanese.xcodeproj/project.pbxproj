@@ -1,0 +1,986 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1184ECB40558138B426B9116 /* Pods_LearnJapaneseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC133B8769AF912CC8E51B /* Pods_LearnJapaneseUITests.framework */; };
+		67B6C49519EA0F9B92203FBE /* Pods_LearnJapanese.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2DA111F1C49E3CCB7912D7 /* Pods_LearnJapanese.framework */; };
+		840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579BB1DED79DA0019C100 /* AppDelegate.swift */; };
+		840579C11DED79DA0019C100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579BF1DED79DA0019C100 /* Main.storyboard */; };
+		840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 840579C21DED79DA0019C100 /* LearnJapanese.xcdatamodeld */; };
+		840579C61DED79DA0019C100 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 840579C51DED79DA0019C100 /* Assets.xcassets */; };
+		840579C91DED79DA0019C100 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579C71DED79DA0019C100 /* LaunchScreen.storyboard */; };
+		840579D41DED79DA0019C100 /* LearnJapaneseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579D31DED79DA0019C100 /* LearnJapaneseTests.swift */; };
+		840579DF1DED79DA0019C100 /* LearnJapaneseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579DE1DED79DA0019C100 /* LearnJapaneseUITests.swift */; };
+		840579F81DED8CF80019C100 /* DictionaryTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579F71DED8CF80019C100 /* DictionaryTabBarViewController.swift */; };
+		840579FA1DED8E5E0019C100 /* TranslateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579F91DED8E5E0019C100 /* TranslateViewController.swift */; };
+		840579FC1DEDC33C0019C100 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579FB1DEDC33C0019C100 /* LibraryViewController.swift */; };
+		840579FE1DEDC3AC0019C100 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579FD1DEDC3AC0019C100 /* HeaderView.swift */; };
+		84057A001DEDC6EB0019C100 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840579FF1DEDC6EB0019C100 /* HeaderView.xib */; };
+		84057A021DEDC8CF0019C100 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */; };
+		844734B51DFB19F600A57640 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844734B41DFB19F600A57640 /* StringExtension.swift */; };
+		844AA44E1E1C3874002C741B /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 844AA44D1E1C3874002C741B /* Model.xcmappingmodel */; };
+		846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D5A241E181856002307CD /* DetailFlashCardViewController.swift */; };
+		849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C2C891E155C3B00350066 /* DownloadDataViewController.swift */; };
+		B84040B15AD6906377CA4F43 /* Pods_LearnJapaneseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */; };
+		D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */; };
+		D24847F51E1EBA1C00603164 /* RotateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24847F41E1EBA1C00603164 /* RotateView.xib */; };
+		D24847F71E1EBA3800603164 /* RotateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24847F61E1EBA3800603164 /* RotateView.swift */; };
+		D249C7991DF05EFB00FF0E44 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D249C7981DF05EFB00FF0E44 /* Library.storyboard */; };
+		D24A13581DED8E2A00E9E063 /* SearchDerikuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13571DED8E2A00E9E063 /* SearchDerikuViewController.swift */; };
+		D24A135B1DED966400E9E063 /* WordSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13591DED966400E9E063 /* WordSearchTableViewCell.swift */; };
+		D24A135C1DED966400E9E063 /* WordSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24A135A1DED966400E9E063 /* WordSearchTableViewCell.xib */; };
+		D24A135F1DEDA37200E9E063 /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A135E1DEDA37200E9E063 /* WordModel.swift */; };
+		D24A13651DEDA98300E9E063 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24A13641DEDA98300E9E063 /* History.storyboard */; };
+		D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13661DEDAAAC00E9E063 /* HistoryViewController.swift */; };
+		D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13681DEDCA8A00E9E063 /* SavePopupView.swift */; };
+		D24A136B1DEDCA9700E9E063 /* SavePopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24A136A1DEDCA9700E9E063 /* SavePopupView.xib */; };
+		D256EBCE1DFB1D63007D56EE /* KMPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256EBCD1DFB1D63007D56EE /* KMPlaceholderTextView.swift */; };
+		D2688E141DED8B9D00EB3A6E /* SearchDekiru.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */; };
+		D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2688E121DED8B9D00EB3A6E /* Translate.storyboard */; };
+		D27FF8691DFF0A6300EA02D1 /* NSVBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27FF8671DFF0A6300EA02D1 /* NSVBarController.swift */; };
+		D27FF86A1DFF0A6300EA02D1 /* NSVTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27FF8681DFF0A6300EA02D1 /* NSVTabBarController.swift */; };
+		D29ACF5D1E17CC6F005CCA96 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29ACF5C1E17CC6F005CCA96 /* CoreAudio.framework */; };
+		D29ACF5F1E17CCEE005CCA96 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29ACF5E1E17CCEE005CCA96 /* AVFoundation.framework */; };
+		D29ACF611E17CCFB005CCA96 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D29ACF601E17CCFB005CCA96 /* AVKit.framework */; };
+		D2EF304F1DFD4A2600287924 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EF304E1DFD4A2600287924 /* APIManager.swift */; };
+		EA2A8B781E0D1330009622F7 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B711E0D1330009622F7 /* Define.swift */; };
+		EA2A8B7A1E0D1330009622F7 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B731E0D1330009622F7 /* LoadingOverlay.swift */; };
+		EA2A8B7B1E0D1330009622F7 /* ProjectCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B741E0D1330009622F7 /* ProjectCommon.swift */; };
+		EA2A8B7C1E0D1330009622F7 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B751E0D1330009622F7 /* UIButtonExtension.swift */; };
+		EA2A8B7D1E0D1330009622F7 /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B761E0D1330009622F7 /* UILabelExtension.swift */; };
+		EA2A8B7E1E0D1330009622F7 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A8B771E0D1330009622F7 /* UIViewExtension.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		840579D01DED79DA0019C100 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 840579B01DED79DA0019C100 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 840579B71DED79DA0019C100;
+			remoteInfo = LearnJapanese;
+		};
+		840579DB1DED79DA0019C100 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 840579B01DED79DA0019C100 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 840579B71DED79DA0019C100;
+			remoteInfo = LearnJapanese;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3C9D85BC6DCAA5DC6B62379A /* Pods-LearnJapanese.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapanese.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese.debug.xcconfig"; sourceTree = "<group>"; };
+		3E2DA111F1C49E3CCB7912D7 /* Pods_LearnJapanese.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapanese.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		413ADFF76D4C4E01F2F27E12 /* Pods-LearnJapaneseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseTests/Pods-LearnJapaneseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4E051E58AC22A7C6A366BCF2 /* Pods-LearnJapaneseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseTests/Pods-LearnJapaneseTests.release.xcconfig"; sourceTree = "<group>"; };
+		840579B81DED79DA0019C100 /* LearnJapanese.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnJapanese.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		840579BB1DED79DA0019C100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		840579C01DED79DA0019C100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		840579C31DED79DA0019C100 /* LearnJapanese.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LearnJapanese.xcdatamodel; sourceTree = "<group>"; };
+		840579C51DED79DA0019C100 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		840579C81DED79DA0019C100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		840579CA1DED79DA0019C100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		840579CF1DED79DA0019C100 /* LearnJapaneseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnJapaneseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		840579D31DED79DA0019C100 /* LearnJapaneseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnJapaneseTests.swift; sourceTree = "<group>"; };
+		840579D51DED79DA0019C100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		840579DA1DED79DA0019C100 /* LearnJapaneseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnJapaneseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		840579DE1DED79DA0019C100 /* LearnJapaneseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnJapaneseUITests.swift; sourceTree = "<group>"; };
+		840579E01DED79DA0019C100 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		840579F71DED8CF80019C100 /* DictionaryTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTabBarViewController.swift; sourceTree = "<group>"; };
+		840579F91DED8E5E0019C100 /* TranslateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
+		840579FB1DEDC33C0019C100 /* LibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		840579FD1DEDC3AC0019C100 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		840579FF1DEDC6EB0019C100 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
+		843D34371E14209700D4FDE3 /* LearnJapanese.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnJapanese.entitlements; sourceTree = "<group>"; };
+		844734B41DFB19F600A57640 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = ../StringExtension.swift; sourceTree = "<group>"; };
+		844AA44D1E1C3874002C741B /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
+		846D5A241E181856002307CD /* DetailFlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFlashCardViewController.swift; sourceTree = "<group>"; };
+		849C2C891E155C3B00350066 /* DownloadDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDataViewController.swift; sourceTree = "<group>"; };
+		8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapaneseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6A0240A367E383FA75F5428 /* Pods-LearnJapaneseUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B528F679D54539D047D124D8 /* Pods-LearnJapanese.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapanese.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese.release.xcconfig"; sourceTree = "<group>"; };
+		B71028C69EA800855790B3A5 /* Pods-LearnJapaneseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDetailViewController.swift; sourceTree = "<group>"; };
+		D24847F41E1EBA1C00603164 /* RotateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RotateView.xib; sourceTree = "<group>"; };
+		D24847F61E1EBA3800603164 /* RotateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateView.swift; sourceTree = "<group>"; };
+		D249C7981DF05EFB00FF0E44 /* Library.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
+		D24A13571DED8E2A00E9E063 /* SearchDerikuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDerikuViewController.swift; sourceTree = "<group>"; };
+		D24A13591DED966400E9E063 /* WordSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordSearchTableViewCell.swift; path = ../SearchDekiruFlow/WordSearchTableViewCell.swift; sourceTree = "<group>"; };
+		D24A135A1DED966400E9E063 /* WordSearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WordSearchTableViewCell.xib; path = ../SearchDekiruFlow/WordSearchTableViewCell.xib; sourceTree = "<group>"; };
+		D24A135E1DEDA37200E9E063 /* WordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
+		D24A13641DEDA98300E9E063 /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		D24A13661DEDAAAC00E9E063 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		D24A13681DEDCA8A00E9E063 /* SavePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavePopupView.swift; sourceTree = "<group>"; };
+		D24A136A1DEDCA9700E9E063 /* SavePopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SavePopupView.xib; sourceTree = "<group>"; };
+		D256EBCD1DFB1D63007D56EE /* KMPlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPlaceholderTextView.swift; sourceTree = "<group>"; };
+		D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchDekiru.storyboard; sourceTree = "<group>"; };
+		D2688E121DED8B9D00EB3A6E /* Translate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Translate.storyboard; sourceTree = "<group>"; };
+		D27FF8671DFF0A6300EA02D1 /* NSVBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSVBarController.swift; sourceTree = "<group>"; };
+		D27FF8681DFF0A6300EA02D1 /* NSVTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSVTabBarController.swift; path = CustomTabbar/NSVTabBarController.swift; sourceTree = "<group>"; };
+		D29ACF5C1E17CC6F005CCA96 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D29ACF5E1E17CCEE005CCA96 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D29ACF601E17CCFB005CCA96 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		D2EF304E1DFD4A2600287924 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		E4EC133B8769AF912CC8E51B /* Pods_LearnJapaneseUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapaneseUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA2A8B711E0D1330009622F7 /* Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		EA2A8B731E0D1330009622F7 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
+		EA2A8B741E0D1330009622F7 /* ProjectCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCommon.swift; sourceTree = "<group>"; };
+		EA2A8B751E0D1330009622F7 /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		EA2A8B761E0D1330009622F7 /* UILabelExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
+		EA2A8B771E0D1330009622F7 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		840579B51DED79DA0019C100 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D29ACF611E17CCFB005CCA96 /* AVKit.framework in Frameworks */,
+				D29ACF5F1E17CCEE005CCA96 /* AVFoundation.framework in Frameworks */,
+				D29ACF5D1E17CC6F005CCA96 /* CoreAudio.framework in Frameworks */,
+				67B6C49519EA0F9B92203FBE /* Pods_LearnJapanese.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		840579CC1DED79DA0019C100 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B84040B15AD6906377CA4F43 /* Pods_LearnJapaneseTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		840579D71DED79DA0019C100 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1184ECB40558138B426B9116 /* Pods_LearnJapaneseUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		73B2AAECCE95D361A09536FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D29ACF601E17CCFB005CCA96 /* AVKit.framework */,
+				D29ACF5E1E17CCEE005CCA96 /* AVFoundation.framework */,
+				D29ACF5C1E17CC6F005CCA96 /* CoreAudio.framework */,
+				3E2DA111F1C49E3CCB7912D7 /* Pods_LearnJapanese.framework */,
+				8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */,
+				E4EC133B8769AF912CC8E51B /* Pods_LearnJapaneseUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		760F39D19E30A64A7A540CE2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3C9D85BC6DCAA5DC6B62379A /* Pods-LearnJapanese.debug.xcconfig */,
+				B528F679D54539D047D124D8 /* Pods-LearnJapanese.release.xcconfig */,
+				413ADFF76D4C4E01F2F27E12 /* Pods-LearnJapaneseTests.debug.xcconfig */,
+				4E051E58AC22A7C6A366BCF2 /* Pods-LearnJapaneseTests.release.xcconfig */,
+				A6A0240A367E383FA75F5428 /* Pods-LearnJapaneseUITests.debug.xcconfig */,
+				B71028C69EA800855790B3A5 /* Pods-LearnJapaneseUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		840579AF1DED79D90019C100 = {
+			isa = PBXGroup;
+			children = (
+				840579BA1DED79DA0019C100 /* LearnJapanese */,
+				840579D21DED79DA0019C100 /* LearnJapaneseTests */,
+				840579DD1DED79DA0019C100 /* LearnJapaneseUITests */,
+				840579B91DED79DA0019C100 /* Products */,
+				760F39D19E30A64A7A540CE2 /* Pods */,
+				73B2AAECCE95D361A09536FF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		840579B91DED79DA0019C100 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				840579B81DED79DA0019C100 /* LearnJapanese.app */,
+				840579CF1DED79DA0019C100 /* LearnJapaneseTests.xctest */,
+				840579DA1DED79DA0019C100 /* LearnJapaneseUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		840579BA1DED79DA0019C100 /* LearnJapanese */ = {
+			isa = PBXGroup;
+			children = (
+				843D34371E14209700D4FDE3 /* LearnJapanese.entitlements */,
+				EA2A8B811E0D36B0009622F7 /* Database */,
+				EA2A8B701E0D1330009622F7 /* Common */,
+				D2EF304D1DFD4A0C00287924 /* APIManager */,
+				D27FF8661DFF0A4E00EA02D1 /* CustomTabbar */,
+				D2688E0F1DED8B9C00EB3A6E /* SearchDekiruFlow */,
+				D24A13631DEDA98300E9E063 /* HistoryFlow */,
+				D24A135D1DEDA35E00E9E063 /* Model */,
+				D2688E0D1DED8B9C00EB3A6E /* Library */,
+				D2688E111DED8B9C00EB3A6E /* TranslateFlow */,
+				840579BB1DED79DA0019C100 /* AppDelegate.swift */,
+				849C2C891E155C3B00350066 /* DownloadDataViewController.swift */,
+				840579BF1DED79DA0019C100 /* Main.storyboard */,
+				D27FF8681DFF0A6300EA02D1 /* NSVTabBarController.swift */,
+				840579F71DED8CF80019C100 /* DictionaryTabBarViewController.swift */,
+				840579C51DED79DA0019C100 /* Assets.xcassets */,
+				840579C71DED79DA0019C100 /* LaunchScreen.storyboard */,
+				840579CA1DED79DA0019C100 /* Info.plist */,
+				840579C21DED79DA0019C100 /* LearnJapanese.xcdatamodeld */,
+			);
+			path = LearnJapanese;
+			sourceTree = "<group>";
+		};
+		840579D21DED79DA0019C100 /* LearnJapaneseTests */ = {
+			isa = PBXGroup;
+			children = (
+				840579D31DED79DA0019C100 /* LearnJapaneseTests.swift */,
+				840579D51DED79DA0019C100 /* Info.plist */,
+			);
+			path = LearnJapaneseTests;
+			sourceTree = "<group>";
+		};
+		840579DD1DED79DA0019C100 /* LearnJapaneseUITests */ = {
+			isa = PBXGroup;
+			children = (
+				840579DE1DED79DA0019C100 /* LearnJapaneseUITests.swift */,
+				840579E01DED79DA0019C100 /* Info.plist */,
+			);
+			path = LearnJapaneseUITests;
+			sourceTree = "<group>";
+		};
+		D24A135D1DEDA35E00E9E063 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D24A135E1DEDA37200E9E063 /* WordModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D24A13631DEDA98300E9E063 /* HistoryFlow */ = {
+			isa = PBXGroup;
+			children = (
+				D24A13591DED966400E9E063 /* WordSearchTableViewCell.swift */,
+				D24A135A1DED966400E9E063 /* WordSearchTableViewCell.xib */,
+				D24A13641DEDA98300E9E063 /* History.storyboard */,
+				D24A13661DEDAAAC00E9E063 /* HistoryViewController.swift */,
+			);
+			path = HistoryFlow;
+			sourceTree = "<group>";
+		};
+		D2688E0D1DED8B9C00EB3A6E /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				D256EBCD1DFB1D63007D56EE /* KMPlaceholderTextView.swift */,
+				D249C7981DF05EFB00FF0E44 /* Library.storyboard */,
+				840579FB1DEDC33C0019C100 /* LibraryViewController.swift */,
+				840579FD1DEDC3AC0019C100 /* HeaderView.swift */,
+				840579FF1DEDC6EB0019C100 /* HeaderView.xib */,
+				84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */,
+				846D5A241E181856002307CD /* DetailFlashCardViewController.swift */,
+				D24847F41E1EBA1C00603164 /* RotateView.xib */,
+				D24847F61E1EBA3800603164 /* RotateView.swift */,
+			);
+			name = Library;
+			path = MoreFlow;
+			sourceTree = "<group>";
+		};
+		D2688E0F1DED8B9C00EB3A6E /* SearchDekiruFlow */ = {
+			isa = PBXGroup;
+			children = (
+				D2688E101DED8B9C00EB3A6E /* SearchDekiru.storyboard */,
+				D24A13571DED8E2A00E9E063 /* SearchDerikuViewController.swift */,
+				D24A13681DEDCA8A00E9E063 /* SavePopupView.swift */,
+				D24A136A1DEDCA9700E9E063 /* SavePopupView.xib */,
+				D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */,
+			);
+			path = SearchDekiruFlow;
+			sourceTree = "<group>";
+		};
+		D2688E111DED8B9C00EB3A6E /* TranslateFlow */ = {
+			isa = PBXGroup;
+			children = (
+				D2688E121DED8B9D00EB3A6E /* Translate.storyboard */,
+				840579F91DED8E5E0019C100 /* TranslateViewController.swift */,
+			);
+			path = TranslateFlow;
+			sourceTree = "<group>";
+		};
+		D27FF8661DFF0A4E00EA02D1 /* CustomTabbar */ = {
+			isa = PBXGroup;
+			children = (
+				D27FF8671DFF0A6300EA02D1 /* NSVBarController.swift */,
+			);
+			path = CustomTabbar;
+			sourceTree = "<group>";
+		};
+		D2EF304D1DFD4A0C00287924 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				D2EF304E1DFD4A2600287924 /* APIManager.swift */,
+			);
+			path = APIManager;
+			sourceTree = "<group>";
+		};
+		EA2A8B701E0D1330009622F7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EA2A8B711E0D1330009622F7 /* Define.swift */,
+				EA2A8B731E0D1330009622F7 /* LoadingOverlay.swift */,
+				EA2A8B741E0D1330009622F7 /* ProjectCommon.swift */,
+				EA2A8B751E0D1330009622F7 /* UIButtonExtension.swift */,
+				EA2A8B761E0D1330009622F7 /* UILabelExtension.swift */,
+				EA2A8B771E0D1330009622F7 /* UIViewExtension.swift */,
+				844734B41DFB19F600A57640 /* StringExtension.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		EA2A8B811E0D36B0009622F7 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				844AA44D1E1C3874002C741B /* Model.xcmappingmodel */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		840579B71DED79DA0019C100 /* LearnJapanese */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 840579E31DED79DA0019C100 /* Build configuration list for PBXNativeTarget "LearnJapanese" */;
+			buildPhases = (
+				7FD4FEC08680998BA0757F40 /* [CP] Check Pods Manifest.lock */,
+				840579B41DED79DA0019C100 /* Sources */,
+				840579B51DED79DA0019C100 /* Frameworks */,
+				840579B61DED79DA0019C100 /* Resources */,
+				6316F8C8687197B4C9CCC644 /* [CP] Embed Pods Frameworks */,
+				7EBDB379B1759A7F967B8461 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LearnJapanese;
+			productName = LearnJapanese;
+			productReference = 840579B81DED79DA0019C100 /* LearnJapanese.app */;
+			productType = "com.apple.product-type.application";
+		};
+		840579CE1DED79DA0019C100 /* LearnJapaneseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 840579E61DED79DA0019C100 /* Build configuration list for PBXNativeTarget "LearnJapaneseTests" */;
+			buildPhases = (
+				1186D9FF5EB6F8F1AD5CCB03 /* [CP] Check Pods Manifest.lock */,
+				840579CB1DED79DA0019C100 /* Sources */,
+				840579CC1DED79DA0019C100 /* Frameworks */,
+				840579CD1DED79DA0019C100 /* Resources */,
+				5E206898D564AB9F375DEDFE /* [CP] Embed Pods Frameworks */,
+				C136EC6097A541A751B7F8DE /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				840579D11DED79DA0019C100 /* PBXTargetDependency */,
+			);
+			name = LearnJapaneseTests;
+			productName = LearnJapaneseTests;
+			productReference = 840579CF1DED79DA0019C100 /* LearnJapaneseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		840579D91DED79DA0019C100 /* LearnJapaneseUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 840579E91DED79DA0019C100 /* Build configuration list for PBXNativeTarget "LearnJapaneseUITests" */;
+			buildPhases = (
+				7A606E1449CFB2150333D723 /* [CP] Check Pods Manifest.lock */,
+				840579D61DED79DA0019C100 /* Sources */,
+				840579D71DED79DA0019C100 /* Frameworks */,
+				840579D81DED79DA0019C100 /* Resources */,
+				104DF642514C481A0328BCA8 /* [CP] Embed Pods Frameworks */,
+				A461A4C9B2EAFE8631BD7C68 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				840579DC1DED79DA0019C100 /* PBXTargetDependency */,
+			);
+			name = LearnJapaneseUITests;
+			productName = LearnJapaneseUITests;
+			productReference = 840579DA1DED79DA0019C100 /* LearnJapaneseUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		840579B01DED79DA0019C100 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Nguyen Hai Dang";
+				TargetAttributes = {
+					840579B71DED79DA0019C100 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = Q38789M8SL;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					840579CE1DED79DA0019C100 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 78F7F9Y9CK;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 840579B71DED79DA0019C100;
+					};
+					840579D91DED79DA0019C100 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 78F7F9Y9CK;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 840579B71DED79DA0019C100;
+					};
+				};
+			};
+			buildConfigurationList = 840579B31DED79DA0019C100 /* Build configuration list for PBXProject "LearnJapanese" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 840579AF1DED79D90019C100;
+			productRefGroup = 840579B91DED79DA0019C100 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				840579B71DED79DA0019C100 /* LearnJapanese */,
+				840579CE1DED79DA0019C100 /* LearnJapaneseTests */,
+				840579D91DED79DA0019C100 /* LearnJapaneseUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		840579B61DED79DA0019C100 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D24A136B1DEDCA9700E9E063 /* SavePopupView.xib in Resources */,
+				840579C91DED79DA0019C100 /* LaunchScreen.storyboard in Resources */,
+				D24A135C1DED966400E9E063 /* WordSearchTableViewCell.xib in Resources */,
+				D24A13651DEDA98300E9E063 /* History.storyboard in Resources */,
+				D24847F51E1EBA1C00603164 /* RotateView.xib in Resources */,
+				D2688E141DED8B9D00EB3A6E /* SearchDekiru.storyboard in Resources */,
+				D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */,
+				840579C61DED79DA0019C100 /* Assets.xcassets in Resources */,
+				840579C11DED79DA0019C100 /* Main.storyboard in Resources */,
+				D249C7991DF05EFB00FF0E44 /* Library.storyboard in Resources */,
+				84057A001DEDC6EB0019C100 /* HeaderView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		840579CD1DED79DA0019C100 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		840579D81DED79DA0019C100 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		104DF642514C481A0328BCA8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1186D9FF5EB6F8F1AD5CCB03 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5E206898D564AB9F375DEDFE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapaneseTests/Pods-LearnJapaneseTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6316F8C8687197B4C9CCC644 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A606E1449CFB2150333D723 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7EBDB379B1759A7F967B8461 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FD4FEC08680998BA0757F40 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A461A4C9B2EAFE8631BD7C68 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C136EC6097A541A751B7F8DE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LearnJapaneseTests/Pods-LearnJapaneseTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		840579B41DED79DA0019C100 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D24A13581DED8E2A00E9E063 /* SearchDerikuViewController.swift in Sources */,
+				D256EBCE1DFB1D63007D56EE /* KMPlaceholderTextView.swift in Sources */,
+				D24A135F1DEDA37200E9E063 /* WordModel.swift in Sources */,
+				D24A135B1DED966400E9E063 /* WordSearchTableViewCell.swift in Sources */,
+				840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */,
+				844734B51DFB19F600A57640 /* StringExtension.swift in Sources */,
+				EA2A8B7B1E0D1330009622F7 /* ProjectCommon.swift in Sources */,
+				840579FE1DEDC3AC0019C100 /* HeaderView.swift in Sources */,
+				EA2A8B7A1E0D1330009622F7 /* LoadingOverlay.swift in Sources */,
+				D24847F71E1EBA3800603164 /* RotateView.swift in Sources */,
+				849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */,
+				840579FC1DEDC33C0019C100 /* LibraryViewController.swift in Sources */,
+				840579FA1DED8E5E0019C100 /* TranslateViewController.swift in Sources */,
+				EA2A8B7D1E0D1330009622F7 /* UILabelExtension.swift in Sources */,
+				84057A021DEDC8CF0019C100 /* VocabularyTableViewCell.swift in Sources */,
+				D27FF86A1DFF0A6300EA02D1 /* NSVTabBarController.swift in Sources */,
+				EA2A8B7E1E0D1330009622F7 /* UIViewExtension.swift in Sources */,
+				846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */,
+				D27FF8691DFF0A6300EA02D1 /* NSVBarController.swift in Sources */,
+				EA2A8B781E0D1330009622F7 /* Define.swift in Sources */,
+				D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */,
+				D2EF304F1DFD4A2600287924 /* APIManager.swift in Sources */,
+				D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */,
+				EA2A8B7C1E0D1330009622F7 /* UIButtonExtension.swift in Sources */,
+				D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */,
+				840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */,
+				840579F81DED8CF80019C100 /* DictionaryTabBarViewController.swift in Sources */,
+				844AA44E1E1C3874002C741B /* Model.xcmappingmodel in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		840579CB1DED79DA0019C100 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				840579D41DED79DA0019C100 /* LearnJapaneseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		840579D61DED79DA0019C100 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				840579DF1DED79DA0019C100 /* LearnJapaneseUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		840579D11DED79DA0019C100 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 840579B71DED79DA0019C100 /* LearnJapanese */;
+			targetProxy = 840579D01DED79DA0019C100 /* PBXContainerItemProxy */;
+		};
+		840579DC1DED79DA0019C100 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 840579B71DED79DA0019C100 /* LearnJapanese */;
+			targetProxy = 840579DB1DED79DA0019C100 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		840579BF1DED79DA0019C100 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				840579C01DED79DA0019C100 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		840579C71DED79DA0019C100 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				840579C81DED79DA0019C100 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		840579E11DED79DA0019C100 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		840579E21DED79DA0019C100 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		840579E41DED79DA0019C100 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C9D85BC6DCAA5DC6B62379A /* Pods-LearnJapanese.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LearnJapanese/LearnJapanese.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Q38789M8SL;
+				INFOPLIST_FILE = LearnJapanese/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JapanseDict;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		840579E51DED79DA0019C100 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B528F679D54539D047D124D8 /* Pods-LearnJapanese.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LearnJapanese/LearnJapanese.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Q38789M8SL;
+				INFOPLIST_FILE = LearnJapanese/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JapanseDict;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		840579E71DED79DA0019C100 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 413ADFF76D4C4E01F2F27E12 /* Pods-LearnJapaneseTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 78F7F9Y9CK;
+				INFOPLIST_FILE = LearnJapaneseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Beacon.LearnJapaneseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LearnJapanese.app/LearnJapanese";
+			};
+			name = Debug;
+		};
+		840579E81DED79DA0019C100 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E051E58AC22A7C6A366BCF2 /* Pods-LearnJapaneseTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 78F7F9Y9CK;
+				INFOPLIST_FILE = LearnJapaneseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Beacon.LearnJapaneseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LearnJapanese.app/LearnJapanese";
+			};
+			name = Release;
+		};
+		840579EA1DED79DA0019C100 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6A0240A367E383FA75F5428 /* Pods-LearnJapaneseUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 78F7F9Y9CK;
+				INFOPLIST_FILE = LearnJapaneseUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Beacon.LearnJapaneseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = LearnJapanese;
+			};
+			name = Debug;
+		};
+		840579EB1DED79DA0019C100 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B71028C69EA800855790B3A5 /* Pods-LearnJapaneseUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = 78F7F9Y9CK;
+				INFOPLIST_FILE = LearnJapaneseUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Beacon.LearnJapaneseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = LearnJapanese;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		840579B31DED79DA0019C100 /* Build configuration list for PBXProject "LearnJapanese" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				840579E11DED79DA0019C100 /* Debug */,
+				840579E21DED79DA0019C100 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		840579E31DED79DA0019C100 /* Build configuration list for PBXNativeTarget "LearnJapanese" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				840579E41DED79DA0019C100 /* Debug */,
+				840579E51DED79DA0019C100 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		840579E61DED79DA0019C100 /* Build configuration list for PBXNativeTarget "LearnJapaneseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				840579E71DED79DA0019C100 /* Debug */,
+				840579E81DED79DA0019C100 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		840579E91DED79DA0019C100 /* Build configuration list for PBXNativeTarget "LearnJapaneseUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				840579EA1DED79DA0019C100 /* Debug */,
+				840579EB1DED79DA0019C100 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		840579C21DED79DA0019C100 /* LearnJapanese.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				840579C31DED79DA0019C100 /* LearnJapanese.xcdatamodel */,
+			);
+			currentVersion = 840579C31DED79DA0019C100 /* LearnJapanese.xcdatamodel */;
+			path = LearnJapanese.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 840579B01DED79DA0019C100 /* Project object */;
+}

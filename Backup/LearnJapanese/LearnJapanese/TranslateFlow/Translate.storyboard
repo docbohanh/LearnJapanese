@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Văn bản-->
+        <scene sceneID="9aP-Wb-HOo">
+            <objects>
+                <navigationController storyboardIdentifier="DocumentNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eCS-dK-DOX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Văn bản" image="icon_document" id="8hU-St-d2V"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nfN-ct-mc4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.061138659720000002" green="0.47626364230000001" blue="0.42406085129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="oW2-Iy-3WI" kind="relationship" relationship="rootViewController" id="U74-43-ucW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ovj-IE-qAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-626" y="196"/>
+        </scene>
+        <!--Translate View Controller-->
+        <scene sceneID="yCA-mg-OCt">
+            <objects>
+                <viewController storyboardIdentifier="TranslateViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oW2-Iy-3WI" customClass="TranslateViewController" customModule="LearnJapanese" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xbs-vw-pxi"/>
+                        <viewControllerLayoutGuide type="bottom" id="TDq-lJ-3KC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cGR-MP-AGz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vde-9B-gm8">
+                                <rect key="frame" x="0.0" y="234" width="414" height="1"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ki0-2Q-XDE"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uy5-dK-xj9">
+                                <rect key="frame" x="384" y="74" width="30" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="pDr-AC-jcQ"/>
+                                    <constraint firstAttribute="width" constant="30" id="qlk-mO-8Ks"/>
+                                </constraints>
+                                <state key="normal" image="icon_delete"/>
+                                <connections>
+                                    <action selector="tappedClearText:" destination="oW2-Iy-3WI" eventType="touchUpInside" id="WmE-Vg-MF9"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z8S-cG-cpp">
+                                <rect key="frame" x="0.0" y="262" width="414" height="1"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="FXq-WC-161"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycl-lk-eK9">
+                                <rect key="frame" x="157" y="278" width="100" height="40"/>
+                                <color key="backgroundColor" red="0.061138659720000002" green="0.47626364230000001" blue="0.42406085129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Bns-ty-Oil"/>
+                                    <constraint firstAttribute="width" constant="100" id="s9s-sy-XnG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="DỊCH">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedTranslate:" destination="oW2-Iy-3WI" eventType="touchUpInside" id="rfs-0C-FRe"/>
+                                </connections>
+                            </button>
+                            <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bs5-5h-Gfm">
+                                <rect key="frame" x="0.0" y="264" width="414" height="393"/>
+                                <color key="backgroundColor" red="0.79991227388381958" green="0.80005055665969849" blue="0.7999035120010376" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="oW2-Iy-3WI" id="iek-OB-aIR"/>
+                                </connections>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COj-cH-lSP" customClass="KMPlaceholderTextView" customModule="LearnJapanese" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="74" width="384" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="sNc-HI-OWa"/>
+                                </constraints>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Nhập văn bản vào đây..."/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="oW2-Iy-3WI" id="gTd-7e-Xng"/>
+                                </connections>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uy5-dK-xj9" firstAttribute="leading" secondItem="COj-cH-lSP" secondAttribute="trailing" id="0Wb-3u-7Fo"/>
+                            <constraint firstItem="Vde-9B-gm8" firstAttribute="leading" secondItem="cGR-MP-AGz" secondAttribute="leading" id="1ZX-eB-8Di"/>
+                            <constraint firstItem="bs5-5h-Gfm" firstAttribute="top" secondItem="COj-cH-lSP" secondAttribute="bottom" constant="30" id="1sv-Yl-qG8"/>
+                            <constraint firstItem="Ycl-lk-eK9" firstAttribute="top" secondItem="Z8S-cG-cpp" secondAttribute="bottom" constant="15" id="4za-Oc-oK0"/>
+                            <constraint firstItem="Z8S-cG-cpp" firstAttribute="leading" secondItem="cGR-MP-AGz" secondAttribute="leading" id="8e3-f3-nJP"/>
+                            <constraint firstItem="Vde-9B-gm8" firstAttribute="top" secondItem="COj-cH-lSP" secondAttribute="bottom" id="Jg1-bk-znH"/>
+                            <constraint firstAttribute="trailing" secondItem="Vde-9B-gm8" secondAttribute="trailing" id="Ldr-xS-ASW"/>
+                            <constraint firstItem="COj-cH-lSP" firstAttribute="top" secondItem="cGR-MP-AGz" secondAttribute="top" constant="74" id="PLq-GS-gj6"/>
+                            <constraint firstItem="bs5-5h-Gfm" firstAttribute="top" secondItem="Z8S-cG-cpp" secondAttribute="bottom" constant="1" id="WhL-lr-18z"/>
+                            <constraint firstItem="bs5-5h-Gfm" firstAttribute="leading" secondItem="cGR-MP-AGz" secondAttribute="leading" id="h7h-at-Htd"/>
+                            <constraint firstAttribute="trailing" secondItem="Z8S-cG-cpp" secondAttribute="trailing" id="hCd-Rr-Hh5"/>
+                            <constraint firstItem="TDq-lJ-3KC" firstAttribute="top" secondItem="bs5-5h-Gfm" secondAttribute="bottom" constant="30" id="hOi-oh-uMm"/>
+                            <constraint firstItem="Ycl-lk-eK9" firstAttribute="centerX" secondItem="cGR-MP-AGz" secondAttribute="centerX" id="hqE-3J-lYg"/>
+                            <constraint firstItem="COj-cH-lSP" firstAttribute="leading" secondItem="cGR-MP-AGz" secondAttribute="leading" id="kYf-NM-jQQ"/>
+                            <constraint firstAttribute="trailing" secondItem="uy5-dK-xj9" secondAttribute="trailing" id="lRb-E9-1TQ"/>
+                            <constraint firstItem="uy5-dK-xj9" firstAttribute="top" secondItem="xbs-vw-pxi" secondAttribute="bottom" constant="10" id="qa9-cZ-yAO"/>
+                            <constraint firstAttribute="trailing" secondItem="bs5-5h-Gfm" secondAttribute="trailing" id="uO7-FA-cRf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="14f-Ip-WfW">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="xaL-g7-goA">
+                            <view key="customView" contentMode="scaleToFill" id="baF-mf-lUR">
+                                <rect key="frame" x="20" y="5" width="150" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="t2a-uQ-vkI">
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="BbR-Pw-U9B"/>
+                                            <constraint firstAttribute="height" constant="30" id="sNE-nc-PfW"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pkm-f7-JXa">
+                                        <rect key="frame" x="35" y="0.0" width="115" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Dịch văn bản">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tappedBack:" destination="oW2-Iy-3WI" eventType="touchUpInside" id="6a9-oG-1Pt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Pkm-f7-JXa" firstAttribute="top" secondItem="baF-mf-lUR" secondAttribute="top" id="0Ba-zo-eGj"/>
+                                    <constraint firstItem="t2a-uQ-vkI" firstAttribute="top" secondItem="baF-mf-lUR" secondAttribute="top" id="IXs-l7-vwF"/>
+                                    <constraint firstItem="Pkm-f7-JXa" firstAttribute="leading" secondItem="t2a-uQ-vkI" secondAttribute="trailing" constant="5" id="IYg-Lo-UCJ"/>
+                                    <constraint firstItem="t2a-uQ-vkI" firstAttribute="leading" secondItem="baF-mf-lUR" secondAttribute="leading" id="PGJ-q1-mVq"/>
+                                    <constraint firstAttribute="bottom" secondItem="Pkm-f7-JXa" secondAttribute="bottom" id="Pan-Qi-4WX"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pkm-f7-JXa" secondAttribute="trailing" id="f80-oh-QM0"/>
+                                </constraints>
+                            </view>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="nHh-dI-9id">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tGX-HP-uoE">
+                                <rect key="frame" x="321" y="9" width="73" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="icon_change_language">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="viet_nhat"/>
+                                <connections>
+                                    <action selector="tappedChooseDictionary:" destination="oW2-Iy-3WI" eventType="touchUpInside" id="Fqj-TV-3Xy"/>
+                                </connections>
+                            </button>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backToFirstButton" destination="Pkm-f7-JXa" id="y80-jy-y4X"/>
+                        <outlet property="chooseDictionaryButton" destination="tGX-HP-uoE" id="dub-WI-BrQ"/>
+                        <outlet property="clearTextButton" destination="uy5-dK-xj9" id="XOR-Br-cPH"/>
+                        <outlet property="iconAppImageView" destination="t2a-uQ-vkI" id="ocv-tE-Z3M"/>
+                        <outlet property="inputTextView" destination="COj-cH-lSP" id="gUY-F4-cS8"/>
+                        <outlet property="outputTextView" destination="bs5-5h-Gfm" id="KhB-n9-P95"/>
+                        <outlet property="translateButton" destination="Ycl-lk-eK9" id="Szt-3a-6WR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RCa-31-f3s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="68.115942028985515" y="195.6521739130435"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icon_change_language" width="73" height="26"/>
+        <image name="icon_delete" width="10" height="10"/>
+        <image name="icon_document" width="16" height="19"/>
+        <image name="icon_logo" width="33" height="33"/>
+        <image name="viet_nhat" width="73" height="26"/>
+    </resources>
+</document>
