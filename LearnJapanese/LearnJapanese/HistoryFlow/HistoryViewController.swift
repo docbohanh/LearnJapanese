@@ -14,7 +14,6 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var tableView: UITableView!
     var historyArray: [History]!
     
-    @IBOutlet weak var changeLangueButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,7 +24,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-
+        self.navigationController?.navigationBar.isHidden = false
         self.historyArray = History.mr_findAll() as! [History]
         self.tableView.reloadData()
     }
@@ -61,19 +60,23 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.initHistoryCell(wordModel: WordModel())
         if historyArray.count > indexPath.row {
             let history = historyArray[indexPath.row]
-            if changeLangueButton.isSelected {
-                cell.wordLabel.text = history.meaning_name
-                cell.contentLabel.text = history.word
-            } else {
-                cell.wordLabel.text = history.word
-                cell.contentLabel.text = history.meaning_name
-            }
+            cell.wordLabel.text = history.word ?? ""
+            cell.contentLabel.text = history.meaning_name ?? ""
         }
 
         return cell
         
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let flashCardDetail = historyArray[indexPath.row]
         
+        let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDekiru", bundle: Bundle.main)
+        let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "WordDetailViewController") as! WordDetailViewController
+        detaiVC.searchText = flashCardDetail.word ?? ""
+        detaiVC.wordId = flashCardDetail.id ?? ""
+        self.navigationController?.pushViewController(detaiVC, animated: true)
+    }
 
     func deleteWord(historyWord: History, atIndex: Int) {
         let historyObject = historyArray[atIndex]

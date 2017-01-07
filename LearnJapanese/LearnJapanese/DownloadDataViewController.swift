@@ -293,14 +293,14 @@ class DownloadDataViewController: UIViewController {
     
     func checkProgress() {
 //            self.currentDouble += self.totalDouble/4300
-//            let percent = self.currentDouble/43000 * 100
-//            if percent < 100{
+            let percent = self.progressView.frame.width/self.fullTrackView.frame.size.width * 100
+            if percent < 100{
                 self.progressView.frame = CGRect.init(x: 0, y: 0, width: self.progressView.frame.size.width + self.fullTrackView.frame.size.width/100, height: self.progressView.frame.height)
                 self.downloadedLabel.text = String(format: "%.2f", 16.9) + " MB"
                 self.percentDownloadedLabel.text = String(format: "%.2f", self.progressView.frame.width/self.fullTrackView.frame.size.width * 100) + " %"
-//            } else {
-//                
-//            }
+            } else {
+//
+            }
     }
     
     func checkConnectServer() {

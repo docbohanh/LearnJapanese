@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1184ECB40558138B426B9116 /* Pods_LearnJapaneseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC133B8769AF912CC8E51B /* Pods_LearnJapaneseUITests.framework */; };
 		67B6C49519EA0F9B92203FBE /* Pods_LearnJapanese.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2DA111F1C49E3CCB7912D7 /* Pods_LearnJapanese.framework */; };
+		8402C6731E214D9C00E3F539 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8402C6721E214D9C00E3F539 /* History.storyboard */; };
+		8402C6751E21765A00E3F539 /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8402C6741E21765A00E3F539 /* Model.xcmappingmodel */; };
 		840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579BB1DED79DA0019C100 /* AppDelegate.swift */; };
 		840579C11DED79DA0019C100 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 840579BF1DED79DA0019C100 /* Main.storyboard */; };
 		840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 840579C21DED79DA0019C100 /* LearnJapanese.xcdatamodeld */; };
@@ -22,7 +24,6 @@
 		840579FE1DEDC3AC0019C100 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579FD1DEDC3AC0019C100 /* HeaderView.swift */; };
 		84057A001DEDC6EB0019C100 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840579FF1DEDC6EB0019C100 /* HeaderView.xib */; };
 		84057A021DEDC8CF0019C100 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */; };
-		842BB78E1E20DBD80063335C /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 842BB78D1E20DBD80063335C /* Model.xcmappingmodel */; };
 		844734B51DFB19F600A57640 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844734B41DFB19F600A57640 /* StringExtension.swift */; };
 		846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D5A241E181856002307CD /* DetailFlashCardViewController.swift */; };
 		849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C2C891E155C3B00350066 /* DownloadDataViewController.swift */; };
@@ -36,7 +37,6 @@
 		D24A135B1DED966400E9E063 /* WordSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13591DED966400E9E063 /* WordSearchTableViewCell.swift */; };
 		D24A135C1DED966400E9E063 /* WordSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24A135A1DED966400E9E063 /* WordSearchTableViewCell.xib */; };
 		D24A135F1DEDA37200E9E063 /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A135E1DEDA37200E9E063 /* WordModel.swift */; };
-		D24A13651DEDA98300E9E063 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24A13641DEDA98300E9E063 /* History.storyboard */; };
 		D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13661DEDAAAC00E9E063 /* HistoryViewController.swift */; };
 		D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A13681DEDCA8A00E9E063 /* SavePopupView.swift */; };
 		D24A136B1DEDCA9700E9E063 /* SavePopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24A136A1DEDCA9700E9E063 /* SavePopupView.xib */; };
@@ -79,6 +79,8 @@
 		3E2DA111F1C49E3CCB7912D7 /* Pods_LearnJapanese.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapanese.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		413ADFF76D4C4E01F2F27E12 /* Pods-LearnJapaneseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseTests/Pods-LearnJapaneseTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4E051E58AC22A7C6A366BCF2 /* Pods-LearnJapaneseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseTests/Pods-LearnJapaneseTests.release.xcconfig"; sourceTree = "<group>"; };
+		8402C6721E214D9C00E3F539 /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		8402C6741E21765A00E3F539 /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 		840579B81DED79DA0019C100 /* LearnJapanese.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnJapanese.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		840579BB1DED79DA0019C100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		840579C01DED79DA0019C100 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -98,7 +100,6 @@
 		840579FD1DEDC3AC0019C100 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		840579FF1DEDC6EB0019C100 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
-		842BB78D1E20DBD80063335C /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 		843D34371E14209700D4FDE3 /* LearnJapanese.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnJapanese.entitlements; sourceTree = "<group>"; };
 		844734B41DFB19F600A57640 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = ../StringExtension.swift; sourceTree = "<group>"; };
 		846D5A241E181856002307CD /* DetailFlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFlashCardViewController.swift; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		D24A13591DED966400E9E063 /* WordSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordSearchTableViewCell.swift; path = ../SearchDekiruFlow/WordSearchTableViewCell.swift; sourceTree = "<group>"; };
 		D24A135A1DED966400E9E063 /* WordSearchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WordSearchTableViewCell.xib; path = ../SearchDekiruFlow/WordSearchTableViewCell.xib; sourceTree = "<group>"; };
 		D24A135E1DEDA37200E9E063 /* WordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
-		D24A13641DEDA98300E9E063 /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
 		D24A13661DEDAAAC00E9E063 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		D24A13681DEDCA8A00E9E063 /* SavePopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavePopupView.swift; sourceTree = "<group>"; };
 		D24A136A1DEDCA9700E9E063 /* SavePopupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SavePopupView.xib; sourceTree = "<group>"; };
@@ -274,8 +274,8 @@
 			children = (
 				D24A13591DED966400E9E063 /* WordSearchTableViewCell.swift */,
 				D24A135A1DED966400E9E063 /* WordSearchTableViewCell.xib */,
-				D24A13641DEDA98300E9E063 /* History.storyboard */,
 				D24A13661DEDAAAC00E9E063 /* HistoryViewController.swift */,
+				8402C6721E214D9C00E3F539 /* History.storyboard */,
 			);
 			path = HistoryFlow;
 			sourceTree = "<group>";
@@ -352,7 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				84A200CB1E202DD200E7290A /* data.json */,
-				842BB78D1E20DBD80063335C /* Model.xcmappingmodel */,
+				8402C6741E21765A00E3F539 /* Model.xcmappingmodel */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -484,7 +484,6 @@
 				D24A136B1DEDCA9700E9E063 /* SavePopupView.xib in Resources */,
 				840579C91DED79DA0019C100 /* LaunchScreen.storyboard in Resources */,
 				D24A135C1DED966400E9E063 /* WordSearchTableViewCell.xib in Resources */,
-				D24A13651DEDA98300E9E063 /* History.storyboard in Resources */,
 				D24847F51E1EBA1C00603164 /* RotateView.xib in Resources */,
 				D2688E141DED8B9D00EB3A6E /* SearchDekiru.storyboard in Resources */,
 				D2688E151DED8B9D00EB3A6E /* Translate.storyboard in Resources */,
@@ -493,6 +492,7 @@
 				840579C11DED79DA0019C100 /* Main.storyboard in Resources */,
 				D249C7991DF05EFB00FF0E44 /* Library.storyboard in Resources */,
 				84057A001DEDC6EB0019C100 /* HeaderView.xib in Resources */,
+				8402C6731E214D9C00E3F539 /* History.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,7 +682,7 @@
 				D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */,
 				840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */,
 				840579F81DED8CF80019C100 /* DictionaryTabBarViewController.swift in Sources */,
-				842BB78E1E20DBD80063335C /* Model.xcmappingmodel in Sources */,
+				8402C6751E21765A00E3F539 /* Model.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,7 +33,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     var searchText : String = ""
     var wordId: String = ""
     var detailTranslate: Translate!
-    var detailFlashCard: Translate!
+    var detailFlashCard = Translate()
     var player: AVPlayer!
     
     
@@ -44,9 +44,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         // Do any additional setup after loading the view.
         self.setupViewController()
         DispatchQueue.global().async {
-            if self.detailTranslate != nil {
-                self.saveHistoryData(translate: self.detailTranslate)
-            }
+
         }
     }
 
@@ -55,17 +53,24 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         searchTextField.layer.cornerRadius = 4
         searchTextField.layer.borderColor = UIColor.white.cgColor
     }
+    override func viewDidAppear(_ animated: Bool) {
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
 
         DispatchQueue.global().async {
             
-            let detailTranslate = Translate.mr_find(byAttribute: "id", withValue: self.wordId)?.first as? Translate
+            self.detailTranslate = (Translate.mr_find(byAttribute: "id", withValue: self.wordId)?.first as? Translate)!
+            
             DispatchQueue.main.async {
                 
-                self.meaningLabel.text = detailTranslate?.meaning_name
-                self.examplelabel.text = detailTranslate?.example_meaning_name
+                self.meaningLabel.text = self.detailTranslate.meaning_name
+                self.examplelabel.text = self.detailTranslate.example_meaning_name
                 self.titleLabel.text = self.searchText
+            }
+            if self.detailTranslate != nil {
+                self.saveHistoryData(translate: self.detailTranslate)
             }
         }
         self.navigationController?.isNavigationBarHidden = true
@@ -193,7 +198,10 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
 
     }
 
+
     func saveHistoryData(translate:Translate) {
+        let word = History.mr_find(byAttribute: "id", withValue: String(describing: translate.id))
+        if word == nil {
             MagicalRecord.save({localContext in
                 let history = History.mr_createEntity(in: localContext)
                 if let word_id = translate.id {
@@ -259,22 +267,15 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
             }, completion: { contextDidSave in
                 //saving is successful
                 print("saving is successful")
-
+                
             })
-        
+        }
     }
     
     func saveWordToLocal(type: MyStoreType) {
-        let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: type == .word ? "word" : "flashcard")
-        if oldFlashCard == nil {
-            MagicalRecord.save({context in
-                let wordData = FlashCard.mr_createEntity(in:context)
-                wordData?.id = type == .word ? "word" : "flashcard"
-                wordData?.title = type == .word ? "Từ đã lưu" : "FlashCard của tôi"
-                wordData?.avatar =  ""
-            }, completion: {didContext in
                 self.backgroundPopupView.isHidden = true
                 MagicalRecord.save({context in
+                    
                     let wordData = FlashCardDetail.mr_createEntity(in:context)
                     wordData?.kana = self.detailTranslate.kana ?? ""
                     wordData?.word = self.detailTranslate.word ?? ""
@@ -284,17 +285,33 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
                     wordData?.id = self.detailTranslate.id ?? ""
                     
                     if type == .flash_card {
-                        wordData?.flash_card_id = "flashcard"
+                        wordData?.flash_card_id = ".flashcard"
                     } else {
-                        wordData?.flash_card_id = "word"
+                        wordData?.flash_card_id = ".word"
                         
                     }
                 }, completion: {didContext in
-                    self.backgroundPopupView.isHidden = true
-                    ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+                    if let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: type == .word ? ".word" : ".flashcard") {
+                        self.backgroundPopupView.isHidden = true
+                        if oldFlashCard.count == 0 {
+                            MagicalRecord.save({context in
+                                let wordData = FlashCard.mr_createEntity(in:context)
+                                wordData?.id = type == .word ? ".word" : ".flashcard"
+                                wordData?.title = type == .word ? "Từ đã lưu" : "FlashCard của tôi"
+                                wordData?.avatar =  ""
+                            }, completion: {didContext in
+                                ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+                            })
+                        } else {
+                            ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+                        }
+
+                    } else {
+                        self.backgroundPopupView.isHidden = true
+                    }
+                    
+
                 })
-            })
-        }
 
         
     }

@@ -72,6 +72,9 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         self.addFlashCard()
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        if tableView != nil {
+            tableView.reloadData()
+        }
     }
     
     func hideKeyboard() {
@@ -149,15 +152,13 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
             let translate = filterArray[indexPath.row]
             
             if searchActive {
-                
-                cell.iconImageView.image = translate.isSearch ? UIImage(named: "icon_history") : UIImage(named: "icon_search")
-                
-                //            if word.isSearch {
-                //                cell.iconImageView.image = UIImage(named: "icon_history")
-                //            } else {
-                //                cell.iconImageView.image = UIImage(named: "icon_search")
-                //
-                //            }
+                if translate.isSearch == nil || translate.isSearch == "0"{
+                    
+                    cell.iconImageView.image = UIImage(named: "icon_search")
+                } else {
+                    cell.iconImageView.image = UIImage(named: "icon_history")
+                    
+                }
                 if changeLangueButton.isSelected {
                     cell.wordLabel.text = translate.meaning_name
                     cell.contentLabel.text = translate.word
@@ -175,7 +176,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                 }
                 
             }
-            
+
             cell.initCell(wordModel: WordModel())
 
         }
@@ -187,9 +188,11 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
             let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDekiru", bundle: Bundle.main)
             let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "WordDetailViewController") as! WordDetailViewController
             currentDetailTranslate = filterArray[indexPath.row]
-            detaiVC.detailTranslate = currentDetailTranslate
             detaiVC.searchText = currentDetailTranslate.word ?? ""
             detaiVC.wordId = currentDetailTranslate.id ?? ""
+            if currentDetailTranslate != nil {
+                self.updateWordToHistory(index:indexPath.row)
+            }
             self.navigationController?.pushViewController(detaiVC, animated: true)
         }
     }
@@ -210,31 +213,67 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
+    func updateWordToHistory(index:Int) {
+        let localContext = NSManagedObjectContext.mr_default()
+
+        MagicalRecord.save({localContext in
+            let word = Translate.mr_find(byAttribute: "id", withValue: self.currentDetailTranslate.id, in: localContext)?.first as? Translate
+            if word != nil {
+                word?.isSearch = "1"
+            }
+            
+        }, completion: {_ in
+            let word = Translate.mr_find(byAttribute: "id", withValue: self.currentDetailTranslate.id, in: localContext)?.first as? Translate
+            self.tableView.reloadRows(at: [IndexPath.init(row: index, section: 0)], with: UITableViewRowAnimation.none)
+            print(word)
+        })
+        
+    }
+    
     func getWordFromDatabase() {
         LoadingOverlay.shared.showOverlay(view: self.view)
-        wordArray = Translate.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [Translate]
-
-        let oneArray:[Translate]! = Array(wordArray[0...4000])
-        let twoArray:[Translate]! = Array(wordArray[4001...7000])
-        let threeArray:[Translate]! = Array(wordArray[7001...10000])
-        let fourArray:[Translate]! = Array(wordArray[10001...13000])
-        let fineArray:[Translate]! = Array(wordArray[13001...17000])
-        let sixArray:[Translate]! = Array(wordArray[17001...21000])
-        let sevenArray:[Translate]! = Array(wordArray[21001...26000])
-        let eightArray:[Translate]! = Array(wordArray[26001...31000])
-        let nineArray:[Translate]! = Array(wordArray[31001...36000])
-        let tenArray:[Translate]! = Array(wordArray[36001...(wordArray.count - 1)])
+        wordArray = Translate.mr_findAllSorted(by: "romaji", ascending: true, in: NSManagedObjectContext.mr_default()) as! [Translate]
+        if wordArray.count > 4001 {
+            let oneArray:[Translate]! = Array(wordArray[0...4000])
+            searchPlaceArray.append(oneArray)
+        }
+        if wordArray.count > 4001 {
+            let twoArray:[Translate]! = Array(wordArray[4001...7000])
+            searchPlaceArray.append(twoArray)
+        }
+        if wordArray.count > 4001 {
+            let threeArray:[Translate]! = Array(wordArray[7001...10000])
+            searchPlaceArray.append(threeArray)
+        }
+        if wordArray.count > 4001 {
+            let fourArray:[Translate]! = Array(wordArray[10001...13000])
+            searchPlaceArray.append(fourArray)
+        }
+        if wordArray.count > 4001 {
+            let fineArray:[Translate]! = Array(wordArray[13001...17000])
+            searchPlaceArray.append(fineArray)
+        }
+        if wordArray.count > 4001 {
+            let sixArray:[Translate]! = Array(wordArray[17001...21000])
+            searchPlaceArray.append(sixArray)
+        }
+        if wordArray.count > 4001 {
+            let sevenArray:[Translate]! = Array(wordArray[21001...26000])
+            searchPlaceArray.append(sevenArray)
+        }
+        if wordArray.count > 4001 {
+            let eightArray:[Translate]! = Array(wordArray[26001...31000])
+            searchPlaceArray.append(eightArray)
+        }
+        if wordArray.count > 4001 {
+            let nineArray:[Translate]! = Array(wordArray[31001...36000])
+            searchPlaceArray.append(nineArray)
+        }
+        if wordArray.count > 4001 {
+            let tenArray:[Translate]! = Array(wordArray[36001...(wordArray.count - 1)])
+            searchPlaceArray.append(tenArray)
+        }
         
-        searchPlaceArray.append(oneArray)
-        searchPlaceArray.append(twoArray)
-        searchPlaceArray.append(threeArray)
-        searchPlaceArray.append(fourArray)
-        searchPlaceArray.append(fineArray)
-        searchPlaceArray.append(sixArray)
-        searchPlaceArray.append(sevenArray)
-        searchPlaceArray.append(eightArray)
-        searchPlaceArray.append(nineArray)
-        searchPlaceArray.append(tenArray)
         
         tableView.reloadData()
         LoadingOverlay.shared.hideOverlayView()
@@ -244,7 +283,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         guard let currentWord = Translate.mr_find(byAttribute: "id", withValue: wordId)?.first as? Translate else { return }
         
         MagicalRecord.save({ localContext in
-            currentWord.isSearch = true
+            currentWord.isSearch = "1"
             
         })
     }

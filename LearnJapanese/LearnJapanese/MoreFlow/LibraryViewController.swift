@@ -27,13 +27,40 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.isHidden = false
         libraryTableView.tableFooterView = UIView.init(frame: CGRect.zero)
         DispatchQueue.global().async {
+            if let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: ".flashcard") {
+                if oldFlashCard.count == 0 {
+                    MagicalRecord.save({context in
+                        let wordData = FlashCard.mr_createEntity(in:context)
+                        wordData?.id = ".flashcard"
+                        wordData?.title = "FlashCard của tôi"
+                        wordData?.avatar =  ""
+                    }, completion: {didContext in
+                        if let oldWord = FlashCard.mr_find(byAttribute: "id", withValue: ".word") {
+                            if oldWord.count == 0 {
+                                MagicalRecord.save({context in
+                                    let wordData = FlashCard.mr_createEntity(in:context)
+                                    wordData?.id = ".word"
+                                    wordData?.title = "Từ đã lưu"
+                                    wordData?.avatar =  ""
+                                })
+                            }
+                        }
+
+                    })
+                }
+                
+            }
             self.getFlashCard()
         }
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidLayoutSubviews() {
+        self.navigationController?.navigationBar.isHidden = false
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         LoadingOverlay.shared.showOverlay(view: self.view)
@@ -41,7 +68,6 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         LoadingOverlay.shared.hideOverlayView()
         self.libraryTableView.reloadData()
         self.tabBarController?.tabBar.isHidden = false
-
 //        titleArray = FlashCard.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [FlashCard]
 //        libraryTableView.reloadData()
     }
@@ -93,7 +119,12 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let headerView = Bundle.main.loadNibNamed("HeaderView", owner: self, options:[:])?.first as? HeaderView
         let flashCardTitle = titleArray[section]
         headerView?.delegate = self
-
+        if section == 0 {
+            headerView?.flashCard = ".flashcard"
+        } else if section == 1 {
+            headerView?.flashCard = ".word"
+        }
+        
         ///Thành Lã: 2017/01/05
         guard let cardTitle = flashCardTitle.title, let cardID = flashCardTitle.id else { return nil }
         headerView?.titleLabel.text = cardTitle
@@ -103,11 +134,22 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let searchDerikuStoryboard = UIStoryboard.init(name: "Library", bundle: Bundle.main)
-        let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "DetailFlashCardViewController") as! DetailFlashCardViewController
-        detaiVC.listWord = subWordArray
-        detaiVC.currentIndexWord = indexPath.row
-        self.navigationController?.pushViewController(detaiVC, animated: true)
+        if isShowListWord && currentIdFlashCard == ".word"{
+            let flashCardDetail = subWordArray[indexPath.row]
+            
+            let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDekiru", bundle: Bundle.main)
+            let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "WordDetailViewController") as! WordDetailViewController
+            detaiVC.searchText = flashCardDetail.word ?? ""
+            detaiVC.wordId = flashCardDetail.id ?? ""
+            self.navigationController?.pushViewController(detaiVC, animated: true)
+        } else {
+            let searchDerikuStoryboard = UIStoryboard.init(name: "Library", bundle: Bundle.main)
+            let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "DetailFlashCardViewController") as! DetailFlashCardViewController
+            detaiVC.listWord = subWordArray
+            detaiVC.currentIndexWord = indexPath.row
+            self.navigationController?.pushViewController(detaiVC, animated: true)
+        }
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -115,7 +157,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
 
         }
     }
-    func tappedShowVocaburaryList(sender: HeaderView) {
+    
+    func tappedShowVocaburaryList(sender: HeaderView, flashCard: String) {
         selectedSection = sender.tag
         let button = sender.backgroundHeaderButton as UIButton
         currentIdFlashCard = String(button.tag)
@@ -127,7 +170,19 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 }
             }
             LoadingOverlay.shared.showOverlay(view: view)
-            self.getFlashCardDetail(flashCardId: currentIdFlashCard)
+            if flashCard == ".flashcard" {
+                currentIdFlashCard = ".flashcard"
+                subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: currentIdFlashCard, andOrderBy: "id", ascending: true) as! [FlashCardDetail]!
+                LoadingOverlay.shared.hideOverlayView()
+                self.libraryTableView.reloadData()
+            } else if flashCard == ".word" {
+                currentIdFlashCard = ".word"
+                subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: currentIdFlashCard, andOrderBy: "id", ascending: true) as! [FlashCardDetail]!
+                LoadingOverlay.shared.hideOverlayView()
+                self.libraryTableView.reloadData()
+            } else {
+                self.getFlashCardDetail(flashCardId: currentIdFlashCard)
+            }
         } else {
             if subWordArray != nil {
                 if subWordArray.count > 0 {
@@ -179,6 +234,10 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
  
                 }
             }, completion: {didContext in
+                LoadingOverlay.shared.showOverlay(view: self.view)
+                self.titleArray = FlashCard.mr_findAllSorted(by: "id", ascending: true) as! [FlashCard]
+                LoadingOverlay.shared.hideOverlayView()
+                self.libraryTableView.reloadData()
                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã tải thành công các chủ đề", buttonArray: ["Đóng"], onCompletion: { _ in
                 })
             })
@@ -270,10 +329,11 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     func playAudio(int: Int) {
         DispatchQueue.main.async {
             let flashDetail = self.subWordArray[int]
-            if flashDetail.source_url == nil {
+            if flashDetail.source_url == nil || flashDetail.source_url?.characters.count == 0 {
                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in 
                 })
             } else {
+                
                 let url = flashDetail.source_url
                 let playerItem = AVPlayerItem( url:URL(string:url! )! )
                 self.player = AVPlayer(playerItem:playerItem)
