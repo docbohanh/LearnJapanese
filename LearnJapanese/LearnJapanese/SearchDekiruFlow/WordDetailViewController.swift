@@ -265,18 +265,17 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     }
     
     func saveWordToLocal(type: MyStoreType) {
-        let localContext = NSManagedObjectContext()
-        let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: "myWord")
+        let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: type == .word ? "word" : "flashcard")
         if oldFlashCard == nil {
-            MagicalRecord.save({localContext in
-                let wordData = FlashCard.mr_createEntity(in:localContext)
+            MagicalRecord.save({context in
+                let wordData = FlashCard.mr_createEntity(in:context)
                 wordData?.id = type == .word ? "word" : "flashcard"
-                wordData?.title = "Từ đã lưu"
+                wordData?.title = type == .word ? "Từ đã lưu" : "FlashCard của tôi"
                 wordData?.avatar =  ""
             }, completion: {didContext in
                 self.backgroundPopupView.isHidden = true
-                MagicalRecord.save({localContext in
-                    let wordData = FlashCardDetail.mr_createEntity(in:localContext)
+                MagicalRecord.save({context in
+                    let wordData = FlashCardDetail.mr_createEntity(in:context)
                     wordData?.kana = self.detailTranslate.kana ?? ""
                     wordData?.word = self.detailTranslate.word ?? ""
                     wordData?.source_url = self.detailTranslate.sound_url ?? ""
@@ -295,27 +294,6 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
                     ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
                 })
             })
-        } else {
-            MagicalRecord.save({localContext in
-                let wordData = FlashCardDetail.mr_createEntity(in:localContext)
-                wordData?.kana = self.detailTranslate.kana ?? ""
-                wordData?.word = self.detailTranslate.word ?? ""
-                wordData?.source_url = self.detailTranslate.sound_url ?? ""
-                wordData?.meaning = self.detailTranslate.meaning_name ?? ""
-                wordData?.romaji = self.detailTranslate.romaji ?? ""
-                wordData?.id = self.detailTranslate.id ?? ""
-                
-                if type == .flash_card {
-                    wordData?.flash_card_id = "flashcard"
-                } else {
-                    wordData?.flash_card_id = "word"
-                    
-                }
-            }, completion: {didContext in
-                self.backgroundPopupView.isHidden = true
-                ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
-            })
-
         }
 
         

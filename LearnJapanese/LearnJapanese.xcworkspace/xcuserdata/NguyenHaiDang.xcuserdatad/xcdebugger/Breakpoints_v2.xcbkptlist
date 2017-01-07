@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LearnJapanese/DownloadDataViewController.swift"
-            timestampString = "505426444.881335"
+            filePath = "LearnJapanese/SearchDekiruFlow/WordDetailViewController.swift"
+            timestampString = "505481631.433617"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "createDefaultData()"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
+            landmarkName = "saveWordToLocal(type:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

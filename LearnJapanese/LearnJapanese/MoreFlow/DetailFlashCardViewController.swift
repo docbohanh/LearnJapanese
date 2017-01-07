@@ -53,7 +53,10 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
             let word = listWord[i]
             let customView = UINib(nibName: "RotateView", bundle: Bundle.main).instantiate(withOwner: self, options: nil)[0] as? RotateView
             customView?.frame = CGRect.init(x: 10 + CGFloat(i) * CGFloat(scrollView.frame.size.width), y: 0, width: scrollViewWidth - 20, height: scrollViewHeight)
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapOnRotateView))
 
+            customView?.addGestureRecognizer(tap)
+            
             customView?.translateTextLabel.text = word.word
             customView?.textLabel.text = word.meaning
             customView?.clipsToBounds = true
@@ -101,6 +104,12 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
         self.navigationController?.pushViewController(detaiVC, animated: true)
     }
     func favoriteTapped(index: Int) {
+        ProjectCommon.initAlertView(viewController: self, title: "", message: "Tính năng này chưa được sử dụng", buttonArray: ["Đóng"], onCompletion: {_ in
+        
+        })
+    }
+    
+    func rotateDetailView(index:Int) {
         let viewAnimate = view.viewWithTag(1000 + index) as! RotateView
         let option:UIViewAnimationOptions = .transitionFlipFromLeft
         UIView.transition(with: viewAnimate, duration: 0.5, options: option, animations: nil) { (isSuccess) in

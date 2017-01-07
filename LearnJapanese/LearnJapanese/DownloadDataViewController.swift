@@ -29,25 +29,23 @@ class DownloadDataViewController: UIViewController {
     var progressTimer: Timer!
     var wordArray = [Translate]()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         progressView.backgroundColor = UIColor.white
         progressView.frame = CGRect.init(x: 0, y: 0, width: 0, height: fullTrackView.frame.height)
         fullTrackView.addSubview(progressView)
-        if UserDefaults.standard.object(forKey: "version") == nil {
-//            self.createDefaultData()
-            UserDefaults.standard.set("", forKey: "version")
-        } else {
-            
-        }
-        //        DispatchQueue.global().async {
-        self.getdataLocal()
-        //        }
-        // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if UserDefaults.standard.object(forKey: "version") == nil {
+            self.createDefaultData()
+            UserDefaults.standard.set("", forKey: "version")
+        } else {
+            self.getdataLocal()
+        }
+    }
     override func viewWillDisappear(_ animated: Bool) {
         print("will disappear download")
     }
@@ -55,6 +53,7 @@ class DownloadDataViewController: UIViewController {
     func createDefaultData() -> Void {
         if let filepath = Bundle.main.path(forResource: "data", ofType: "json") {
             do {
+                timer = Timer.scheduledTimer(timeInterval: TimeInterval.init(0.05), target: self, selector: #selector(checkProgress), userInfo: nil, repeats: true)
                 let contents = try String(contentsOfFile: filepath)
                 let data = contents.data(using:.utf8)
                 guard let json = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String:AnyObject] else {
@@ -62,11 +61,12 @@ class DownloadDataViewController: UIViewController {
                 }
                 print("json:", json)
                 UserDefaults.standard.set(json["Version"] as! String, forKey: "version")
+                
+                if let data = json["Data"] as? [[String:AnyObject]] {
 
-                for i in 0 ..< json.count {
-                    if let word = json["Data"] as? [String:AnyObject] {
                         MagicalRecord.save({ (localContext) in
-                            
+                            for i in 0 ..< data.count {
+                                let word = data[i]
                             let wordData = Translate.mr_createEntity(in: localContext)
                             
                             if let word_id = word["Id"] {
@@ -79,11 +79,14 @@ class DownloadDataViewController: UIViewController {
                             if let kana = word["Kana"] {
                                 wordData?.kana = kana as? String
                             }
+                                if wordData?.id == String(337) {
+                                print("romaji" + (word["Word"] as? String)!)
+                                }
                             if let Romaji = word["Romaji"] {
-                                wordData?.romaji = Romaji["Romaji"] as? String
+                                wordData?.romaji = Romaji as? String
                             }
                             if let SoundUrl = word["SoundUrl"] {
-                                wordData?.sound_url = SoundUrl["SoundUrl"] as? String
+                                wordData?.sound_url = SoundUrl as? String
                             }
                             if let LastmodifiedDate = word["LastmodifiedDate"] {
                                 let trimString = LastmodifiedDate
@@ -137,8 +140,7 @@ class DownloadDataViewController: UIViewController {
                                 wordData?.example_sound_url = SoundUrl as? String
                             }
                             
-                            self.appDelegate.wordArray.append(wordData!)
-                            self.checkProgress()
+                            }
                             
                         }, completion: {(contextDidSave,error) in
                             //            print("saving is successful")
@@ -146,9 +148,6 @@ class DownloadDataViewController: UIViewController {
                             self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
                             
                         })
-                    }
-                    
-                    
                 }
 
             } catch {
@@ -203,7 +202,6 @@ class DownloadDataViewController: UIViewController {
             self.totalDouble = Float(data.count) / 1048576.0
             self.totalLabel.text = "/" + String(format: "%.2f", self.totalDouble ) + " MB"
             self.downloadedLabel.text = "0 MB"
-            
         }
         
         
@@ -280,10 +278,7 @@ class DownloadDataViewController: UIViewController {
                 if let SoundUrl = firstExample?["SoundUrl"] {
                     wordData?.example_sound_url = SoundUrl as? String
                 }
-                
-                self.appDelegate.wordArray.append(wordData!)
-                self.checkProgress()
-                
+                    self.checkConnectServer()
             }
             
         }, completion: {(contextDidSave,error) in
@@ -297,6 +292,18 @@ class DownloadDataViewController: UIViewController {
     }
     
     func checkProgress() {
+//            self.currentDouble += self.totalDouble/4300
+//            let percent = self.currentDouble/43000 * 100
+//            if percent < 100{
+                self.progressView.frame = CGRect.init(x: 0, y: 0, width: self.progressView.frame.size.width + self.fullTrackView.frame.size.width/100, height: self.progressView.frame.height)
+                self.downloadedLabel.text = String(format: "%.2f", 16.9) + " MB"
+                self.percentDownloadedLabel.text = String(format: "%.2f", self.progressView.frame.width/self.fullTrackView.frame.size.width * 100) + " %"
+//            } else {
+//                
+//            }
+    }
+    
+    func checkConnectServer() {
         DispatchQueue.main.async {
             
             self.currentDouble += self.totalDouble/40737

@@ -36,6 +36,10 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        LoadingOverlay.shared.showOverlay(view: self.view)
+        self.titleArray = FlashCard.mr_findAllSorted(by: "id", ascending: true) as! [FlashCard]
+        LoadingOverlay.shared.hideOverlayView()
+        self.libraryTableView.reloadData()
         self.tabBarController?.tabBar.isHidden = false
 
 //        titleArray = FlashCard.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [FlashCard]
@@ -175,9 +179,6 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
  
                 }
             }, completion: {didContext in
-                self.titleArray = FlashCard.mr_findAllSorted(by: "id", ascending: true) as! [FlashCard]
-                LoadingOverlay.shared.hideOverlayView()
-                self.libraryTableView.reloadData()
                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã tải thành công các chủ đề", buttonArray: ["Đóng"], onCompletion: { _ in
                 })
             })

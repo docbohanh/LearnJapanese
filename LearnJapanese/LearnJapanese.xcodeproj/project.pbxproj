@@ -22,8 +22,8 @@
 		840579FE1DEDC3AC0019C100 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579FD1DEDC3AC0019C100 /* HeaderView.swift */; };
 		84057A001DEDC6EB0019C100 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840579FF1DEDC6EB0019C100 /* HeaderView.xib */; };
 		84057A021DEDC8CF0019C100 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */; };
+		842BB78E1E20DBD80063335C /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 842BB78D1E20DBD80063335C /* Model.xcmappingmodel */; };
 		844734B51DFB19F600A57640 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844734B41DFB19F600A57640 /* StringExtension.swift */; };
-		844AA44E1E1C3874002C741B /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 844AA44D1E1C3874002C741B /* Model.xcmappingmodel */; };
 		846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D5A241E181856002307CD /* DetailFlashCardViewController.swift */; };
 		849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C2C891E155C3B00350066 /* DownloadDataViewController.swift */; };
 		84A200CC1E202DD200E7290A /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A200CB1E202DD200E7290A /* data.json */; };
@@ -98,9 +98,9 @@
 		840579FD1DEDC3AC0019C100 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		840579FF1DEDC6EB0019C100 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
+		842BB78D1E20DBD80063335C /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 		843D34371E14209700D4FDE3 /* LearnJapanese.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnJapanese.entitlements; sourceTree = "<group>"; };
 		844734B41DFB19F600A57640 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = ../StringExtension.swift; sourceTree = "<group>"; };
-		844AA44D1E1C3874002C741B /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 		846D5A241E181856002307CD /* DetailFlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFlashCardViewController.swift; sourceTree = "<group>"; };
 		849C2C891E155C3B00350066 /* DownloadDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDataViewController.swift; sourceTree = "<group>"; };
 		84A200CB1E202DD200E7290A /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				84A200CB1E202DD200E7290A /* data.json */,
-				844AA44D1E1C3874002C741B /* Model.xcmappingmodel */,
+				842BB78D1E20DBD80063335C /* Model.xcmappingmodel */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -682,7 +682,7 @@
 				D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */,
 				840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */,
 				840579F81DED8CF80019C100 /* DictionaryTabBarViewController.swift in Sources */,
-				844AA44E1E1C3874002C741B /* Model.xcmappingmodel in Sources */,
+				842BB78E1E20DBD80063335C /* Model.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
