@@ -25,6 +25,7 @@
 		84057A001DEDC6EB0019C100 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840579FF1DEDC6EB0019C100 /* HeaderView.xib */; };
 		84057A021DEDC8CF0019C100 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */; };
 		844734B51DFB19F600A57640 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844734B41DFB19F600A57640 /* StringExtension.swift */; };
+		846876111E220D7000D4557B /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846876101E220D7000D4557B /* ImageViewExtension.swift */; };
 		846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D5A241E181856002307CD /* DetailFlashCardViewController.swift */; };
 		849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C2C891E155C3B00350066 /* DownloadDataViewController.swift */; };
 		84A200CC1E202DD200E7290A /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A200CB1E202DD200E7290A /* data.json */; };
@@ -102,6 +103,7 @@
 		84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		843D34371E14209700D4FDE3 /* LearnJapanese.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnJapanese.entitlements; sourceTree = "<group>"; };
 		844734B41DFB19F600A57640 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = ../StringExtension.swift; sourceTree = "<group>"; };
+		846876101E220D7000D4557B /* ImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		846D5A241E181856002307CD /* DetailFlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFlashCardViewController.swift; sourceTree = "<group>"; };
 		849C2C891E155C3B00350066 /* DownloadDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDataViewController.swift; sourceTree = "<group>"; };
 		84A200CB1E202DD200E7290A /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				EA2A8B761E0D1330009622F7 /* UILabelExtension.swift */,
 				EA2A8B771E0D1330009622F7 /* UIViewExtension.swift */,
 				844734B41DFB19F600A57640 /* StringExtension.swift */,
+				846876101E220D7000D4557B /* ImageViewExtension.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				EA2A8B7E1E0D1330009622F7 /* UIViewExtension.swift in Sources */,
 				846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */,
 				D27FF8691DFF0A6300EA02D1 /* NSVBarController.swift in Sources */,
+				846876111E220D7000D4557B /* ImageViewExtension.swift in Sources */,
 				EA2A8B781E0D1330009622F7 /* Define.swift in Sources */,
 				D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */,
 				D2EF304F1DFD4A2600287924 /* APIManager.swift in Sources */,

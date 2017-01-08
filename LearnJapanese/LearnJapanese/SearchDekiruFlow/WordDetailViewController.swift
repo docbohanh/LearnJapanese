@@ -33,7 +33,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     var searchText : String = ""
     var wordId: String = ""
     var detailTranslate: Translate!
-    var detailFlashCard = Translate()
+    var detailFlashCard: FlashCardDetail!
     var player: AVPlayer!
     
     
@@ -59,20 +59,21 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
 
-        DispatchQueue.global().async {
-            
-            self.detailTranslate = (Translate.mr_find(byAttribute: "id", withValue: self.wordId)?.first as? Translate)!
-            
-            DispatchQueue.main.async {
-                
+            self.detailTranslate = (Translate.mr_findFirst(byAttribute: "id", withValue: self.wordId, in: NSManagedObjectContext.mr_default()))
+            self.detailFlashCard = (FlashCardDetail.mr_findFirst(byAttribute: "id", withValue: self.wordId, in: NSManagedObjectContext.mr_default()))
+            if self.detailTranslate != nil {
+                self.saveHistoryData(translate: self.detailTranslate)
                 self.meaningLabel.text = self.detailTranslate.meaning_name
                 self.examplelabel.text = self.detailTranslate.example_meaning_name
                 self.titleLabel.text = self.searchText
+            } else if detailFlashCard != nil {
+                self.meaningLabel.text = self.detailFlashCard.meaning
+                self.titleLabel.text = self.detailFlashCard.word
+                self.examplelabel.text = ""
             }
-            if self.detailTranslate != nil {
-                self.saveHistoryData(translate: self.detailTranslate)
-            }
-        }
+        
+        
+        
         self.navigationController?.isNavigationBarHidden = true
     }
     override func didReceiveMemoryWarning() {
@@ -131,6 +132,9 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     @IBAction func tappedDeleteButton(_ sender: Any) {
     }
     @IBAction func tappedSoundButton(_ sender: Any) {
+        if detailTranslate != nil {
+            
+        
         if detailTranslate.sound_url == nil || detailTranslate.sound_url?.characters.count == 0 {
             ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in
             })
@@ -140,21 +144,42 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
             self.player.rate = 1.0;
             self.player.play()
         }
+        } else if detailFlashCard != nil {
+            if detailFlashCard.source_url == nil || detailFlashCard.source_url?.characters.count == 0 {
+                ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in
+                })
+            } else {
+                let playerItem = AVPlayerItem( url:URL(string:detailFlashCard.source_url! )! )
+                self.player = AVPlayer(playerItem:playerItem)
+                self.player.rate = 1.0;
+                self.player.play()
+            }
+        }
     }
     @IBAction func tappedFavoriteButton(_ sender: Any) {
         popupView?.wordLabel.text = searchTextField.text
         backgroundPopupView.isHidden = false
-        popupView?.meaningTextView.text = detailTranslate.meaning_name
+        if detailTranslate != nil {
+            popupView?.meaningTextView.text = detailTranslate.meaning_name
+        } else if detailFlashCard != nil{
+            popupView?.meaningTextView.text = detailFlashCard.meaning
+
+        }
         popupView?.myFlashCardsLabel.text = "Lưu từ"
         popupView?.storeType = .word
+        
     }
     @IBAction func tappedSaveFlashCashButton(_ sender: Any) {
         popupView?.wordLabel.text = searchTextField.text
-        popupView?.meaningTextView.text = detailTranslate.meaning_name
+        if detailTranslate != nil {
+            popupView?.meaningTextView.text = detailTranslate.meaning_name
+        } else if detailFlashCard != nil{
+            popupView?.meaningTextView.text = detailFlashCard.meaning
+            
+        }
         backgroundPopupView.isHidden = false
         popupView?.myFlashCardsLabel.text = "Flash Cards của tôi"
         popupView?.storeType = .flash_card
-        self.saveWordToLocal(type: .flash_card)
     }
     @IBAction func tappedClosePopupButton(_ sender: Any) {
         backgroundPopupView.isHidden = true
@@ -200,13 +225,14 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
 
 
     func saveHistoryData(translate:Translate) {
-        let word = History.mr_find(byAttribute: "id", withValue: String(describing: translate.id))
+        let word = History.mr_findFirst(byAttribute: "id", withValue: translate.id, in: NSManagedObjectContext.mr_default())
         if word == nil {
             MagicalRecord.save({localContext in
                 let history = History.mr_createEntity(in: localContext)
                 if let word_id = translate.id {
                     history?.id = String(describing: word_id)
                 }
+                
                 if let Word = translate.word {
                     history?.word = Word
                 }
@@ -214,15 +240,19 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
                 if let kana = translate.kana {
                     history?.kana = kana
                 }
+                
                 if let Romaji = translate.romaji {
                     history?.romaji = Romaji
                 }
+                
                 if let SoundUrl = translate.sound_url {
                     history?.sound_url = SoundUrl
                 }
+                
                 if let LastmodifiedDate = translate.last_modified {
                     history?.last_modified = LastmodifiedDate
                 }
+                
                 if let Modified = translate.modified {
                     history?.modified = Modified
                 }
@@ -234,32 +264,39 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
                 if let Meaning  = translate.meaning_name {
                     history?.meaning_name = Meaning
                 }
+                
                 if let MeaningId = translate.meaningId {
                     history?.meaningId = MeaningId
                 }
+                
                 if let Type = translate.meaning_type {
                     history?.meaning_type = Type
                 }
                 
-                
                 if let ExampleId = translate.example_id {
                     history?.example_id = ExampleId
                 }
+                
                 if let Example = translate.example_name {
                     history?.example_name = Example
                 }
+                
                 if let Meaning = translate.example_meaning_name {
                     history?.example_meaning_name = Meaning
                 }
+                
                 if let MeaningId = translate.example_meaning_id {
                     history?.example_meaning_id = MeaningId
                 }
+                
                 if let Romaji = translate.romaji {
                     history?.example_romaji = Romaji
                 }
+                
                 if let Kana = translate.kana {
                     history?.example_kana = Kana
                 }
+                
                 if let SoundUrl = translate.sound_url {
                     history?.example_sound_url = SoundUrl
                 }

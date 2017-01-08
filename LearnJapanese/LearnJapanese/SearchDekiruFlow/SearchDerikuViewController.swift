@@ -152,13 +152,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
             let translate = filterArray[indexPath.row]
             
             if searchActive {
-                if translate.isSearch == nil || translate.isSearch == "0"{
-                    
-                    cell.iconImageView.image = UIImage(named: "icon_search")
-                } else {
-                    cell.iconImageView.image = UIImage(named: "icon_history")
-                    
-                }
+                
                 if changeLangueButton.isSelected {
                     cell.wordLabel.text = translate.meaning_name
                     cell.contentLabel.text = translate.word
@@ -176,8 +170,12 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                 }
                 
             }
-
-            cell.initCell(wordModel: WordModel())
+            if translate.isSearch == nil || translate.isSearch == "0"{
+                
+                cell.initCell(wordModel: WordModel())
+            } else {
+                cell.initHistoryCell(wordModel: WordModel())
+            }
 
         }
          return cell
@@ -214,19 +212,28 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func updateWordToHistory(index:Int) {
-        let localContext = NSManagedObjectContext.mr_default()
-
-        MagicalRecord.save({localContext in
-            let word = Translate.mr_find(byAttribute: "id", withValue: self.currentDetailTranslate.id, in: localContext)?.first as? Translate
-            if word != nil {
-                word?.isSearch = "1"
-            }
-            
-        }, completion: {_ in
-            let word = Translate.mr_find(byAttribute: "id", withValue: self.currentDetailTranslate.id, in: localContext)?.first as? Translate
-            self.tableView.reloadRows(at: [IndexPath.init(row: index, section: 0)], with: UITableViewRowAnimation.none)
-            print(word)
-        })
+//        localContext.mr_save({localContext in
+//            let word = Translate.mr_find(byAttribute: "id", withValue: self.currentDetailTranslate.id, in: localContext)?.first as? Translate
+//            if word != nil {
+//                word?.isSearch = "1"
+//            }
+//            
+//        })
+        let word = Translate.mr_find(byAttribute: "id", withValue: self.currentDetailTranslate.id, in: NSManagedObjectContext.mr_default())?.first as? Translate
+        if word != nil {
+            word?.isSearch = "1"
+        }
+        NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
+//        MagicalRecord.save({NSManagedObjectContext.mr_default() in
+//            if word != nil {
+//                word?.isSearch = "1"
+//            }
+//            
+//        }, completion: {_ in
+//            let word = Translate.mr_find(byAttribute: "id", withValue: self.currentDetailTranslate.id, in: NSManagedObjectContext.mr_default())?.first as? Translate
+//            self.tableView.reloadRows(at: [IndexPath.init(row: index, section: 0)], with: UITableViewRowAnimation.none)
+//            print(word)
+//        })
         
     }
     

@@ -24,9 +24,14 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var player: AVPlayer!
     var isShowListWord = false
     var selectedSection = 0
+    var iconItemArray = [UIImage]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        iconItemArray.append(UIImage(named: "icon_flashcash_folder")!)
+        iconItemArray.append(UIImage(named: "icon_flashcash_folder")!)
+
         self.navigationController?.navigationBar.isHidden = false
         libraryTableView.tableFooterView = UIView.init(frame: CGRect.zero)
         DispatchQueue.global().async {
@@ -130,6 +135,9 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         headerView?.titleLabel.text = cardTitle
         headerView?.backgroundHeaderButton.tag = Int(cardID) ?? 0
         headerView?.tag = section
+        if iconItemArray.count > section {
+            headerView?.iconHeaderImageView.image = iconItemArray[section]
+        }
         return headerView
     }
     
@@ -146,6 +154,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let searchDerikuStoryboard = UIStoryboard.init(name: "Library", bundle: Bundle.main)
             let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "DetailFlashCardViewController") as! DetailFlashCardViewController
             detaiVC.listWord = subWordArray
+            
             detaiVC.currentIndexWord = indexPath.row
             self.navigationController?.pushViewController(detaiVC, animated: true)
         }
@@ -228,7 +237,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         }
                         
                         if let Avatar = flashCardDetailObject["Avatar"] {
-                            flashCard?.avatar = Avatar as? String
+                            flashCard?.avatar = Avatar as! String
                         }
                     }
  
@@ -236,10 +245,19 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }, completion: {didContext in
                 LoadingOverlay.shared.showOverlay(view: self.view)
                 self.titleArray = FlashCard.mr_findAllSorted(by: "id", ascending: true) as! [FlashCard]
+                
                 LoadingOverlay.shared.hideOverlayView()
                 self.libraryTableView.reloadData()
                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã tải thành công các chủ đề", buttonArray: ["Đóng"], onCompletion: { _ in
                 })
+                DispatchQueue.global().async {
+                    for word in self.titleArray {
+                        if word.avatar != nil && (word.avatar?.characters.count)! > 0 {
+                            self.loadImage(url: word.avatar!)
+                        }
+                    }
+                    self.libraryTableView.reloadData()
+                }
             })
             } else {
             DispatchQueue.main.async {
@@ -248,6 +266,38 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
     }
     
+    func loadImage(url:String) -> Void {
+        let catPictureURL = URL(string: url)!
+        let session = URLSession(configuration: .default)
+        let downloadPicTask = session.dataTask(with: catPictureURL) { (data, response, error) in
+                // The download has finished.
+            if let e = error {
+                print("Error downloading cat picture: \(e)")
+            } else {
+                // No errors found.
+                // It would be weird if we didn't have a response, so check for that too.
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded cat picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                            // Finally convert that Data into an image and do what you wish with it.
+                        let image:UIImage? = UIImage.init(data: imageData)
+                        if image == nil {
+                            self.iconItemArray.append(UIImage(named: "icon_flashcash_folder")!)
+                        } else {
+                            self.iconItemArray.append(image!)
+                        }
+                            
+                        } else {
+                            print("Couldn't get image: Image is nil")
+                        }
+                    } else {
+                        print("Couldn't get response code for some reason")
+                    }
+                }
+            }
+            downloadPicTask.resume()
+        }
+
     /**
      Get Flash Card detail
      */
