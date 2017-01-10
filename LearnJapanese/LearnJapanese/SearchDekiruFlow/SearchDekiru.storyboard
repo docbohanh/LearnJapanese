@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -374,7 +374,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a5k-ge-J5T">
-                                        <rect key="frame" x="90" y="3" width="75" height="24"/>
+                                        <rect key="frame" x="90" y="3" width="65" height="24"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="Google">
@@ -385,7 +385,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3t-ja-kc5">
-                                        <rect key="frame" x="256" y="3" width="75" height="24"/>
+                                        <rect key="frame" x="236" y="3" width="65" height="24"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="Wikipedia">
@@ -396,7 +396,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6y-yk-i4z">
-                                        <rect key="frame" x="173" y="3" width="75" height="24"/>
+                                        <rect key="frame" x="163" y="3" width="65" height="24"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <state key="normal" title="Bing">
@@ -411,15 +411,15 @@
                                 <constraints>
                                     <constraint firstItem="i6y-yk-i4z" firstAttribute="centerY" secondItem="xT9-Ef-Q2v" secondAttribute="centerY" id="3NX-jt-w36"/>
                                     <constraint firstItem="NL9-Lz-hmX" firstAttribute="centerY" secondItem="xT9-Ef-Q2v" secondAttribute="centerY" id="BCY-dD-sDE"/>
-                                    <constraint firstItem="e3t-ja-kc5" firstAttribute="width" secondItem="NL9-Lz-hmX" secondAttribute="width" id="FFY-cI-mCV"/>
+                                    <constraint firstItem="e3t-ja-kc5" firstAttribute="width" secondItem="NL9-Lz-hmX" secondAttribute="width" constant="-10" id="FFY-cI-mCV"/>
                                     <constraint firstAttribute="height" constant="30" id="Gea-ke-cww"/>
-                                    <constraint firstItem="i6y-yk-i4z" firstAttribute="width" secondItem="NL9-Lz-hmX" secondAttribute="width" id="Ku8-j8-Lty"/>
+                                    <constraint firstItem="i6y-yk-i4z" firstAttribute="width" secondItem="NL9-Lz-hmX" secondAttribute="width" constant="-10" id="Ku8-j8-Lty"/>
                                     <constraint firstItem="a5k-ge-J5T" firstAttribute="centerY" secondItem="xT9-Ef-Q2v" secondAttribute="centerY" id="RZi-0U-BX5"/>
                                     <constraint firstItem="i6y-yk-i4z" firstAttribute="height" secondItem="NL9-Lz-hmX" secondAttribute="height" id="SJq-6K-bXI"/>
                                     <constraint firstItem="a5k-ge-J5T" firstAttribute="height" secondItem="NL9-Lz-hmX" secondAttribute="height" id="TNr-3J-6Pw"/>
                                     <constraint firstItem="e3t-ja-kc5" firstAttribute="centerY" secondItem="xT9-Ef-Q2v" secondAttribute="centerY" id="YWI-lY-oz7"/>
                                     <constraint firstItem="i6y-yk-i4z" firstAttribute="leading" secondItem="a5k-ge-J5T" secondAttribute="trailing" constant="8" id="cbA-hF-Aq3"/>
-                                    <constraint firstItem="a5k-ge-J5T" firstAttribute="width" secondItem="NL9-Lz-hmX" secondAttribute="width" id="nZg-w5-Z7w"/>
+                                    <constraint firstItem="a5k-ge-J5T" firstAttribute="width" secondItem="NL9-Lz-hmX" secondAttribute="width" constant="-10" id="nZg-w5-Z7w"/>
                                     <constraint firstItem="e3t-ja-kc5" firstAttribute="height" secondItem="NL9-Lz-hmX" secondAttribute="height" id="nyh-Jk-KJ9"/>
                                     <constraint firstItem="e3t-ja-kc5" firstAttribute="leading" secondItem="i6y-yk-i4z" secondAttribute="trailing" constant="8" id="tne-Bk-sNh"/>
                                     <constraint firstItem="NL9-Lz-hmX" firstAttribute="leading" secondItem="xT9-Ef-Q2v" secondAttribute="leading" constant="7" id="vbr-Dd-QTg"/>

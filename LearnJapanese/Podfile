@@ -7,7 +7,7 @@ target 'LearnJapanese' do
 
     	pod 'MagicalRecord'
 	pod 'Alamofire'
-	
+	pod ‘AFNetworking’
   # Pods for LearnJapanese
 
   target 'LearnJapaneseTests' do
