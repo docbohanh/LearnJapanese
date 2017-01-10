@@ -31,11 +31,6 @@
 		B84040B15AD6906377CA4F43 /* Pods_LearnJapaneseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */; };
 		D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */; };
 		D22DEE1E1E25368A006FABEB /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = D22DEE1D1E25368A006FABEB /* Model.xcmappingmodel */; };
-		D22DEE2B1E253FFC006FABEB /* FGAzureToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DEE211E253FFC006FABEB /* FGAzureToken.m */; };
-		D22DEE2C1E253FFC006FABEB /* FGTranslateRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DEE231E253FFC006FABEB /* FGTranslateRequest.m */; };
-		D22DEE2D1E253FFC006FABEB /* FGTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DEE251E253FFC006FABEB /* FGTranslator.m */; };
-		D22DEE2E1E253FFC006FABEB /* NSString+FGTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DEE271E253FFC006FABEB /* NSString+FGTranslator.m */; };
-		D22DEE2F1E253FFC006FABEB /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = D22DEE2A1E253FFC006FABEB /* XMLDictionary.m */; };
 		D24847F51E1EBA1C00603164 /* RotateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24847F41E1EBA1C00603164 /* RotateView.xib */; };
 		D24847F71E1EBA3800603164 /* RotateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24847F61E1EBA3800603164 /* RotateView.swift */; };
 		D249C7991DF05EFB00FF0E44 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D249C7981DF05EFB00FF0E44 /* Library.storyboard */; };
@@ -117,17 +112,6 @@
 		B71028C69EA800855790B3A5 /* Pods-LearnJapaneseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDetailViewController.swift; sourceTree = "<group>"; };
 		D22DEE1D1E25368A006FABEB /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
-		D22DEE201E253FFC006FABEB /* FGAzureToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGAzureToken.h; sourceTree = "<group>"; };
-		D22DEE211E253FFC006FABEB /* FGAzureToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGAzureToken.m; sourceTree = "<group>"; };
-		D22DEE221E253FFC006FABEB /* FGTranslateRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGTranslateRequest.h; sourceTree = "<group>"; };
-		D22DEE231E253FFC006FABEB /* FGTranslateRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGTranslateRequest.m; sourceTree = "<group>"; };
-		D22DEE241E253FFC006FABEB /* FGTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FGTranslator.h; sourceTree = "<group>"; };
-		D22DEE251E253FFC006FABEB /* FGTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FGTranslator.m; sourceTree = "<group>"; };
-		D22DEE261E253FFC006FABEB /* NSString+FGTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FGTranslator.h"; sourceTree = "<group>"; };
-		D22DEE271E253FFC006FABEB /* NSString+FGTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FGTranslator.m"; sourceTree = "<group>"; };
-		D22DEE291E253FFC006FABEB /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
-		D22DEE2A1E253FFC006FABEB /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
-		D22DEE301E254130006FABEB /* LearnJapanese-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LearnJapanese-Bridging-Header.h"; sourceTree = "<group>"; };
 		D24847F41E1EBA1C00603164 /* RotateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RotateView.xib; sourceTree = "<group>"; };
 		D24847F61E1EBA3800603164 /* RotateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateView.swift; sourceTree = "<group>"; };
 		D249C7981DF05EFB00FF0E44 /* Library.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
@@ -239,7 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				843D34371E14209700D4FDE3 /* LearnJapanese.entitlements */,
-				D22DEE301E254130006FABEB /* LearnJapanese-Bridging-Header.h */,
 				EA2A8B811E0D36B0009622F7 /* Database */,
 				EA2A8B701E0D1330009622F7 /* Common */,
 				D2EF304D1DFD4A0C00287924 /* APIManager */,
@@ -280,31 +263,6 @@
 			path = LearnJapaneseUITests;
 			sourceTree = "<group>";
 		};
-		D22DEE1F1E253FFC006FABEB /* FGTranslator */ = {
-			isa = PBXGroup;
-			children = (
-				D22DEE201E253FFC006FABEB /* FGAzureToken.h */,
-				D22DEE211E253FFC006FABEB /* FGAzureToken.m */,
-				D22DEE221E253FFC006FABEB /* FGTranslateRequest.h */,
-				D22DEE231E253FFC006FABEB /* FGTranslateRequest.m */,
-				D22DEE241E253FFC006FABEB /* FGTranslator.h */,
-				D22DEE251E253FFC006FABEB /* FGTranslator.m */,
-				D22DEE261E253FFC006FABEB /* NSString+FGTranslator.h */,
-				D22DEE271E253FFC006FABEB /* NSString+FGTranslator.m */,
-				D22DEE281E253FFC006FABEB /* XMLDictionary */,
-			);
-			path = FGTranslator;
-			sourceTree = "<group>";
-		};
-		D22DEE281E253FFC006FABEB /* XMLDictionary */ = {
-			isa = PBXGroup;
-			children = (
-				D22DEE291E253FFC006FABEB /* XMLDictionary.h */,
-				D22DEE2A1E253FFC006FABEB /* XMLDictionary.m */,
-			);
-			path = XMLDictionary;
-			sourceTree = "<group>";
-		};
 		D24A135D1DEDA35E00E9E063 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,7 +285,6 @@
 		D2688E0D1DED8B9C00EB3A6E /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				D22DEE1F1E253FFC006FABEB /* FGTranslator */,
 				D256EBCD1DFB1D63007D56EE /* KMPlaceholderTextView.swift */,
 				D249C7981DF05EFB00FF0E44 /* Library.storyboard */,
 				840579FB1DEDC33C0019C100 /* LibraryViewController.swift */,
@@ -701,7 +658,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D22DEE2D1E253FFC006FABEB /* FGTranslator.m in Sources */,
 				D24A13581DED8E2A00E9E063 /* SearchDerikuViewController.swift in Sources */,
 				D256EBCE1DFB1D63007D56EE /* KMPlaceholderTextView.swift in Sources */,
 				D24A135F1DEDA37200E9E063 /* WordModel.swift in Sources */,
@@ -722,17 +678,13 @@
 				846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */,
 				D27FF8691DFF0A6300EA02D1 /* NSVBarController.swift in Sources */,
 				846876111E220D7000D4557B /* ImageViewExtension.swift in Sources */,
-				D22DEE2B1E253FFC006FABEB /* FGAzureToken.m in Sources */,
 				EA2A8B781E0D1330009622F7 /* Define.swift in Sources */,
 				D24A13691DEDCA8A00E9E063 /* SavePopupView.swift in Sources */,
-				D22DEE2C1E253FFC006FABEB /* FGTranslateRequest.m in Sources */,
-				D22DEE2E1E253FFC006FABEB /* NSString+FGTranslator.m in Sources */,
 				D2EF304F1DFD4A2600287924 /* APIManager.swift in Sources */,
 				D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */,
 				EA2A8B7C1E0D1330009622F7 /* UIButtonExtension.swift in Sources */,
 				D22DEE1E1E25368A006FABEB /* Model.xcmappingmodel in Sources */,
 				D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */,
-				D22DEE2F1E253FFC006FABEB /* XMLDictionary.m in Sources */,
 				840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */,
 				840579F81DED8CF80019C100 /* DictionaryTabBarViewController.swift in Sources */,
 			);
@@ -898,7 +850,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "LearnJapanese/LearnJapanese-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -919,7 +871,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "LearnJapanese/LearnJapanese-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

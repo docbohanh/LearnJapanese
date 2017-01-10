@@ -24,6 +24,7 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     var currentIndexWord : Int!
     var audioPlayer : AVAudioPlayer?
     var player: AVPlayer!
+    var wordImageArray = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,14 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
+        LoadingOverlay.shared.showOverlay(view: view)
+        for object in listWord {
+            if object != nil {
+                if object.avatar != nil {
+                    self.loadImage(url: object.avatar!)
+                }
+            }
+        }
 //        wordLabel.text = word
     }
     
@@ -51,12 +60,15 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
         
         for i in 0..<listWord.count {
             let word = listWord[i]
+            
             let customView = UINib(nibName: "RotateView", bundle: Bundle.main).instantiate(withOwner: self, options: nil)[0] as? RotateView
             customView?.frame = CGRect.init(x: 10 + CGFloat(i) * CGFloat(scrollView.frame.size.width), y: 0, width: scrollViewWidth - 20, height: scrollViewHeight)
-            let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapOnRotateView))
-
-            customView?.addGestureRecognizer(tap)
-            
+//            let tap = UITapGestureRecognizer(target: self, action: #selector(self.rotateDetailView:i))
+//
+//            customView?.addGestureRecognizer(tap)
+            if wordImageArray.count > i {
+                customView?.wordImageView.image = wordImageArray[i]
+            }
             customView?.translateTextLabel.text = word.word
             customView?.textLabel.text = word.meaning
             customView?.clipsToBounds = true
@@ -67,6 +79,48 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
             scrollView.addSubview(customView!)
         }
         self.scrollView.contentSize = CGSize(width:self.scrollView.frame.width * CGFloat(listWord.count), height:self.scrollView.frame.height)
+    }
+    
+    func loadImage(url:String) -> Void {
+        let catPictureURL = URL(string: url)!
+        let session = URLSession(configuration: .default)
+        let downloadPicTask = session.dataTask(with: catPictureURL) { (data, response, error) in
+            // The download has finished.
+            if let e = error {
+                print("Error downloading cat picture: \(e)")
+            } else {
+                // No errors found.
+                // It would be weird if we didn't have a response, so check for that too.
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded cat picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                        // Finally convert that Data into an image and do what you wish with it.
+                        let image:UIImage? = UIImage.init(data: imageData)
+                        if image == nil {
+                            DispatchQueue.main.async {
+                                self.wordImageArray.append(UIImage(named: "")!)
+                                LoadingOverlay.shared.hideOverlayView()
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                
+                                self.wordImageArray.append(image!)
+                                let viewAnimate = self.view.viewWithTag(1000 + (self.wordImageArray.count - 1 )) as! RotateView
+
+                                viewAnimate.wordImageView.image = image
+                                LoadingOverlay.shared.hideOverlayView()
+                            }
+                        }
+                        
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
+        }
+        downloadPicTask.resume()
     }
     
     func setupView() -> Void {
@@ -109,15 +163,30 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
         })
     }
     
+    func rotateScreen(index: Int) {
+        let viewAnimate = view.viewWithTag(1000 + index) as! RotateView
+        let option:UIViewAnimationOptions = .transitionFlipFromLeft
+        UIView.transition(with: viewAnimate, duration: 0.5, options: option, animations: nil) { (isSuccess) in
+            viewAnimate.isShowImage = !viewAnimate.isShowImage
+            if viewAnimate.isShowImage {
+                viewAnimate.wordImageView.isHidden = true
+            }else {
+                viewAnimate.wordImageView.isHidden = false
+            }
+            
+        }
+        UIView.transition(with: viewAnimate, duration: 0.5, options: option, animations: nil, completion: nil)
+    }
+    
     func rotateDetailView(index:Int) {
         let viewAnimate = view.viewWithTag(1000 + index) as! RotateView
         let option:UIViewAnimationOptions = .transitionFlipFromLeft
         UIView.transition(with: viewAnimate, duration: 0.5, options: option, animations: nil) { (isSuccess) in
             viewAnimate.isShowImage = !viewAnimate.isShowImage
             if viewAnimate.isShowImage {
-                viewAnimate.textLabel.backgroundColor = UIColor.red
+                viewAnimate.wordImageView.isHidden = true
             }else {
-                viewAnimate.textLabel.backgroundColor = UIColor.blue
+                viewAnimate.wordImageView.isHidden = false
             }
             
         }

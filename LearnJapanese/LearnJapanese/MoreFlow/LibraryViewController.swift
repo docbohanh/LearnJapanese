@@ -162,7 +162,9 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let searchDerikuStoryboard = UIStoryboard.init(name: "Library", bundle: Bundle.main)
             let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "DetailFlashCardViewController") as! DetailFlashCardViewController
             detaiVC.listWord = subWordArray
-            
+            if isShowListWord {
+//                detaiVC.isMyWord = true
+            }
             detaiVC.currentIndexWord = indexPath.row
             self.navigationController?.pushViewController(detaiVC, animated: true)
         }
@@ -180,6 +182,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let button = sender.backgroundHeaderButton as UIButton
         currentIdFlashCard = String(button.tag)
         isShowListWord = !isShowListWord
+        //isMyWord = false
         if isShowListWord {
             if subWordArray != nil {
                 if subWordArray.count > 0 {
@@ -195,6 +198,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 currentIdFlashCard = ".word"
                 subWordArray.removeAll()
                 subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: currentIdFlashCard, andOrderBy: "id", ascending: true) as! [FlashCardDetail]!
+                //isMyWord = true
                 LoadingOverlay.shared.hideOverlayView()
                 self.libraryTableView.reloadData()
             } else {

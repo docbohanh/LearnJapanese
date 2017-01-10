@@ -32,6 +32,8 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     
     var searchText : String = ""
     var wordId: String = ""
+    var isMyWord = Bool()
+    
     var detailTranslate: Translate!
     var detailFlashCard: FlashCardDetail!
     var player: AVPlayer!

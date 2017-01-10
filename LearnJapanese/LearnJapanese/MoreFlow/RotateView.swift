@@ -12,11 +12,13 @@ protocol RotateViewDelegate {
     func flashCardTapped(index:Int) -> Void
     func favoriteTapped(index:Int) -> Void
     func playSoundTapped(index:Int) -> Void
-//    func rotateScreen(index:Int) -> Void
+    func rotateScreen(index:Int) -> Void
 }
 
 class RotateView: UIView {
     
+    @IBOutlet weak var backgroundButton: UIButton!
+    @IBOutlet weak var wordImageView: UIImageView!
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var translateTextLabel: UILabel!
     var index : Int!
@@ -24,6 +26,9 @@ class RotateView: UIView {
     var isShowImage = false
     
 
+    @IBAction func tappedRotateView(_ sender: UIButton) {
+        self.delegate.rotateScreen(index: index)
+    }
     
     @IBAction func flashCardButton_clicked(_ sender: Any) {
         self.delegate.flashCardTapped(index: index)
