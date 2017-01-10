@@ -10,6 +10,6 @@
 #define SwiftExample_Objc_Bridge_Header_h
 
 #import "FGTranslateRequest.h"
-#import "AFNetworking.h"
+#import <AFNetworking/AFNetworking.h>
 
 #endif
