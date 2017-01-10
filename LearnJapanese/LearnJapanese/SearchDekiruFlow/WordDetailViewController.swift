@@ -189,6 +189,11 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     @IBAction func tappedDekiruDictButton(_ sender: Any) {
         searchWebView.isHidden = true
         searchResultScrollView.isHidden = false
+        
+        dekiruButton.backgroundColor = background_color
+        googleButton.backgroundColor = UIColor.lightText
+        wikipediaButton.backgroundColor = UIColor.lightText
+        bingButton.backgroundColor = UIColor.lightText
     }
     @IBAction func tappedGoogleButton(_ sender: Any) {
         searchResultScrollView.isHidden = true
@@ -196,8 +201,18 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         let url = NSURL (string: "https://translate.google.com");
         let requestObj = NSURLRequest(url: url! as URL);
         searchWebView.loadRequest(requestObj as URLRequest);
+        
+        dekiruButton.backgroundColor = UIColor.lightText
+        googleButton.backgroundColor = background_color
+        wikipediaButton.backgroundColor = UIColor.lightText
+        bingButton.backgroundColor = UIColor.lightText
     }
     @IBAction func tappedWikipediaButton(_ sender: Any) {
+        dekiruButton.backgroundColor = UIColor.lightText
+        googleButton.backgroundColor = UIColor.lightText
+        wikipediaButton.backgroundColor = background_color
+        bingButton.backgroundColor = UIColor.lightText
+        
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
         let wordSearch = searchTextField.text ?? "dekiru"
@@ -213,6 +228,11 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         searchWebView.loadRequest(requestObj as URLRequest);
     }
     @IBAction func tappedBingButton(_ sender: Any) {
+        dekiruButton.backgroundColor = UIColor.lightText
+        googleButton.backgroundColor = UIColor.lightText
+        wikipediaButton.backgroundColor = UIColor.lightText
+        bingButton.backgroundColor = background_color
+        
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
         let wordSearch = searchTextField.text ?? "dekiru"

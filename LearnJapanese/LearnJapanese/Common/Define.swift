@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 let COMMON_COLOR = UIColor.init(colorLiteralRed: 25/255.0, green: 121/255.0, blue: 108/255.0, alpha: 1)
+let background_color = UIColor.init(colorLiteralRed: 55/255.0, green: 140/255.0, blue: 128/255.0, alpha: 1)
 
 enum DisplayExchangeType: Int {
     case date

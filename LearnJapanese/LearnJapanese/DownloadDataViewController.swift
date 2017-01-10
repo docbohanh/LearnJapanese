@@ -39,12 +39,17 @@ class DownloadDataViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if UserDefaults.standard.object(forKey: "version") == nil {
-            self.createDefaultData()
-            UserDefaults.standard.set("", forKey: "version")
+        if ProjectCommon.connectedToNetwork() {
+            if UserDefaults.standard.object(forKey: "version") == nil {
+                self.createDefaultData()
+                UserDefaults.standard.set("", forKey: "version")
+            } else {
+                self.getdataLocal()
+            }
         } else {
-            self.getdataLocal()
+            self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
         }
+
     }
     override func viewWillDisappear(_ animated: Bool) {
         print("will disappear download")

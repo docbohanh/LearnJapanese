@@ -178,40 +178,47 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func tappedShowVocaburaryList(sender: HeaderView, flashCard: String) {
-        selectedSection = sender.tag
-        let button = sender.backgroundHeaderButton as UIButton
-        currentIdFlashCard = String(button.tag)
-        isShowListWord = !isShowListWord
-        //isMyWord = false
-        if isShowListWord {
-            if subWordArray != nil {
-                if subWordArray.count > 0 {
-                    subWordArray.removeAll()
+        if ProjectCommon.connectedToNetwork() {
+            selectedSection = sender.tag
+            let button = sender.backgroundHeaderButton as UIButton
+            currentIdFlashCard = String(button.tag)
+            isShowListWord = !isShowListWord
+            //isMyWord = false
+            if isShowListWord {
+                if subWordArray != nil {
+                    if subWordArray.count > 0 {
+                        subWordArray.removeAll()
+                    }
                 }
-            }
-            LoadingOverlay.shared.showOverlay(view: view)
-            if flashCard == ".flashcard" {
-                currentIdFlashCard = ".flashcard"
-                LoadingOverlay.shared.hideOverlayView()
-                self.libraryTableView.reloadData()
-            } else if flashCard == ".word" {
-                currentIdFlashCard = ".word"
-                subWordArray.removeAll()
-                subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: currentIdFlashCard, andOrderBy: "id", ascending: true) as! [FlashCardDetail]!
-                //isMyWord = true
-                LoadingOverlay.shared.hideOverlayView()
-                self.libraryTableView.reloadData()
+                LoadingOverlay.shared.showOverlay(view: view)
+                if flashCard == ".flashcard" {
+                    currentIdFlashCard = ".flashcard"
+                    LoadingOverlay.shared.hideOverlayView()
+                    self.libraryTableView.reloadData()
+                } else if flashCard == ".word" {
+                    currentIdFlashCard = ".word"
+                    subWordArray.removeAll()
+                    subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: currentIdFlashCard, andOrderBy: "id", ascending: true) as! [FlashCardDetail]!
+                    //isMyWord = true
+                    LoadingOverlay.shared.hideOverlayView()
+                    self.libraryTableView.reloadData()
+                } else {
+                    self.getFlashCardDetail(flashCardId: currentIdFlashCard)
+                }
             } else {
-                self.getFlashCardDetail(flashCardId: currentIdFlashCard)
+                if subWordArray != nil {
+                    if subWordArray.count > 0 {
+                        subWordArray.removeAll()
+                    }
+                }
+                libraryTableView.reloadData()
             }
         } else {
-            if subWordArray != nil {
-                if subWordArray.count > 0 {
-                    subWordArray.removeAll()
-                }
-            }
-            libraryTableView.reloadData()
+        ProjectCommon.initAlertView(viewController: self, title: "", message: "Không thể kết nối internet,vui lòng quay lại sau", buttonArray: ["Đóng"], onCompletion: {_ in
+            
+        })
         }
+
     }
     
     /**
