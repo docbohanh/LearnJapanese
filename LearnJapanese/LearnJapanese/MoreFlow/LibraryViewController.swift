@@ -70,6 +70,10 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         super.viewWillAppear(true)
         LoadingOverlay.shared.showOverlay(view: self.view)
         self.titleArray = FlashCard.mr_findAllSorted(by: "id", ascending: true) as! [FlashCard]
+        if subWordArray != nil {
+            subWordArray.removeAll()
+        }
+        subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: currentIdFlashCard, andOrderBy: "id", ascending: true) as! [FlashCardDetail]!
         LoadingOverlay.shared.hideOverlayView()
         self.libraryTableView.reloadData()
         self.tabBarController?.tabBar.isHidden = false
@@ -136,7 +140,11 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         headerView?.backgroundHeaderButton.tag = Int(cardID) ?? 0
         headerView?.tag = section
         if iconItemArray.count > section {
-            headerView?.iconHeaderImageView.image = iconItemArray[section]
+            if let image:UIImage = iconItemArray[section] {
+                if image == UIImage() {
+                    headerView?.iconHeaderImageView.image = iconItemArray[section]
+                }
+            }
         }
         return headerView
     }
@@ -181,11 +189,11 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             LoadingOverlay.shared.showOverlay(view: view)
             if flashCard == ".flashcard" {
                 currentIdFlashCard = ".flashcard"
-                subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: currentIdFlashCard, andOrderBy: "id", ascending: true) as! [FlashCardDetail]!
                 LoadingOverlay.shared.hideOverlayView()
                 self.libraryTableView.reloadData()
             } else if flashCard == ".word" {
                 currentIdFlashCard = ".word"
+                subWordArray.removeAll()
                 subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: currentIdFlashCard, andOrderBy: "id", ascending: true) as! [FlashCardDetail]!
                 LoadingOverlay.shared.hideOverlayView()
                 self.libraryTableView.reloadData()
@@ -256,7 +264,10 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                             self.loadImage(url: word.avatar!)
                         }
                     }
-                    self.libraryTableView.reloadData()
+                    DispatchQueue.main.async {
+                        LoadingOverlay.shared.hideOverlayView()
+                        self.libraryTableView.reloadData()
+                    }
                 }
             })
             } else {
