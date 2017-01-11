@@ -45,7 +45,9 @@
         <attribute name="example_romaji" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="example_sound_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFlashCard" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isSearch" optional="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
+        <attribute name="isWord" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="kana" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="last_modified" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="meaning_name" optional="YES" attributeType="String" syncable="YES"/>
@@ -60,6 +62,6 @@
         <element name="FlashCard" positionX="286" positionY="198" width="128" height="88"/>
         <element name="FlashCardDetail" positionX="286" positionY="1439" width="128" height="163"/>
         <element name="History" positionX="115" positionY="9" width="128" height="313"/>
-        <element name="Translate" positionX="-36" positionY="9" width="128" height="328"/>
+        <element name="Translate" positionX="-36" positionY="9" width="128" height="360"/>
     </elements>
 </model>

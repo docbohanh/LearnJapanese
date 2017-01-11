@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -607,6 +607,8 @@
                         <outlet property="dekiruButton" destination="NL9-Lz-hmX" id="Z5m-pp-vxI"/>
                         <outlet property="example2Label" destination="2ZY-j8-uul" id="B8l-wY-E1b"/>
                         <outlet property="examplelabel" destination="qIF-iJ-q7B" id="Fyd-fW-dIs"/>
+                        <outlet property="favoriteButton" destination="4Sv-Qq-I5t" id="wUa-sy-ghn"/>
+                        <outlet property="flashCardButton" destination="aoN-qw-Lwb" id="muz-f9-Axt"/>
                         <outlet property="googleButton" destination="a5k-ge-J5T" id="DbR-GF-EFq"/>
                         <outlet property="googleTranslateView" destination="WVK-Db-fhI" id="hJx-bn-RSD"/>
                         <outlet property="meaning2Label" destination="CJh-go-TZk" id="gjW-cN-Dru"/>

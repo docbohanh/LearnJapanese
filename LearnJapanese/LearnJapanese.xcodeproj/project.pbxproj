@@ -24,13 +24,13 @@
 		84057A001DEDC6EB0019C100 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 840579FF1DEDC6EB0019C100 /* HeaderView.xib */; };
 		84057A021DEDC8CF0019C100 /* VocabularyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */; };
 		844734B51DFB19F600A57640 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844734B41DFB19F600A57640 /* StringExtension.swift */; };
+		8461BF571E26A64500C648A3 /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8461BF561E26A64500C648A3 /* Model.xcmappingmodel */; };
 		846876111E220D7000D4557B /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846876101E220D7000D4557B /* ImageViewExtension.swift */; };
 		846D5A251E181856002307CD /* DetailFlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846D5A241E181856002307CD /* DetailFlashCardViewController.swift */; };
 		849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849C2C891E155C3B00350066 /* DownloadDataViewController.swift */; };
 		84A200CC1E202DD200E7290A /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 84A200CB1E202DD200E7290A /* data.json */; };
 		B84040B15AD6906377CA4F43 /* Pods_LearnJapaneseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FAD0652518043D25F297644 /* Pods_LearnJapaneseTests.framework */; };
 		D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */; };
-		D22DEE1E1E25368A006FABEB /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = D22DEE1D1E25368A006FABEB /* Model.xcmappingmodel */; };
 		D24847F51E1EBA1C00603164 /* RotateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24847F41E1EBA1C00603164 /* RotateView.xib */; };
 		D24847F71E1EBA3800603164 /* RotateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24847F61E1EBA3800603164 /* RotateView.swift */; };
 		D249C7991DF05EFB00FF0E44 /* Library.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D249C7981DF05EFB00FF0E44 /* Library.storyboard */; };
@@ -102,6 +102,7 @@
 		84057A011DEDC8CF0019C100 /* VocabularyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocabularyTableViewCell.swift; sourceTree = "<group>"; };
 		843D34371E14209700D4FDE3 /* LearnJapanese.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LearnJapanese.entitlements; sourceTree = "<group>"; };
 		844734B41DFB19F600A57640 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtension.swift; path = ../StringExtension.swift; sourceTree = "<group>"; };
+		8461BF561E26A64500C648A3 /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 		846876101E220D7000D4557B /* ImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		846D5A241E181856002307CD /* DetailFlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailFlashCardViewController.swift; sourceTree = "<group>"; };
 		849C2C891E155C3B00350066 /* DownloadDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadDataViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +112,6 @@
 		B528F679D54539D047D124D8 /* Pods-LearnJapanese.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapanese.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese.release.xcconfig"; sourceTree = "<group>"; };
 		B71028C69EA800855790B3A5 /* Pods-LearnJapaneseUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseUITests/Pods-LearnJapaneseUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D22121D61DFA2A6300C730BB /* WordDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDetailViewController.swift; sourceTree = "<group>"; };
-		D22DEE1D1E25368A006FABEB /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 		D24847F41E1EBA1C00603164 /* RotateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RotateView.xib; sourceTree = "<group>"; };
 		D24847F61E1EBA3800603164 /* RotateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateView.swift; sourceTree = "<group>"; };
 		D249C7981DF05EFB00FF0E44 /* Library.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Library.storyboard; sourceTree = "<group>"; };
@@ -363,7 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				84A200CB1E202DD200E7290A /* data.json */,
-				D22DEE1D1E25368A006FABEB /* Model.xcmappingmodel */,
+				8461BF561E26A64500C648A3 /* Model.xcmappingmodel */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -691,7 +691,7 @@
 				D2EF304F1DFD4A2600287924 /* APIManager.swift in Sources */,
 				D22121D71DFA2A6300C730BB /* WordDetailViewController.swift in Sources */,
 				EA2A8B7C1E0D1330009622F7 /* UIButtonExtension.swift in Sources */,
-				D22DEE1E1E25368A006FABEB /* Model.xcmappingmodel in Sources */,
+				8461BF571E26A64500C648A3 /* Model.xcmappingmodel in Sources */,
 				D24A13671DEDAAAC00E9E063 /* HistoryViewController.swift in Sources */,
 				840579C41DED79DA0019C100 /* LearnJapanese.xcdatamodeld in Sources */,
 				840579F81DED8CF80019C100 /* DictionaryTabBarViewController.swift in Sources */,

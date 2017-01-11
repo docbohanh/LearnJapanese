@@ -9,9 +9,9 @@
 import UIKit
 
 protocol RotateViewDelegate {
-    func flashCardTapped(index:Int) -> Void
-    func favoriteTapped(index:Int) -> Void
-    func playSoundTapped(index:Int) -> Void
+    func flashCardTapped(sender:UIButton,index:Int) -> Void
+    func favoriteTapped(sender:UIButton,index:Int) -> Void
+    func playSoundTapped(sender:UIButton,index:Int) -> Void
     func rotateScreen(index:Int) -> Void
 }
 
@@ -34,13 +34,13 @@ class RotateView: UIView {
     }
     
     @IBAction func flashCardButton_clicked(_ sender: Any) {
-        self.delegate.flashCardTapped(index: index)
+        self.delegate.flashCardTapped(sender: sender as! UIButton, index: index)
     }
     @IBAction func favoriteButton_clicked(_ sender: Any) {
-        self.delegate.favoriteTapped(index: index)
+        self.delegate.favoriteTapped(sender: sender as! UIButton, index: index)
     }
     @IBAction func playSoundButton_clicked(_ sender: Any) {
-        self.delegate.playSoundTapped(index: index)
+        self.delegate.playSoundTapped(sender: sender as! UIButton, index: index)
     }
 
 }

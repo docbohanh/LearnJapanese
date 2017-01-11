@@ -212,29 +212,11 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func updateWordToHistory(index:Int) {
-//        localContext.mr_save({localContext in
-//            let word = Translate.mr_find(byAttribute: "id", withValue: self.currentDetailTranslate.id, in: localContext)?.first as? Translate
-//            if word != nil {
-//                word?.isSearch = "1"
-//            }
-//            
-//        })
         let word = Translate.mr_find(byAttribute: "id", withValue: self.currentDetailTranslate.id, in: NSManagedObjectContext.mr_default())?.first as? Translate
         if word != nil {
             word?.isSearch = "1"
         }
         NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
-//        MagicalRecord.save({NSManagedObjectContext.mr_default() in
-//            if word != nil {
-//                word?.isSearch = "1"
-//            }
-//            
-//        }, completion: {_ in
-//            let word = Translate.mr_find(byAttribute: "id", withValue: self.currentDetailTranslate.id, in: NSManagedObjectContext.mr_default())?.first as? Translate
-//            self.tableView.reloadRows(at: [IndexPath.init(row: index, section: 0)], with: UITableViewRowAnimation.none)
-//            print(word)
-//        })
-        
     }
     
     func getWordFromDatabase() {

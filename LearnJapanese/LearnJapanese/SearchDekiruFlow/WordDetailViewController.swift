@@ -30,6 +30,8 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     @IBOutlet weak var wikipediaButton: UIButton!
     @IBOutlet weak var bingButton: UIButton!
     
+    @IBOutlet weak var flashCardButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var googleTranslateView: UIView!
     @IBOutlet weak var sourceTranslateLabel: UILabel!
     @IBOutlet weak var targetTranslateLabel: UILabel!
@@ -65,8 +67,23 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
-
         self.detailTranslate = (Translate.mr_findFirst(byAttribute: "id", withValue: self.wordId, in: NSManagedObjectContext.mr_default()))
+
+        let result = FlashCardDetail.mr_find(byAttribute: "id", withValue: self.detailTranslate.id, andOrderBy: "flash_card_id", ascending: true) as? [FlashCardDetail]
+        
+        for object in result! {
+            if let flash_card_id = object.flash_card_id {
+                if flash_card_id == ".flashcard" {
+                    flashCardButton.setImage(UIImage.init(named: "icon_btn_flashcash_flashcard"), for: UIControlState.normal)
+                }
+            }
+            if let flash_card_id = object.flash_card_id {
+                if flash_card_id == ".word" {
+                    favoriteButton.setImage(UIImage.init(named: "icon_btn_favorite_flashcard"), for: UIControlState.normal)
+                }
+            }
+        }
+        
         self.detailFlashCard = (FlashCardDetail.mr_findFirst(byAttribute: "id", withValue: self.wordId, in: NSManagedObjectContext.mr_default()))
         if self.detailTranslate != nil {
             self.saveHistoryData(translate: self.detailTranslate)
@@ -241,13 +258,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
         googleTranslateView.isHidden = true
-//        let wordSearch = searchTextField.text ?? "dekiru"
-//
-//        let url = NSURL (string: "http://www.bing.com/search?q=" + wordSearch);
-//        if url != nil {
-//            let requestObj = NSURLRequest(url: url! as URL);
-//            searchWebView.loadRequest(requestObj as URLRequest);
-//        }
+
     }
 
     func saveHistoryData(translate:Translate) {
@@ -337,66 +348,64 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     
     func saveWordToLocal(type: MyStoreType) {
         self.backgroundPopupView.isHidden = true
+        let result = FlashCardDetail.mr_find(byAttribute: "id", withValue: self.detailTranslate.id, andOrderBy: "flash_card_id", ascending: true) as? [FlashCardDetail]
+        let wordType = type == .word ? ".word" : ".flashcard"
+
+        for object in result! {
+            if object.flash_card_id == wordType {
+                let localContext = NSManagedObjectContext.mr_default()
+                object.mr_deleteEntity(in: localContext)
+                localContext.mr_saveToPersistentStoreAndWait()
+                if type == .word {
+                    favoriteButton.setImage(UIImage.init(named: "icon_btn_favorite"), for: UIControlState.normal)
+                } else if type == .flash_card {
+                    flashCardButton.setImage(UIImage.init(named: "icon_btn_flashcash"), for: UIControlState.normal)
+                }
+                return
+            }
+        }
+        if type == .word {
+            favoriteButton.setImage(UIImage.init(named: "icon_btn_favorite_flashcard"), for: UIControlState.normal)
+        } else if type == .flash_card {
+            flashCardButton.setImage(UIImage.init(named: "icon_btn_flashcash_flashcard"), for: UIControlState.normal)
+        }
         MagicalRecord.save({context in
-            
-            let wordData = FlashCardDetail.mr_createEntity(in:context)
-            wordData?.kana = self.detailTranslate.kana ?? ""
-            wordData?.word = self.detailTranslate.word ?? ""
-            wordData?.source_url = self.detailTranslate.sound_url ?? ""
-            wordData?.meaning = self.detailTranslate.meaning_name ?? ""
-            wordData?.romaji = self.detailTranslate.romaji ?? ""
-            wordData?.id = self.detailTranslate.id ?? ""
-            
-            if type == .flash_card {
-                wordData?.flash_card_id = ".flashcard"
-            } else {
-                wordData?.flash_card_id = ".word"
-                
-            }
-        }, completion: {didContext in
-            if let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: type == .word ? ".word" : ".flashcard") {
-                self.backgroundPopupView.isHidden = true
-                MagicalRecord.save({context in
-                    let wordData = FlashCardDetail.mr_createEntity(in:context)
-                    wordData?.kana = self.detailTranslate.kana ?? ""
-                    wordData?.word = self.detailTranslate.word ?? ""
-                    wordData?.source_url = self.detailTranslate.sound_url ?? ""
-                    wordData?.meaning = self.detailTranslate.meaning_name ?? ""
-                    wordData?.romaji = self.detailTranslate.romaji ?? ""
-                    wordData?.id = self.detailTranslate.id ?? ""
-                    wordData?.avatar = self.detailTranslate.avatar ?? ""
-                    if type == .flash_card {
-                        wordData?.flash_card_id = ".flashcard"
+                let wordData = FlashCardDetail.mr_createEntity(in:NSManagedObjectContext.mr_default())
+                wordData?.kana = self.detailTranslate.kana ?? ""
+                wordData?.word = self.detailTranslate.word ?? ""
+                wordData?.source_url = self.detailTranslate.sound_url ?? ""
+                wordData?.meaning = self.detailTranslate.meaning_name ?? ""
+                wordData?.romaji = self.detailTranslate.romaji ?? ""
+                wordData?.id = self.detailTranslate.id ?? ""
+                wordData?.avatar = self.detailTranslate.avatar ?? ""
+                if type == .flash_card {
+                    wordData?.flash_card_id = ".flashcard"
+                } else {
+                    wordData?.flash_card_id = ".word"
+                    
+                }
+            }, completion: {didContext in
+                if let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: type == .word ? ".word" : ".flashcard") {
+                    self.backgroundPopupView.isHidden = true
+                    if oldFlashCard.count == 0 {
+                        MagicalRecord.save({context in
+                            let wordData = FlashCard.mr_createEntity(in:context)
+                            wordData?.id = type == .word ? ".word" : ".flashcard"
+                            wordData?.title = type == .word ? "Từ đã lưu" : "FlashCard của tôi"
+                            wordData?.avatar =  ""
+                        }, completion: {didContext in
+                            ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+                        })
                     } else {
-                        wordData?.flash_card_id = ".word"
-                        
-                    }
-                }, completion: {didContext in
-                    if let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: type == .word ? ".word" : ".flashcard") {
-                        self.backgroundPopupView.isHidden = true
-                        if oldFlashCard.count == 0 {
-                            MagicalRecord.save({context in
-                                let wordData = FlashCard.mr_createEntity(in:context)
-                                wordData?.id = type == .word ? ".word" : ".flashcard"
-                                wordData?.title = type == .word ? "Từ đã lưu" : "FlashCard của tôi"
-                                wordData?.avatar =  ""
-                            }, completion: {didContext in
-                                ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
-                            })
-                        } else {
-                            let message =
+                        let message =
                             ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu  thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
-                        }
-
-                    } else {
-                        self.backgroundPopupView.isHidden = true
                     }
-                })
+                    
+                } else {
+                    self.backgroundPopupView.isHidden = true
+                }
+            })
 
-            } else {
-                self.backgroundPopupView.isHidden = true
-            }
-        })
     }
     
     func searchWithGoogle() -> Void {

@@ -27,17 +27,25 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     var player: AVPlayer!
     var wordImageArray = [UIImage]()
     var isFlashCard:Bool = false
+    var wordIdArray = [String]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+      // Do any additional setup after loading the view.
         setupRotateView()
         self.initScrollView()
         self.setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if isFlashCard {
+            for object in listWord {
+                if object.id != nil {
+                    wordIdArray.append(object.id!)
+                }
+            }
+        }
         self.tabBarController?.tabBar.isHidden = true
     }
     
@@ -108,7 +116,7 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     }
     
     /* ========= ROTATE VIEW DELEGATE ======== */
-    func flashCardTapped(index: Int) {
+    func flashCardTapped(sender: UIButton, index: Int) {
         //store flash card
         if isFlashCard {
             let flashCard = listWord[index]
@@ -116,27 +124,30 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
             flashCard.mr_deleteEntity(in: localContext)
             localContext.mr_saveToPersistentStoreAndWait()
             isFlashCard = false
+            sender.setImage(UIImage.init(named: "icon_btn_flashcash"), for: UIControlState.normal)
         } else {
             MagicalRecord.save({context in
-                let flashCard = self.listWord[index]
+                let flashCard = Translate.mr_findFirst(byAttribute: "id", withValue: self.wordIdArray[index])
 
                 let wordData = FlashCardDetail.mr_createEntity(in:context)
-                wordData?.kana = flashCard.kana ?? ""
-                wordData?.word = flashCard.word ?? ""
-                wordData?.source_url = flashCard.source_url ?? ""
-                wordData?.meaning = flashCard.meaning ?? ""
-                wordData?.romaji = flashCard.romaji ?? ""
-                wordData?.id = flashCard.id ?? ""
+                wordData?.kana = flashCard?.kana ?? ""
+                wordData?.word = flashCard?.word ?? ""
+                wordData?.source_url = flashCard?.sound_url ?? ""
+                wordData?.meaning = flashCard?.meaning_name ?? ""
+                wordData?.romaji = flashCard?.romaji ?? ""
+                wordData?.id = flashCard?.id ?? ""
                 wordData?.flash_card_id = ".flashcard"
-                
+                wordData?.avatar = flashCard?.avatar
             }, completion: {didContext in
                 self.isFlashCard = true
+                sender.setImage(UIImage.init(named: "icon_btn_flashcash_flashcard"), for: UIControlState.normal)
+
                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu flash card thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
             })
         }
     }
     
-    func favoriteTapped(index: Int) {
+    func favoriteTapped(sender: UIButton, index: Int) {
         //store word
         ProjectCommon.initAlertView(viewController: self, title: "", message: "Tính năng này chưa được sử dụng", buttonArray: ["Đóng"], onCompletion: {_ in
         
@@ -172,7 +183,7 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
         UIView.transition(with: viewAnimate, duration: 0.5, options: option, animations: nil, completion: nil)
     }
     
-    func playSoundTapped(index: Int) {
+    func playSoundTapped(sender: UIButton, index: Int) {
         let object = listWord[index]
         if object.source_url != nil {
             let url = object.source_url
