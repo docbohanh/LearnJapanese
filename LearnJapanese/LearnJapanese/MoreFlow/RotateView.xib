@@ -36,7 +36,6 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8G1-xg-x8X">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="Button"/>
                     <connections>
                         <action selector="tappedRotateView:" destination="lHr-Wf-g6z" eventType="touchUpInside" id="TYF-MT-4Pd"/>
                     </connections>
@@ -100,8 +99,11 @@
             </constraints>
             <connections>
                 <outlet property="backgroundButton" destination="8G1-xg-x8X" id="oVw-MM-PE8"/>
+                <outlet property="flashCardButton" destination="QCo-AY-hKi" id="U2x-oN-pTu"/>
+                <outlet property="soundButton" destination="WdV-EF-FkG" id="dCY-qd-CpY"/>
                 <outlet property="textLabel" destination="cNa-yd-Wi9" id="Q0y-XI-MX5"/>
                 <outlet property="translateTextLabel" destination="idG-du-lZQ" id="fkP-I1-A6Y"/>
+                <outlet property="wordButton" destination="oe7-aF-XIw" id="aQk-ed-AsJ"/>
                 <outlet property="wordImageView" destination="J3C-WQ-f7J" id="fYy-f0-I2u"/>
             </connections>
         </view>

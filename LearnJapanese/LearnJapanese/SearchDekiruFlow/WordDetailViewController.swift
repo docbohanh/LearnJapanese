@@ -334,7 +334,6 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     func saveWordToLocal(type: MyStoreType) {
                 self.backgroundPopupView.isHidden = true
                 MagicalRecord.save({context in
-                    
                     let wordData = FlashCardDetail.mr_createEntity(in:context)
                     wordData?.kana = self.detailTranslate.kana ?? ""
                     wordData?.word = self.detailTranslate.word ?? ""
@@ -342,7 +341,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
                     wordData?.meaning = self.detailTranslate.meaning_name ?? ""
                     wordData?.romaji = self.detailTranslate.romaji ?? ""
                     wordData?.id = self.detailTranslate.id ?? ""
-                    
+                    wordData?.avatar = self.detailTranslate.avatar ?? ""
                     if type == .flash_card {
                         wordData?.flash_card_id = ".flashcard"
                     } else {
@@ -362,7 +361,8 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
                                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
                             })
                         } else {
-                            ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+                            let message =
+                            ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu  thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
                         }
 
                     } else {

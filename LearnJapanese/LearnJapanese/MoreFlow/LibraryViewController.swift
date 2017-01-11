@@ -162,8 +162,11 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             let searchDerikuStoryboard = UIStoryboard.init(name: "Library", bundle: Bundle.main)
             let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "DetailFlashCardViewController") as! DetailFlashCardViewController
             detaiVC.listWord = subWordArray
-            if isShowListWord {
+            if currentIdFlashCard == ".flashcard" {
+                detaiVC.isFlashCard = true
 //                detaiVC.isMyWord = true
+            } else {
+                detaiVC.isFlashCard = false
             }
             detaiVC.currentIndexWord = indexPath.row
             self.navigationController?.pushViewController(detaiVC, animated: true)
@@ -173,7 +176,6 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showWordDetail" {
-
         }
     }
     
@@ -193,6 +195,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 LoadingOverlay.shared.showOverlay(view: view)
                 if flashCard == ".flashcard" {
                     currentIdFlashCard = ".flashcard"
+                    subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: currentIdFlashCard, andOrderBy: "id", ascending: true) as! [FlashCardDetail]!
+
                     LoadingOverlay.shared.hideOverlayView()
                     self.libraryTableView.reloadData()
                 } else if flashCard == ".word" {
@@ -215,10 +219,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             }
         } else {
         ProjectCommon.initAlertView(viewController: self, title: "", message: "Không thể kết nối internet,vui lòng quay lại sau", buttonArray: ["Đóng"], onCompletion: {_ in
-            
         })
         }
-
     }
     
     /**
@@ -226,7 +228,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
      */
     func getFlashCard() {
         let parameter : [String:String] = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_flash_cart","pageindex":"1","pagesize":"300"]
-        let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
+        let urlRequest = "http://api-app.dekiru.vn/DekiruApi.ashx"
         DispatchQueue.global().async {
             APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
                     self.saveFlashCardToDatabase(response:response)
