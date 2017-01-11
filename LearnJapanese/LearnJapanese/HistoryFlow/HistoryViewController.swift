@@ -24,7 +24,7 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         self.historyArray = History.mr_findAll() as! [History]
         self.tableView.reloadData()
     }
@@ -87,4 +87,5 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         historyObject.mr_deleteEntity(in: localContext)
         localContext.mr_saveToPersistentStoreAndWait()
     }
+
 }
