@@ -50,10 +50,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                                 })
                             }
                         }
-
                     })
                 }
-                
             }
             self.getFlashCard()
         }
@@ -128,21 +126,22 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let headerView = Bundle.main.loadNibNamed("HeaderView", owner: self, options:[:])?.first as? HeaderView
         let flashCardTitle = titleArray[section]
         headerView?.delegate = self
-        headerView?.iconHeaderImageView.image = UIImage.init(named: "icon_flashcash_folder")
+        guard let cardTitle = flashCardTitle.title, let cardID = flashCardTitle.id else { return nil }
         if section == 0 {
             headerView?.flashCard = ".flashcard"
+            headerView?.iconHeaderImageView.image = UIImage.init(named: "icon_flashcash_folder")
         } else if section == 1 {
             headerView?.flashCard = ".word"
+            headerView?.iconHeaderImageView.image = UIImage.init(named: "icon_flashcash_folder")
         } else {
             ///Thành Lã: 2017/01/05
-            guard let cardTitle = flashCardTitle.title, let cardID = flashCardTitle.id else { return nil }
-            headerView?.titleLabel.text = cardTitle
-            headerView?.backgroundHeaderButton.tag = Int(cardID) ?? 0
-            headerView?.tag = section
             if (flashCardTitle.avatar != nil) {
                 headerView?.iconHeaderImageView.loadImage(url:flashCardTitle.avatar!)
             }
         }
+        headerView?.titleLabel.text = cardTitle
+        headerView?.backgroundHeaderButton.tag = Int(cardID) ?? 0
+        headerView?.tag = section
         return headerView
     }
     
