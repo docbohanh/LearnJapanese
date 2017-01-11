@@ -312,6 +312,7 @@
                                         <rect key="frame" x="288" y="25" width="34" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="icon_sound"/>
+                                        <state key="selected" image="icon_button_sound_active_flashcard"/>
                                         <connections>
                                             <action selector="tappedSoundButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="bHk-LB-cW5"/>
                                         </connections>
@@ -320,6 +321,7 @@
                                         <rect key="frame" x="330" y="25" width="34" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="icon_favorite"/>
+                                        <state key="selected" image="icon_btn_flashcash_flashcard"/>
                                         <connections>
                                             <action selector="tappedFavoriteButton:" destination="Du8-7A-bWC" eventType="touchUpInside" id="noL-gA-9nA"/>
                                         </connections>
@@ -652,6 +654,8 @@
     </scenes>
     <resources>
         <image name="icon_back" width="10" height="10"/>
+        <image name="icon_btn_flashcash_flashcard" width="50" height="50"/>
+        <image name="icon_button_sound_active_flashcard" width="50" height="50"/>
         <image name="icon_camera" width="33" height="33"/>
         <image name="icon_change_language" width="73" height="26"/>
         <image name="icon_delete" width="10" height="10"/>

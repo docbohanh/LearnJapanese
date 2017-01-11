@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import MagicalRecord
 
 class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, RotateViewDelegate {
     
@@ -24,6 +25,8 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     var currentIndexWord : Int!
     var audioPlayer : AVAudioPlayer?
     var player: AVPlayer!
+    var wordImageArray = [UIImage]()
+    var isFlashCard:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +58,16 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
             customView?.frame = CGRect.init(x: 10 + CGFloat(i) * CGFloat(scrollView.frame.size.width), y: 0, width: scrollViewWidth - 20, height: scrollViewHeight)
             if word.avatar != nil {
                 customView?.wordImageView.loadImage(url: word.avatar!)
+            }
+            if isFlashCard {
+                //show like stored flashcard
+            } else {
+            //don't store flash card
+            }
+            if isFlashCard {
+                customView?.flashCardButton.setImage(UIImage.init(named: "icon_btn_flashcash_flashcard"), for: UIControlState.normal)
+            } else {
+                customView?.flashCardButton.setImage(UIImage.init(named: "icon_btn_flashcash"), for: UIControlState.normal)
             }
             customView?.translateTextLabel.text = word.word
             customView?.textLabel.text = word.meaning
@@ -96,13 +109,35 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     
     /* ========= ROTATE VIEW DELEGATE ======== */
     func flashCardTapped(index: Int) {
-        let searchDerikuStoryboard = UIStoryboard.init(name: "SearchDekiru", bundle: Bundle.main)
-        let detaiVC = searchDerikuStoryboard.instantiateViewController(withIdentifier: "WordDetailViewController") as! WordDetailViewController
-        detaiVC.searchText = listWord[index].word ?? ""
-        detaiVC.wordId = listWord[index].id ?? ""
-        self.navigationController?.pushViewController(detaiVC, animated: true)
+        //store flash card
+        if isFlashCard {
+            let flashCard = listWord[index]
+            let localContext = NSManagedObjectContext.mr_default()
+            flashCard.mr_deleteEntity(in: localContext)
+            localContext.mr_saveToPersistentStoreAndWait()
+            isFlashCard = false
+        } else {
+            MagicalRecord.save({context in
+                let flashCard = self.listWord[index]
+
+                let wordData = FlashCardDetail.mr_createEntity(in:context)
+                wordData?.kana = flashCard.kana ?? ""
+                wordData?.word = flashCard.word ?? ""
+                wordData?.source_url = flashCard.source_url ?? ""
+                wordData?.meaning = flashCard.meaning ?? ""
+                wordData?.romaji = flashCard.romaji ?? ""
+                wordData?.id = flashCard.id ?? ""
+                wordData?.flash_card_id = ".flashcard"
+                
+            }, completion: {didContext in
+                self.isFlashCard = true
+                ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu flash card thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+            })
+        }
     }
+    
     func favoriteTapped(index: Int) {
+        //store word
         ProjectCommon.initAlertView(viewController: self, title: "", message: "Tính năng này chưa được sử dụng", buttonArray: ["Đóng"], onCompletion: {_ in
         
         })
@@ -118,7 +153,6 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
             }else {
                 viewAnimate.wordImageView.isHidden = false
             }
-            
         }
         UIView.transition(with: viewAnimate, duration: 0.5, options: option, animations: nil, completion: nil)
     }

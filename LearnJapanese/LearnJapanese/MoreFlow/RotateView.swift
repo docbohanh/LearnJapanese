@@ -17,6 +17,9 @@ protocol RotateViewDelegate {
 
 class RotateView: UIView {
     
+    @IBOutlet weak var soundButton: UIButton!
+    @IBOutlet weak var wordButton: UIButton!
+    @IBOutlet weak var flashCardButton: UIButton!
     @IBOutlet weak var backgroundButton: UIButton!
     @IBOutlet weak var wordImageView: UIImageView!
     @IBOutlet weak var textLabel: UILabel!

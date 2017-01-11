@@ -356,18 +356,42 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         }, completion: {didContext in
             if let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: type == .word ? ".word" : ".flashcard") {
                 self.backgroundPopupView.isHidden = true
-                if oldFlashCard.count == 0 {
-                    MagicalRecord.save({context in
-                        let wordData = FlashCard.mr_createEntity(in:context)
-                        wordData?.id = type == .word ? ".word" : ".flashcard"
-                        wordData?.title = type == .word ? "Từ đã lưu" : "FlashCard của tôi"
-                        wordData?.avatar =  ""
-                    }, completion: {didContext in
-                        ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
-                    })
-                } else {
-                    ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
-                }
+                MagicalRecord.save({context in
+                    let wordData = FlashCardDetail.mr_createEntity(in:context)
+                    wordData?.kana = self.detailTranslate.kana ?? ""
+                    wordData?.word = self.detailTranslate.word ?? ""
+                    wordData?.source_url = self.detailTranslate.sound_url ?? ""
+                    wordData?.meaning = self.detailTranslate.meaning_name ?? ""
+                    wordData?.romaji = self.detailTranslate.romaji ?? ""
+                    wordData?.id = self.detailTranslate.id ?? ""
+                    wordData?.avatar = self.detailTranslate.avatar ?? ""
+                    if type == .flash_card {
+                        wordData?.flash_card_id = ".flashcard"
+                    } else {
+                        wordData?.flash_card_id = ".word"
+                        
+                    }
+                }, completion: {didContext in
+                    if let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: type == .word ? ".word" : ".flashcard") {
+                        self.backgroundPopupView.isHidden = true
+                        if oldFlashCard.count == 0 {
+                            MagicalRecord.save({context in
+                                let wordData = FlashCard.mr_createEntity(in:context)
+                                wordData?.id = type == .word ? ".word" : ".flashcard"
+                                wordData?.title = type == .word ? "Từ đã lưu" : "FlashCard của tôi"
+                                wordData?.avatar =  ""
+                            }, completion: {didContext in
+                                ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+                            })
+                        } else {
+                            let message =
+                            ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu  thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+                        }
+
+                    } else {
+                        self.backgroundPopupView.isHidden = true
+                    }
+                })
 
             } else {
                 self.backgroundPopupView.isHidden = true

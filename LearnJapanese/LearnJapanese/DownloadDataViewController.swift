@@ -39,18 +39,17 @@ class DownloadDataViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if ProjectCommon.connectedToNetwork() {
-            if UserDefaults.standard.object(forKey: "version") == nil {
-                self.createDefaultData()
-                UserDefaults.standard.set("", forKey: "version")
-            } else {
+        if UserDefaults.standard.object(forKey: "version") == nil {
+            self.createDefaultData()
+            UserDefaults.standard.set("", forKey: "version")
+        } else {
+            if ProjectCommon.connectedToNetwork() {
                 self.getdataLocal()
             }
-        } else {
-            self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
         }
-
+        
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         print("will disappear download")
     }
@@ -164,7 +163,7 @@ class DownloadDataViewController: UIViewController {
     
     func getdataLocal() {
         let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":(UserDefaults.standard.object(forKey: "version") as! String)]
-        let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
+        let urlRequest = "http://api-app.dekiru.vn/DekiruApi.ashx"
         APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
             //            let version = UserDefaults.standard.object(forKey: "version") as! String
             
