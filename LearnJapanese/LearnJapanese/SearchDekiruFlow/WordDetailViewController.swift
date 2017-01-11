@@ -30,6 +30,10 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     @IBOutlet weak var wikipediaButton: UIButton!
     @IBOutlet weak var bingButton: UIButton!
     
+    @IBOutlet weak var googleTranslateView: UIView!
+    @IBOutlet weak var sourceTranslateLabel: UILabel!
+    @IBOutlet weak var targetTranslateLabel: UILabel!
+    
     var searchText : String = ""
     var wordId: String = ""
     var isMyWord = Bool()
@@ -43,6 +47,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchTextField.text = searchText
+        searchTextField.allowsEditingTextAttributes = false
         // Do any additional setup after loading the view.
         self.setupViewController()
         DispatchQueue.global().async {
@@ -61,20 +66,19 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
 
-            self.detailTranslate = (Translate.mr_findFirst(byAttribute: "id", withValue: self.wordId, in: NSManagedObjectContext.mr_default()))
-            self.detailFlashCard = (FlashCardDetail.mr_findFirst(byAttribute: "id", withValue: self.wordId, in: NSManagedObjectContext.mr_default()))
-            if self.detailTranslate != nil {
-                self.saveHistoryData(translate: self.detailTranslate)
-                self.meaningLabel.text = self.detailTranslate.meaning_name
-                self.examplelabel.text = self.detailTranslate.example_meaning_name
-                self.titleLabel.text = self.searchText
-            } else if detailFlashCard != nil {
-                self.meaningLabel.text = self.detailFlashCard.meaning
-                self.titleLabel.text = self.detailFlashCard.word
-                self.examplelabel.text = ""
-            }
-        
-        
+        self.detailTranslate = (Translate.mr_findFirst(byAttribute: "id", withValue: self.wordId, in: NSManagedObjectContext.mr_default()))
+        self.detailFlashCard = (FlashCardDetail.mr_findFirst(byAttribute: "id", withValue: self.wordId, in: NSManagedObjectContext.mr_default()))
+        if self.detailTranslate != nil {
+            self.saveHistoryData(translate: self.detailTranslate)
+            self.meaningLabel.text = self.detailTranslate.meaning_name
+            self.examplelabel.text = self.detailTranslate.example_meaning_name
+            self.titleLabel.text = self.searchText
+        } else if detailFlashCard != nil {
+            self.meaningLabel.text = self.detailFlashCard.meaning
+            self.titleLabel.text = self.detailFlashCard.word
+            self.examplelabel.text = ""
+        }
+        sourceTranslateLabel.text = searchText
         
         self.navigationController?.isNavigationBarHidden = true
     }
@@ -187,25 +191,25 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         backgroundPopupView.isHidden = true
     }
     @IBAction func tappedDekiruDictButton(_ sender: Any) {
-        searchWebView.isHidden = true
-        searchResultScrollView.isHidden = false
-        
         dekiruButton.backgroundColor = background_color
         googleButton.backgroundColor = UIColor.lightText
         wikipediaButton.backgroundColor = UIColor.lightText
         bingButton.backgroundColor = UIColor.lightText
+        
+        searchWebView.isHidden = true
+        searchResultScrollView.isHidden = false
+        googleTranslateView.isHidden = true
     }
     @IBAction func tappedGoogleButton(_ sender: Any) {
-        searchResultScrollView.isHidden = true
-        searchWebView.isHidden = false
-        let url = NSURL (string: "https://translate.google.com");
-        let requestObj = NSURLRequest(url: url! as URL);
-        searchWebView.loadRequest(requestObj as URLRequest);
-        
         dekiruButton.backgroundColor = UIColor.lightText
         googleButton.backgroundColor = background_color
         wikipediaButton.backgroundColor = UIColor.lightText
         bingButton.backgroundColor = UIColor.lightText
+        
+        searchResultScrollView.isHidden = true
+        searchWebView.isHidden = true
+        googleTranslateView.isHidden = false
+        self.searchWithGoogle()
     }
     @IBAction func tappedWikipediaButton(_ sender: Any) {
         dekiruButton.backgroundColor = UIColor.lightText
@@ -215,6 +219,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
+        googleTranslateView.isHidden = true
         let wordSearch = searchTextField.text ?? "dekiru"
         
         ///Thành Lã: 2017/01/05
@@ -235,16 +240,15 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
-        let wordSearch = searchTextField.text ?? "dekiru"
-
-        let url = NSURL (string: "http://www.bing.com/search?q=" + wordSearch);
-        if url != nil {
-            let requestObj = NSURLRequest(url: url! as URL);
-            searchWebView.loadRequest(requestObj as URLRequest);
-        }
-
+        googleTranslateView.isHidden = true
+//        let wordSearch = searchTextField.text ?? "dekiru"
+//
+//        let url = NSURL (string: "http://www.bing.com/search?q=" + wordSearch);
+//        if url != nil {
+//            let requestObj = NSURLRequest(url: url! as URL);
+//            searchWebView.loadRequest(requestObj as URLRequest);
+//        }
     }
-
 
     func saveHistoryData(translate:Translate) {
         let word = History.mr_findFirst(byAttribute: "id", withValue: translate.id, in: NSManagedObjectContext.mr_default())
@@ -332,6 +336,25 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     }
     
     func saveWordToLocal(type: MyStoreType) {
+        self.backgroundPopupView.isHidden = true
+        MagicalRecord.save({context in
+            
+            let wordData = FlashCardDetail.mr_createEntity(in:context)
+            wordData?.kana = self.detailTranslate.kana ?? ""
+            wordData?.word = self.detailTranslate.word ?? ""
+            wordData?.source_url = self.detailTranslate.sound_url ?? ""
+            wordData?.meaning = self.detailTranslate.meaning_name ?? ""
+            wordData?.romaji = self.detailTranslate.romaji ?? ""
+            wordData?.id = self.detailTranslate.id ?? ""
+            
+            if type == .flash_card {
+                wordData?.flash_card_id = ".flashcard"
+            } else {
+                wordData?.flash_card_id = ".word"
+                
+            }
+        }, completion: {didContext in
+            if let oldFlashCard = FlashCard.mr_find(byAttribute: "id", withValue: type == .word ? ".word" : ".flashcard") {
                 self.backgroundPopupView.isHidden = true
                 MagicalRecord.save({context in
                     let wordData = FlashCardDetail.mr_createEntity(in:context)
@@ -368,10 +391,38 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
                     } else {
                         self.backgroundPopupView.isHidden = true
                     }
-                    
-
                 })
 
+            } else {
+                self.backgroundPopupView.isHidden = true
+            }
+        })
+    }
+    
+    func searchWithGoogle() -> Void {
+        var source:String = "ja"
+        var target:String = "vi"
+        LoadingOverlay.shared.showOverlay(view: self.view)
+        let parameter:  [String : String] = ["q":searchText,"key":API_KEY_TRANSLATE_GOOGLE,"source":source,"target":target]
         
+        APIManager.sharedInstance.postDataToURL(url: "https://translation.googleapis.com/language/translate/v2", parameters:parameter , onCompletion: {response in
+            print(response)
+            DispatchQueue.main.async {
+                LoadingOverlay.shared.hideOverlayView()
+                if (response.result.error != nil) {
+                    ProjectCommon.initAlertView(viewController: self, title: "Error", message: (response.result.error?.localizedDescription)!, buttonArray: ["OK"], onCompletion: { (index) in
+                    })
+                }else {
+                    let resultDictionary = response.result.value as! [String:AnyObject]
+                    let dictResult = resultDictionary["data"] as! [String:AnyObject]
+                    let data = dictResult["translations"] as! [AnyObject]
+                    if data.count > 0 {
+                        let object = data[0] as! [String:AnyObject]
+                        let text = object["translatedText"] as! String
+                        self.targetTranslateLabel.text = text
+                    }
+                }
+            }
+        })
     }
 }

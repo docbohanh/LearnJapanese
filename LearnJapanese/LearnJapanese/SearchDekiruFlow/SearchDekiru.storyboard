@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -520,6 +520,32 @@
                                     <constraint firstAttribute="trailing" secondItem="Wcm-lU-O5d" secondAttribute="trailing" id="yPI-Sj-d25"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVK-Db-fhI">
+                                <rect key="frame" x="0.0" y="94" width="414" height="598"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rn-uU-5Xc">
+                                        <rect key="frame" x="15" y="20" width="384" height="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngj-GS-ssE">
+                                        <rect key="frame" x="15" y="52" width="384" height="15.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Ngj-GS-ssE" firstAttribute="trailing" secondItem="6Rn-uU-5Xc" secondAttribute="trailing" id="092-08-zp8"/>
+                                    <constraint firstItem="6Rn-uU-5Xc" firstAttribute="leading" secondItem="WVK-Db-fhI" secondAttribute="leading" constant="15" id="0gd-u9-hZu"/>
+                                    <constraint firstItem="Ngj-GS-ssE" firstAttribute="top" secondItem="6Rn-uU-5Xc" secondAttribute="bottom" constant="15" id="GU8-kU-tE8"/>
+                                    <constraint firstAttribute="trailing" secondItem="6Rn-uU-5Xc" secondAttribute="trailing" constant="15" id="MSd-32-MNs"/>
+                                    <constraint firstItem="Ngj-GS-ssE" firstAttribute="leading" secondItem="6Rn-uU-5Xc" secondAttribute="leading" id="Yj7-gS-bda"/>
+                                    <constraint firstItem="6Rn-uU-5Xc" firstAttribute="top" secondItem="WVK-Db-fhI" secondAttribute="top" constant="20" id="k1n-nh-vhH"/>
+                                </constraints>
+                            </view>
                             <webView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qjc-J6-QMx">
                                 <rect key="frame" x="0.0" y="94" width="414" height="598"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -549,9 +575,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="WVK-Db-fhI" firstAttribute="top" secondItem="xT9-Ef-Q2v" secondAttribute="bottom" id="3w6-zz-1NM"/>
                             <constraint firstItem="xT9-Ef-Q2v" firstAttribute="leading" secondItem="GE1-bA-hDI" secondAttribute="leading" id="52K-tE-Jzj"/>
                             <constraint firstAttribute="trailing" secondItem="xKZ-dN-U6f" secondAttribute="trailing" id="84d-bF-Lp6"/>
+                            <constraint firstItem="WVK-Db-fhI" firstAttribute="leading" secondItem="GE1-bA-hDI" secondAttribute="leading" id="ARv-eL-vCK"/>
+                            <constraint firstAttribute="trailing" secondItem="WVK-Db-fhI" secondAttribute="trailing" id="BGT-7r-gwC"/>
                             <constraint firstItem="geW-Dw-WHe" firstAttribute="top" secondItem="mmJ-un-kvs" secondAttribute="bottom" id="BwX-FD-xBa"/>
+                            <constraint firstItem="geW-Dw-WHe" firstAttribute="top" secondItem="WVK-Db-fhI" secondAttribute="bottom" id="Eq9-i6-IQy"/>
                             <constraint firstAttribute="trailing" secondItem="mmJ-un-kvs" secondAttribute="trailing" id="FkL-Cm-NW4"/>
                             <constraint firstItem="Qjc-J6-QMx" firstAttribute="leading" secondItem="GE1-bA-hDI" secondAttribute="leading" id="IFY-bX-7UU"/>
                             <constraint firstItem="xT9-Ef-Q2v" firstAttribute="top" secondItem="xKZ-dN-U6f" secondAttribute="bottom" id="KRX-dE-b23"/>
@@ -578,12 +608,15 @@
                         <outlet property="example2Label" destination="2ZY-j8-uul" id="B8l-wY-E1b"/>
                         <outlet property="examplelabel" destination="qIF-iJ-q7B" id="Fyd-fW-dIs"/>
                         <outlet property="googleButton" destination="a5k-ge-J5T" id="DbR-GF-EFq"/>
+                        <outlet property="googleTranslateView" destination="WVK-Db-fhI" id="hJx-bn-RSD"/>
                         <outlet property="meaning2Label" destination="CJh-go-TZk" id="gjW-cN-Dru"/>
                         <outlet property="meaningLabel" destination="1DL-Tu-UKs" id="Rxa-sw-55i"/>
                         <outlet property="phienAm" destination="fWM-wE-Ipr" id="Wzt-p8-WkQ"/>
                         <outlet property="searchResultScrollView" destination="mmJ-un-kvs" id="rLa-4r-vh3"/>
                         <outlet property="searchTextField" destination="PZ0-Sb-oOj" id="dlL-CB-v5N"/>
                         <outlet property="searchWebView" destination="Qjc-J6-QMx" id="xg2-Qa-oe3"/>
+                        <outlet property="sourceTranslateLabel" destination="6Rn-uU-5Xc" id="sCU-Wt-16f"/>
+                        <outlet property="targetTranslateLabel" destination="Ngj-GS-ssE" id="1tF-e2-htm"/>
                         <outlet property="titleLabel" destination="qu7-9j-iCs" id="6Ww-UO-lfC"/>
                         <outlet property="wikipediaButton" destination="e3t-ja-kc5" id="deU-RL-Wxe"/>
                         <outlet property="wordType" destination="Qdz-eF-Eej" id="Gh1-1X-OAE"/>
