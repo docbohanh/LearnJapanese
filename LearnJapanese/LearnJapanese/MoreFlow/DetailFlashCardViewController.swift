@@ -24,7 +24,6 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     var currentIndexWord : Int!
     var audioPlayer : AVAudioPlayer?
     var player: AVPlayer!
-    var wordImageArray = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
