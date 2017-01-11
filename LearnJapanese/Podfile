@@ -7,9 +7,6 @@ target 'LearnJapanese' do
 
     	pod 'MagicalRecord'
 	pod 'Alamofire'
-	pod 'FGTranslator'
-	pod 'AFNetworking'
-	pod 'SVProgressHUD'
 
   # Pods for LearnJapanese
 
