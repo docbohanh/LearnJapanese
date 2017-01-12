@@ -258,7 +258,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
         googleTranslateView.isHidden = true
-
+        
     }
 
     func saveHistoryData(translate:Translate) {

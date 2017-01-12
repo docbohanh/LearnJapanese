@@ -86,6 +86,8 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         // Dispose of any resources that can be recreated.
     }
     @IBAction func tappedAddNewWord(_ sender: UIButton) {
+        ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã báo cáo từ chưa có.", buttonArray: ["Đóng"], onCompletion: {_ in
+        })
     }
     
     @IBAction func tappedChangedLangue(_ sender: UIButton) {
@@ -95,6 +97,10 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func tappedSearchWithGoogle(_ sender: Any) {
+        let storyboard = UIStoryboard.init(name: "Translate", bundle: nil)
+        let translateViewController = storyboard.instantiateViewController(withIdentifier: "TranslateViewController") as! TranslateViewController
+        self.tabBarController?.selectedIndex = 2
+        
     }
     
     func sendRequest(url: String, parameters: [String: String], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask {
@@ -204,11 +210,11 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "gotoWordDetail" {
-            let wordDetailViewController = segue.destination as? WordDetailViewController
-            wordDetailViewController?.searchText = searchTextfield.text!
-            wordDetailViewController?.wordId = currentDetailTranslate.id ?? ""
-        }
+//        if segue.identifier == "gotoWordDetail" {
+//            let wordDetailViewController = segue.destination as? WordDetailViewController
+//            wordDetailViewController?.searchText = searchTextfield.text!
+//            wordDetailViewController?.wordId = currentDetailTranslate.id ?? ""
+//        }
     }
     
     func updateWordToHistory(index:Int) {
@@ -374,6 +380,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                     }
                 }
                 self.oldSearchString = ""
+                print("so phan tu search duoc \(filterArray.count)")
                 if self.filterArray.count > 2  {
                     index = 10
                     if searchText == searchBar.text{
@@ -401,6 +408,14 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                         index += 1
                     } else {
                         return
+                    }
+                }
+                if index == 10 && filterArray.count == 0 {
+                    DispatchQueue.main.async {
+                        self.tableView.isHidden = true
+                        self.notFoundView.isHidden = false
+                        self.searchActive = false;
+                        self.introduceView.isHidden = true
                     }
                 }
             }

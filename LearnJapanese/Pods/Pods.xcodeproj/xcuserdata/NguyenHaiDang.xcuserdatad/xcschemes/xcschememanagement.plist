@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Nocilla.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-LearnJapanese.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,12 +37,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>82AAFADA7B6F10582C95E51705617BCB</key>
+		<key>4E151399D999308E23F26994F6CBFF1C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>845BC2CC05131790B6F91BE12FBA6544</key>
+		<key>55E96DBB0C6AE605488BF7476B4191BC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>82AAFADA7B6F10582C95E51705617BCB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

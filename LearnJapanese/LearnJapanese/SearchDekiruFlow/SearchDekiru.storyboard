@@ -111,7 +111,6 @@
                                         </state>
                                         <connections>
                                             <action selector="tappedSearchWithGoogle:" destination="1EX-a4-4Wh" eventType="touchUpInside" id="3Mt-Au-AMq"/>
-                                            <segue destination="Du8-7A-bWC" kind="show" identifier="gotoWordDetail" id="wgi-gJ-Dw5"/>
                                         </connections>
                                     </button>
                                 </subviews>
