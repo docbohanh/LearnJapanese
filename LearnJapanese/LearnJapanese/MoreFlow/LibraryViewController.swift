@@ -24,6 +24,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var player: AVPlayer!
     var isShowListWord = false
     var selectedSection = 0
+    var iconArray = [UIImage]()
     
     
     override func viewDidLoad() {
@@ -66,12 +67,35 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         LoadingOverlay.shared.showOverlay(view: self.view)
         self.titleArray = FlashCard.mr_findAllSorted(by: "id", ascending: true) as! [FlashCard]
         if subWordArray != nil {
-            subWordArray.removeAll()
+            if subWordArray.count > 0 {
+                subWordArray.removeAll()
+            }
         }
+        if iconArray != nil {
+            if iconArray.count > 0 {
+                iconArray.removeAll()
+            }
+        }
+        self.iconArray.append(UIImage.init(named: "icon_flashcash_folder")!)
+        self.iconArray.append(UIImage.init(named: "icon_flashcash_folder")!)
+        
         subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: currentIdFlashCard, andOrderBy: "id", ascending: true) as! [FlashCardDetail]!
         LoadingOverlay.shared.hideOverlayView()
+        
         self.libraryTableView.reloadData()
         self.tabBarController?.tabBar.isHidden = false
+        DispatchQueue.global().async {
+
+            if self.titleArray.count > 2 {
+                for index in 2..<self.titleArray.count {
+                    let flashCardTitle = self.titleArray[index]
+                    if flashCardTitle.avatar != nil {
+                        self.loadIconImage(url: flashCardTitle.avatar!,section: index)
+                    }
+                }
+            }
+
+        }
 //        titleArray = FlashCard.mr_findAll(in: NSManagedObjectContext.mr_default())! as! [FlashCard]
 //        libraryTableView.reloadData()
     }
@@ -136,13 +160,45 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         } else {
             ///Thành Lã: 2017/01/05
             if (flashCardTitle.avatar != nil) {
-                headerView?.iconHeaderImageView.loadImage(url:flashCardTitle.avatar!)
+                if (iconArray.count) > section {
+                    headerView?.iconHeaderImageView.image = iconArray[section]
+                }
+//                headerView?.iconHeaderImageView.loadImage(url:flashCardTitle.avatar!)
             }
         }
         headerView?.titleLabel.text = cardTitle
         headerView?.backgroundHeaderButton.tag = Int(cardID) ?? 0
         headerView?.tag = section
         return headerView
+    }
+    
+    func loadIconImage(url:String,section:Int) -> Void {
+        let catPictureURL = URL(string: url)!
+        let session = URLSession(configuration: .default)
+        let downloadPicTask = session.dataTask(with: catPictureURL) { (data, response, error) in
+            // The download has finished.
+            if let e = error {
+                print("Error downloading cat picture: \(e)")
+            } else {
+                // No errors found.
+                // It would be weird if we didn't have a response, so check for that too.
+                if let res = response as? HTTPURLResponse {
+                    print("Downloaded cat picture with response code \(res.statusCode)")
+                    if let imageData = data {
+                        // Finally convert that Data into an image and do what you wish with it.
+                        DispatchQueue.main.async {
+                            self.libraryTableView.reloadSections([section], with: UITableViewRowAnimation.none)
+                            self.iconArray.append(UIImage.init(data: data!)!)
+                        }
+                    } else {
+                        print("Couldn't get image: Image is nil")
+                    }
+                } else {
+                    print("Couldn't get response code for some reason")
+                }
+            }
+        }
+        downloadPicTask.resume()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -223,7 +279,11 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     self.libraryTableView.reloadData()
                 } else if flashCard == ".word" {
                     currentIdFlashCard = ".word"
-                    subWordArray.removeAll()
+                    if subWordArray != nil {
+                        if subWordArray.count > 0 {
+                            subWordArray.removeAll()
+                        }
+                    }
                     subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: currentIdFlashCard, andOrderBy: "id", ascending: true) as! [FlashCardDetail]!
                     //isMyWord = true
                     LoadingOverlay.shared.hideOverlayView()

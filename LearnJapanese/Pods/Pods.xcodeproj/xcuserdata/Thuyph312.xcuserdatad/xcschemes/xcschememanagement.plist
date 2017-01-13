@@ -30,6 +30,11 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>Nocilla.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
 		<key>PINCache.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -74,7 +79,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4E151399D999308E23F26994F6CBFF1C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>555E3F8BD9CB2313BD00245BEFDD01D2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>55E96DBB0C6AE605488BF7476B4191BC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

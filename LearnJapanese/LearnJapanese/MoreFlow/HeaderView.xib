@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wvE-eo-Ahh">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_flashcash_folder" translatesAutoresizingMaskIntoConstraints="NO" id="wvE-eo-Ahh">
                     <rect key="frame" x="10" y="5" width="50" height="50"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -70,4 +70,7 @@
             <point key="canvasLocation" x="21.5" y="191"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_flashcash_folder" width="50" height="50"/>
+    </resources>
 </document>
