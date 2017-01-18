@@ -180,6 +180,24 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         }
     }
     @IBAction func tappedFavoriteButton(_ sender: Any) {
+        let result = FlashCardDetail.mr_find(byAttribute: "id", withValue: self.detailTranslate.id, andOrderBy: "flash_card_id", ascending: true) as? [FlashCardDetail]
+        let wordType = ".word"
+        
+        for object in result! {
+            if object.flash_card_id == wordType {
+                let localContext = NSManagedObjectContext.mr_default()
+                object.mr_deleteEntity(in: localContext)
+                localContext.mr_saveToPersistentStoreAndWait()
+                favoriteButton.setImage(UIImage.init(named: "icon_btn_favorite"), for: UIControlState.normal)
+                ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã xoá từ", buttonArray: ["Đóng"], onCompletion: {_ in
+                    
+                })
+                return
+            }
+        }
+        
+            favoriteButton.setImage(UIImage.init(named: "icon_btn_favorite_flashcard"), for: UIControlState.normal)
+        
         popupView?.wordLabel.text = searchTextField.text
         backgroundPopupView.isHidden = false
         if detailTranslate != nil {
@@ -190,9 +208,26 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         }
         popupView?.myFlashCardsLabel.text = "Lưu từ"
         popupView?.storeType = .word
-        
     }
+    
     @IBAction func tappedSaveFlashCashButton(_ sender: Any) {
+        let result = FlashCardDetail.mr_find(byAttribute: "id", withValue: self.detailTranslate.id, andOrderBy: "flash_card_id", ascending: true) as? [FlashCardDetail]
+        let wordType = ".flashcard"
+        
+        for object in result! {
+            if object.flash_card_id == wordType {
+                let localContext = NSManagedObjectContext.mr_default()
+                object.mr_deleteEntity(in: localContext)
+                localContext.mr_saveToPersistentStoreAndWait()
+                flashCardButton.setImage(UIImage.init(named: "icon_btn_flashcash"), for: UIControlState.normal)
+                ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã xoá từ khỏi flashcard", buttonArray: ["Đóng"], onCompletion: {_ in
+                
+                })
+                return
+            }
+        }
+        flashCardButton.setImage(UIImage.init(named: "icon_btn_flashcash_flashcard"), for: UIControlState.normal)
+        
         popupView?.wordLabel.text = searchTextField.text
         if detailTranslate != nil {
             popupView?.meaningTextView.text = detailTranslate.meaning_name
@@ -348,27 +383,6 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     
     func saveWordToLocal(type: MyStoreType) {
         self.backgroundPopupView.isHidden = true
-        let result = FlashCardDetail.mr_find(byAttribute: "id", withValue: self.detailTranslate.id, andOrderBy: "flash_card_id", ascending: true) as? [FlashCardDetail]
-        let wordType = type == .word ? ".word" : ".flashcard"
-
-        for object in result! {
-            if object.flash_card_id == wordType {
-                let localContext = NSManagedObjectContext.mr_default()
-                object.mr_deleteEntity(in: localContext)
-                localContext.mr_saveToPersistentStoreAndWait()
-                if type == .word {
-                    favoriteButton.setImage(UIImage.init(named: "icon_btn_favorite"), for: UIControlState.normal)
-                } else if type == .flash_card {
-                    flashCardButton.setImage(UIImage.init(named: "icon_btn_flashcash"), for: UIControlState.normal)
-                }
-                return
-            }
-        }
-        if type == .word {
-            favoriteButton.setImage(UIImage.init(named: "icon_btn_favorite_flashcard"), for: UIControlState.normal)
-        } else if type == .flash_card {
-            flashCardButton.setImage(UIImage.init(named: "icon_btn_flashcash_flashcard"), for: UIControlState.normal)
-        }
         MagicalRecord.save({context in
                 let wordData = FlashCardDetail.mr_createEntity(in:NSManagedObjectContext.mr_default())
                 wordData?.kana = self.detailTranslate.kana ?? ""

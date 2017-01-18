@@ -126,24 +126,26 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
             isFlashCard = false
             sender.setImage(UIImage.init(named: "icon_btn_flashcash"), for: UIControlState.normal)
         } else {
-            MagicalRecord.save({context in
-                let flashCard = Translate.mr_findFirst(byAttribute: "id", withValue: self.wordIdArray[index])
-
-                let wordData = FlashCardDetail.mr_createEntity(in:context)
-                wordData?.kana = flashCard?.kana ?? ""
-                wordData?.word = flashCard?.word ?? ""
-                wordData?.source_url = flashCard?.sound_url ?? ""
-                wordData?.meaning = flashCard?.meaning_name ?? ""
-                wordData?.romaji = flashCard?.romaji ?? ""
-                wordData?.id = flashCard?.id ?? ""
-                wordData?.flash_card_id = ".flashcard"
-                wordData?.avatar = flashCard?.avatar
-            }, completion: {didContext in
-                self.isFlashCard = true
-                sender.setImage(UIImage.init(named: "icon_btn_flashcash_flashcard"), for: UIControlState.normal)
-
-                ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu flash card thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
-            })
+            if wordIdArray.count > index {
+                MagicalRecord.save({context in
+                    let flashCard = Translate.mr_findFirst(byAttribute: "id", withValue: self.wordIdArray[index])
+                    
+                    let wordData = FlashCardDetail.mr_createEntity(in:context)
+                    wordData?.kana = flashCard?.kana ?? ""
+                    wordData?.word = flashCard?.word ?? ""
+                    wordData?.source_url = flashCard?.sound_url ?? ""
+                    wordData?.meaning = flashCard?.meaning_name ?? ""
+                    wordData?.romaji = flashCard?.romaji ?? ""
+                    wordData?.id = flashCard?.id ?? ""
+                    wordData?.flash_card_id = ".flashcard"
+                    wordData?.avatar = flashCard?.avatar
+                }, completion: {didContext in
+                    self.isFlashCard = true
+                    sender.setImage(UIImage.init(named: "icon_btn_flashcash_flashcard"), for: UIControlState.normal)
+                    
+                    ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu flash card thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+                })
+            }
         }
     }
     

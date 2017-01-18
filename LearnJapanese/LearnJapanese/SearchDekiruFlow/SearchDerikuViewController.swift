@@ -180,7 +180,9 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
                 
                 cell.initCell(wordModel: WordModel())
             } else {
-                cell.initHistoryCell(wordModel: WordModel())
+                cell.initCell(wordModel: WordModel())
+                cell.iconImageView.image = UIImage.init(named: "icon_history")
+
             }
 
         }

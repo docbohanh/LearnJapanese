@@ -187,7 +187,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     if let imageData = data {
                         // Finally convert that Data into an image and do what you wish with it.
                         DispatchQueue.main.async {
-                            self.libraryTableView.reloadSections([section], with: UITableViewRowAnimation.none)
+                            self.libraryTableView.reloadSections(IndexSet.init(integer:section), with: UITableViewRowAnimation.none)
                             self.iconArray.append(UIImage.init(data: data!)!)
                         }
                     } else {

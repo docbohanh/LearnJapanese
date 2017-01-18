@@ -82,10 +82,20 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
         let historyObject = historyArray[atIndex]
         historyArray.remove(at: atIndex)
         tableView.reloadData()
+        if historyObject.id != nil {
+            self.updateWordToHistory(id: historyObject.id!)
+        }
         
         let localContext = NSManagedObjectContext.mr_default()
         historyObject.mr_deleteEntity(in: localContext)
         localContext.mr_saveToPersistentStoreAndWait()
     }
-
+    
+    func updateWordToHistory(id:String) {
+        let word = Translate.mr_find(byAttribute: "id", withValue: id, in: NSManagedObjectContext.mr_default())?.first as? Translate
+        if word != nil {
+            word?.isSearch = "0"
+        }
+        NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
+    }
 }
