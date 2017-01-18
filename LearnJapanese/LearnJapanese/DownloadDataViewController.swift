@@ -42,7 +42,7 @@ class DownloadDataViewController: UIViewController {
         if UserDefaults.standard.object(forKey: "version") == nil {
             self.createDefaultData()
             print("the first time")
-            UserDefaults.standard.set("", forKey: "version")
+            UserDefaults.standard.set("1.39", forKey: "version")
         } else {
             print("the second time")
 
