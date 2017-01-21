@@ -12,6 +12,7 @@ import MagicalRecord
 
 class WordDetailViewController: UIViewController,saveWordDelegate {
 
+    //only chang
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var backgroundPopupView: UIView!
