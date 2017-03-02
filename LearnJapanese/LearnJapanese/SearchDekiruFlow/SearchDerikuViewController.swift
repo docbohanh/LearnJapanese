@@ -86,8 +86,15 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
         // Dispose of any resources that can be recreated.
     }
     @IBAction func tappedAddNewWord(_ sender: UIButton) {
-        ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã báo cáo từ chưa có.", buttonArray: ["Đóng"], onCompletion: {_ in
-        })
+        if ProjectCommon.connectedToNetwork(){
+            ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã báo cáo từ chưa có.", buttonArray: ["Đóng"], onCompletion: {_ in
+
+            })
+        } else {
+            ProjectCommon.initAlertView(viewController: self, title: "", message: "Không thể kết nối đến máy chủ", buttonArray:["Đóng"], onCompletion: {_ in
+                
+            })
+        }
     }
     
     @IBAction func tappedChangedLangue(_ sender: UIButton) {

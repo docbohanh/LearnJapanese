@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +18,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nfN-ct-mc4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.061138659720000002" green="0.47626364230000001" blue="0.42406085129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="oW2-Iy-3WI" kind="relationship" relationship="rootViewController" id="U74-43-ucW"/>
@@ -137,19 +137,11 @@
                                 <rect key="frame" x="20" y="5" width="150" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="t2a-uQ-vkI">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="BbR-Pw-U9B"/>
-                                            <constraint firstAttribute="height" constant="30" id="sNE-nc-PfW"/>
-                                        </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pkm-f7-JXa">
-                                        <rect key="frame" x="35" y="0.0" width="115" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pkm-f7-JXa">
+                                        <rect key="frame" x="0.0" y="0.0" width="150" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="Dịch văn bản">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="tappedBack:" destination="oW2-Iy-3WI" eventType="touchUpInside" id="6a9-oG-1Pt"/>
@@ -159,11 +151,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Pkm-f7-JXa" firstAttribute="top" secondItem="baF-mf-lUR" secondAttribute="top" id="0Ba-zo-eGj"/>
-                                    <constraint firstItem="t2a-uQ-vkI" firstAttribute="top" secondItem="baF-mf-lUR" secondAttribute="top" id="IXs-l7-vwF"/>
-                                    <constraint firstItem="Pkm-f7-JXa" firstAttribute="leading" secondItem="t2a-uQ-vkI" secondAttribute="trailing" constant="5" id="IYg-Lo-UCJ"/>
-                                    <constraint firstItem="t2a-uQ-vkI" firstAttribute="leading" secondItem="baF-mf-lUR" secondAttribute="leading" id="PGJ-q1-mVq"/>
                                     <constraint firstAttribute="bottom" secondItem="Pkm-f7-JXa" secondAttribute="bottom" id="Pan-Qi-4WX"/>
                                     <constraint firstAttribute="trailing" secondItem="Pkm-f7-JXa" secondAttribute="trailing" id="f80-oh-QM0"/>
+                                    <constraint firstItem="Pkm-f7-JXa" firstAttribute="leading" secondItem="baF-mf-lUR" secondAttribute="leading" id="iZ2-XF-bOc"/>
                                 </constraints>
                             </view>
                         </barButtonItem>
@@ -186,7 +176,6 @@
                         <outlet property="backToFirstButton" destination="Pkm-f7-JXa" id="y80-jy-y4X"/>
                         <outlet property="chooseDictionaryButton" destination="tGX-HP-uoE" id="dub-WI-BrQ"/>
                         <outlet property="clearTextButton" destination="uy5-dK-xj9" id="XOR-Br-cPH"/>
-                        <outlet property="iconAppImageView" destination="t2a-uQ-vkI" id="ocv-tE-Z3M"/>
                         <outlet property="inputTextView" destination="COj-cH-lSP" id="gUY-F4-cS8"/>
                         <outlet property="outputTextView" destination="bs5-5h-Gfm" id="KhB-n9-P95"/>
                         <outlet property="translateButton" destination="Ycl-lk-eK9" id="Szt-3a-6WR"/>
@@ -201,7 +190,6 @@
         <image name="icon_change_language" width="73" height="26"/>
         <image name="icon_delete" width="10" height="10"/>
         <image name="icon_document" width="16" height="19"/>
-        <image name="icon_logo" width="33" height="33"/>
         <image name="viet_nhat" width="73" height="26"/>
     </resources>
 </document>

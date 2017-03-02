@@ -39,18 +39,25 @@ class DownloadDataViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if UserDefaults.standard.object(forKey: "version") == nil {
-            self.createDefaultData()
-            print("the first time")
-            UserDefaults.standard.set("1.39", forKey: "version")
-        } else {
-            print("the second time")
-
-            if ProjectCommon.connectedToNetwork() {
-                self.getdataLocal()
+        if ProjectCommon.connectedToNetwork() {
+            if UserDefaults.standard.object(forKey: "version") == nil {
+                self.createDefaultData()
+                print("the first time")
+                UserDefaults.standard.set("1.39", forKey: "version")
+            } else {
+                print("the second time")
+                
+                if ProjectCommon.connectedToNetwork() {
+                    self.getdataLocal()
+                } else {
+                    self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
+                }
             }
+        } else {
+            ProjectCommon.initAlertView(viewController: self, title: "", message: "Không thể kết nối đến máy chủ", buttonArray: ["Đóng"], onCompletion: {_ in
+                self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
+            })
         }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -161,13 +168,14 @@ class DownloadDataViewController: UIViewController {
                 // contents could not be loaded
             }
         } else {
+            
         }
     }
     
     func getdataLocal() {
         print("da co mang bat dau download")
         let parameter = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_data","version":(UserDefaults.standard.object(forKey: "version") as! String)]
-        let urlRequest = "http://api-app.dekiru.vn/DekiruApi.ashx"
+        let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
         APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: {response in
             //            let version = UserDefaults.standard.object(forKey: "version") as! String
             print("da co ket qua tra ve")
@@ -290,7 +298,6 @@ class DownloadDataViewController: UIViewController {
             }
             
         }, completion: {(contextDidSave,error) in
-//            print("saving is successful")
             
             self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
             
@@ -304,6 +311,7 @@ class DownloadDataViewController: UIViewController {
             let percent = self.progressView.frame.width/self.fullTrackView.frame.size.width * 100
             if percent < 100{
                 self.progressView.frame = CGRect.init(x: 0, y: 0, width: self.progressView.frame.size.width + self.fullTrackView.frame.size.width/100, height: self.progressView.frame.height)
+                self.progressView.backgroundColor = UIColor.red
                 self.downloadedLabel.text = String(format: "%.2f", 16.9) + " MB"
                 self.percentDownloadedLabel.text = String(format: "%.2f", self.progressView.frame.width/self.fullTrackView.frame.size.width * 100) + " %"
             } else {
@@ -318,6 +326,7 @@ class DownloadDataViewController: UIViewController {
             let percent = self.currentDouble/self.totalDouble * 100
             if percent < 100{
                 self.progressView.frame = CGRect.init(x: 0, y: 0, width: self.progressView.frame.size.width + self.fullTrackView.frame.size.width/40737, height: self.progressView.frame.height)
+                self.progressView.backgroundColor = UIColor.red
                 self.downloadedLabel.text = String(format: "%.2f", self.currentDouble) + " MB"
                 self.percentDownloadedLabel.text = String(format: "%.2f", percent) + " %"
             } else {

@@ -16,10 +16,10 @@
                 <navigationController storyboardIdentifier="LibraryNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="brZ-JA-NmA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Thư viện" image="icon_menu" id="ZPi-bd-FjD"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6WS-gh-8eQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6WS-gh-8eQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.061138659715652466" green="0.47626364231109619" blue="0.42406085133552551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="QnM-pV-oiO" kind="relationship" relationship="rootViewController" id="CT6-Tu-gPr"/>
@@ -49,7 +49,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MwY-5c-KFT" id="zBi-nU-XNu">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_star" translatesAutoresizingMaskIntoConstraints="NO" id="WVB-Oh-jdo">
@@ -112,45 +112,33 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uhE-Dp-hpT">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="7U8-aX-vJM">
-                            <view key="customView" contentMode="scaleToFill" id="NLd-Oz-k0s">
-                                <rect key="frame" x="20" y="5" width="110" height="33"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="pLq-PM-bXJ">
+                            <view key="customView" contentMode="scaleToFill" id="r3W-hl-yFr">
+                                <rect key="frame" x="20" y="5" width="92" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="dlb-S3-TJ0">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="63F-S8-50p"/>
-                                            <constraint firstAttribute="height" constant="30" id="uBO-US-tNO"/>
-                                        </constraints>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M12-uM-HbB">
-                                        <rect key="frame" x="35" y="0.0" width="75" height="33"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Thư viện">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thư viện " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWL-Wp-1WL">
+                                        <rect key="frame" x="0.0" y="0.0" width="92" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="M12-uM-HbB" secondAttribute="trailing" id="N4Z-0p-ogS"/>
-                                    <constraint firstItem="dlb-S3-TJ0" firstAttribute="top" secondItem="NLd-Oz-k0s" secondAttribute="top" id="TkR-6I-aCu"/>
-                                    <constraint firstAttribute="bottom" secondItem="M12-uM-HbB" secondAttribute="bottom" id="Xdd-WB-9gr"/>
-                                    <constraint firstItem="M12-uM-HbB" firstAttribute="leading" secondItem="dlb-S3-TJ0" secondAttribute="trailing" constant="5" id="Z7D-PD-fCq"/>
-                                    <constraint firstItem="M12-uM-HbB" firstAttribute="top" secondItem="NLd-Oz-k0s" secondAttribute="top" id="jYC-lS-t1R"/>
-                                    <constraint firstItem="dlb-S3-TJ0" firstAttribute="leading" secondItem="NLd-Oz-k0s" secondAttribute="leading" id="pQj-on-9hU"/>
+                                    <constraint firstItem="dWL-Wp-1WL" firstAttribute="top" secondItem="r3W-hl-yFr" secondAttribute="top" id="4QQ-ep-65c"/>
+                                    <constraint firstItem="dWL-Wp-1WL" firstAttribute="leading" secondItem="r3W-hl-yFr" secondAttribute="leading" id="fHg-Wm-nLR"/>
+                                    <constraint firstAttribute="trailing" secondItem="dWL-Wp-1WL" secondAttribute="trailing" id="sMr-FI-QSH"/>
+                                    <constraint firstAttribute="bottom" secondItem="dWL-Wp-1WL" secondAttribute="bottom" id="zkZ-Uo-zCw"/>
                                 </constraints>
                             </view>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="PI2-SP-ohB">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FJG-fa-ess">
-                                <rect key="frame" x="364" y="7" width="30" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FJG-fa-ess">
+                                <rect key="frame" x="361" y="5" width="33" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal">
+                                <state key="normal" image="flashcard">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -190,33 +178,32 @@
                                             <constraint firstAttribute="width" constant="30" id="VEL-oI-PqB"/>
                                             <constraint firstAttribute="height" constant="16" id="bDZ-Nw-5hS"/>
                                         </constraints>
-                                        <state key="normal" image="icon_back_green"/>
+                                        <state key="normal" image="back"/>
                                         <connections>
                                             <action selector="tappedBack:" destination="MnW-On-0Xb" eventType="touchUpInside" id="Uci-8J-Gs2"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quay lại" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Skk-jX-ZzW">
-                                        <rect key="frame" x="56" y="0.0" width="292" height="80"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thư viện" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Skk-jX-ZzW">
+                                        <rect key="frame" x="56.000000000000007" y="0.0" width="66.666666666666686" height="80"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.098039215686274508" green="0.47058823529411764" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="r3B-zq-2sJ">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iNM-iT-Dvy">
                                         <rect key="frame" x="358" y="20" width="40" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="l7s-Al-DRl"/>
-                                            <constraint firstAttribute="height" constant="40" id="y4M-3g-37h"/>
+                                            <constraint firstAttribute="width" constant="40" id="EM5-AM-rUL"/>
+                                            <constraint firstAttribute="height" constant="40" id="bc9-Oq-pvh"/>
                                         </constraints>
-                                    </imageView>
+                                        <state key="normal" title="Button" image="flashcard"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="r3B-zq-2sJ" firstAttribute="leading" secondItem="Skk-jX-ZzW" secondAttribute="trailing" constant="10" id="496-Ne-Rqv"/>
                                     <constraint firstAttribute="bottom" secondItem="Skk-jX-ZzW" secondAttribute="bottom" id="7o5-iL-eUf"/>
                                     <constraint firstItem="Skk-jX-ZzW" firstAttribute="top" secondItem="aAg-Ek-LIX" secondAttribute="top" id="8Zy-iV-07x"/>
+                                    <constraint firstAttribute="trailing" secondItem="iNM-iT-Dvy" secondAttribute="trailing" constant="16" id="FCk-x4-2YC"/>
                                     <constraint firstItem="Skk-jX-ZzW" firstAttribute="leading" secondItem="BKb-vf-vos" secondAttribute="trailing" constant="10" id="SVm-os-XIN"/>
-                                    <constraint firstAttribute="trailing" secondItem="r3B-zq-2sJ" secondAttribute="trailing" constant="16" id="cMI-TV-7Sg"/>
-                                    <constraint firstItem="r3B-zq-2sJ" firstAttribute="centerY" secondItem="aAg-Ek-LIX" secondAttribute="centerY" id="ffY-gl-ITE"/>
+                                    <constraint firstItem="iNM-iT-Dvy" firstAttribute="centerY" secondItem="aAg-Ek-LIX" secondAttribute="centerY" id="Uxs-BP-bOZ"/>
                                     <constraint firstAttribute="height" constant="80" id="opN-7B-eA8"/>
                                     <constraint firstItem="BKb-vf-vos" firstAttribute="leading" secondItem="aAg-Ek-LIX" secondAttribute="leading" constant="16" id="vrV-bF-P6Z"/>
                                     <constraint firstItem="BKb-vf-vos" firstAttribute="centerY" secondItem="aAg-Ek-LIX" secondAttribute="centerY" id="zQT-D5-qt8"/>
@@ -259,7 +246,6 @@
                         <outlet property="backButton" destination="BKb-vf-vos" id="s03-5l-Pli"/>
                         <outlet property="backLabel" destination="Skk-jX-ZzW" id="G7W-7p-8DX"/>
                         <outlet property="backgroundProgressView" destination="8tD-Xs-Mu0" id="C7B-VU-LWL"/>
-                        <outlet property="logoImageView" destination="r3B-zq-2sJ" id="lh5-4o-fB6"/>
                         <outlet property="progressView" destination="jFz-9y-xdb" id="9Ly-hs-Cgh"/>
                         <outlet property="progressWidthConstraint" destination="JhS-qP-3iT" id="imD-od-huc"/>
                         <outlet property="scrollView" destination="F4k-ra-Hhr" id="HmB-Yg-PkK"/>
@@ -271,9 +257,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_back_green" width="15" height="15"/>
+        <image name="back" width="231" height="231"/>
+        <image name="flashcard" width="400" height="400"/>
         <image name="icon_button_sound" width="50" height="50"/>
-        <image name="icon_logo" width="33" height="33"/>
         <image name="icon_menu" width="17" height="17"/>
         <image name="icon_sound_green" width="17" height="16"/>
         <image name="icon_star" width="18" height="18"/>

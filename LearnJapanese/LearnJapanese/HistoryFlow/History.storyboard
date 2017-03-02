@@ -15,10 +15,10 @@
                 <navigationController storyboardIdentifier="HistoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GKt-OB-eAd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Lịch sử" image="icon_history" id="wzq-tB-Qv9"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yvz-xY-IMP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Yvz-xY-IMP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.061138659720000002" green="0.47626364230000001" blue="0.42406085129999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -63,29 +63,32 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Lịch sử" image="icon_history" id="kUO-Wj-FUA"/>
                     <navigationItem key="navigationItem" id="mJr-zj-53X">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="M6e-N4-tNK">
-                            <view key="customView" contentMode="scaleToFill" id="gIs-5o-njC">
-                                <rect key="frame" x="20" y="5" width="150" height="33"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="d69-hp-zdz">
+                            <view key="customView" contentMode="scaleToFill" id="hqq-xL-Qnl">
+                                <rect key="frame" x="20" y="5" width="92" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLZ-2v-gxB">
-                                        <rect key="frame" x="0.0" y="0.0" width="110" height="33"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="110" id="QVl-wC-hwh"/>
-                                        </constraints>
-                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Lịch sử" image="icon_logo">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lịch sử" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4f-d6-3op">
+                                        <rect key="frame" x="0.0" y="0.0" width="92" height="33"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="dLZ-2v-gxB" firstAttribute="leading" secondItem="gIs-5o-njC" secondAttribute="leading" id="Q2p-V4-IfP"/>
-                                    <constraint firstItem="dLZ-2v-gxB" firstAttribute="top" secondItem="gIs-5o-njC" secondAttribute="top" id="QbZ-bS-cBj"/>
-                                    <constraint firstAttribute="bottom" secondItem="dLZ-2v-gxB" secondAttribute="bottom" id="wD3-8c-asU"/>
+                                    <constraint firstAttribute="trailing" secondItem="S4f-d6-3op" secondAttribute="trailing" id="19i-vN-Ida"/>
+                                    <constraint firstItem="S4f-d6-3op" firstAttribute="top" secondItem="hqq-xL-Qnl" secondAttribute="top" id="Jg3-uJ-9LW"/>
+                                    <constraint firstItem="S4f-d6-3op" firstAttribute="leading" secondItem="hqq-xL-Qnl" secondAttribute="leading" id="WWy-Kx-XHD"/>
+                                    <constraint firstAttribute="bottom" secondItem="S4f-d6-3op" secondAttribute="bottom" id="Xd4-H3-MMy"/>
                                 </constraints>
+                            </view>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="sCu-3x-aEP">
+                            <view key="customView" contentMode="scaleToFill" id="RJj-0v-hyG">
+                                <rect key="frame" x="361" y="5" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </barButtonItem>
                     </navigationItem>
@@ -97,11 +100,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVg-5y-46r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="34" y="36"/>
+            <point key="canvasLocation" x="33.333333333333336" y="35.869565217391305"/>
         </scene>
     </scenes>
     <resources>
         <image name="icon_history" width="20" height="20"/>
-        <image name="icon_logo" width="33" height="33"/>
     </resources>
 </document>

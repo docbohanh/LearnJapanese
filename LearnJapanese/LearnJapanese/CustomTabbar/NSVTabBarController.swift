@@ -47,7 +47,7 @@ class NSVTabBarController: UITabBarController , UITabBarControllerDelegate{
         let imagesArray : NSArray = ["icon_dict","icon_history","icon_document","icon_menu",]
         // To Create the TabBar icons as NSArray for selection time
         
-        let  selecteimgArray:NSArray = ["icon_dict_enable","icon_history_enable","icon_document_active","icon_menu_enable"]
+        let  selecteimgArray:NSArray = ["dict-hover","history-hover","transalate-hover","more-hover"]
         // Customize the tabBar images
         
         //*****//*****//*****//*****//*****//*****//*****//*****//

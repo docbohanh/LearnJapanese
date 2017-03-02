@@ -35,7 +35,7 @@
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0hH-Z2-1l1">
                                         <rect key="frame" x="0.0" y="115" width="414" height="5"/>
-                                        <color key="backgroundColor" red="0.52941176470588236" green="0.72941176470588232" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="5" id="W1A-d5-xLu"/>
                                         </constraints>
@@ -69,7 +69,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.061225958168506622" green="0.47632628679275513" blue="0.41998425126075745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="190" id="4lT-Km-F6M"/>
                                     <constraint firstItem="yGC-OE-RsA" firstAttribute="top" secondItem="SHw-bO-gy2" secondAttribute="top" id="9Yw-WT-IPj"/>
@@ -101,7 +101,7 @@
                                 <color key="textColor" red="0.9137254901960784" green="0.14117647058823529" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="D42-zf-q6L">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="D42-zf-q6L">
                                 <rect key="frame" x="157" y="223" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="ot4-Zo-vvF"/>
@@ -109,7 +109,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.73725490196078436" green="0.73725490196078436" blue="0.74117647058823533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="9VH-Iq-TfZ" firstAttribute="leading" secondItem="aKO-sK-22f" secondAttribute="leading" id="1SW-Ct-9T2"/>
                             <constraint firstAttribute="trailing" secondItem="Gmc-e2-rOi" secondAttribute="trailing" id="5RV-dc-HXj"/>
@@ -193,6 +193,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon_logo" width="33" height="33"/>
+        <image name="avatar" width="400" height="400"/>
     </resources>
 </document>

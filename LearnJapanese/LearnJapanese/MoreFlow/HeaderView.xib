@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -43,11 +43,23 @@
                         <constraint firstAttribute="height" constant="1" id="HqC-XY-Ddg"/>
                     </constraints>
                 </view>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGL-P8-5Bh">
+                    <rect key="frame" x="309" y="5.6666666666666679" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="sm9-LE-V5v"/>
+                        <constraint firstAttribute="height" constant="50" id="wXE-v0-Wbe"/>
+                    </constraints>
+                    <state key="normal" image="icon_button_sound_active"/>
+                    <connections>
+                        <action selector="tappedPlaySound:" destination="iN0-l3-epB" eventType="touchUpInside" id="V8K-qU-qL3"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="oET-g5-Pi1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BEG-f6-MG1"/>
                 <constraint firstAttribute="bottom" secondItem="dsP-SC-dC1" secondAttribute="bottom" id="Dka-7I-tBg"/>
+                <constraint firstItem="zGL-P8-5Bh" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="EN2-aM-Xvr"/>
                 <constraint firstItem="wvE-eo-Ahh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="Hsx-8y-IS1"/>
                 <constraint firstAttribute="bottom" secondItem="oET-g5-Pi1" secondAttribute="bottom" constant="1" id="Irb-Kg-HWO"/>
                 <constraint firstItem="IxL-GF-mOg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="MBk-g2-E6o"/>
@@ -58,6 +70,7 @@
                 <constraint firstItem="IxL-GF-mOg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oPh-Cd-f8j"/>
                 <constraint firstItem="wvE-eo-Ahh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="pRC-S3-ZYC"/>
                 <constraint firstAttribute="trailing" secondItem="IxL-GF-mOg" secondAttribute="trailing" id="rBT-sw-JN7"/>
+                <constraint firstAttribute="trailing" secondItem="zGL-P8-5Bh" secondAttribute="trailing" constant="16" id="t5N-qM-q0Y"/>
                 <constraint firstAttribute="trailing" secondItem="dsP-SC-dC1" secondAttribute="trailing" constant="10" id="z0f-Hd-SW5"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -65,12 +78,14 @@
             <connections>
                 <outlet property="backgroundHeaderButton" destination="IxL-GF-mOg" id="gnh-c8-xRW"/>
                 <outlet property="iconHeaderImageView" destination="wvE-eo-Ahh" id="Biq-Uw-qBH"/>
+                <outlet property="playSoundButton" destination="zGL-P8-5Bh" id="2l9-sR-ci3"/>
                 <outlet property="titleLabel" destination="dsP-SC-dC1" id="Abf-ot-oop"/>
             </connections>
             <point key="canvasLocation" x="21.5" y="191"/>
         </view>
     </objects>
     <resources>
+        <image name="icon_button_sound_active" width="50" height="50"/>
         <image name="icon_flashcash_folder" width="50" height="50"/>
     </resources>
 </document>

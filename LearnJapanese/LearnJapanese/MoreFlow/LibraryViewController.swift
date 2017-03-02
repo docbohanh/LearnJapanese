@@ -305,6 +305,20 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
     }
     
+    func tappedPlaySoundList(sender: UIButton) {
+        let object = subWordArray[index]
+        if object.source_url != nil {
+            let url = object.source_url
+            let playerItem = AVPlayerItem( url:URL(string:url! )!)
+            self.player = AVPlayer(playerItem:playerItem)
+            self.player.rate = 1.0;
+            self.player.play()
+        }else {
+            ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["OK"], onCompletion: { (index) in
+            })
+        }
+    }
+    
     /**
      Get All Flash Card
      */

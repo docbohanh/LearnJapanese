@@ -195,11 +195,9 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
             self.player.play()
         }else {
             ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["OK"], onCompletion: { (index) in
-                
             })
         }
     }
-    
     
     /*
      // MARK: - Navigation

@@ -244,7 +244,8 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         backgroundPopupView.isHidden = true
     }
     @IBAction func tappedDekiruDictButton(_ sender: Any) {
-        dekiruButton.backgroundColor = background_color
+        dekiruButton.backgroundColor = .white
+        dekiruButton.setTitleColor(.red, for: UIControlState.normal)
         googleButton.backgroundColor = UIColor.lightText
         wikipediaButton.backgroundColor = UIColor.lightText
         bingButton.backgroundColor = UIColor.lightText
@@ -255,7 +256,8 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     }
     @IBAction func tappedGoogleButton(_ sender: Any) {
         dekiruButton.backgroundColor = UIColor.lightText
-        googleButton.backgroundColor = background_color
+        googleButton.setTitleColor(.red, for: UIControlState.normal)
+        googleButton.backgroundColor = .white
         wikipediaButton.backgroundColor = UIColor.lightText
         bingButton.backgroundColor = UIColor.lightText
         
@@ -267,7 +269,8 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     @IBAction func tappedWikipediaButton(_ sender: Any) {
         dekiruButton.backgroundColor = UIColor.lightText
         googleButton.backgroundColor = UIColor.lightText
-        wikipediaButton.backgroundColor = background_color
+        wikipediaButton.setTitleColor(.red, for: UIControlState.normal)
+        wikipediaButton.backgroundColor = .white
         bingButton.backgroundColor = UIColor.lightText
         
         searchResultScrollView.isHidden = true
@@ -289,8 +292,8 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         dekiruButton.backgroundColor = UIColor.lightText
         googleButton.backgroundColor = UIColor.lightText
         wikipediaButton.backgroundColor = UIColor.lightText
-        bingButton.backgroundColor = background_color
-        
+        bingButton.setTitleColor(.red, for: UIControlState.normal)
+        bingButton.backgroundColor = .white
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
         googleTranslateView.isHidden = true
