@@ -27,6 +27,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var iconArray = [UIImage]()
     
     var soundIndex = 0
+    var timer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -197,10 +198,10 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         }
         
         delay(duration) { [weak self] in
-            
+
             guard let `self` = self else { return }
             self.soundIndex += 1
-            if self.soundIndex < source.count - 1 {
+            if self.soundIndex < source.count {
                 self.play(source, duration: duration)
             } else {
                 
@@ -234,6 +235,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     guard trans.sound.count > 0 else { return }
                     
                     self.soundIndex = 0
+                    if let timer = self.timer { timer.invalidate() }
                     self.play(trans.sound.map { $0.soundUrl }, duration: 1.3)
                     
                 } catch {
