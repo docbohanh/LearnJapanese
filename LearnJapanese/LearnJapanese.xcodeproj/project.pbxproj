@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1184ECB40558138B426B9116 /* Pods_LearnJapaneseUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4EC133B8769AF912CC8E51B /* Pods_LearnJapaneseUITests.framework */; };
+		13D160B71E68F48200E02A9D /* JSONSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D160B61E68F48200E02A9D /* JSONSupport.swift */; };
+		13D160B91E68F57B00E02A9D /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D160B81E68F57B00E02A9D /* ObjectMapper.framework */; };
+		13D160BA1E68F57B00E02A9D /* ObjectMapper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13D160B81E68F57B00E02A9D /* ObjectMapper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		13D160BD1E69204A00E02A9D /* PHExtensions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D160BC1E69204A00E02A9D /* PHExtensions.framework */; };
+		13D160BE1E69204A00E02A9D /* PHExtensions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13D160BC1E69204A00E02A9D /* PHExtensions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		67B6C49519EA0F9B92203FBE /* Pods_LearnJapanese.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2DA111F1C49E3CCB7912D7 /* Pods_LearnJapanese.framework */; };
 		8402C6731E214D9C00E3F539 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8402C6721E214D9C00E3F539 /* History.storyboard */; };
 		840579BC1DED79DA0019C100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840579BB1DED79DA0019C100 /* AppDelegate.swift */; };
@@ -75,7 +80,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		13D160BB1E68F57B00E02A9D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				13D160BE1E69204A00E02A9D /* PHExtensions.framework in Embed Frameworks */,
+				13D160BA1E68F57B00E02A9D /* ObjectMapper.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		13D160B61E68F48200E02A9D /* JSONSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONSupport.swift; path = LearnJapanese/Database/JSONSupport.swift; sourceTree = SOURCE_ROOT; };
+		13D160B81E68F57B00E02A9D /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = LearnJapanese/Database/ObjectMapper.framework; sourceTree = "<group>"; };
+		13D160BC1E69204A00E02A9D /* PHExtensions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PHExtensions.framework; path = LearnJapanese/Database/PHExtensions.framework; sourceTree = "<group>"; };
 		3C9D85BC6DCAA5DC6B62379A /* Pods-LearnJapanese.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapanese.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapanese/Pods-LearnJapanese.debug.xcconfig"; sourceTree = "<group>"; };
 		3E2DA111F1C49E3CCB7912D7 /* Pods_LearnJapanese.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearnJapanese.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		413ADFF76D4C4E01F2F27E12 /* Pods-LearnJapaneseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearnJapaneseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearnJapaneseTests/Pods-LearnJapaneseTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +170,8 @@
 			files = (
 				D29ACF611E17CCFB005CCA96 /* AVKit.framework in Frameworks */,
 				D29ACF5F1E17CCEE005CCA96 /* AVFoundation.framework in Frameworks */,
+				13D160BD1E69204A00E02A9D /* PHExtensions.framework in Frameworks */,
+				13D160B91E68F57B00E02A9D /* ObjectMapper.framework in Frameworks */,
 				D29ACF5D1E17CC6F005CCA96 /* CoreAudio.framework in Frameworks */,
 				67B6C49519EA0F9B92203FBE /* Pods_LearnJapanese.framework in Frameworks */,
 			);
@@ -174,6 +199,8 @@
 		73B2AAECCE95D361A09536FF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				13D160BC1E69204A00E02A9D /* PHExtensions.framework */,
+				13D160B81E68F57B00E02A9D /* ObjectMapper.framework */,
 				D29ACF601E17CCFB005CCA96 /* AVKit.framework */,
 				D29ACF5E1E17CCEE005CCA96 /* AVFoundation.framework */,
 				D29ACF5C1E17CC6F005CCA96 /* CoreAudio.framework */,
@@ -301,6 +328,7 @@
 				846D5A241E181856002307CD /* DetailFlashCardViewController.swift */,
 				D24847F41E1EBA1C00603164 /* RotateView.xib */,
 				D24847F61E1EBA3800603164 /* RotateView.swift */,
+				13D160B61E68F48200E02A9D /* JSONSupport.swift */,
 			);
 			name = Library;
 			path = MoreFlow;
@@ -381,6 +409,7 @@
 				840579B61DED79DA0019C100 /* Resources */,
 				6316F8C8687197B4C9CCC644 /* [CP] Embed Pods Frameworks */,
 				7EBDB379B1759A7F967B8461 /* [CP] Copy Pods Resources */,
+				13D160BB1E68F57B00E02A9D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -445,7 +474,7 @@
 				TargetAttributes = {
 					840579B71DED79DA0019C100 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = Q38789M8SL;
+						DevelopmentTeam = N5QD3D9LY3;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -677,6 +706,7 @@
 				EA2A8B7A1E0D1330009622F7 /* LoadingOverlay.swift in Sources */,
 				D24847F71E1EBA3800603164 /* RotateView.swift in Sources */,
 				849C2C8A1E155C3B00350066 /* DownloadDataViewController.swift in Sources */,
+				13D160B71E68F48200E02A9D /* JSONSupport.swift in Sources */,
 				840579FC1DEDC33C0019C100 /* LibraryViewController.swift in Sources */,
 				840579FA1DED8E5E0019C100 /* TranslateViewController.swift in Sources */,
 				EA2A8B7D1E0D1330009622F7 /* UILabelExtension.swift in Sources */,
@@ -850,13 +880,17 @@
 				CODE_SIGN_ENTITLEMENTS = LearnJapanese/LearnJapanese.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Q38789M8SL;
+				DEVELOPMENT_TEAM = N5QD3D9LY3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnJapanese/Database",
+				);
 				INFOPLIST_FILE = LearnJapanese/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JapanseDict;
+				PRODUCT_BUNDLE_IDENTIFIER = com.docbohanh.JapaneseDict;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7af63d46-d81b-4010-96fc-fdf2a3c48afc";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
@@ -871,13 +905,17 @@
 				CODE_SIGN_ENTITLEMENTS = LearnJapanese/LearnJapanese.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Q38789M8SL;
+				DEVELOPMENT_TEAM = N5QD3D9LY3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LearnJapanese/Database",
+				);
 				INFOPLIST_FILE = LearnJapanese/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JapanseDict;
+				PRODUCT_BUNDLE_IDENTIFIER = com.docbohanh.JapaneseDict;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7af63d46-d81b-4010-96fc-fdf2a3c48afc";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;

@@ -25,7 +25,7 @@ struct Example {
     let meaningId: Int
 }
 
-struct Translate {
+struct Trans {
     let id: Int
     let word: String
     let avatar: String
@@ -46,8 +46,8 @@ class DataJSON: ImmutableMappable {
     let version: String
     let message: String?
     
-    var words: [Translate] {
-        return dataJSON.map { Translate(id: $0.id,
+    var words: [Trans] {
+        return dataJSON.map { Trans(id: $0.id,
                                         word: $0.word,
                                         avatar: $0.avatar,
                                         romaji: $0.romaji,
@@ -178,9 +178,6 @@ class DataJSON: ImmutableMappable {
     
     
     
-    
-    
-    
 }
 
 func testConvertJSON() {
@@ -198,6 +195,69 @@ func testConvertJSON() {
     }
 }
 
+struct SoundJSON: ImmutableMappable {
+    
+    let flashCardID: Int
+    let id: Int
+    let soundUrl: String
+    
+    init(map: Map) throws {
+        flashCardID = try map.value("FlashCardId")
+        id = try map.value("Id")
+        soundUrl = try map.value("SoundUrl")
+    }
+    
+    public func mapping(map: Map) {
+        
+    }
+    
+}
+
+struct DataSoundJSON: ImmutableMappable {
+    let sound: [SoundJSON]
+    
+    init(map: Map) throws {
+        sound = try map.value("Data")
+    }
+    
+    public func mapping(map: Map) {
+        
+    }
+}
+
+public func delay(_ delay: Double, closure:@escaping () -> () ) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: closure)
+}
+
+//==========================
+/*
+Data =     (
+    {
+        Avatar = "http://storage.dekiru.vn/Data/2016/12/03/chaobuoisang-636163694769318529.jpg";
+        FlashCardId = 1072;
+        Id = 2333;
+        Kana = "\U304a\U306f\U3088\U3046";
+        Romaji = ohayou;
+        SoundUrl = "http://storage.dekiru.vn/Data/2016/11/15/ohayo-636148228403231171.mp3";
+        Word = "\U304a\U306f\U3088\U3046";
+        WordMeaning = "Ch\U00e0o bu\U1ed5i s\U00e1ng";
+},
+    {
+        Avatar = "http://storage.dekiru.vn/Data/2016/12/03/chaobuoitoi-636163696713162759.jpg";
+        FlashCardId = 1072;
+        Id = 2334;
+        Kana = "\U3053\U3093\U3070\U3093\U306f";
+        Romaji = konbanwa;
+        SoundUrl = "http://storage.dekiru.vn/Data/2016/11/15/konbanwa-636148228808197709.mp3";
+        Word = "\U3053\U3093\U3070\U3093\U306f";
+        WordMeaning = "Ch\U00e0o bu\U1ed5i t\U1ed1i";
+}
+);
+ErrorCode = 0;
+Message = "";
+Success = 1;
+TotalRow = 10;
+*/
 /*
 {
     "Id": 8,

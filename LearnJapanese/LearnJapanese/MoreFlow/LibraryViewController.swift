@@ -26,6 +26,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var selectedSection = 0
     var iconArray = [UIImage]()
     
+    var soundIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,7 +159,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             headerView?.flashCard = ".word"
             headerView?.iconHeaderImageView.image = UIImage.init(named: "icon_flashcash_folder")
         } else {
-            ///Thành Lã: 2017/01/05
+            
             if (flashCardTitle.avatar != nil) {
                 if (iconArray.count) > section {
                     headerView?.iconHeaderImageView.image = iconArray[section]
@@ -169,7 +170,80 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         headerView?.titleLabel.text = cardTitle
         headerView?.backgroundHeaderButton.tag = Int(cardID) ?? 0
         headerView?.tag = section
+        headerView?.playSoundButton.tag = Int(cardID) ?? 0
+        headerView?.playSoundButton.addTarget(self, action: #selector(self.playList(_:)), for: .touchUpInside)
+        
         return headerView
+    }
+    
+    //MARK:
+    
+    /// Đọc mảng âm thanh
+    ///
+    /// - Parameters:
+    ///   - source: Mảng các url của audio
+    ///   - duration: thời gian play một audio
+    func play(_ source: [String], duration: TimeInterval) {
+        
+        if let url = URL(string: source[soundIndex]) {
+            
+            print("url: \(url)")
+            
+            let playerItem = AVPlayerItem(url: url)
+            self.player = AVPlayer(playerItem:playerItem)
+            self.player.rate = 1.0
+            self.player.play()
+            
+        }
+        
+        delay(duration) { [weak self] in
+            
+            guard let `self` = self else { return }
+            self.soundIndex += 1
+            if self.soundIndex < source.count - 1 {
+                self.play(source, duration: duration)
+            } else {
+                
+                ProjectCommon.initAlertView(
+                    viewController: self,
+                    title: "",
+                    message: "Đã đọc xong",
+                    buttonArray: ["OK"],
+                    onCompletion: { (index) in }
+                )
+            }
+        }
+    }
+    
+    func playList(_ sender: UIButton) {
+        
+        let parameter : [String: String] = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_by_flash_cart","flashcartid":String(sender.tag)]
+        let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
+        
+        DispatchQueue.global().async {
+            
+            APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: { response in
+                
+                guard let json = response.result.value else { return }
+                print(json)
+                
+                do {
+                    let trans = try DataSoundJSON(JSONObject: json)
+                    
+                    print("sound counted: \(trans.sound.count)")
+                    guard trans.sound.count > 0 else { return }
+                    
+                    self.soundIndex = 0
+                    self.play(trans.sound.map { $0.soundUrl }, duration: 1.3)
+                    
+                } catch {
+                    print(error)
+                }
+                
+            })
+            
+        }
+        
     }
     
     func loadIconImage(url:String,section:Int) -> Void {
@@ -306,17 +380,18 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func tappedPlaySoundList(sender: UIButton) {
-        let object = subWordArray[index]
-        if object.source_url != nil {
-            let url = object.source_url
-            let playerItem = AVPlayerItem( url:URL(string:url! )!)
-            self.player = AVPlayer(playerItem:playerItem)
-            self.player.rate = 1.0;
-            self.player.play()
-        }else {
-            ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["OK"], onCompletion: { (index) in
-            })
-        }
+        
+//        let object = subWordArray[index]
+//        if object.source_url != nil {
+//            let url = object.source_url
+//            let playerItem = AVPlayerItem( url:URL(string:url! )!)
+//            self.player = AVPlayer(playerItem:playerItem)
+//            self.player.rate = 1.0;
+//            self.player.play()
+//        }else {
+//            ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["OK"], onCompletion: { (index) in
+//            })
+//        }
     }
     
     /**

@@ -73,7 +73,7 @@ class DownloadDataViewController: UIViewController {
                 guard let json = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String:AnyObject] else {
                     return
                 }
-                print("json:", json)
+                
                 UserDefaults.standard.set(json["Version"] as! String, forKey: "version")
                 
                 if let data = json["Data"] as? [[String:AnyObject]] {
@@ -186,30 +186,16 @@ class DownloadDataViewController: UIViewController {
     func saveDataToDatabase(response : DataResponse<Any>) {
                 DispatchQueue.main.async {
         
-        ///Thành Lã: 2017/01/05
         guard let value = response.result.value as? [String:AnyObject] else { return }
         
         guard response.result.error == nil,
             response.result.isSuccess,
             let data = value["Data"], data.count > 0,
             let dictionaryArray = data as? [[String : AnyObject]] else {
-                
-                ProjectCommon.initAlertView(
-                    viewController: self,
-                    title: "",
-                    message: "Chưa có phiên bản mới",
-                    buttonArray: ["Đồng ý"],
-                    onCompletion: { _ in
-                        self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
-//                        DispatchQueue.main.async {
-//                            self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
-//                        }
-                })
-                
+                self.performSegue(withIdentifier: "finishLoadingData", sender: nil)
                 return
         }
-        
-        
+                
         UserDefaults.standard.set(value["Version"] as! String, forKey: "version")
         DispatchQueue.main.async {
             
