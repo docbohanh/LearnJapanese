@@ -10,7 +10,6 @@ import UIKit
 import MagicalRecord
 import Alamofire
 import AVFoundation
-import PHExtensions
 
 class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ShowVocaburaryListDelegate,VocabularyCellDelegate {
 
@@ -29,12 +28,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     var soundIndex = 0
     var timer: Timer?
-    var sourceSound: [String] = [] {
-        didSet {
-            timer?.invalidate()
-            self.soundIndex = 0
-        }
-    }
+    var sourceSound: [URL] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -186,65 +180,71 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     //MARK:
     
-    /// Đọc mảng âm thanh
-    ///
-    /// - Parameters:
-    ///   - source: Mảng các url của audio
-    ///   - duration: thời gian play một audio
-    func play(_ source: [String], duration: TimeInterval) {
+    func playWordSound(_ url: URL) {
+        let playerItem = AVPlayerItem(url: url)
+        self.player = AVPlayer(playerItem:playerItem)
+        self.player.rate = 1.0
+        self.player.play()
+    }
+    
+    
+    func playSourceSound() {
         
-        if let url = URL(string: source[soundIndex]) {
+        soundIndex += 1
+        
+        guard soundIndex < sourceSound.count else {
+            timer?.invalidate()
+            soundIndex = 0
             
-            print("url: \(url)")
+            ProjectCommon.initAlertView(
+                viewController: self,
+                title: "",
+                message: "Đã đọc xong",
+                buttonArray: ["OK"],
+                onCompletion: { (index) in }
+            )
             
-            let playerItem = AVPlayerItem(url: url)
-            self.player = AVPlayer(playerItem:playerItem)
-            self.player.rate = 1.0
-            self.player.play()
-            
+            return
         }
         
-        timer = Timer.after(1) { [unowned self] _ in
+        print("url \(soundIndex): \(sourceSound[soundIndex])")
+        playWordSound(sourceSound[soundIndex])
+        
+    }
+    
+    func playList(_ sender: UIButton) {
+        soundIndex = 0
+        
+        getSoundSourceUrl(id: sender.tag) { [unowned self] in
             
-            self.soundIndex += 1
-            if self.soundIndex < source.count {
-                self.play(source, duration: duration)
+            delay(2.second) {
+                guard self.sourceSound.count > 0 else { return }
                 
-            } else {
+                self.playWordSound(self.sourceSound[0])
                 
-                ProjectCommon.initAlertView(
-                    viewController: self,
-                    title: "",
-                    message: "Đã đọc xong",
-                    buttonArray: ["OK"],
-                    onCompletion: { (index) in }
+                if let timer = self.timer { timer.invalidate() }
+                
+                self.timer = Timer.scheduledTimer(
+                    timeInterval: 3.second,
+                    target: self,
+                    selector: #selector(self.playSourceSound),
+                    userInfo: nil,
+                    repeats: true
                 )
             }
         }
         
-//        delay(duration) { [weak self] in
-//
-//            guard let `self` = self else { return }
-//            self.soundIndex += 1
-//            if self.soundIndex < source.count {
-//                self.play(source, duration: duration)
-//            } else {
-//                
-//                ProjectCommon.initAlertView(
-//                    viewController: self,
-//                    title: "",
-//                    message: "Đã đọc xong",
-//                    buttonArray: ["OK"],
-//                    onCompletion: { (index) in }
-//                )
-//            }
-//        }
-    }
-    
-    func playList(_ sender: UIButton) {
         
-        let parameter : [String: String] = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_by_flash_cart","flashcartid":String(sender.tag)]
+    }
+        
+    func getSoundSourceUrl(id: Int, completion: (() -> Void)? = nil) {
+        
+        let parameter : [String: String]  = ["secretkey": "nfvsMof10XnUdQEWuxgAZta",
+                                            "action": "get_word_by_flash_cart",
+                                            "flashcartid": String(id)]
+        
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
+        
         
         APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: { response in
             
@@ -253,11 +253,9 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             do {
                 let trans = try DataSoundJSON(JSONObject: json)
                 
-                print("sound counted: \(trans.sound.count)")
-                guard trans.sound.count > 0 else { return }
-                self.sourceSound = trans.sound.map { $0.soundUrl }
+                self.sourceSound = trans.sound.map { $0.soundUrl }.flatMap { URL(string: $0) }
                 
-                self.play(self.sourceSound, duration: 1.3)
+                print("sound counted: \(self.sourceSound.count)")
                 
             } catch {
                 print(error)
@@ -265,7 +263,10 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
         })
         
+        if let completion = completion { completion() }
+        
     }
+    
     
     func loadIconImage(url:String,section:Int) -> Void {
         let catPictureURL = URL(string: url)!
