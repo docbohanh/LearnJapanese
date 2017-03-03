@@ -74,6 +74,7 @@ class NSVTabBarController: UITabBarController , UITabBarControllerDelegate{
          //****// TabBar Images Animations //*****//
 //         NSVBarController.setAnimation(tabBarController, animationtype:selectedAnimation)
         //*****//*****//*****//*****//*****//*****//*****//*****//
+        
 
     }
     

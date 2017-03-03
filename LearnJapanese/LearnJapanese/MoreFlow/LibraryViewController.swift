@@ -187,7 +187,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         self.player.play()
     }
     
-    
+    ///
     func playSourceSound() {
         
         soundIndex += 1
@@ -212,14 +212,17 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
     }
     
+    ///
     func playList(_ sender: UIButton) {
         soundIndex = 0
+        timer?.invalidate()
         
         getSoundSourceUrl(id: sender.tag) { [unowned self] in
             
-            delay(2.second) {
+            delay(0.3.second) {
                 guard self.sourceSound.count > 0 else { return }
                 
+                print("url-->0: \(self.sourceSound[0])")
                 self.playWordSound(self.sourceSound[0])
                 
                 if let timer = self.timer { timer.invalidate() }
@@ -236,7 +239,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         
         
     }
-        
+    
+    ///
     func getSoundSourceUrl(id: Int, completion: (() -> Void)? = nil) {
         
         let parameter : [String: String]  = ["secretkey": "nfvsMof10XnUdQEWuxgAZta",
@@ -249,7 +253,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: { response in
             
             guard let json = response.result.value else { return }
-            
+
             do {
                 let trans = try DataSoundJSON(JSONObject: json)
                 
@@ -354,6 +358,9 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     
     func tappedShowVocaburaryList(sender: HeaderView, flashCard: String) {
+        
+        timer?.invalidate()
+        
         if ProjectCommon.connectedToNetwork() {
             selectedSection = sender.tag
             let button = sender.backgroundHeaderButton as UIButton
@@ -396,8 +403,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 libraryTableView.reloadData()
             }
         } else {
-        ProjectCommon.initAlertView(viewController: self, title: "", message: "Không thể kết nối internet,vui lòng quay lại sau", buttonArray: ["Đóng"], onCompletion: {_ in
-        })
+            ProjectCommon.initAlertView(viewController: self, title: "", message: "Không thể kết nối internet,vui lòng quay lại sau", buttonArray: ["Đóng"], onCompletion: {_ in
+            })
         }
     }
     

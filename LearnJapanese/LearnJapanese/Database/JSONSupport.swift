@@ -200,11 +200,15 @@ struct SoundJSON: ImmutableMappable {
     let flashCardID: Int
     let id: Int
     let soundUrl: String
+    let romaji: String
+    let meaning: String
     
     init(map: Map) throws {
         flashCardID = try map.value("FlashCardId")
         id = try map.value("Id")
         soundUrl = try map.value("SoundUrl")
+        romaji = try map.value("Romaji")
+        meaning = try map.value("WordMeaning")
     }
     
     public func mapping(map: Map) {
