@@ -10,6 +10,7 @@ import UIKit
 import MagicalRecord
 import Alamofire
 import AVFoundation
+import PHExtensions
 
 class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ShowVocaburaryListDelegate,VocabularyCellDelegate {
 
@@ -27,7 +28,13 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var iconArray = [UIImage]()
     
     var soundIndex = 0
-    var timer: Timer!
+    var timer: Timer?
+    var sourceSound: [String] = [] {
+        didSet {
+            timer?.invalidate()
+            self.soundIndex = 0
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -197,12 +204,12 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
         }
         
-        delay(duration) { [weak self] in
-
-            guard let `self` = self else { return }
+        Timer.after(1) { [unowned self] _ in
+            
             self.soundIndex += 1
             if self.soundIndex < source.count {
                 self.play(source, duration: duration)
+                
             } else {
                 
                 ProjectCommon.initAlertView(
@@ -214,6 +221,24 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 )
             }
         }
+        
+//        delay(duration) { [weak self] in
+//
+//            guard let `self` = self else { return }
+//            self.soundIndex += 1
+//            if self.soundIndex < source.count {
+//                self.play(source, duration: duration)
+//            } else {
+//                
+//                ProjectCommon.initAlertView(
+//                    viewController: self,
+//                    title: "",
+//                    message: "Đã đọc xong",
+//                    buttonArray: ["OK"],
+//                    onCompletion: { (index) in }
+//                )
+//            }
+//        }
     }
     
     func playList(_ sender: UIButton) {
@@ -226,17 +251,16 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: { response in
                 
                 guard let json = response.result.value else { return }
-                print(json)
+//                print(json)
                 
                 do {
                     let trans = try DataSoundJSON(JSONObject: json)
                     
                     print("sound counted: \(trans.sound.count)")
                     guard trans.sound.count > 0 else { return }
+                    self.sourceSound = trans.sound.map { $0.soundUrl }
                     
-                    self.soundIndex = 0
-                    if let timer = self.timer { timer.invalidate() }
-                    self.play(trans.sound.map { $0.soundUrl }, duration: 1.3)
+                    self.play(self.sourceSound, duration: 1.3)
                     
                 } catch {
                     print(error)
