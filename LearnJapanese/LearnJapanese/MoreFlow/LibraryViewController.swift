@@ -204,7 +204,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
             
         }
         
-        Timer.after(1) { [unowned self] _ in
+        timer = Timer.after(1) { [unowned self] _ in
             
             self.soundIndex += 1
             if self.soundIndex < source.count {
@@ -246,29 +246,24 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let parameter : [String: String] = ["secretkey":"nfvsMof10XnUdQEWuxgAZta","action":"get_word_by_flash_cart","flashcartid":String(sender.tag)]
         let urlRequest = "http://app-api.dekiru.vn/DekiruApi.ashx"
         
-        DispatchQueue.global().async {
+        APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: { response in
             
-            APIManager.sharedInstance.postDataToURL(url:urlRequest, parameters: parameter, onCompletion: { response in
-                
-                guard let json = response.result.value else { return }
-//                print(json)
-                
-                do {
-                    let trans = try DataSoundJSON(JSONObject: json)
-                    
-                    print("sound counted: \(trans.sound.count)")
-                    guard trans.sound.count > 0 else { return }
-                    self.sourceSound = trans.sound.map { $0.soundUrl }
-                    
-                    self.play(self.sourceSound, duration: 1.3)
-                    
-                } catch {
-                    print(error)
-                }
-                
-            })
+            guard let json = response.result.value else { return }
             
-        }
+            do {
+                let trans = try DataSoundJSON(JSONObject: json)
+                
+                print("sound counted: \(trans.sound.count)")
+                guard trans.sound.count > 0 else { return }
+                self.sourceSound = trans.sound.map { $0.soundUrl }
+                
+                self.play(self.sourceSound, duration: 1.3)
+                
+            } catch {
+                print(error)
+            }
+            
+        })
         
     }
     
