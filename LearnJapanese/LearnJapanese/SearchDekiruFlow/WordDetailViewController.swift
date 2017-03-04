@@ -70,9 +70,14 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         self.tabBarController?.tabBar.isHidden = true
         self.detailTranslate = (Translate.mr_findFirst(byAttribute: "id", withValue: self.wordId, in: NSManagedObjectContext.mr_default()))
 
-        let result = FlashCardDetail.mr_find(byAttribute: "id", withValue: self.detailTranslate.id, andOrderBy: "flash_card_id", ascending: true) as? [FlashCardDetail]
+        guard let transID = self.detailTranslate.id,
+            let rawTrans = FlashCardDetail.mr_find(
+                byAttribute: "id",
+                withValue: transID,
+                andOrderBy: "flash_card_id", ascending: true),
+            let result = rawTrans as? [FlashCardDetail] else { return }
         
-        for object in result! {
+        for object in result {
             if let flash_card_id = object.flash_card_id {
                 if flash_card_id == ".flashcard" {
                     flashCardButton.setImage(UIImage.init(named: "icon_btn_flashcash_flashcard"), for: UIControlState.normal)
@@ -151,7 +156,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     }
     
     @IBAction func tappedBackButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     @IBAction func tappedDeleteButton(_ sender: Any) {
     }
@@ -181,10 +186,18 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         }
     }
     @IBAction func tappedFavoriteButton(_ sender: Any) {
-        let result = FlashCardDetail.mr_find(byAttribute: "id", withValue: self.detailTranslate.id, andOrderBy: "flash_card_id", ascending: true) as? [FlashCardDetail]
+        
+        guard let id = self.detailTranslate.id,
+            let raw = FlashCardDetail.mr_find(
+                byAttribute: "id",
+                withValue: id,
+                andOrderBy: "flash_card_id",
+                ascending: true),
+            let result = raw as? [FlashCardDetail] else { return }
+        
         let wordType = ".word"
         
-        for object in result! {
+        for object in result {
             if object.flash_card_id == wordType {
                 let localContext = NSManagedObjectContext.mr_default()
                 object.mr_deleteEntity(in: localContext)
@@ -197,7 +210,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
             }
         }
         
-            favoriteButton.setImage(UIImage.init(named: "icon_btn_favorite_flashcard"), for: UIControlState.normal)
+        favoriteButton.setImage(UIImage.init(named: "icon_btn_favorite_flashcard"), for: UIControlState.normal)
         
         popupView?.wordLabel.text = searchTextField.text
         backgroundPopupView.isHidden = false
@@ -212,10 +225,18 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     }
     
     @IBAction func tappedSaveFlashCashButton(_ sender: Any) {
-        let result = FlashCardDetail.mr_find(byAttribute: "id", withValue: self.detailTranslate.id, andOrderBy: "flash_card_id", ascending: true) as? [FlashCardDetail]
+        
+        guard let id = self.detailTranslate.id,
+            let raw = FlashCardDetail.mr_find(
+                byAttribute: "id",
+                withValue: id,
+                andOrderBy: "flash_card_id",
+                ascending: true),
+            let result = raw as? [FlashCardDetail] else { return }
+        
         let wordType = ".flashcard"
         
-        for object in result! {
+        for object in result {
             if object.flash_card_id == wordType {
                 let localContext = NSManagedObjectContext.mr_default()
                 object.mr_deleteEntity(in: localContext)
@@ -280,12 +301,10 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         
         let string = "https://vi.wikipedia.org/wiki/Special:Search?search=\(wordSearch)"
         
-        guard let stringURL = string.addingPercentEscapes(using: String.Encoding.utf8),
-            let url = URL(string: stringURL)
-            else { return }
+        guard let url = URL(string: string) else { return }
         
-        let requestObj = NSURLRequest(url: url);
-        searchWebView.loadRequest(requestObj as URLRequest);
+        let requestObj = URLRequest(url: url)
+        searchWebView.loadRequest(requestObj)
     }
     @IBAction func tappedBingButton(_ sender: Any) {
         dekiruButton.backgroundColor = UIColor.lightText
@@ -300,7 +319,9 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     }
 
     func saveHistoryData(translate:Translate) {
-        let word = History.mr_findFirst(byAttribute: "id", withValue: translate.id, in: NSManagedObjectContext.mr_default())
+        
+        let word = History.mr_findFirst(byAttribute: "id", withValue: translate.id ?? "", in: NSManagedObjectContext.mr_default())
+        
         if word == nil {
             MagicalRecord.save({localContext in
                 let history = History.mr_createEntity(in: localContext)
@@ -414,8 +435,7 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
                             ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu từ thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
                         })
                     } else {
-                        let message =
-                            ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu  thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
+                        ProjectCommon.initAlertView(viewController: self, title: "", message: "Đã lưu  thành công", buttonArray: ["Đóng"], onCompletion: {_ in})
                     }
                     
                 } else {
@@ -426,8 +446,8 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     }
     
     func searchWithGoogle() -> Void {
-        var source:String = "ja"
-        var target:String = "vi"
+        let source:String = "ja"
+        let target:String = "vi"
         LoadingOverlay.shared.showOverlay(view: self.view)
         let parameter:  [String : String] = ["q":searchText,"key":API_KEY_TRANSLATE_GOOGLE,"source":source,"target":target]
         

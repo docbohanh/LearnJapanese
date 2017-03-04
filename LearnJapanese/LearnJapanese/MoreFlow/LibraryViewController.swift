@@ -74,10 +74,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 subWordArray.removeAll()
             }
         }
-        if iconArray != nil {
-            if iconArray.count > 0 {
-                iconArray.removeAll()
-            }
+        if iconArray.count > 0 {
+            iconArray.removeAll()
         }
         self.iconArray.append(UIImage.init(named: "icon_flashcash_folder")!)
         self.iconArray.append(UIImage.init(named: "icon_flashcash_folder")!)
@@ -284,11 +282,11 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                 // It would be weird if we didn't have a response, so check for that too.
                 if let res = response as? HTTPURLResponse {
                     print("Downloaded cat picture with response code \(res.statusCode)")
-                    if let imageData = data {
+                    if let imageData = data, let icon = UIImage.init(data: imageData) {
                         // Finally convert that Data into an image and do what you wish with it.
                         DispatchQueue.main.async {
                             self.libraryTableView.reloadSections(IndexSet.init(integer:section), with: UITableViewRowAnimation.none)
-                            self.iconArray.append(UIImage.init(data: data!)!)
+                            self.iconArray.append(icon)
                         }
                     } else {
                         print("Couldn't get image: Image is nil")
@@ -326,7 +324,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
 
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if isShowListWord && currentIdFlashCard == ".flashcard" {
             return true
         } else {
@@ -458,7 +456,7 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                         }
                         
                         if let Avatar = flashCardDetailObject["Avatar"] {
-                            flashCard?.avatar = Avatar as! String
+                            flashCard?.avatar = Avatar as? String
                         }
                     }
  
@@ -546,8 +544,8 @@ class LibraryViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     }
                     //                self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentIdFlashCard) as! [FlashCardDetail]
                     self.subWordArray = FlashCardDetail.mr_find(byAttribute: "flash_card_id", withValue: self.currentIdFlashCard, andOrderBy: "id", ascending: true) as![FlashCardDetail]
-                    ///Editor: Thành Lã - 2017/01/05
-                    guard let flashCardObject = (self.titleArray.first { $0.id == self.currentIdFlashCard }) else { return }
+                    
+                    guard let _ = (self.titleArray.first { $0.id == self.currentIdFlashCard }) else { return }
                 }
                 })
             }

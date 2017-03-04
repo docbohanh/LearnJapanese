@@ -50,7 +50,7 @@ extension UIImageView {
                     // It would be weird if we didn't have a response, so check for that too.
                     if let res = response as? HTTPURLResponse {
                         print("Downloaded cat picture with response code \(res.statusCode)")
-                        if let imageData = data {
+                        if data != nil {
                             // Finally convert that Data into an image and do what you wish with it.
                             DispatchQueue.main.async {
                             }

@@ -105,7 +105,7 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func tappedSearchWithGoogle(_ sender: Any) {
         let storyboard = UIStoryboard.init(name: "Translate", bundle: nil)
-        let translateViewController = storyboard.instantiateViewController(withIdentifier: "TranslateViewController") as! TranslateViewController
+        _ = storyboard.instantiateViewController(withIdentifier: "TranslateViewController") as! TranslateViewController
         self.tabBarController?.selectedIndex = 2
         
     }
@@ -227,11 +227,20 @@ class SearchDerikuViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func updateWordToHistory(index:Int) {
-        let word = Translate.mr_find(byAttribute: "id", withValue: self.currentDetailTranslate.id, in: NSManagedObjectContext.mr_default())?.first as? Translate
-        if word != nil {
-            word?.isSearch = "1"
+        if let id = self.currentDetailTranslate.id  {
+            let word = Translate.mr_find(
+                byAttribute: "id",
+                withValue: id,
+                in: NSManagedObjectContext.mr_default())?.first as? Translate
+            
+            if word != nil {
+                word?.isSearch = "1"
+            }
+            
+            NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
         }
-        NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
+        
+        
     }
     
     func getWordFromDatabase() {

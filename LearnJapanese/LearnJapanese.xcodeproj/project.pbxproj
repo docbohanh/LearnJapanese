@@ -468,7 +468,6 @@
 				TargetAttributes = {
 					840579B71DED79DA0019C100 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = N5QD3D9LY3;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -874,7 +873,7 @@
 				CODE_SIGN_ENTITLEMENTS = LearnJapanese/LearnJapanese.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = N5QD3D9LY3;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LearnJapanese/Database",
@@ -882,7 +881,7 @@
 				INFOPLIST_FILE = LearnJapanese/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.docbohanh.JapaneseDict;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JapaneseDict;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -899,7 +898,7 @@
 				CODE_SIGN_ENTITLEMENTS = LearnJapanese/LearnJapanese.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = N5QD3D9LY3;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LearnJapanese/Database",
@@ -907,7 +906,7 @@
 				INFOPLIST_FILE = LearnJapanese/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.docbohanh.JapaneseDict;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JapaneseDict;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

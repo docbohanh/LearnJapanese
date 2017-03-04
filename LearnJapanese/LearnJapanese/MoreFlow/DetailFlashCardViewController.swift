@@ -107,7 +107,7 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     }
 
     @IBAction func tappedBack(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -217,7 +217,7 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
 extension DetailFlashCardViewController {
     fileprivate func setupRotateView() {
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapOnRotateView))
+        _ = UITapGestureRecognizer(target: self, action: #selector(self.tapOnRotateView))
 //        rotateView.addGestureRecognizer(tap)
     }
 }
