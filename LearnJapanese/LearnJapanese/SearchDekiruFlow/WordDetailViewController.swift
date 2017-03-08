@@ -163,16 +163,16 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     @IBAction func tappedSoundButton(_ sender: Any) {
         if detailTranslate != nil {
             
-        
-        if detailTranslate.sound_url == nil || detailTranslate.sound_url?.characters.count == 0 {
-            ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in
-            })
-        } else {
-            let playerItem = AVPlayerItem( url:URL(string:detailTranslate.sound_url! )! )
-            self.player = AVPlayer(playerItem:playerItem)
-            self.player.rate = 1.0;
-            self.player.play()
-        }
+            if detailTranslate.sound_url == nil || detailTranslate.sound_url?.characters.count == 0 {
+                ProjectCommon.initAlertView(viewController: self, title: "Sound not found!", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in
+                })
+            } else {
+                let playerItem = AVPlayerItem( url:URL(string:detailTranslate.sound_url! )! )
+                self.player = AVPlayer(playerItem:playerItem)
+                self.player.rate = 1.0;
+                self.player.play()
+            }
+            
         } else if detailFlashCard != nil {
             if detailFlashCard.source_url == nil || detailFlashCard.source_url?.characters.count == 0 {
                 ProjectCommon.initAlertView(viewController: self, title: "", message: "Không tồn tại âm thanh này", buttonArray: ["Đóng"], onCompletion: {_ in
@@ -263,24 +263,35 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
     }
     @IBAction func tappedClosePopupButton(_ sender: Any) {
         backgroundPopupView.isHidden = true
+        view.endEditing(true)
     }
     @IBAction func tappedDekiruDictButton(_ sender: Any) {
         dekiruButton.backgroundColor = .white
         dekiruButton.setTitleColor(.red, for: UIControlState.normal)
-        googleButton.backgroundColor = UIColor.lightText
-        wikipediaButton.backgroundColor = UIColor.lightText
-        bingButton.backgroundColor = UIColor.lightText
+//        googleButton.backgroundColor = UIColor.lightText
+//        wikipediaButton.backgroundColor = UIColor.lightText
+//        bingButton.backgroundColor = UIColor.lightText
+        
+        [googleButton,wikipediaButton,bingButton].forEach { button in
+            button?.backgroundColor = UIColor.lightText
+            button?.setTitleColor(.darkGray, for: UIControlState())
+        }
         
         searchWebView.isHidden = true
         searchResultScrollView.isHidden = false
         googleTranslateView.isHidden = true
     }
     @IBAction func tappedGoogleButton(_ sender: Any) {
-        dekiruButton.backgroundColor = UIColor.lightText
+//        dekiruButton.backgroundColor = UIColor.lightText
         googleButton.setTitleColor(.red, for: UIControlState.normal)
         googleButton.backgroundColor = .white
-        wikipediaButton.backgroundColor = UIColor.lightText
-        bingButton.backgroundColor = UIColor.lightText
+//        wikipediaButton.backgroundColor = UIColor.lightText
+//        bingButton.backgroundColor = UIColor.lightText
+        
+        [dekiruButton,wikipediaButton,bingButton].forEach { button in
+            button?.backgroundColor = UIColor.lightText
+            button?.setTitleColor(.darkGray, for: UIControlState())
+        }
         
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = true
@@ -288,11 +299,16 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         self.searchWithGoogle()
     }
     @IBAction func tappedWikipediaButton(_ sender: Any) {
-        dekiruButton.backgroundColor = UIColor.lightText
-        googleButton.backgroundColor = UIColor.lightText
+//        dekiruButton.backgroundColor = UIColor.lightText
+//        googleButton.backgroundColor = UIColor.lightText
         wikipediaButton.setTitleColor(.red, for: UIControlState.normal)
         wikipediaButton.backgroundColor = .white
-        bingButton.backgroundColor = UIColor.lightText
+//        bingButton.backgroundColor = UIColor.lightText
+        
+        [dekiruButton,googleButton,bingButton].forEach { button in
+            button?.backgroundColor = UIColor.lightText
+            button?.setTitleColor(.darkGray, for: UIControlState())
+        }
         
         searchResultScrollView.isHidden = true
         searchWebView.isHidden = false
@@ -307,9 +323,15 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         searchWebView.loadRequest(requestObj)
     }
     @IBAction func tappedBingButton(_ sender: Any) {
-        dekiruButton.backgroundColor = UIColor.lightText
-        googleButton.backgroundColor = UIColor.lightText
-        wikipediaButton.backgroundColor = UIColor.lightText
+//        dekiruButton.backgroundColor = UIColor.lightText
+//        googleButton.backgroundColor = UIColor.lightText
+//        wikipediaButton.backgroundColor = UIColor.lightText
+        
+        [dekiruButton,googleButton,wikipediaButton].forEach { button in
+            button?.backgroundColor = UIColor.lightText
+            button?.setTitleColor(.darkGray, for: UIControlState())
+        }
+        
         bingButton.setTitleColor(.red, for: UIControlState.normal)
         bingButton.backgroundColor = .white
         searchResultScrollView.isHidden = true
@@ -454,14 +476,39 @@ class WordDetailViewController: UIViewController,saveWordDelegate {
         APIManager.sharedInstance.postDataToURL(url: "https://translation.googleapis.com/language/translate/v2", parameters:parameter , onCompletion: {response in
             print(response)
             DispatchQueue.main.async {
+                
                 LoadingOverlay.shared.hideOverlayView()
+                
                 if (response.result.error != nil) {
-                    ProjectCommon.initAlertView(viewController: self, title: "Error", message: (response.result.error?.localizedDescription)!, buttonArray: ["OK"], onCompletion: { (index) in
+                    ProjectCommon.initAlertView(
+                        viewController: self,
+                        title: "Error", message: (response.result.error?.localizedDescription) ?? "Unknown",
+                        buttonArray: ["OK"],
+                        onCompletion: { _ in
                     })
-                }else {
-                    let resultDictionary = response.result.value as! [String:AnyObject]
-                    let dictResult = resultDictionary["data"] as! [String:AnyObject]
-                    let data = dictResult["translations"] as! [AnyObject]
+                    
+                } else {
+                    
+//                    let resultDictionary = response.result.value as! [String:AnyObject]
+//                    let dictResult = resultDictionary["data"] as! [String:AnyObject]
+//                    let data = dictResult["translations"] as! [AnyObject]
+                    
+                    guard let resultDictionary = response.result.value as? [String:AnyObject],
+                        let dictData = resultDictionary["data"],
+                        let dictResult = dictData as? [String:AnyObject],
+                        let trans = dictResult["translations"],
+                        let data = trans as? [AnyObject] else {
+                            
+                            ProjectCommon.initAlertView(
+                                viewController: self,
+                                title: "Error",
+                                message: "No data",
+                                buttonArray: ["OK"],
+                                onCompletion: { _ in
+                            })
+                            
+                            return
+                    }
                     if data.count > 0 {
                         let object = data[0] as! [String:AnyObject]
                         let text = object["translatedText"] as! String

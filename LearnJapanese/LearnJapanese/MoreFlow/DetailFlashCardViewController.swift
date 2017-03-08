@@ -159,15 +159,46 @@ class DetailFlashCardViewController: UIViewController, UIScrollViewDelegate, Rot
     func rotateScreen(index: Int) {
         let viewAnimate = view.viewWithTag(1000 + index) as! RotateView
         let option:UIViewAnimationOptions = .transitionFlipFromLeft
-        UIView.transition(with: viewAnimate, duration: 0.5, options: option, animations: nil) { (isSuccess) in
-            viewAnimate.isShowImage = !viewAnimate.isShowImage
-            if viewAnimate.isShowImage {
-                viewAnimate.wordImageView.isHidden = true
-            }else {
-                viewAnimate.wordImageView.isHidden = false
-            }
+        
+        UIView.transition(
+            with: viewAnimate,
+            duration: 0.5,
+            options: option,
+            animations: nil) { (isSuccess) in
+                viewAnimate.isShowImage = !viewAnimate.isShowImage
+                
+//                if viewAnimate.isShowImage {
+//                    viewAnimate.wordImageView.isHidden = true
+//                }else {
+//                    viewAnimate.wordImageView.isHidden = false
+//                }
+                
+                self.setVisibilityOf(
+                    viewAnimate.wordImageView,
+                    to: !viewAnimate.isShowImage,
+                    duration: 0.3,
+                    completion: nil)
         }
-        UIView.transition(with: viewAnimate, duration: 0.5, options: option, animations: nil, completion: nil)
+        
+    }
+    
+    /**
+     Hàm ẩn hiện view
+     */
+    func setVisibilityOf(_ view: UIView, to visible: Bool, duration: TimeInterval = 0.3, completion: (() -> Void)? = nil) {
+        
+        if visible && view.isHidden { view.isHidden = false }
+        
+        UIView.animate(
+            withDuration: duration,
+            animations: {
+                view.alpha = visible ? 1.0 : 0.0
+        },
+            completion: { finished in
+                if !visible { view.isHidden = true }
+                if let completion = completion { completion() }
+        })
+        
     }
     
     func rotateDetailView(index:Int) {

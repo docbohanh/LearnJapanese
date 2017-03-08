@@ -74,12 +74,38 @@ class TranslateViewController: UIViewController {
             DispatchQueue.main.async {
                 LoadingOverlay.shared.hideOverlayView()
                 if (response.result.error != nil) {
-                    ProjectCommon.initAlertView(viewController: self, title: "Error", message: (response.result.error?.localizedDescription)!, buttonArray: ["OK"], onCompletion: { (index) in
+//                    ProjectCommon.initAlertView(viewController: self, title: "Error", message: (response.result.error?.localizedDescription)!, buttonArray: ["OK"], onCompletion: { (index) in
+//                    })
+                    ProjectCommon.initAlertView(
+                        viewController: self,
+                        title: "Error",
+                        message: (response.result.error?.localizedDescription) ?? "Unknown",
+                        buttonArray: ["OK"],
+                        onCompletion: { (index) in
                     })
+                    
                 }else {
-                    let resultDictionary = response.result.value as! [String:AnyObject]
-                    let dictResult = resultDictionary["data"] as! [String:AnyObject]
-                    let data = dictResult["translations"] as! [AnyObject]
+//                    let resultDictionary = response.result.value as! [String:AnyObject]
+//                    let dictResult = resultDictionary["data"] as! [String:AnyObject]
+//                    let data = dictResult["translations"] as! [AnyObject]
+                    
+                    guard let resultDictionary = response.result.value as? [String:AnyObject],
+                        let dictData = resultDictionary["data"],
+                        let dictResult = dictData as? [String:AnyObject],
+                        let trans = dictResult["translations"],
+                        let data = trans as? [AnyObject] else {
+                            
+                            ProjectCommon.initAlertView(
+                                viewController: self,
+                                title: "Error",
+                                message: "Data empty",
+                                buttonArray: ["OK"],
+                                onCompletion: { (index) in
+                            })
+                            
+                            return
+                    }
+                    
                     if data.count > 0 {
                         let object = data[0] as! [String:AnyObject]
                         let text = object["translatedText"] as! String
